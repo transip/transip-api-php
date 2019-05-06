@@ -1,0 +1,115 @@
+TRANSIP API V5.9
+
+NEW
+ - Added a function to request the authcode of a domain at the dnsBE or EURid registries
+
+TRANSIP API V5.8
+
+NEW
+ - Added Pooled Traffic for VPS
+
+TRANSIP API V5.7
+
+NEW
+ - Added AvailabilityZones
+
+TRANSIP API V5.6
+
+NEW
+ - Added custom target ports for HA-IP
+   Use different source and destination ports for a HA-IP configuration.
+ - Added option to configure SSL between HA-IP and VPS
+   For each configuration specify whether the connection between HA-IP and the VPS is secured.
+ - Added HA-IP Pro support
+   Attach multiple VPSes to a HA-IP, and modify load balancing settings.
+
+TRANSIP API V5.5
+
+NEW
+ - Added HA-IP Certificates
+   HTTPS Offloading on our proxy's
+ - Add LetsEncrypt certificate to HA-IP
+   Let transip handle your Lets Encrypt certificate and renewals automatically
+ - Change proxy modes: HTTP, HTTPS, TCP, PROXY
+   Use HTTPS modus for SSL offloading. HTTP/HTTPS mode will also set the X-Forwarded-For Header.
+
+TRANSIP API V5.4
+
+NEW
+ - Added HaipService
+   With which you can list your Haips and change the coupled Vps to your Haip
+
+TRANSIP API V5.3
+
+NEW
+ - Added VpsService::installOperatingSystemUnattended
+   Start a installation with a custom preseed/kickstart provided via the api (base64_encoded)
+
+TRANSIP API V5.2
+
+NEW
+ - Added VpsService::cloneVps
+   The ability to clone a VPS to a new VPS
+
+ - Added VpsService::revertSnapshotToOtherVps
+   Revert a snapshot from any vps to any vps
+
+ - Added VpsService::revertVpsBackup
+   Revert a automated VPS backup
+
+
+TRANSIP API V5.1
+
+NEW
+ - Added VpsService::getTrafficInformationForVps
+   This method provides more information about your traffic usage
+
+ - Added VpsService::handoverVps
+   With this method you will be able to start the push handover process to another TransIP Account
+
+ - Added VpsService::setCustomerLock
+   Enable or disable the customerlock via the Api
+
+DEPRECATED:
+ - VpsService::getAmountOfTrafficUsed (still works for now)
+
+
+TRANSIP API V5.0
+
+NEW
+ - Added Support for VPS
+
+
+TRANSIP API V4.2.1
+
+NEW
+ - The RSA part of the private key is no longer required for newly generated keys
+
+
+TRANSIP API V4.1
+
+NEW
+ - Single distribution for all TransIP countries: added Transip_ApiSettings::$endpoint to determine which endpoint to target when making API requests
+
+
+TRANSIP API V4.0
+
+NEW:
+ - Improved security by using SSL based signatures for API requests.
+
+
+TRANSIP API V3.0
+
+NEW:
+ - check up to 20 domains within one call: Transip_DomainService::batchCheckAvailability()
+ - get information (price, renewal period, possible actions) about all TLDs offered with Transip_DomainService::getAllTldInfos() and Transip_DomainService::getTldInfo()
+ - get the current running action a domain is doing and/or retry/cancel with getCurrentDomainAction(), retryCurrentDomainActionWithNewData(), retryTransferWithDifferentAuthCode(), cancelDomainAction()
+ - The domain object now holds information registrationDate, renewalDate, authCode and isLocked status
+ - Get all Colocation items with ColocationService::getColoNames()
+ - Manage IP/Network info with getIpRanges(), createIpAddress(), and more
+ - Manage, order and modify Forwards with the ForwardService
+ - Manage, order and modify Webhosting with the WebhostingService
+
+DEPRECATED:
+ - Transip_DomainService::getAuthCode(). Returned in Transip_DomainService::getInfo() now.
+ - Transip_DomainService::getIsLocked(). Returned in Transip_DomainService::getInfo() now.
