@@ -23,7 +23,7 @@ class Transip_DomainService
 	/** The SOAP service that corresponds with this class. */
 	const SERVICE = 'DomainService';
 	/** The API version. */
-	const API_VERSION = '5.13';
+	const API_VERSION = '5.14';
 	/** @var SoapClient  The SoapClient used to perform the SOAP calls. */
 	protected static $_soapClient = null;
 
@@ -522,6 +522,19 @@ class Transip_DomainService
 	public static function requestAuthCode($domainName)
 	{
 		return self::_getSoapClient(array_merge(array($domainName), array('__method' => 'requestAuthCode')))->requestAuthCode($domainName);
+	}
+
+	/**
+	 * Handover a Domain to another TransIP User. Please be aware that this will NOT change the owner contact information
+	 * at the registry. If you want to change the domain owner at the registry, then you should execute a 'setOwner'.
+	 *
+	 * @param string $domainName The domain name you want to hand over.
+	 * @param string $targetAccountname the target account name
+	 * @throws ApiException on error
+	 */
+	public static function handover($domainName, $targetAccountname)
+	{
+		return self::_getSoapClient(array_merge(array($domainName, $targetAccountname), array('__method' => 'handover')))->handover($domainName, $targetAccountname);
 	}
 }
 

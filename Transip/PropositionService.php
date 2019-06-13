@@ -15,7 +15,7 @@ class Transip_PropositionService
 	/** The SOAP service that corresponds with this class. */
 	const SERVICE = 'PropositionService';
 	/** The API version. */
-	const API_VERSION = '5.13';
+	const API_VERSION = '5.14';
 	/** @var SoapClient  The SoapClient used to perform the SOAP calls. */
 	protected static $_soapClient = null;
 
