@@ -2,7 +2,7 @@
     "name": "transip/transip-api-php",
     "description": "The TransIP API offers you the opportunity to use our services freely.",
     "type": "library",
-    "license": "Apache License 2.0",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "TransIP",
