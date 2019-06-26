@@ -9,5 +9,8 @@
             "email": "support@transip.eu"
         }
     ],
+    "autoload": {
+        "classmap": ["Transip/"]
+    },
     "require": {}
 }
