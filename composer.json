@@ -10,7 +10,7 @@
         }
     ],
     "autoload": {
-        "classmap": ["Transip/"]
+        "psr-0": { "Transip_": "Transip/" }
     },
     "require": {}
 }
