@@ -1,3 +1,8 @@
+TRANSIP API V5.15
+
+NEW
+- Added a function to handover a domain from a TransIP account to another TransIP account by using an auth code.
+
 TRANSIP API V5.14
 
 NEW
