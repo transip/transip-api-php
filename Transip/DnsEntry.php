@@ -16,6 +16,9 @@ class Transip_DnsEntry
 	const TYPE_NS = 'NS';
 	const TYPE_TXT = 'TXT';
 	const TYPE_SRV = 'SRV';
+	const TYPE_SSHFP = 'SSHFP';
+	const TYPE_TLSA = 'TLSA';
+	const TYPE_CAA = 'CAA';
 
 	/**
 	 * The name of the dns entry, for example '@' or 'www'
