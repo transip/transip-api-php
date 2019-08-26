@@ -1,3 +1,7 @@
+TRANSIP API V5.16
+NEW
+- Added SSHFP, TLSA, and CAA to DnsEntry as acceptable types.
+
 TRANSIP API V5.15
 
 NEW
