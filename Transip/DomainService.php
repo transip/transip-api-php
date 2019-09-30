@@ -556,9 +556,9 @@ class Transip_DomainService
 	 * @return array 
 	 * @throws ApiException
 	 */
-	public static function getDefaultDnsEntriesByCustomerId()
+	public static function getDefaultDnsEntries()
 	{
-		return self::_getSoapClient(array_merge(array(), array('__method' => 'getDefaultDnsEntriesByCustomerId')))->getDefaultDnsEntriesByCustomerId();
+		return self::_getSoapClient(array_merge(array(), array('__method' => 'getDefaultDnsEntries')))->getDefaultDnsEntries();
 	}
 
 	/**
@@ -579,9 +579,9 @@ class Transip_DomainService
 	 * @return array 
 	 * @throws ApiException
 	 */
-	public static function getDefaultNameserversByCustomerId()
+	public static function getDefaultNameservers()
 	{
-		return self::_getSoapClient(array_merge(array(), array('__method' => 'getDefaultNameserversByCustomerId')))->getDefaultNameserversByCustomerId();
+		return self::_getSoapClient(array_merge(array(), array('__method' => 'getDefaultNameservers')))->getDefaultNameservers();
 	}
 
 	/**
