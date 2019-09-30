@@ -1,3 +1,7 @@
+TRANSIP API V5.17
+NEW
+- Added functionality to get default DNS Entries and Nameservers by domain name.
+
 TRANSIP API V5.16
 NEW
 - Added SSHFP, TLSA, and CAA to DnsEntry as acceptable types.

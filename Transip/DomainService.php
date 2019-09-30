@@ -23,7 +23,7 @@ class Transip_DomainService
 	/** The SOAP service that corresponds with this class. */
 	const SERVICE = 'DomainService';
 	/** The API version. */
-	const API_VERSION = '5.16';
+	const API_VERSION = '5.17';
 	/** @var SoapClient  The SoapClient used to perform the SOAP calls. */
 	protected static $_soapClient = null;
 
@@ -548,6 +548,52 @@ class Transip_DomainService
 	public static function handoverWithAuthCode($domainName, $authCode)
 	{
 		return self::_getSoapClient(array_merge(array($domainName, $authCode), array('__method' => 'handoverWithAuthCode')))->handoverWithAuthCode($domainName, $authCode);
+	}
+
+	/**
+	 * Get Default DNS Entries for a customer.
+	 *
+	 * @return array 
+	 * @throws ApiException
+	 */
+	public static function getDefaultDnsEntriesByCustomerId()
+	{
+		return self::_getSoapClient(array_merge(array(), array('__method' => 'getDefaultDnsEntriesByCustomerId')))->getDefaultDnsEntriesByCustomerId();
+	}
+
+	/**
+	 * 
+	 *
+	 * @param string $domainName 
+	 * @return array 
+	 * @throws ApiException
+	 */
+	public static function getDefaultDnsEntriesByDomainName($domainName)
+	{
+		return self::_getSoapClient(array_merge(array($domainName), array('__method' => 'getDefaultDnsEntriesByDomainName')))->getDefaultDnsEntriesByDomainName($domainName);
+	}
+
+	/**
+	 * 
+	 *
+	 * @return array 
+	 * @throws ApiException
+	 */
+	public static function getDefaultNameserversByCustomerId()
+	{
+		return self::_getSoapClient(array_merge(array(), array('__method' => 'getDefaultNameserversByCustomerId')))->getDefaultNameserversByCustomerId();
+	}
+
+	/**
+	 * 
+	 *
+	 * @param string $domainName 
+	 * @return array 
+	 * @throws ApiException
+	 */
+	public static function getDefaultNameserversByDomainName($domainName)
+	{
+		return self::_getSoapClient(array_merge(array($domainName), array('__method' => 'getDefaultNameserversByDomainName')))->getDefaultNameserversByDomainName($domainName);
 	}
 }
 
