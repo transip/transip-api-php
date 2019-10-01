@@ -553,8 +553,8 @@ class Transip_DomainService
 	/**
 	 * Get Default DNS Entries for a customer.
 	 *
-	 * @return array 
-	 * @throws ApiException
+	 * @return Transip_DnsEntry[] A list of the default Dns Entries for the currently authenticated user
+	 * @throws ApiException If there are not default values
 	 */
 	public static function getDefaultDnsEntries()
 	{
@@ -562,11 +562,11 @@ class Transip_DomainService
 	}
 
 	/**
-	 * 
+	 * Get Default DNS Entries for a specific domain
 	 *
-	 * @param string $domainName 
-	 * @return array 
-	 * @throws ApiException
+	 * @param string $domainName The domainName to get the information for.<br /><br />- domainName must meet the requirements for a domain name described in: <a href="https://tools.ietf.org/html/rfc952" target="_blanc">RFC 952</a>
+	 * @return Transip_DnsEntry[] A list of the default DNS entries for this domain
+	 * @throws ApiException  If the domain could not be found.
 	 */
 	public static function getDefaultDnsEntriesByDomainName($domainName)
 	{
@@ -574,9 +574,9 @@ class Transip_DomainService
 	}
 
 	/**
-	 * 
+	 * Get Default Nameservers for a customer
 	 *
-	 * @return array 
+	 * @return Transip_Nameserver[] A list of Nameservers for the currently authenticated API User
 	 * @throws ApiException
 	 */
 	public static function getDefaultNameservers()
@@ -585,11 +585,11 @@ class Transip_DomainService
 	}
 
 	/**
-	 * 
+	 * Get the Default nameservers for the given domain.
 	 *
-	 * @param string $domainName 
-	 * @return array 
-	 * @throws ApiException
+	 * @param string $domainName The domainName to get the information for.<br /><br />- domainName must meet the requirements for a domain name described in: <a href="https://tools.ietf.org/html/rfc952" target="_blanc">RFC 952</a>
+	 * @return Transip_Nameserver[] A list of the default Nameservers for this domain
+	 * @throws ApiException If the domain could not be found
 	 */
 	public static function getDefaultNameserversByDomainName($domainName)
 	{
