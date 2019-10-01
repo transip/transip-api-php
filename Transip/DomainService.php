@@ -23,7 +23,7 @@ class Transip_DomainService
 	/** The SOAP service that corresponds with this class. */
 	const SERVICE = 'DomainService';
 	/** The API version. */
-	const API_VERSION = '5.16';
+	const API_VERSION = '5.17';
 	/** @var SoapClient  The SoapClient used to perform the SOAP calls. */
 	protected static $_soapClient = null;
 
@@ -548,6 +548,52 @@ class Transip_DomainService
 	public static function handoverWithAuthCode($domainName, $authCode)
 	{
 		return self::_getSoapClient(array_merge(array($domainName, $authCode), array('__method' => 'handoverWithAuthCode')))->handoverWithAuthCode($domainName, $authCode);
+	}
+
+	/**
+	 * Get Default DNS Entries for a customer.
+	 *
+	 * @return Transip_DnsEntry[] A list of the default Dns Entries for the currently authenticated user
+	 * @throws ApiException If there are not default values
+	 */
+	public static function getDefaultDnsEntries()
+	{
+		return self::_getSoapClient(array_merge(array(), array('__method' => 'getDefaultDnsEntries')))->getDefaultDnsEntries();
+	}
+
+	/**
+	 * Get Default DNS Entries for a specific domain
+	 *
+	 * @param string $domainName The domainName to get the information for.<br /><br />- domainName must meet the requirements for a domain name described in: <a href="https://tools.ietf.org/html/rfc952" target="_blanc">RFC 952</a>
+	 * @return Transip_DnsEntry[] A list of the default DNS entries for this domain
+	 * @throws ApiException  If the domain could not be found.
+	 */
+	public static function getDefaultDnsEntriesByDomainName($domainName)
+	{
+		return self::_getSoapClient(array_merge(array($domainName), array('__method' => 'getDefaultDnsEntriesByDomainName')))->getDefaultDnsEntriesByDomainName($domainName);
+	}
+
+	/**
+	 * Get Default Nameservers for a customer
+	 *
+	 * @return Transip_Nameserver[] A list of Nameservers for the currently authenticated API User
+	 * @throws ApiException
+	 */
+	public static function getDefaultNameservers()
+	{
+		return self::_getSoapClient(array_merge(array(), array('__method' => 'getDefaultNameservers')))->getDefaultNameservers();
+	}
+
+	/**
+	 * Get the Default nameservers for the given domain.
+	 *
+	 * @param string $domainName The domainName to get the information for.<br /><br />- domainName must meet the requirements for a domain name described in: <a href="https://tools.ietf.org/html/rfc952" target="_blanc">RFC 952</a>
+	 * @return Transip_Nameserver[] A list of the default Nameservers for this domain
+	 * @throws ApiException If the domain could not be found
+	 */
+	public static function getDefaultNameserversByDomainName($domainName)
+	{
+		return self::_getSoapClient(array_merge(array($domainName), array('__method' => 'getDefaultNameserversByDomainName')))->getDefaultNameserversByDomainName($domainName);
 	}
 }
 
