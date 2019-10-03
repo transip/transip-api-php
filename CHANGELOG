@@ -1,3 +1,7 @@
+TRANSIP API V5.18
+NEW
+- Added functionality to convert vps backups to snapshots.
+
 TRANSIP API V5.17
 NEW
 - Added functionality to get default DNS Entries and Nameservers by domain name.
