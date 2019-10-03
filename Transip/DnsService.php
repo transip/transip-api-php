@@ -17,7 +17,7 @@ class Transip_DnsService
 	/** The SOAP service that corresponds with this class. */
 	const SERVICE = 'DnsService';
 	/** The API version. */
-	const API_VERSION = '5.17';
+	const API_VERSION = '5.18';
 	/** @var SoapClient  The SoapClient used to perform the SOAP calls. */
 	protected static $_soapClient = null;
 
@@ -225,6 +225,7 @@ class Transip_DnsService
 	 *
 	 * @param string $domainName 
 	 * @param Transip_DnsSecEntry[] $dnssecKeyEntrySet 
+	 * @throws ApiException
 	 * @example examples/DnsService-setDnsSecEntries.php
 	 */
 	public static function setDnsSecEntries($domainName, $dnssecKeyEntrySet)

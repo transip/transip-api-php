@@ -22,7 +22,7 @@ class Transip_VpsService
 	/** The SOAP service that corresponds with this class. */
 	const SERVICE = 'VpsService';
 	/** The API version. */
-	const API_VERSION = '5.17';
+	const API_VERSION = '5.18';
 	/** @var SoapClient  The SoapClient used to perform the SOAP calls. */
 	protected static $_soapClient = null;
 
@@ -696,6 +696,19 @@ class Transip_VpsService
 	public static function getAvailableAvailabilityZones()
 	{
 		return self::_getSoapClient(array_merge(array(), array('__method' => 'getAvailableAvailabilityZones')))->getAvailableAvailabilityZones();
+	}
+
+	/**
+	 * Convert a backup to a Snapshot
+	 *
+	 * @param string $vpsName The vps name
+	 * @param string $description The snapshot description
+	 * @param int $diskBackupId The selected backup id
+	 * @throws ApiException on error
+	 */
+	public static function convertVpsBackupToSnapshot($vpsName, $description, $diskBackupId)
+	{
+		return self::_getSoapClient(array_merge(array($vpsName, $description, $diskBackupId), array('__method' => 'convertVpsBackupToSnapshot')))->convertVpsBackupToSnapshot($vpsName, $description, $diskBackupId);
 	}
 }
 
