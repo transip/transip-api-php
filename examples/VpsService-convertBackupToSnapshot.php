@@ -14,13 +14,12 @@ try {
     $vpsName             = 'example-vps';
     $snapshotDescription = 'My new snapshot';
 
-    // Get disk backups for given vps
-    $diskBackups         = Transip_VpsService::getVpsBackupsByVps($vpsName);
-    // print_r($vpsBackups);
-    $vpsDiskBackupId     = $diskBackups[0]->id;
+    // Get vps backups for given vps
+    $vpsBackups         = Transip_VpsService::getVpsBackupsByVps($vpsName);
+    $vpsBackupId         = $vpsBackups[0]->id;
 
     // Convert vps backup to a snapshot
-    Transip_VpsService::convertVpsBackupToSnapshot($vpsName, $snapshotDescription, $vpsDiskBackupId);
+    Transip_VpsService::convertVpsBackupToSnapshot($vpsName, $snapshotDescription, $vpsBackupId);
     echo 'Starting backup to snapshot conversion';
 } catch (SoapFault $f) {
     // It is possible that an error occurs when connecting to the TransIP Soap API,

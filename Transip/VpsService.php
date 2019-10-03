@@ -703,12 +703,12 @@ class Transip_VpsService
 	 *
 	 * @param string $vpsName The vps name
 	 * @param string $description The snapshot description
-	 * @param int $diskBackupId The selected backup id
+	 * @param int $vpsBackupId The selected backup id
 	 * @throws ApiException on error
 	 */
-	public static function convertVpsBackupToSnapshot($vpsName, $description, $diskBackupId)
+	public static function convertVpsBackupToSnapshot($vpsName, $description, $vpsBackupId)
 	{
-		return self::_getSoapClient(array_merge(array($vpsName, $description, $diskBackupId), array('__method' => 'convertVpsBackupToSnapshot')))->convertVpsBackupToSnapshot($vpsName, $description, $diskBackupId);
+		return self::_getSoapClient(array_merge(array($vpsName, $description, $vpsBackupId), array('__method' => 'convertVpsBackupToSnapshot')))->convertVpsBackupToSnapshot($vpsName, $description, $vpsBackupId);
 	}
 }
 
