@@ -6,5 +6,5 @@ use Transip\Api\Client\Exception\HttpRequestException;
 
 class ConflictException extends HttpRequestException
 {
-    CONST STATUS_CODE = 409;
+    const STATUS_CODE = 409;
 }

@@ -6,5 +6,5 @@ use Transip\Api\Client\Exception\HttpRequestException;
 
 class ForbiddenException extends HttpRequestException
 {
-    CONST STATUS_CODE = 403;
+    const STATUS_CODE = 403;
 }

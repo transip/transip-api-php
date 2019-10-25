@@ -38,7 +38,11 @@ class ApiException extends Exception
 
     public static function unexpectedStatusCode(ResponseInterface $response): self
     {
-        $responseBody = json_decode($response->getBody(), true) ? json_decode($response->getBody(), true) : $response;
+        $responseBody = $response->getBody();
+
+        if (json_decode($response->getBody(), true) !== false) {
+            $responseBody = json_decode($response->getBody(), true);
+        }
 
         return new self(
             "Api returned unexpected statuscode {$response->getStatusCode()}:  {$responseBody}",

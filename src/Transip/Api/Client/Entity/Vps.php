@@ -15,16 +15,6 @@ class Vps extends AbstractEntity
     public $description;
 
     /**
-     * @var string $productType
-     */
-    public $productType;
-
-    /**
-     * @var int $productPrice
-     */
-    public $productPrice;
-
-    /**
      * @var string $operatingSystem
      */
     public $operatingSystem;
@@ -88,4 +78,90 @@ class Vps extends AbstractEntity
      * @var string $availabilityZone
      */
     public $availabilityZone;
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getOperatingSystem(): string
+    {
+        return $this->operatingSystem;
+    }
+
+    public function getDiskSize(): int
+    {
+        return $this->diskSize;
+    }
+
+    public function getMemorySize(): int
+    {
+        return $this->memorySize;
+    }
+
+    public function getCpus(): int
+    {
+        return $this->cpus;
+    }
+
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    public function getIpAddress(): string
+    {
+        return $this->ipAddress;
+    }
+
+    public function getMacAddress(): string
+    {
+        return $this->macAddress;
+    }
+
+    public function getCurrentSnapshots(): int
+    {
+        return $this->currentSnapshots;
+    }
+
+    public function getMaxSnapshots(): int
+    {
+        return $this->maxSnapshots;
+    }
+
+    public function isLocked(): bool
+    {
+        return $this->isLocked;
+    }
+
+    public function isBlocked(): bool
+    {
+        return $this->isBlocked;
+    }
+
+    public function isCustomerLocked(): bool
+    {
+        return $this->isCustomerLocked;
+    }
+
+    public function getAvailabilityZone(): string
+    {
+        return $this->availabilityZone;
+    }
+
+    public function setDescription(string $description): Vps
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    public function setIsCustomerLocked(bool $isCustomerLocked): void
+    {
+        $this->isCustomerLocked = $isCustomerLocked;
+    }
 }

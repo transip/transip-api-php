@@ -6,5 +6,5 @@ use Transip\Api\Client\Exception\HttpRequestException;
 
 class MethodNotAllowedException extends HttpRequestException
 {
-    CONST STATUS_CODE = 405;
+    const STATUS_CODE = 405;
 }

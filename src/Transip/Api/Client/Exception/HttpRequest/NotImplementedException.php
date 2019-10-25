@@ -6,5 +6,5 @@ use Transip\Api\Client\Exception\HttpRequestException;
 
 class NotImplementedException extends HttpRequestException
 {
-    CONST STATUS_CODE = 501;
+    const STATUS_CODE = 501;
 }

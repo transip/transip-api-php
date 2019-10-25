@@ -6,5 +6,5 @@ use Transip\Api\Client\Exception\HttpRequestException;
 
 class InternalServerErrorException extends HttpRequestException
 {
-    CONST STATUS_CODE = 500;
+    const STATUS_CODE = 500;
 }

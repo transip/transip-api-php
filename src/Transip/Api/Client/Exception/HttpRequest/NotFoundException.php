@@ -6,5 +6,5 @@ use Transip\Api\Client\Exception\HttpRequestException;
 
 class NotFoundException extends HttpRequestException
 {
-    CONST STATUS_CODE = 404;
+    const STATUS_CODE = 404;
 }
