@@ -6,5 +6,5 @@ use Transip\Api\Client\Exception\HttpRequestException;
 
 class UnauthorizedException extends HttpRequestException
 {
-    CONST STATUS_CODE = 401;
+    const STATUS_CODE = 401;
 }

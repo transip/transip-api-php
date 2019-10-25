@@ -44,23 +44,71 @@ class GuzzleClient implements HttpClientInterface
         return $responseBody;
     }
 
-    public function post(string $url, array $content): array
+    public function post(string $url, array $content): void
     {
-        // TODO: Implement post() method.
+        $options['body'] = json_encode($content);
+
+        try {
+            $response = $this->client->post($url, $options);
+        } catch (RequestException $requestException) {
+            throw HttpRequestException::requestException($requestException, $requestException->getResponse());
+        } catch (Exception $exception) {
+            throw HttpClientException::genericRequestException($exception);
+        }
+
+        if ($response->getStatusCode() !== 201) {
+            throw ApiException::unexpectedStatusCode($response);
+        }
     }
 
-    public function put(string $url, array $content): array
+    public function put(string $url, array $content): void
     {
-        // TODO: Implement put() method.
+        $options['body'] = json_encode($content);
+
+        try {
+            $response = $this->client->put($url, $options);
+        } catch (RequestException $requestException) {
+            throw HttpRequestException::requestException($requestException, $requestException->getResponse());
+        } catch (Exception $exception) {
+            throw HttpClientException::genericRequestException($exception);
+        }
+
+        if ($response->getStatusCode() !== 204) {
+            throw ApiException::unexpectedStatusCode($response);
+        }
     }
 
-    public function patch(string $url, array $content): array
+    public function patch(string $url, array $content): void
     {
-        // TODO: Implement patch() method.
+        $options['body'] = json_encode($content);
+
+        try {
+            $response = $this->client->patch($url, $options);
+        } catch (RequestException $requestException) {
+            throw HttpRequestException::requestException($requestException, $requestException->getResponse());
+        } catch (Exception $exception) {
+            throw HttpClientException::genericRequestException($exception);
+        }
+
+        if ($response->getStatusCode() !== 204) {
+            throw ApiException::unexpectedStatusCode($response);
+        }
     }
 
-    public function delete(string $url): array
+    public function delete(string $url, array $content): void
     {
-        // TODO: Implement delete() method.
+        $options['body'] = json_encode($content);
+
+        try {
+            $response = $this->client->delete($url, $options);
+        } catch (RequestException $requestException) {
+            throw HttpRequestException::requestException($requestException, $requestException->getResponse());
+        } catch (Exception $exception) {
+            throw HttpClientException::genericRequestException($exception);
+        }
+
+        if ($response->getStatusCode() !== 204) {
+            throw ApiException::unexpectedStatusCode($response);
+        }
     }
 }

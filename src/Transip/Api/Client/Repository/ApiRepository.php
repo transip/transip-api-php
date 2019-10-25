@@ -14,22 +14,28 @@ abstract class ApiRepository
     /**
      * @var string $endpoint
      */
-    protected $endpoint;
+    private $endpoint;
 
-    /**
-     * @var string $repositoryEndpoint
-     */
-    protected $repositoryEndpoint = '';
-
-    /**
-     * @param HttpClientInterface $httpClient
-     * @param string              $endpoint
-     */
     public function __construct(HttpClientInterface $httpClient, string $endpoint)
     {
+        $endpoint         = rtrim($endpoint, '/');
         $this->httpClient = $httpClient;
-        // make sure endpoint always ends with one trailing forward slash
-        $endpoint = rtrim($endpoint, '/') . '/';
-        $this->endpoint   = $endpoint . $this->repositoryEndpoint;
+        $this->endpoint   = $endpoint;
     }
+
+    protected function getResourceUrl(...$args): string
+    {
+        $urlSuffix     = '';
+        $resourceNames = $this->getRepositoryResourceNames();
+        while (($resourceName = array_shift($resourceNames)) !== null) {
+            $id        = array_shift($args);
+            $urlSuffix .= "/{$resourceName}";
+            if ($id !== null) {
+                $urlSuffix .= "/{$id}";
+            }
+        }
+        return "{$this->endpoint}{$urlSuffix}";
+    }
+
+    abstract protected function getRepositoryResourceNames(): array;
 }

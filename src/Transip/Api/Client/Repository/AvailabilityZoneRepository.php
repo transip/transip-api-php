@@ -6,7 +6,10 @@ use Transip\Api\Client\Entity\AvailabilityZone;
 
 class AvailabilityZoneRepository extends ApiRepository
 {
-    protected $repositoryEndpoint = 'availability-zone';
+    protected function getRepositoryResourceNames(): array
+    {
+        return ['availability-zone'];
+    }
 
     /**
      * @return AvailabilityZone[]
@@ -14,7 +17,7 @@ class AvailabilityZoneRepository extends ApiRepository
     public function getAll(): array
     {
         $availabilityZones      = [];
-        $response               = $this->httpClient->get($this->endpoint);
+        $response               = $this->httpClient->get($this->getResourceUrl());
         $availabilityZonesArray = $response['availabilityZones'] ?? [];
 
         foreach ($availabilityZonesArray as $availabilityZoneArray) {
@@ -26,8 +29,7 @@ class AvailabilityZoneRepository extends ApiRepository
 
     public function getByName(string $name): ?AvailabilityZone
     {
-        $url              = "{$this->endpoint}/{$name}";
-        $response         = $this->httpClient->get($url);
+        $response         = $this->httpClient->get($this->getResourceUrl($name));
         $availabilityZone = $response['availabilityZone'] ?? null;
 
         if ($availabilityZone !== null) {

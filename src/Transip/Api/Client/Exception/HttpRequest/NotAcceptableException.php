@@ -6,5 +6,5 @@ use Transip\Api\Client\Exception\HttpRequestException;
 
 class NotAcceptableException extends HttpRequestException
 {
-    CONST STATUS_CODE = 406;
+    const STATUS_CODE = 406;
 }

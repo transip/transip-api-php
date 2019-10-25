@@ -18,4 +18,19 @@ class AvailabilityZone extends AbstractEntity
      * @var bool $isDefault
      */
     public $isDefault;
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getCountry(): string
+    {
+        return $this->country;
+    }
+
+    public function isDefault(): bool
+    {
+        return $this->isDefault;
+    }
 }

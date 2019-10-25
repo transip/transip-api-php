@@ -6,5 +6,5 @@ use Transip\Api\Client\Exception\HttpRequestException;
 
 class BadRequestException extends HttpRequestException
 {
-    CONST STATUS_CODE = 400;
+    const STATUS_CODE = 400;
 }

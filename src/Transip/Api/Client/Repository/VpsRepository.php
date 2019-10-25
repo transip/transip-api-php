@@ -6,34 +6,94 @@ use Transip\Api\Client\Entity\Vps;
 
 class VpsRepository extends ApiRepository
 {
-    protected $repositoryEndpoint = 'vps';
+    protected function getRepositoryResourceNames(): array
+    {
+        return ['vps'];
+    }
 
     /**
      * @return Vps[]
      */
     public function getAll(): array
     {
-        $availabilityZones = [];
-        $response          = $this->httpClient->get($this->endpoint);
-        $vpsesArray        = $response['vpses'] ?? [];
+        $vpses      = [];
+        $response   = $this->httpClient->get($this->getResourceUrl());
+        $vpsesArray = $response['vpses'] ?? [];
 
         foreach ($vpsesArray as $vpsArray) {
-            $availabilityZones[] = new Vps($vpsArray);
+            $vpses[] = new Vps($vpsArray);
         }
 
-        return $availabilityZones;
+        return $vpses;
     }
 
     public function getByName(string $name): ?Vps
     {
-        $url              = "{$this->endpoint}/{$name}";
-        $response         = $this->httpClient->get($url);
-        $availabilityZone = $response['vps'] ?? null;
+        $response = $this->httpClient->get($this->getResourceUrl($name));
+        $vps      = $response['vps'] ?? null;
 
-        if ($availabilityZone !== null) {
-            $availabilityZone = new Vps($availabilityZone);
+        if ($vps !== null) {
+            $vps = new Vps($vps);
         }
 
-        return $availabilityZone;
+        return $vps;
+    }
+
+    public function order(
+        string $productName,
+        string $operatingSystemName,
+        array $addons = [],
+        string $hostname = '',
+        string $availabilityZone = ''
+    ): void {
+        $parameters['productName']     = $productName;
+        $parameters['operatingSystem'] = $operatingSystemName;
+
+        if (!empty($addons)) {
+            $parameters['addons'] = $addons;
+        }
+        if ($hostname !== '') {
+            $parameters['hostname'] = $hostname;
+        }
+        if ($availabilityZone !== '') {
+            $parameters['availabilityZone'] = $availabilityZone;
+        }
+
+        $this->httpClient->post($this->getResourceUrl(), $parameters);
+    }
+
+    public function cloneVps(string $vpsName, string $availabilityZone = ''): void
+    {
+        $parameters['vpsName'] = $vpsName;
+        if ($availabilityZone !== '') {
+            $parameters['availabilityZone'] = $availabilityZone;
+        }
+
+        $this->httpClient->post($this->getResourceUrl(), $parameters);
+    }
+
+    public function update(Vps $vps): void
+    {
+        $this->httpClient->put($this->getResourceUrl($vps->getName()), ['vps' => $vps]);
+    }
+
+    public function start(string $vpsName): void
+    {
+        $this->httpClient->patch($this->getResourceUrl($vpsName), ['action' => 'start']);
+    }
+
+    public function stop(string $vpsName): void
+    {
+        $this->httpClient->patch($this->getResourceUrl($vpsName), ['action' => 'stop']);
+    }
+
+    public function reset(string $vpsName): void
+    {
+        $this->httpClient->patch($this->getResourceUrl($vpsName), ['action' => 'reset']);
+    }
+
+    public function cancel(string $vpsName, string $endTime): void
+    {
+        $this->httpClient->delete($this->getResourceUrl($vpsName), ['endTime' => $endTime]);
     }
 }
