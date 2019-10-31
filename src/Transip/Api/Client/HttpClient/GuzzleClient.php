@@ -35,10 +35,14 @@ class GuzzleClient implements HttpClientInterface
             throw ApiException::unexpectedStatusCode($response);
         }
 
+        if ($response->getBody() == null) {
+            throw ApiException::emptyResponse($response);
+        }
+
         $responseBody = json_decode($response->getBody(), true);
 
-        if ($responseBody === false) {
-            throw ApiException::emptyResponse($response);
+        if ($responseBody === null) {
+            throw ApiException::malformedJsonResponse($response);
         }
 
         return $responseBody;

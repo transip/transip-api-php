@@ -40,4 +40,22 @@ class IpAddressRepository extends ApiRepository
 
         return $ipAddress;
     }
+
+    public function update(string $vpsName, IpAddress $ipAddress): void
+    {
+        $url = $this->getResourceUrl($vpsName). '/ip-addresses/' . $ipAddress->getAddress();
+        $this->httpClient->put($url, ['ipAddress' => $ipAddress]);
+    }
+
+    public function addIpv6Address(string $vpsName, string $ipv6Address): void
+    {
+        $url = $this->getResourceUrl($vpsName). '/ip-addresses';
+        $this->httpClient->post($url, ['ipAddress' => $ipv6Address]);
+    }
+
+    public function removeIpv6Address(string $vpsName, string $ipv6Address): void
+    {
+        $url = $this->getResourceUrl($vpsName). '/ip-addresses/' . $ipv6Address;
+        $this->httpClient->delete($url, []);
+    }
 }

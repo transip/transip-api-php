@@ -11,6 +11,8 @@ class ApiException extends Exception
 
     CONST CODE_API_UNEXPECTED_STATUS_CODE = 1002;
 
+    CONST CODE_API_MALFORMED_JSON_RESPONSE = 1003;
+
     /**
      * @var ResponseInterface $response
      */
@@ -32,6 +34,15 @@ class ApiException extends Exception
         return new self(
             "Api returned statuscode {$response->getStatusCode()}, but the response was empty",
             self::CODE_API_EMPTY_RESPONSE,
+            $response
+        );
+    }
+
+    public static function malformedJsonResponse(ResponseInterface $response): self
+    {
+        return new self(
+            "Api returned statuscode {$response->getStatusCode()}, but the response was not json decodable",
+            self::CODE_API_MALFORMED_JSON_RESPONSE,
             $response
         );
     }

@@ -20,9 +20,9 @@ class Product extends AbstractEntity
     public $price;
 
     /**
-     * @var float $renewalPrice
+     * @var float $recurringPrice
      */
-    public $renewalPrice;
+    public $recurringPrice;
 
     /**
      * @var string $category
@@ -44,9 +44,9 @@ class Product extends AbstractEntity
         return $this->price;
     }
 
-    public function getRenewalPrice(): float
+    public function getRecurringPrice(): float
     {
-        return $this->renewalPrice;
+        return $this->recurringPrice;
     }
 
     public function getCategory(): string
