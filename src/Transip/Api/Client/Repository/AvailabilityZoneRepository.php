@@ -26,16 +26,4 @@ class AvailabilityZoneRepository extends ApiRepository
 
         return $availabilityZones;
     }
-
-    public function getByName(string $name): ?AvailabilityZone
-    {
-        $response         = $this->httpClient->get($this->getResourceUrl($name));
-        $availabilityZone = $response['availabilityZone'] ?? null;
-
-        if ($availabilityZone !== null) {
-            $availabilityZone = new AvailabilityZone($availabilityZone);
-        }
-
-        return $availabilityZone;
-    }
 }

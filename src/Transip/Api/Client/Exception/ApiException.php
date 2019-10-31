@@ -51,7 +51,7 @@ class ApiException extends Exception
     {
         $responseBody = $response->getBody();
 
-        if (json_decode($response->getBody(), true) !== false) {
+        if (json_decode($response->getBody(), true) !== null) {
             $responseBody = json_decode($response->getBody(), true);
         }
 
