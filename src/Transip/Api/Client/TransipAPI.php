@@ -5,6 +5,7 @@ namespace Transip\Api\Client;
 use Transip\Api\Client\HttpClient\GuzzleClient;
 use Transip\Api\Client\HttpClient\HttpClientInterface;
 use Transip\Api\Client\Repository\AvailabilityZoneRepository;
+use Transip\Api\Client\Repository\MailServiceRepository;
 use Transip\Api\Client\Repository\ProductRepository;
 use Transip\Api\Client\Repository\TrafficRepository;
 use Transip\Api\Client\Repository\Vps\AddonRepository;
@@ -80,6 +81,11 @@ class TransipAPI
     public function vpsIpAddresses(): IpAddressRepository
     {
         return new IpAddressRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function mailService(): MailServiceRepository
+    {
+        return new MailServiceRepository($this->httpClient, $this->endpoint);
     }
 
     public function setHttpClient(HttpClientInterface $httpClient): void
