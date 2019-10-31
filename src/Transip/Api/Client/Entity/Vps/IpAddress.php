@@ -58,4 +58,10 @@ class IpAddress extends AbstractEntity
     {
         return $this->reverseDns;
     }
+
+    public function setReverseDns(string $reverseDns): IpAddress
+    {
+        $this->reverseDns = $reverseDns;
+        return $this;
+    }
 }
