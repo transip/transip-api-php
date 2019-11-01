@@ -8,7 +8,7 @@ class AvailabilityZoneRepository extends ApiRepository
 {
     protected function getRepositoryResourceNames(): array
     {
-        return ['availability-zone'];
+        return ['availability-zones'];
     }
 
     /**

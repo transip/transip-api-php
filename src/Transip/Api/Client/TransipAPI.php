@@ -11,6 +11,7 @@ use Transip\Api\Client\Repository\TrafficRepository;
 use Transip\Api\Client\Repository\Vps\AddonRepository;
 use Transip\Api\Client\Repository\Vps\BackupRepository;
 use Transip\Api\Client\Repository\Vps\IpAddressRepository;
+use Transip\Api\Client\Repository\Vps\OperatingSystemRepository;
 use Transip\Api\Client\Repository\VpsRepository;
 
 class TransipAPI
@@ -81,6 +82,11 @@ class TransipAPI
     public function vpsIpAddresses(): IpAddressRepository
     {
         return new IpAddressRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function vpsOperatingSystems(): OperatingSystemRepository
+    {
+        return new OperatingSystemRepository($this->httpClient, $this->endpoint);
     }
 
     public function mailService(): MailServiceRepository
