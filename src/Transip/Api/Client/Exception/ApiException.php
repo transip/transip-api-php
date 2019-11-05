@@ -41,7 +41,7 @@ class ApiException extends Exception
     public static function malformedJsonResponse(ResponseInterface $response): self
     {
         return new self(
-            "Api returned statuscode {$response->getStatusCode()}, but the response was not json decodable",
+            "Api returned statuscode {$response->getStatusCode()}, but the response was not json decodable" . PHP_EOL . $response->getBody(),
             self::CODE_API_MALFORMED_JSON_RESPONSE,
             $response
         );

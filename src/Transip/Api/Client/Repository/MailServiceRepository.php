@@ -11,16 +11,11 @@ class MailServiceRepository extends ApiRepository
         return ['mail-service'];
     }
 
-    public function getMailServiceInformation(): ?MailServiceInformation
+    public function getMailServiceInformation(): MailServiceInformation
     {
         $response               = $this->httpClient->get($this->getResourceUrl());
         $mailServiceInformation = $response['mailServiceInformation'] ?? [];
-
-        if ($mailServiceInformation !== null) {
-            $mailServiceInformation = new MailServiceInformation($mailServiceInformation);
-        }
-
-        return $mailServiceInformation;
+        return new MailServiceInformation($mailServiceInformation);
     }
 
     public function regenerateMailServicePassword(): void

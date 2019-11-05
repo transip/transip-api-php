@@ -9,7 +9,7 @@ class SnapshotRepository extends ApiRepository
 {
     protected function getRepositoryResourceNames(): array
     {
-        return ['vps'];
+        return ['vps', 'snapshots'];
     }
 
     /**
@@ -19,7 +19,7 @@ class SnapshotRepository extends ApiRepository
     public function getByVpsName(string $vpsName): array
     {
         $snapshots      = [];
-        $response         = $this->httpClient->get($this->getResourceUrl($vpsName) . '/snapshots');
+        $response         = $this->httpClient->get($this->getResourceUrl($vpsName));
         $snapshotsArray = $response['snapshots'] ?? [];
 
         foreach ($snapshotsArray as $snapshotArray) {
@@ -29,33 +29,28 @@ class SnapshotRepository extends ApiRepository
         return $snapshots;
     }
 
-    public function getByVpsNameSnapshotName(string $vpsName, string $snapshotName): ?Snapshot
+    public function getByVpsNameSnapshotName(string $vpsName, string $snapshotName): Snapshot
     {
-        $response = $this->httpClient->get($this->getResourceUrl($vpsName) . '/snapshots/' . $snapshotName);
+        $response = $this->httpClient->get($this->getResourceUrl($vpsName, $snapshotName));
         $snapshot = $response['snapshot'] ?? null;
-
-        if ($snapshot !== null) {
-            $snapshot = new Snapshot($snapshot);
-        }
-
-        return $snapshot;
+        return new Snapshot($snapshot);
     }
 
     public function createSnapshot(string $vpsName, string $description): void
     {
-        $url = $this->getResourceUrl($vpsName) . '/snapshots';
+        $url = $this->getResourceUrl($vpsName);
         $this->httpClient->post($url, ['description' => $description]);
     }
 
     public function revertSnapshot(string $vpsName, string $snapshotName, string $destinationVpsName = ''): void
     {
-        $url = $this->getResourceUrl($vpsName) . '/snapshots/' . $snapshotName;
+        $url = $this->getResourceUrl($vpsName, $snapshotName);
         $this->httpClient->patch($url, ['destinationVpsName' => $destinationVpsName]);
     }
 
     public function deleteSnapshot(string $vpsName, string $snapshotName): void
     {
-        $url = $this->getResourceUrl($vpsName) . '/snapshots/' . $snapshotName;
+        $url = $this->getResourceUrl($vpsName, $snapshotName) ;
         $this->httpClient->delete($url, []);
     }
 }

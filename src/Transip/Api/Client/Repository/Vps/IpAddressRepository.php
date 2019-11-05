@@ -9,7 +9,7 @@ class IpAddressRepository extends ApiRepository
 {
     protected function getRepositoryResourceNames(): array
     {
-        return ['vps'];
+        return ['vps', 'ip-addresses'];
     }
 
     /**
@@ -19,7 +19,7 @@ class IpAddressRepository extends ApiRepository
     public function getByVpsName(string $vpsName): array
     {
         $ipAddresses      = [];
-        $response         = $this->httpClient->get($this->getResourceUrl($vpsName) . '/ip-addresses');
+        $response         = $this->httpClient->get($this->getResourceUrl($vpsName));
         $ipAddressesArray = $response['ipAddresses'] ?? [];
 
         foreach ($ipAddressesArray as $ipAddressArray) {
@@ -29,33 +29,28 @@ class IpAddressRepository extends ApiRepository
         return $ipAddresses;
     }
 
-    public function getByVpsNameAddress(string $vpsName, string $ipAddress): ?IpAddress
+    public function getByVpsNameAddress(string $vpsName, string $ipAddress): IpAddress
     {
-        $response  = $this->httpClient->get($this->getResourceUrl($vpsName) . '/ip-addresses/' . $ipAddress);
+        $response  = $this->httpClient->get($this->getResourceUrl($vpsName, $ipAddress));
         $ipAddress = $response['ipAddress'] ?? null;
-
-        if ($ipAddress !== null) {
-            $ipAddress = new IpAddress($ipAddress);
-        }
-
-        return $ipAddress;
+        return new IpAddress($ipAddress);
     }
 
     public function update(string $vpsName, IpAddress $ipAddress): void
     {
-        $url = $this->getResourceUrl($vpsName). '/ip-addresses/' . $ipAddress->getAddress();
+        $url = $this->getResourceUrl($vpsName,  $ipAddress->getAddress());
         $this->httpClient->put($url, ['ipAddress' => $ipAddress]);
     }
 
     public function addIpv6Address(string $vpsName, string $ipv6Address): void
     {
-        $url = $this->getResourceUrl($vpsName). '/ip-addresses';
+        $url = $this->getResourceUrl($vpsName);
         $this->httpClient->post($url, ['ipAddress' => $ipv6Address]);
     }
 
     public function removeIpv6Address(string $vpsName, string $ipv6Address): void
     {
-        $url = $this->getResourceUrl($vpsName). '/ip-addresses/' . $ipv6Address;
+        $url = $this->getResourceUrl($vpsName, $ipv6Address);
         $this->httpClient->delete($url, []);
     }
 }

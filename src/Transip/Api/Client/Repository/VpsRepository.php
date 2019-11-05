@@ -27,16 +27,11 @@ class VpsRepository extends ApiRepository
         return $vpses;
     }
 
-    public function getByName(string $name): ?Vps
+    public function getByName(string $name): Vps
     {
         $response = $this->httpClient->get($this->getResourceUrl($name));
         $vps      = $response['vps'] ?? null;
-
-        if ($vps !== null) {
-            $vps = new Vps($vps);
-        }
-
-        return $vps;
+        return new Vps($vps);
     }
 
     public function order(

@@ -6,6 +6,7 @@ use Transip\Api\Client\HttpClient\GuzzleClient;
 use Transip\Api\Client\HttpClient\HttpClientInterface;
 use Transip\Api\Client\Repository\AvailabilityZoneRepository;
 use Transip\Api\Client\Repository\MailServiceRepository;
+use Transip\Api\Client\Repository\PrivateNetworkRepository;
 use Transip\Api\Client\Repository\ProductRepository;
 use Transip\Api\Client\Repository\TrafficRepository;
 use Transip\Api\Client\Repository\Vps\AddonRepository;
@@ -13,6 +14,7 @@ use Transip\Api\Client\Repository\Vps\BackupRepository;
 use Transip\Api\Client\Repository\Vps\IpAddressRepository;
 use Transip\Api\Client\Repository\Vps\OperatingSystemRepository;
 use Transip\Api\Client\Repository\Vps\SnapshotRepository;
+use Transip\Api\Client\Repository\Vps\UpgradeRepository;
 use Transip\Api\Client\Repository\VpsRepository;
 
 class TransipAPI
@@ -93,6 +95,16 @@ class TransipAPI
     public function vpsSnapshots(): SnapshotRepository
     {
         return new SnapshotRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function vpsUpgrades(): UpgradeRepository
+    {
+        return new UpgradeRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function privateNetworks(): PrivateNetworkRepository
+    {
+        return new PrivateNetworkRepository($this->httpClient, $this->endpoint);
     }
 
     public function mailService(): MailServiceRepository
