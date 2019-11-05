@@ -9,7 +9,7 @@ class BackupRepository extends ApiRepository
 {
     protected function getRepositoryResourceNames(): array
     {
-        return ['vps'];
+        return ['vps', 'backups'];
     }
 
     /**
@@ -19,7 +19,7 @@ class BackupRepository extends ApiRepository
     public function getByVpsName(string $vpsName): array
     {
         $backups      = [];
-        $response     = $this->httpClient->get($this->getResourceUrl($vpsName) . '/backups');
+        $response     = $this->httpClient->get($this->getResourceUrl($vpsName));
         $backupsArray = $response['backups'] ?? [];
 
         foreach ($backupsArray as $backupArray) {
@@ -31,13 +31,13 @@ class BackupRepository extends ApiRepository
 
     public function revertBackup(string $vpsName, int $backupId): void
     {
-        $this->httpClient->put($this->getResourceUrl($vpsName) . '/backups/' . $backupId, []);
+        $this->httpClient->put($this->getResourceUrl($vpsName, $backupId), []);
     }
 
     public function convertBackupToSnapshot(string $vpsName, int $backupId, string $snapshotDescription = ''): void
     {
         $parameters['description'] = $snapshotDescription;
         $parameters['action']      = 'convert';
-        $this->httpClient->patch($this->getResourceUrl($vpsName) . '/backups/' . $backupId, $parameters);
+        $this->httpClient->patch($this->getResourceUrl($vpsName, $backupId), $parameters);
     }
 }

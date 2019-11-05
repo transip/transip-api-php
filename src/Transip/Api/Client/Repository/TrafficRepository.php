@@ -11,27 +11,15 @@ class TrafficRepository extends ApiRepository
         return ['traffic'];
     }
 
-    public function getTrafficPool(): ?TrafficInformation
+    public function getTrafficPool(): TrafficInformation
     {
-        $response           = $this->httpClient->get($this->getResourceUrl());
-        $trafficInformation = $response['trafficInformation'] ?? [];
-
-        if ($trafficInformation !== null) {
-            $trafficInformation = new TrafficInformation($trafficInformation);
-        }
-
-        return $trafficInformation;
+        return $this->getByVpsName('');
     }
 
-    public function getByVpsName(string $vpsName): ?TrafficInformation
+    public function getByVpsName(string $vpsName): TrafficInformation
     {
         $response           = $this->httpClient->get($this->getResourceUrl($vpsName));
         $trafficInformation = $response['trafficInformation'] ?? [];
-
-        if ($trafficInformation !== null) {
-            $trafficInformation = new TrafficInformation($trafficInformation);
-        }
-
-        return $trafficInformation;
+        return new TrafficInformation($trafficInformation);
     }
 }

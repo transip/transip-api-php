@@ -9,7 +9,7 @@ class OperatingSystemRepository extends ApiRepository
 {
     protected function getRepositoryResourceNames(): array
     {
-        return ['vps'];
+        return ['vps', 'operating-systems'];
     }
 
     /**
@@ -18,7 +18,7 @@ class OperatingSystemRepository extends ApiRepository
     public function getAll(): array
     {
         $operatingSystems      = [];
-        $response              = $this->httpClient->get($this->getResourceUrl('placeholder') . '/operating-systems');
+        $response              = $this->httpClient->get($this->getResourceUrl('placeholder'));
         $operatingSystemsArray = $response['operatingSystems'] ?? [];
 
         foreach ($operatingSystemsArray as $operatingSystemArray) {
@@ -37,6 +37,6 @@ class OperatingSystemRepository extends ApiRepository
         $parameters['operatingSystemName'] = $operatingSystemName;
         $parameters['hostname']            = $hostname;
         $parameters['base64InstallText']   = $base64InstallText;
-        $this->httpClient->post($this->getResourceUrl($vpsName) . '/operating-systems', $parameters);
+        $this->httpClient->post($this->getResourceUrl($vpsName), $parameters);
     }
 }

@@ -9,7 +9,7 @@ class AddonRepository extends ApiRepository
 {
     protected function getRepositoryResourceNames(): array
     {
-        return ['vps'];
+        return ['vps', 'addons'];
     }
 
     /**
@@ -19,7 +19,7 @@ class AddonRepository extends ApiRepository
     public function getByVpsName(string $vpsName): array
     {
         $addons        = [];
-        $response      = $this->httpClient->get($this->getResourceUrl($vpsName) . '/addons');
+        $response      = $this->httpClient->get($this->getResourceUrl($vpsName));
         $categoryArray = $response['addons'] ?? [];
 
         foreach ($categoryArray as $category => $addonsArray) {
@@ -35,11 +35,11 @@ class AddonRepository extends ApiRepository
     public function order(string $vpsName, array $addonNames): void
     {
         $parameters['addons'] = $addonNames;
-        $this->httpClient->post($this->getResourceUrl($vpsName) . '/addons', $parameters);
+        $this->httpClient->post($this->getResourceUrl($vpsName), $parameters);
     }
 
     public function cancel(string $vpsName, string $addonName): void
     {
-        $this->httpClient->delete($this->getResourceUrl($vpsName) . '/addons/' . $addonName, []);
+        $this->httpClient->delete($this->getResourceUrl($vpsName, $addonName), []);
     }
 }
