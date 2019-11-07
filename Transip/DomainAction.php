@@ -31,5 +31,3 @@ class Transip_DomainAction
 	 */
 	public $message;
 }
-
-?>

@@ -236,5 +236,3 @@ class Transip_ForwardService
 		return self::_getSoapClient(array_merge(array($forward), array('__method' => 'modify')))->modify($forward);
 	}
 }
-
-?>

@@ -247,7 +247,7 @@ class Transip_HaipService
 	/**
 	 * Sets the provided balancing mode for the HA-IP. The cookieName argument may be an empty string unless the
 	 * balancing mode is set to 'cookie'.
-	 * 
+	 *
 	 * This is a HA-IP Pro feature.
 	 *
 	 * @param string $haipName The HA-IP name
@@ -262,7 +262,7 @@ class Transip_HaipService
 
 	/**
 	 * Configures a HTTP health check for the HA-IP. To disable a HTTP health check use setTcpHealthCheck().
-	 * 
+	 *
 	 * This is a HA-IP Pro feature.
 	 *
 	 * @param string $haipName The HA-IP name
@@ -277,7 +277,7 @@ class Transip_HaipService
 
 	/**
 	 * Configures a TCP health check for the HA-IP (this is the default health check).
-	 * 
+	 *
 	 * This is a HA-IP Pro feature.
 	 *
 	 * @param string $haipName The HA-IP name
@@ -290,12 +290,12 @@ class Transip_HaipService
 
 	/**
 	 * Get a status report for the HA-IP.
-	 * 
+	 *
 	 * This is a HA-IP Pro feature.
 	 *
 	 * @param string $haipName The HA-IP name
 	 * @throws ApiException
-	 * @return array 
+	 * @return array
 	 */
 	public static function getStatusReport($haipName)
 	{
@@ -305,9 +305,9 @@ class Transip_HaipService
 	/**
 	 * Get all Certificates by Haip
 	 *
-	 * @param string $haipName 
+	 * @param string $haipName
 	 * @throws ApiException
-	 * @return array 
+	 * @return array
 	 */
 	public static function getCertificatesByHaip($haipName)
 	{
@@ -317,9 +317,9 @@ class Transip_HaipService
 	/**
 	 * Get all available certificates ready to attach to your HAIP
 	 *
-	 * @param string $haipName 
+	 * @param string $haipName
 	 * @throws ApiException
-	 * @return array 
+	 * @return array
 	 */
 	public static function getAvailableCertificatesByHaip($haipName)
 	{
@@ -329,8 +329,8 @@ class Transip_HaipService
 	/**
 	 * Add a HaipCertificate to this object
 	 *
-	 * @param string $haipName 
-	 * @param int $certificateId 
+	 * @param string $haipName
+	 * @param int $certificateId
 	 * @throws ApiException
 	 */
 	public static function addCertificateToHaip($haipName, $certificateId)
@@ -341,8 +341,8 @@ class Transip_HaipService
 	/**
 	 * Removes a Certificate from this HA-IP
 	 *
-	 * @param string $haipName 
-	 * @param int $certificateId 
+	 * @param string $haipName
+	 * @param int $certificateId
 	 * @throws ApiException
 	 */
 	public static function deleteCertificateFromHaip($haipName, $certificateId)
@@ -353,8 +353,8 @@ class Transip_HaipService
 	/**
 	 * Add EncryptCertificate to HA-IP
 	 *
-	 * @param string $haipName 
-	 * @param string $commonName 
+	 * @param string $haipName
+	 * @param string $commonName
 	 * @throws ApiException
 	 */
 	public static function startHaipLetsEncryptCertificateIssue($haipName, $commonName)
@@ -365,9 +365,9 @@ class Transip_HaipService
 	/**
 	 * Returns the current ptr for the given HA-IP
 	 *
-	 * @param string $haipName 
+	 * @param string $haipName
 	 * @throws ApiException
-	 * @return string 
+	 * @return string
 	 */
 	public static function getPtrForHaip($haipName)
 	{
@@ -377,8 +377,8 @@ class Transip_HaipService
 	/**
 	 * Update the ptr records for the given HA-IP
 	 *
-	 * @param string $haipName 
-	 * @param string $ptr 
+	 * @param string $haipName
+	 * @param string $ptr
 	 * @throws ApiException
 	 */
 	public static function setPtrForHaip($haipName, $ptr)
@@ -389,8 +389,8 @@ class Transip_HaipService
 	/**
 	 * Update the description for HA-IP
 	 *
-	 * @param string $haipName 
-	 * @param string $description 
+	 * @param string $haipName
+	 * @param string $description
 	 * @throws ApiException
 	 */
 	public static function setHaipDescription($haipName, $description)
@@ -404,7 +404,7 @@ class Transip_HaipService
 	 * @param string $haipName The HA-IP name
 	 * @deprecated Please use HaipService::getPortConfigurations()
 	 * @throws ApiException
-	 * @return array 
+	 * @return array
 	 */
 	public static function getHaipPortConfigurations($haipName)
 	{
@@ -416,7 +416,7 @@ class Transip_HaipService
 	 *
 	 * @param string $haipName The HA-IP name
 	 * @throws ApiException
-	 * @return array 
+	 * @return array
 	 */
 	public static function getPortConfigurations($haipName)
 	{
@@ -512,10 +512,10 @@ class Transip_HaipService
 	}
 
 	/**
-	 * 
 	 *
-	 * @param string $haipName 
-	 * @param int $configurationId 
+	 *
+	 * @param string $haipName
+	 * @param int $configurationId
 	 * @throws ApiException
 	 */
 	public static function deletePortConfiguration($haipName, $configurationId)
@@ -535,5 +535,3 @@ class Transip_HaipService
 		return self::_getSoapClient(array_merge(array($haipName, $endTime), array('__method' => 'cancelHaip')))->cancelHaip($haipName, $endTime);
 	}
 }
-
-?>

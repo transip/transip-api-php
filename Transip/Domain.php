@@ -59,7 +59,7 @@ class Transip_Domain
 	/**
 	 * If this domain supports locking, this flag is true when the domain is locked
 	 * at the registry, false if not. Read-only.
-	 * 
+	 *
 	 * Use Transip_DomainService::setLock() to change the lock status of a domain.
 	 *
 	 * @var boolean
@@ -101,5 +101,3 @@ class Transip_Domain
         $this->branding = $branding;
     }
 }
-
-?>

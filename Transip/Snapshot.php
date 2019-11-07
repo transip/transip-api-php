@@ -37,5 +37,3 @@ class Transip_Snapshot
 	 */
 	public $availabilityZone;
 }
-
-?>

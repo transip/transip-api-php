@@ -30,5 +30,3 @@ class Transip_AvailabilityZone
 	 */
 	public $isDefault;
 }
-
-?>

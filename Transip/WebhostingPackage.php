@@ -37,5 +37,3 @@ class Transip_WebhostingPackage
 	 */
 	public $renewalPrice;
 }
-
-?>

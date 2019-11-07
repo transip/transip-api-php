@@ -41,5 +41,3 @@ class Transip_DomainCheckResult
 	 */
 	public $actions;
 }
-
-?>

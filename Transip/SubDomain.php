@@ -26,5 +26,3 @@ class Transip_SubDomain
         $this->name = $name;
     }
 }
-
-?>

@@ -35,5 +35,3 @@ class Transip_MailForward
         $this->targetAddress = $targetAddress;
     }
 }
-
-?>

@@ -98,5 +98,3 @@ class Transip_Cronjob
         $this->weekdayTrigger = $weekdayTrigger;
     }
 }
-
-?>

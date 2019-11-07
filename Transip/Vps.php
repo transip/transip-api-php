@@ -121,5 +121,3 @@ class Transip_Vps
 	 */
 	public $availabilityZone = '';
 }
-
-?>

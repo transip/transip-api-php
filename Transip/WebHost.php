@@ -2,10 +2,10 @@
 
 /**
  * This class models a WebHost
- * 
+ *
  * Please be aware that this information is outdated when
  * A modifying function in Transip_WebhostingService is called (e.g. createCronjob()).
- * 
+ *
  * Refresh when needed with calling Transip_WebhostingService::getInfo() again
  *
  * @package Transip
@@ -56,5 +56,3 @@ class Transip_WebHost
 	 */
 	public $subDomains;
 }
-
-?>

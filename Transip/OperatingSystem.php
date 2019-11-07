@@ -37,5 +37,3 @@ class Transip_OperatingSystem
 	 */
 	public $isPreinstallableImage = false;
 }
-
-?>

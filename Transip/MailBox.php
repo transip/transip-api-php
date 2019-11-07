@@ -76,5 +76,3 @@ class Transip_MailBox
         $this->vacationReplyMessage = $vacationReplyMessage;
     }
 }
-
-?>

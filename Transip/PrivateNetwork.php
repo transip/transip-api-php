@@ -16,5 +16,3 @@ class Transip_PrivateNetwork
 	 */
 	public $name = '';
 }
-
-?>

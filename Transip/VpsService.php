@@ -440,7 +440,7 @@ class Transip_VpsService
 	/**
 	 * Get PooledTraffic information for the account
 	 *
-	 * @return array 
+	 * @return array
 	 */
 	public static function getPooledTrafficInformation()
 	{
@@ -711,5 +711,3 @@ class Transip_VpsService
 		return self::_getSoapClient(array_merge(array($vpsName, $description, $vpsBackupId), array('__method' => 'convertVpsBackupToSnapshot')))->convertVpsBackupToSnapshot($vpsName, $description, $vpsBackupId);
 	}
 }
-
-?>

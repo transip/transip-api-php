@@ -53,7 +53,7 @@ class Transip_DnsEntry
 	 * Constructs a new DnsEntry of the form
 	 * www    IN    86400    A        127.0.0.1
 	 * mail IN    86400    CNAME    @
-	 * 
+	 *
 	 * Note that the IN class is always mandatory for this Entry and this is implied.
 	 *
 	 * @param string $name the name of this DnsEntry, e.g. www, mail or @
@@ -69,5 +69,3 @@ class Transip_DnsEntry
         $this->content = $content;
     }
 }
-
-?>

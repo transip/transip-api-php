@@ -46,5 +46,3 @@ class Transip_Nameserver
         $this->ipv6 = $ipv6;
     }
 }
-
-?>

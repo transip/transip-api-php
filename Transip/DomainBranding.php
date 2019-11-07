@@ -58,5 +58,3 @@ class Transip_DomainBranding
 	 */
 	public $bannerLine3;
 }
-
-?>

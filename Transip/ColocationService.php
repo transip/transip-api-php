@@ -301,5 +301,3 @@ class Transip_ColocationService
 		return self::_getSoapClient(array_merge(array($ipAddress, $reverseDns), array('__method' => 'setReverseDns')))->setReverseDns($ipAddress, $reverseDns);
 	}
 }
-
-?>

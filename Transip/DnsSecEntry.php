@@ -43,7 +43,7 @@ class Transip_DnsSecEntry
 );
 
 	/**
-	 * 
+	 *
 	 *
 	 * @var int $keyTag
 	 */
@@ -64,7 +64,7 @@ class Transip_DnsSecEntry
 	public $algorithm;
 
 	/**
-	 * 
+	 *
 	 *
 	 * @var string $publicKey
 	 */
@@ -82,5 +82,3 @@ class Transip_DnsSecEntry
         $this->publicKey = $publicKey;
     }
 }
-
-?>

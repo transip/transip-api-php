@@ -97,5 +97,3 @@ class Transip_Forward
         $this->forwardEmailTo = $forwardEmailTo;
     }
 }
-
-?>

@@ -199,8 +199,8 @@ class Transip_DnsService
 	/**
 	 * Checks if the dnssec entries of a domain can be updated.
 	 *
-	 * @param string $domainName 
-	 * @return boolean 
+	 * @param string $domainName
+	 * @return boolean
 	 * @example examples/DnsService-setDnsSecEntries.php
 	 */
 	public static function canEditDnsSec($domainName)
@@ -209,10 +209,10 @@ class Transip_DnsService
 	}
 
 	/**
-	 * 
 	 *
-	 * @param string $domainName 
-	 * @return Transip_DnsSecEntry[] 
+	 *
+	 * @param string $domainName
+	 * @return Transip_DnsSecEntry[]
 	 * @example examples/DnsService-getDnsSecEntries.php
 	 */
 	public static function getDnsSecEntries($domainName)
@@ -223,8 +223,8 @@ class Transip_DnsService
 	/**
 	 * Sets new DNSSEC key entries for a domain, replacing the current ones.
 	 *
-	 * @param string $domainName 
-	 * @param Transip_DnsSecEntry[] $dnssecKeyEntrySet 
+	 * @param string $domainName
+	 * @param Transip_DnsSecEntry[] $dnssecKeyEntrySet
 	 * @throws ApiException
 	 * @example examples/DnsService-setDnsSecEntries.php
 	 */
@@ -236,7 +236,7 @@ class Transip_DnsService
 	/**
 	 * Remove all the DnsSecEntries from a domain.
 	 *
-	 * @param string $domainName 
+	 * @param string $domainName
 	 * @example examples/DnsService-setDnsSecEntries.php
 	 */
 	public static function removeAllDnsSecEntries($domainName)
@@ -244,5 +244,3 @@ class Transip_DnsService
 		return self::_getSoapClient(array_merge(array($domainName), array('__method' => 'removeAllDnsSecEntries')))->removeAllDnsSecEntries($domainName);
 	}
 }
-
-?>

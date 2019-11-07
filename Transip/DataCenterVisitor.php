@@ -38,5 +38,3 @@ class Transip_DataCenterVisitor
 	 */
 	public $hasBeenRegisteredBefore;
 }
-
-?>

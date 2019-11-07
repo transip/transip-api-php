@@ -512,7 +512,7 @@ class Transip_DomainService
 
 	/**
 	 * Request the authcode at the registry
-	 * 
+	 *
 	 * This function will request the authcode for domains at DNS.be and EURid from the registry
 	 *
 	 * @param string $domainName the domainNAme to request the autocode for<br /><br />- domainName must meet the requirements for a domain name described in: <a href="https://tools.ietf.org/html/rfc952" target="_blanc">RFC 952</a>
@@ -596,5 +596,3 @@ class Transip_DomainService
 		return self::_getSoapClient(array_merge(array($domainName), array('__method' => 'getDefaultNameserversByDomainName')))->getDefaultNameserversByDomainName($domainName);
 	}
 }
-
-?>

@@ -45,5 +45,3 @@ class Transip_Db
         $this->maxDiskUsage = $maxDiskUsage;
     }
 }
-
-?>

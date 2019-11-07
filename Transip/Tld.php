@@ -66,5 +66,3 @@ class Transip_Tld
 	 */
 	public $cancelTimeFrame;
 }
-
-?>

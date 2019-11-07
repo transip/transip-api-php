@@ -32,7 +32,7 @@ class Transip_Haip
 
 	/**
 	 * If load balancing is enabled for the HA-IP.
-	 * 
+	 *
 	 * This is a HA-IP Pro feature.
 	 *
 	 * @var boolean
@@ -41,7 +41,7 @@ class Transip_Haip
 
 	/**
 	 * Load balancing mode that is configured for the HA-IP.
-	 * 
+	 *
 	 * This is a HA-IP Pro feature.
 	 *
 	 * @var string
@@ -50,7 +50,7 @@ class Transip_Haip
 
 	/**
 	 * The cookie name that is used when the load balancing mode is set to 'cookie' HA-IP.
-	 * 
+	 *
 	 * This is a HA-IP Pro feature.
 	 *
 	 * @var string
@@ -59,7 +59,7 @@ class Transip_Haip
 
 	/**
 	 * The health check mode configured for the HA-IP.
-	 * 
+	 *
 	 * This is a HA-IP Pro feature.
 	 *
 	 * @var string
@@ -68,7 +68,7 @@ class Transip_Haip
 
 	/**
 	 * The HTTP path that will accessed for health checks when the health check mode is 'http'.
-	 * 
+	 *
 	 * This is a HA-IP Pro feature.
 	 *
 	 * @var string
@@ -77,7 +77,7 @@ class Transip_Haip
 
 	/**
 	 * The port that will accessed for health checks when the health check mode is 'http'.
-	 * 
+	 *
 	 * This is a HA-IP Pro feature.
 	 *
 	 * @var string
@@ -136,5 +136,3 @@ class Transip_Haip
 	 */
 	public $vpsIpv6Address = '';
 }
-
-?>

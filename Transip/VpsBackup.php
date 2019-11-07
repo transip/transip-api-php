@@ -44,5 +44,3 @@ class Transip_VpsBackup
 	 */
 	public $availabilityZone;
 }
-
-?>

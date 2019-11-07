@@ -218,10 +218,10 @@ class Transip_WebhostingService
 
 	/**
 	 * Get information about existing webhosting on a domain.
-	 * 
+	 *
 	 * Please be aware that the information returned is outdated when
 	 * a modifying function in Transip_WebhostingService is called (e.g. createCronjob()).
-	 * 
+	 *
 	 * Call this function again to refresh the info.
 	 *
 	 * @param string $domainName The domain name of the webhosting package to get the info for. Must be owned by this user
@@ -470,5 +470,3 @@ class Transip_WebhostingService
 		return self::_getSoapClient(array_merge(array($domainName, $subDomain), array('__method' => 'deleteSubdomain')))->deleteSubdomain($domainName, $subDomain);
 	}
 }
-
-?>

@@ -181,8 +181,8 @@ class Transip_PropositionService
 	/**
 	 * Returns the status for a proposition number ('pending', 'finished' or 'invalid')
 	 *
-	 * @param string $propositionNumber 
-	 * @return string 
+	 * @param string $propositionNumber
+	 * @return string
 	 * @throws ApiException
 	 */
 	public static function getPropositionStatus($propositionNumber)
@@ -190,5 +190,3 @@ class Transip_PropositionService
 		return self::_getSoapClient(array_merge(array($propositionNumber), array('__method' => 'getPropositionStatus')))->getPropositionStatus($propositionNumber);
 	}
 }
-
-?>

@@ -399,5 +399,3 @@ class Transip_WhoisContact
 	 */
 	public $country;
 }
-
-?>
