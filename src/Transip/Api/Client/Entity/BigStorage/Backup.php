@@ -17,7 +17,7 @@ class Backup extends AbstractEntity
     public $status;
 
     /**
-     * @var string $diskSize
+     * @var int $diskSize
      */
     public $diskSize;
 
@@ -42,7 +42,7 @@ class Backup extends AbstractEntity
         return $this->status;
     }
 
-    public function getDiskSize(): string
+    public function getDiskSize(): int
     {
         return $this->diskSize;
     }

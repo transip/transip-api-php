@@ -7,6 +7,7 @@ use Transip\Api\Client\HttpClient\HttpClientInterface;
 use Transip\Api\Client\Repository\AvailabilityZoneRepository;
 use Transip\Api\Client\Repository\BigStorageRepository;
 use Transip\Api\Client\Repository\BigStorage\BackupRepository as BigStorageBackupRepository;
+use Transip\Api\Client\Repository\DomainRepository;
 use Transip\Api\Client\Repository\MailServiceRepository;
 use Transip\Api\Client\Repository\PrivateNetworkRepository;
 use Transip\Api\Client\Repository\ProductRepository;
@@ -62,6 +63,11 @@ class TransipAPI
     public function products(): ProductRepository
     {
         return new ProductRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function domains(): DomainRepository
+    {
+        return new DomainRepository($this->httpClient, $this->endpoint);
     }
 
     public function vps(): VpsRepository
