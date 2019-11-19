@@ -3,9 +3,11 @@
 namespace Transip\Api\Client\HttpClient;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use Transip\Api\Client\Exception\ApiException;
 use Transip\Api\Client\Exception\HttpClientException;
+use Transip\Api\Client\Exception\HttpConnectException;
 use Transip\Api\Client\Exception\HttpRequestException;
 use Exception;
 
@@ -25,6 +27,8 @@ class GuzzleClient implements HttpClientInterface
     {
         try {
             $response = $this->client->get($url);
+        } catch (ConnectException $connectException) {
+            throw HttpConnectException::connectException($connectException);
         } catch (RequestException $requestException) {
             throw HttpRequestException::requestException($requestException, $requestException->getResponse());
         } catch (Exception $exception) {

@@ -10,8 +10,10 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "guzzlehttp/guzzle": "^6.3"
-    },
+        "guzzlehttp/guzzle": "^6.3",
+         "ext-json": "*"
+    }
+    ,
     "autoload": {
         "psr-4": {
             "Transip\\Api\\Client\\": "src/Transip/Api/Client"
