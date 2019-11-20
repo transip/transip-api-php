@@ -8,7 +8,7 @@ class VpsRepository extends ApiRepository
 {
     protected function getRepositoryResourceNames(): array
     {
-        return ['vps'];
+        return ['vpses'];
     }
 
     /**
