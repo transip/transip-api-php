@@ -44,8 +44,6 @@ class HaipRepository extends ApiRepository
         $response = $this->httpClient->get($this->getResourceUrl($name));
         $haip     = $response['haip'] ?? null;
 
-        var_dump($haip);
-
         return new Haip($haip);
     }
 
