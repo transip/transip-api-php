@@ -14,11 +14,13 @@ use Transip\Api\Client\Repository\ProductRepository;
 use Transip\Api\Client\Repository\TrafficRepository;
 use Transip\Api\Client\Repository\Vps\AddonRepository;
 use Transip\Api\Client\Repository\Vps\BackupRepository as VpsBackupRepository;
-use Transip\Api\Client\Repository\Vps\IpAddressRepository;
+use Transip\Api\Client\Repository\Vps\IpAddressRepository as VpsIpAddressRepository;
 use Transip\Api\Client\Repository\Vps\OperatingSystemRepository;
 use Transip\Api\Client\Repository\Vps\SnapshotRepository;
 use Transip\Api\Client\Repository\Vps\UpgradeRepository;
 use Transip\Api\Client\Repository\VpsRepository;
+use Transip\Api\Client\Repository\Haip\IpAddressRepository as HaipIpAddressRepository;
+use Transip\Api\Client\Repository\HaipRepository;
 
 class TransipAPI
 {
@@ -90,9 +92,9 @@ class TransipAPI
         return new VpsBackupRepository($this->httpClient, $this->endpoint);
     }
 
-    public function vpsIpAddresses(): IpAddressRepository
+    public function vpsIpAddresses(): VpsIpAddressRepository
     {
-        return new IpAddressRepository($this->httpClient, $this->endpoint);
+        return new VpsIpAddressRepository($this->httpClient, $this->endpoint);
     }
 
     public function vpsOperatingSystems(): OperatingSystemRepository
@@ -128,6 +130,16 @@ class TransipAPI
     public function mailService(): MailServiceRepository
     {
         return new MailServiceRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function haip(): HaipRepository
+    {
+        return new HaipRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function haipIpAddresses(): HaipIpAddressRepository
+    {
+        return new HaipIpAddressRepository($this->httpClient, $this->endpoint);
     }
 
     public function setHttpClient(HttpClientInterface $httpClient): void
