@@ -37,72 +37,44 @@ class DnsEntry extends AbstractEntity
      */
     public $content;
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return DnsEntry
-     */
     public function setName(string $name): DnsEntry
     {
         $this->name = $name;
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getExpire(): int
     {
         return $this->expire;
     }
 
-    /**
-     * @param int $expire
-     * @return DnsEntry
-     */
     public function setExpire(int $expire): DnsEntry
     {
         $this->expire = $expire;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @param string $type
-     * @return DnsEntry
-     */
     public function setType(string $type): DnsEntry
     {
         $this->type = $type;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getContent(): string
     {
         return $this->content;
     }
 
-    /**
-     * @param string $content
-     * @return DnsEntry
-     */
     public function setContent(string $content): DnsEntry
     {
         $this->content = $content;
