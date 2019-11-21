@@ -51,7 +51,7 @@ class Haip extends AbstractEntity
     public $httpHealthCheckPort;
 
     /**
-     * @var string
+     * @var bool
      */
     public $httpHealthCheckSsl;
 
@@ -249,9 +249,9 @@ class Haip extends AbstractEntity
     }
 
     /**
-     * @param string $httpHealthCheckSsl
+     * @param bool $httpHealthCheckSsl
      */
-    public function setHttpHealthCheckSsl(string $httpHealthCheckSsl): void
+    public function setHttpHealthCheckSsl(bool $httpHealthCheckSsl): void
     {
         $this->httpHealthCheckSsl = $httpHealthCheckSsl;
     }
@@ -262,5 +262,13 @@ class Haip extends AbstractEntity
     public function setIpSetup(string $ipSetup): void
     {
         $this->ipSetup = $ipSetup;
+    }
+
+    /**
+     * @param string $ptrRecord
+     */
+    public function setPtrRecord(string $ptrRecord): void
+    {
+        $this->ptrRecord = $ptrRecord;
     }
 }

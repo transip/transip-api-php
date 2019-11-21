@@ -60,9 +60,9 @@ class HaipRepository extends ApiRepository
         $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
 
-    public function update(Haip $vps): void
+    public function update(Haip $haip): void
     {
-        $this->httpClient->put($this->getResourceUrl($vps->getName()), ['vps' => $vps]);
+        $this->httpClient->put($this->getResourceUrl($haip->getName()), ['haip' => $haip]);
     }
 
     public function cancel(string $name, string $endTime): void
