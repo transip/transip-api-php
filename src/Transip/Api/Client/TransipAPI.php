@@ -8,11 +8,13 @@ use Transip\Api\Client\Repository\AvailabilityZoneRepository;
 use Transip\Api\Client\Repository\BigStorageRepository;
 use Transip\Api\Client\Repository\BigStorage\BackupRepository as BigStorageBackupRepository;
 use Transip\Api\Client\Repository\DomainRepository;
+use Transip\Api\Client\Repository\Domain\ActionRepository as DomainActionRepository;
 use Transip\Api\Client\Repository\Domain\BrandingRepository as DomainBrandingRepository;
 use Transip\Api\Client\Repository\Domain\ContactRepository as DomainContactRepository;
 use Transip\Api\Client\Repository\Domain\DnsRepository as DomainDnsRepository;
 use Transip\Api\Client\Repository\Domain\DnsSecRepository as DomainDnsSecRepository;
 use Transip\Api\Client\Repository\Domain\NameserverRepository as DomainNameserverRepository;
+use Transip\Api\Client\Repository\Domain\SslRepository as DomainSslRepository;
 use Transip\Api\Client\Repository\MailServiceRepository;
 use Transip\Api\Client\Repository\PrivateNetworkRepository;
 use Transip\Api\Client\Repository\ProductRepository;
@@ -78,6 +80,11 @@ class TransipAPI
         return new DomainRepository($this->httpClient, $this->endpoint);
     }
 
+    public function domainAction(): DomainActionRepository
+    {
+        return new DomainActionRepository($this->httpClient, $this->endpoint);
+    }
+
     public function domainBranding(): DomainBrandingRepository
     {
         return new DomainBrandingRepository($this->httpClient, $this->endpoint);
@@ -101,6 +108,11 @@ class TransipAPI
     public function domainNameserver(): DomainNameserverRepository
     {
         return new DomainNameserverRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function domainSsl(): DomainSslRepository
+    {
+        return new DomainSslRepository($this->httpClient, $this->endpoint);
     }
 
     public function vps(): VpsRepository
