@@ -14,7 +14,7 @@ class IpAddressRepository extends ApiRepository
 
     /**
      * @param string $haipName
-     * @return IpAddress[]
+     * @return string[]
      */
     public function getByHaipName(string $haipName): array
     {

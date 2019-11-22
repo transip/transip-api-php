@@ -24,6 +24,7 @@ use Transip\Api\Client\Repository\Vps\OperatingSystemRepository;
 use Transip\Api\Client\Repository\Vps\SnapshotRepository;
 use Transip\Api\Client\Repository\Vps\UpgradeRepository;
 use Transip\Api\Client\Repository\VpsRepository;
+use Transip\Api\Client\Repository\Haip\PortConfigurationRepository;
 use Transip\Api\Client\Repository\Haip\IpAddressRepository as HaipIpAddressRepository;
 use Transip\Api\Client\Repository\HaipRepository;
 
@@ -170,6 +171,11 @@ class TransipAPI
     public function haipIpAddresses(): HaipIpAddressRepository
     {
         return new HaipIpAddressRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function haipPortConfigurations(): PortConfigurationRepository
+    {
+        return new PortConfigurationRepository($this->httpClient, $this->endpoint);
     }
 
     public function setHttpClient(HttpClientInterface $httpClient): void
