@@ -15,7 +15,7 @@ class WhoisRepository extends ApiRepository
     public function getByDomainName(string $domainName): string
     {
         $response = $this->httpClient->get($this->getResourceUrl($domainName));
-        $whois = $response['whois'] ?? null;
+        $whois = $response['whois'] ?? '';
         return $whois;
     }
 }

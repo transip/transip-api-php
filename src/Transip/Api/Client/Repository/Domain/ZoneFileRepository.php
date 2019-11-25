@@ -14,7 +14,7 @@ class ZoneFileRepository extends ApiRepository
     public function getByDomainName(string $domainName): string
     {
         $response = $this->httpClient->get($this->getResourceUrl($domainName));
-        $zoneFile = $response['zoneFile'] ?? null;
+        $zoneFile = $response['zoneFile'] ?? '';
         return $zoneFile;
     }
 
