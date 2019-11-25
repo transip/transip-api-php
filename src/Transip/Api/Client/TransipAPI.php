@@ -15,6 +15,8 @@ use Transip\Api\Client\Repository\Domain\DnsRepository as DomainDnsRepository;
 use Transip\Api\Client\Repository\Domain\DnsSecRepository as DomainDnsSecRepository;
 use Transip\Api\Client\Repository\Domain\NameserverRepository as DomainNameserverRepository;
 use Transip\Api\Client\Repository\Domain\SslRepository as DomainSslRepository;
+use Transip\Api\Client\Repository\Domain\WhoisRepository as DomainWhoisRepository;
+use Transip\Api\Client\Repository\Domain\ZoneFileRepository as DomainZoneFileRepository;
 use Transip\Api\Client\Repository\MailServiceRepository;
 use Transip\Api\Client\Repository\PrivateNetworkRepository;
 use Transip\Api\Client\Repository\ProductRepository;
@@ -113,6 +115,16 @@ class TransipAPI
     public function domainSsl(): DomainSslRepository
     {
         return new DomainSslRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function domainWhois(): DomainWhoisRepository
+    {
+        return new DomainWhoisRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function domainZoneFile(): DomainZoneFileRepository
+    {
+        return new DomainZoneFileRepository($this->httpClient, $this->endpoint);
     }
 
     public function vps(): VpsRepository
