@@ -27,11 +27,6 @@ class Tld extends AbstractEntity
     public $price;
 
     /**
-     * @var float $renewalPrice
-     */
-    public $renewalPrice;
-
-    /**
      * @var float $recurringPrice
      */
     public $recurringPrice;
