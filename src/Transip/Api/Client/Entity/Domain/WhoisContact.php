@@ -6,27 +6,27 @@ use Transip\Api\Client\Entity\AbstractEntity;
 
 class WhoisContact extends AbstractEntity
 {
-    const CONTACT_TYPE_REGISTRANT = 'registrant';
-    const CONTACT_TYPE_ADMINISTRATIVE = 'administrative';
-    const CONTACT_TYPE_TECHNICAL = 'technical';
+    public const CONTACT_TYPE_REGISTRANT = 'registrant';
+    public const CONTACT_TYPE_ADMINISTRATIVE = 'administrative';
+    public const CONTACT_TYPE_TECHNICAL = 'technical';
 
-    const COMPANY_TYPE_BV = 'BV'; // BV - Besloten Vennootschap
-    const COMPANY_TYPE_BVIO = 'BVI/O'; // BV i.o. - BV in oprichting
-    const COMPANY_TYPE_COOP = 'COOP'; // Cooperatie
-    const COMPANY_TYPE_CV = 'CV'; // CV - Commanditaire Vennootschap
-    const COMPANY_TYPE_EENMANSZAAK = 'EENMANSZAAK'; // Eenmanszaak
-    const COMPANY_TYPE_KERK = 'KERK'; // Kerkgenootschap
-    const COMPANY_TYPE_NV = 'NV'; // NV - Naamloze Vennootschap
-    const COMPANY_TYPE_OWM = 'OWM'; // Onderlinge Waarborg Maatschappij
-    const COMPANY_TYPE_REDR = 'REDR'; // Rederij
-    const COMPANY_TYPE_STICHTING = 'STICHTING'; // Stichting
-    const COMPANY_TYPE_VERENIGING = 'VERENIGING'; // Vereniging
-    const COMPANY_TYPE_VOF = 'VOF'; // VoF - Vennootschap onder firma
-    const COMPANY_TYPE_BEG = 'BEG'; // Buitenlandse EG vennootschap
-    const COMPANY_TYPE_BRO = 'BRO'; // Buitenlandse rechtsvorm/onderneming
-    const COMPANY_TYPE_EESV = 'EESV'; // Europees Economisch Samenwerkingsverband
-    const COMPANY_TYPE_ANDERS = 'ANDERS'; // Anders
-    const COMPANY_TYPE_NONE = ''; // Geen
+    public const COMPANY_TYPE_BV = 'BV'; // BV - Besloten Vennootschap
+    public const COMPANY_TYPE_BVIO = 'BVI/O'; // BV i.o. - BV in oprichting
+    public const COMPANY_TYPE_COOP = 'COOP'; // Cooperatie
+    public const COMPANY_TYPE_CV = 'CV'; // CV - Commanditaire Vennootschap
+    public const COMPANY_TYPE_EENMANSZAAK = 'EENMANSZAAK'; // Eenmanszaak
+    public const COMPANY_TYPE_KERK = 'KERK'; // Kerkgenootschap
+    public const COMPANY_TYPE_NV = 'NV'; // NV - Naamloze Vennootschap
+    public const COMPANY_TYPE_OWM = 'OWM'; // Onderlinge Waarborg Maatschappij
+    public const COMPANY_TYPE_REDR = 'REDR'; // Rederij
+    public const COMPANY_TYPE_STICHTING = 'STICHTING'; // Stichting
+    public const COMPANY_TYPE_VERENIGING = 'VERENIGING'; // Vereniging
+    public const COMPANY_TYPE_VOF = 'VOF'; // VoF - Vennootschap onder firma
+    public const COMPANY_TYPE_BEG = 'BEG'; // Buitenlandse EG vennootschap
+    public const COMPANY_TYPE_BRO = 'BRO'; // Buitenlandse rechtsvorm/onderneming
+    public const COMPANY_TYPE_EESV = 'EESV'; // Europees Economisch Samenwerkingsverband
+    public const COMPANY_TYPE_ANDERS = 'ANDERS'; // Anders
+    public const COMPANY_TYPE_NONE = ''; // Geen
 
     /**
      * @var string $type

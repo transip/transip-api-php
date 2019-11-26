@@ -6,16 +6,16 @@ use Transip\Api\Client\Entity\AbstractEntity;
 
 class DnsEntry extends AbstractEntity
 {
-    const TYPE_A        = 'A';
-    const TYPE_AAAA     = 'AAAA';
-    const TYPE_CNAME    = 'CNAME';
-    const TYPE_MX       = 'MX';
-    const TYPE_NS       = 'NS';
-    const TYPE_TXT      = 'TXT';
-    const TYPE_SRV      = 'SRV';
-    const TYPE_SSHFP    = 'SSHFP';
-    const TYPE_TLSA     = 'TLSA';
-    const TYPE_CAA      = 'CAA';
+    public const TYPE_A        = 'A';
+    public const TYPE_AAAA     = 'AAAA';
+    public const TYPE_CNAME    = 'CNAME';
+    public const TYPE_MX       = 'MX';
+    public const TYPE_NS       = 'NS';
+    public const TYPE_TXT      = 'TXT';
+    public const TYPE_SRV      = 'SRV';
+    public const TYPE_SSHFP    = 'SSHFP';
+    public const TYPE_TLSA     = 'TLSA';
+    public const TYPE_CAA      = 'CAA';
 
     /**
      * @var string $name

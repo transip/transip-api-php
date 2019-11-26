@@ -8,6 +8,7 @@ use Transip\Api\Client\Repository\AvailabilityZoneRepository;
 use Transip\Api\Client\Repository\BigStorageRepository;
 use Transip\Api\Client\Repository\BigStorage\BackupRepository as BigStorageBackupRepository;
 use Transip\Api\Client\Repository\DomainRepository;
+use Transip\Api\Client\Repository\DomainAvailabilityRepository;
 use Transip\Api\Client\Repository\Domain\ActionRepository as DomainActionRepository;
 use Transip\Api\Client\Repository\Domain\BrandingRepository as DomainBrandingRepository;
 use Transip\Api\Client\Repository\Domain\ContactRepository as DomainContactRepository;
@@ -17,9 +18,11 @@ use Transip\Api\Client\Repository\Domain\NameserverRepository as DomainNameserve
 use Transip\Api\Client\Repository\Domain\SslRepository as DomainSslRepository;
 use Transip\Api\Client\Repository\Domain\WhoisRepository as DomainWhoisRepository;
 use Transip\Api\Client\Repository\Domain\ZoneFileRepository as DomainZoneFileRepository;
+use Transip\Api\Client\Repository\DomainWhitelabelRepository;
 use Transip\Api\Client\Repository\MailServiceRepository;
 use Transip\Api\Client\Repository\PrivateNetworkRepository;
 use Transip\Api\Client\Repository\ProductRepository;
+use Transip\Api\Client\Repository\DomainTldRepository;
 use Transip\Api\Client\Repository\TrafficRepository;
 use Transip\Api\Client\Repository\Vps\AddonRepository;
 use Transip\Api\Client\Repository\Vps\BackupRepository as VpsBackupRepository;
@@ -125,6 +128,21 @@ class TransipAPI
     public function domainZoneFile(): DomainZoneFileRepository
     {
         return new DomainZoneFileRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function domainAvailability(): DomainAvailabilityRepository
+    {
+        return new DomainAvailabilityRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function domainTlds(): DomainTldRepository
+    {
+        return new DomainTldRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function domainWhitelabel(): DomainWhitelabelRepository
+    {
+        return new DomainWhitelabelRepository($this->httpClient, $this->endpoint);
     }
 
     public function vps(): VpsRepository
