@@ -33,6 +33,7 @@ use Transip\Api\Client\Repository\Vps\UpgradeRepository;
 use Transip\Api\Client\Repository\VpsRepository;
 use Transip\Api\Client\Repository\Haip\PortConfigurationRepository;
 use Transip\Api\Client\Repository\Haip\IpAddressRepository as HaipIpAddressRepository;
+use Transip\Api\Client\Repository\Haip\CertificateRepository as HaipCertificateRepository;
 use Transip\Api\Client\Repository\HaipRepository;
 
 class TransipAPI
@@ -218,6 +219,11 @@ class TransipAPI
     public function haipPortConfigurations(): PortConfigurationRepository
     {
         return new PortConfigurationRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function haipCertificates(): HaipCertificateRepository
+    {
+        return new HaipCertificateRepository($this->httpClient, $this->endpoint);
     }
 
     public function setHttpClient(HttpClientInterface $httpClient): void
