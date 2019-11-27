@@ -15,11 +15,6 @@ class Certificate extends AbstractEntity
     /**
      * @var string
      */
-    public $sslCertificateId;
-
-    /**
-     * @var string
-     */
     public $commonName;
 
     /**
@@ -38,25 +33,9 @@ class Certificate extends AbstractEntity
     /**
      * @return string
      */
-    public function getSslCertificateId(): string
-    {
-        return $this->sslCertificateId;
-    }
-
-    /**
-     * @return string
-     */
     public function getCommonName(): string
     {
         return $this->commonName;
-    }
-
-    /**
-     * @param string $commonName
-     */
-    public function setCommonName(string $commonName): void
-    {
-        $this->commonName = $commonName;
     }
 
     /**
@@ -65,13 +44,5 @@ class Certificate extends AbstractEntity
     public function getExpirationDate(): string
     {
         return $this->expirationDate;
-    }
-
-    /**
-     * @param string $expirationDate
-     */
-    public function setExpirationDate(string $expirationDate): void
-    {
-        $this->expirationDate = $expirationDate;
     }
 }

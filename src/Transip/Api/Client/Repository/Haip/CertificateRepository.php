@@ -2,7 +2,7 @@
 
 namespace Transip\Api\Client\Repository\Haip;
 
-use Transip\Api\Client\Entity\Haip\PortConfiguration;
+use Transip\Api\Client\Entity\Haip\Certificate;
 use Transip\Api\Client\Repository\ApiRepository;
 
 class CertificateRepository extends ApiRepository
@@ -29,11 +29,18 @@ class CertificateRepository extends ApiRepository
         return $certificates;
     }
 
-    public function add(string $haipName, $sslCertificateId): void
+    public function addBySslCertificateId(string $haipName, int $sslCertificateId): void
     {
         $url = $this->getResourceUrl($haipName);
 
         $this->httpClient->post($url, ['sslCertificateId' => $sslCertificateId]);
+    }
+
+    public function addByCommonName(string $haipName, string $commonName): void
+    {
+        $url = $this->getResourceUrl($haipName);
+
+        $this->httpClient->post($url, ['commonName' => $commonName]);
     }
 
     public function delete(string $haipName, int $haipCertificateId): void
