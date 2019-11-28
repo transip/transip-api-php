@@ -39,7 +39,7 @@ class PortConfigurationRepository extends ApiRepository
     public function delete(string $haipName, int $portConfigurationId): void
     {
         $url = $this->getResourceUrl($haipName, $portConfigurationId);
-        $this->httpClient->delete($url, []);
+        $this->httpClient->delete($url);
     }
 
     public function add(string $haipName, PortConfiguration $portConfiguration): void

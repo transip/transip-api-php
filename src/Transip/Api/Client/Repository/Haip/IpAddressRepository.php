@@ -34,6 +34,6 @@ class IpAddressRepository extends ApiRepository
     public function delete(string $haipName): void
     {
         $url = $this->getResourceUrl($haipName);
-        $this->httpClient->delete($url, []);
+        $this->httpClient->delete($url);
     }
 }

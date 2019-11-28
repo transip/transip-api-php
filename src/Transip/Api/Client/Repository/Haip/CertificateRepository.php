@@ -47,6 +47,6 @@ class CertificateRepository extends ApiRepository
     {
         $url = $this->getResourceUrl($haipName, $haipCertificateId);
 
-        $this->httpClient->delete($url, []);
+        $this->httpClient->delete($url);
     }
 }

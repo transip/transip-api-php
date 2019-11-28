@@ -51,6 +51,6 @@ class SnapshotRepository extends ApiRepository
     public function deleteSnapshot(string $vpsName, string $snapshotName): void
     {
         $url = $this->getResourceUrl($vpsName, $snapshotName) ;
-        $this->httpClient->delete($url, []);
+        $this->httpClient->delete($url);
     }
 }
