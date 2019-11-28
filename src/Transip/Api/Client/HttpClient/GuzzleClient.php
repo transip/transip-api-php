@@ -27,7 +27,7 @@ class GuzzleClient implements HttpClientInterface
     {
         $options = [];
         if (count($content) > 0) {
-            $options['body'] = json_encode($content);
+            $options['query'] = $content;
         }
 
         try {

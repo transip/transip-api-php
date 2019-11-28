@@ -18,15 +18,15 @@ class UpgradeRepository extends ApiRepository
      */
     public function getByVpsName(string $vpsName): array
     {
-        $operatingSystems      = [];
-        $response              = $this->httpClient->get($this->getResourceUrl($vpsName));
-        $operatingSystemsArray = $response['upgrades'] ?? [];
+        $products      = [];
+        $response      = $this->httpClient->get($this->getResourceUrl($vpsName));
+        $upgradesArray = $response['upgrades'] ?? [];
 
-        foreach ($operatingSystemsArray as $operatingSystemArray) {
-            $operatingSystems[] = new Product($operatingSystemArray);
+        foreach ($upgradesArray as $upgradeArray) {
+            $products[] = new Product($upgradeArray);
         }
 
-        return $operatingSystems;
+        return $products;
     }
 
     public function upgrade(string $vpsName, string $productName): void
