@@ -51,6 +51,6 @@ class IpAddressRepository extends ApiRepository
     public function removeIpv6Address(string $vpsName, string $ipv6Address): void
     {
         $url = $this->getResourceUrl($vpsName, $ipv6Address);
-        $this->httpClient->delete($url, []);
+        $this->httpClient->delete($url);
     }
 }

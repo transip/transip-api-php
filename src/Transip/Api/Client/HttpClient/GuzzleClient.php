@@ -23,10 +23,15 @@ class GuzzleClient implements HttpClientInterface
         $this->client = new Client(['headers' => ['Authorization' => "Bearer {$token}"]]);
     }
 
-    public function get(string $url): array
+    public function get(string $url, array $content = []): array
     {
+        $options = [];
+        if (count($content) > 0) {
+            $options['body'] = json_encode($content);
+        }
+
         try {
-            $response = $this->client->get($url);
+            $response = $this->client->get($url, $options);
         } catch (ConnectException $connectException) {
             throw HttpConnectException::connectException($connectException);
         } catch (RequestException $requestException) {
@@ -52,7 +57,7 @@ class GuzzleClient implements HttpClientInterface
         return $responseBody;
     }
 
-    public function post(string $url, array $content): void
+    public function post(string $url, array $content = []): void
     {
         $options['body'] = json_encode($content);
 
@@ -103,7 +108,7 @@ class GuzzleClient implements HttpClientInterface
         }
     }
 
-    public function delete(string $url, array $content): void
+    public function delete(string $url, array $content = []): void
     {
         $options['body'] = json_encode($content);
 

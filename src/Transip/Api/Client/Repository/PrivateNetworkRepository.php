@@ -36,7 +36,7 @@ class PrivateNetworkRepository extends ApiRepository
 
     public function order(): void
     {
-        $this->httpClient->post($this->getResourceUrl(), []);
+        $this->httpClient->post($this->getResourceUrl());
     }
 
     public function update(PrivateNetwork $privateNetwork): void

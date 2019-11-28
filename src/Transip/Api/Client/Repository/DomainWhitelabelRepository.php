@@ -2,8 +2,6 @@
 
 namespace Transip\Api\Client\Repository;
 
-use Transip\Api\Client\Entity\Tld;
-
 class DomainWhitelabelRepository extends ApiRepository
 {
     protected function getRepositoryResourceNames(): array
@@ -13,6 +11,6 @@ class DomainWhitelabelRepository extends ApiRepository
 
     public function order(): void
     {
-        $this->httpClient->post($this->getResourceUrl(), []);
+        $this->httpClient->post($this->getResourceUrl());
     }
 }
