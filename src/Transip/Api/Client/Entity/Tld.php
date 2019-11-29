@@ -2,8 +2,6 @@
 
 namespace Transip\Api\Client\Entity;
 
-use Transip\Api\Client\Entity\AbstractEntity;
-
 class Tld extends AbstractEntity
 {
     public const CAPABILITY_REQUIRESAUTHCODE               = 'requiresAuthCode';
@@ -64,11 +62,6 @@ class Tld extends AbstractEntity
     public function getPrice(): float
     {
         return $this->price;
-    }
-
-    public function getRenewalPrice(): float
-    {
-        return $this->renewalPrice;
     }
 
     public function getRecurringPrice(): float

@@ -22,25 +22,16 @@ class Certificate extends AbstractEntity
      */
     public $expirationDate;
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getCommonName(): string
     {
         return $this->commonName;
     }
 
-    /**
-     * @return string
-     */
     public function getExpirationDate(): string
     {
         return $this->expirationDate;

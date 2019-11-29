@@ -7,6 +7,8 @@ use Transip\Api\Client\HttpClient\HttpClientInterface;
 use Transip\Api\Client\Repository\AvailabilityZoneRepository;
 use Transip\Api\Client\Repository\BigStorageRepository;
 use Transip\Api\Client\Repository\BigStorage\BackupRepository as BigStorageBackupRepository;
+use Transip\Api\Client\Repository\ColocationRepository;
+use Transip\Api\Client\Repository\Colocation\IpAddressRepository as ColoIpAddressRepository;
 use Transip\Api\Client\Repository\DomainRepository;
 use Transip\Api\Client\Repository\DomainAvailabilityRepository;
 use Transip\Api\Client\Repository\Domain\ActionRepository as DomainActionRepository;
@@ -236,6 +238,16 @@ class TransipAPI
     public function haipStatusReports(): StatusReportRepository
     {
         return new StatusReportRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function colocation(): ColocationRepository
+    {
+        return new ColocationRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function colocationIpAddress(): ColoIpAddressRepository
+    {
+        return new ColoIpAddressRepository($this->httpClient, $this->endpoint);
     }
 
     public function setHttpClient(HttpClientInterface $httpClient): void
