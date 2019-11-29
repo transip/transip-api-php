@@ -80,195 +80,132 @@ class Haip extends AbstractEntity
      */
     public $ipAddresses;
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @return string
-     */
     public function getStatus(): string
     {
         return $this->status;
     }
 
-    /**
-     * @return bool
-     */
     public function isLoadBalancingEnabled(): bool
     {
         return $this->isLoadBalancingEnabled;
     }
 
-    /**
-     * @return string
-     */
     public function getLoadBalancingMode(): string
     {
         return $this->loadBalancingMode;
     }
 
-    /**
-     * @return string
-     */
     public function getStickyCookieName(): string
     {
         return $this->stickyCookieName;
     }
 
-    /**
-     * @return string
-     */
     public function getHealthCheckInterval(): string
     {
         return $this->healthCheckInterval;
     }
 
-    /**
-     * @return string
-     */
     public function getHttpHealthCheckPath(): string
     {
         return $this->httpHealthCheckPath;
     }
 
-    /**
-     * @return string
-     */
     public function getHttpHealthCheckPort(): string
     {
         return $this->httpHealthCheckPort;
     }
 
-    /**
-     * @return string
-     */
     public function getHttpHealthCheckSsl(): string
     {
         return $this->httpHealthCheckSsl;
     }
 
-    /**
-     * @return string
-     */
     public function getIpv4Address(): string
     {
         return $this->ipv4Address;
     }
 
-    /**
-     * @return string
-     */
     public function getIpv6Address(): string
     {
         return $this->ipv6Address;
     }
 
-    /**
-     * @return string
-     */
     public function getIpSetup(): string
     {
         return $this->ipSetup;
     }
 
-    /**
-     * @return string
-     */
     public function getPtrRecord(): string
     {
         return $this->ptrRecord;
     }
 
-    /**
-     * @return string[]
-     */
     public function getIpAddresses(): array
     {
         return $this->ipAddresses;
     }
 
-    /**
-     * @param string $description
-     */
-    public function setDescription(string $description): void
+    public function setDescription(string $description): Haip
     {
         $this->description = $description;
+        return $this;
     }
 
-    /**
-     * @param string $loadBalancingMode
-     */
-    public function setLoadBalancingMode(string $loadBalancingMode): void
+    public function setLoadBalancingMode(string $loadBalancingMode): Haip
     {
         $this->loadBalancingMode = $loadBalancingMode;
+        return $this;
     }
 
-    /**
-     * @param string $stickyCookieName
-     */
-    public function setStickyCookieName(string $stickyCookieName): void
+    public function setStickyCookieName(string $stickyCookieName): Haip
     {
         $this->stickyCookieName = $stickyCookieName;
+        return $this;
     }
 
-    /**
-     * @param string $healthCheckInterval
-     */
-    public function setHealthCheckInterval(string $healthCheckInterval): void
+    public function setHealthCheckInterval(string $healthCheckInterval): Haip
     {
         $this->healthCheckInterval = $healthCheckInterval;
+        return $this;
     }
 
-    /**
-     * @param string $httpHealthCheckPath
-     */
-    public function setHttpHealthCheckPath(string $httpHealthCheckPath): void
+    public function setHttpHealthCheckPath(string $httpHealthCheckPath): Haip
     {
         $this->httpHealthCheckPath = $httpHealthCheckPath;
+        return $this;
     }
 
-    /**
-     * @param string $httpHealthCheckPort
-     */
-    public function setHttpHealthCheckPort(string $httpHealthCheckPort): void
+    public function setHttpHealthCheckPort(string $httpHealthCheckPort): Haip
     {
         $this->httpHealthCheckPort = $httpHealthCheckPort;
+        return $this;
     }
 
-    /**
-     * @param bool $httpHealthCheckSsl
-     */
-    public function setHttpHealthCheckSsl(bool $httpHealthCheckSsl): void
+    public function setHttpHealthCheckSsl(bool $httpHealthCheckSsl): Haip
     {
         $this->httpHealthCheckSsl = $httpHealthCheckSsl;
+        return $this;
     }
 
-    /**
-     * @param string $ipSetup
-     */
-    public function setIpSetup(string $ipSetup): void
+    public function setIpSetup(string $ipSetup): Haip
     {
         $this->ipSetup = $ipSetup;
+        return $this;
     }
 
-    /**
-     * @param string $ptrRecord
-     */
-    public function setPtrRecord(string $ptrRecord): void
+    public function setPtrRecord(string $ptrRecord): Haip
     {
         $this->ptrRecord = $ptrRecord;
+        return $this;
     }
 }
