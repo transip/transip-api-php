@@ -39,7 +39,8 @@ class VpsRepository extends ApiRepository
         string $operatingSystemName,
         array $addons = [],
         string $hostname = '',
-        string $availabilityZone = ''
+        string $availabilityZone = '',
+        string $description = ''
     ): void {
         $parameters['productName']     = $productName;
         $parameters['operatingSystem'] = $operatingSystemName;
@@ -52,6 +53,9 @@ class VpsRepository extends ApiRepository
         }
         if ($availabilityZone !== '') {
             $parameters['availabilityZone'] = $availabilityZone;
+        }
+        if ($description !== '') {
+            $parameters['description'] = $description;
         }
 
         $this->httpClient->post($this->getResourceUrl(), $parameters);
