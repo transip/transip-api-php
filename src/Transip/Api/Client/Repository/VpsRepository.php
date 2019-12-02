@@ -91,6 +91,15 @@ class VpsRepository extends ApiRepository
         $this->httpClient->patch($this->getResourceUrl($vpsName), ['action' => 'reset']);
     }
 
+    public function handover(string $vpsName, string $targetCustomerName): void
+    {
+        $parameters = [
+            'action'             => 'handover',
+            'targetCustomerName' => $targetCustomerName
+        ];
+        $this->httpClient->patch($this->getResourceUrl($vpsName), $parameters);
+    }
+
     public function cancel(string $vpsName, string $endTime): void
     {
         $this->httpClient->delete($this->getResourceUrl($vpsName), ['endTime' => $endTime]);
