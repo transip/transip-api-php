@@ -12,6 +12,11 @@ class Backup extends AbstractEntity
     public $id;
 
     /**
+     * @var string $status
+     */
+    public $status;
+
+    /**
      * @var string $dateTimeCreate
      */
     public $dateTimeCreate;
@@ -54,5 +59,10 @@ class Backup extends AbstractEntity
     public function getAvailabilityZone(): string
     {
         return $this->availabilityZone;
+    }
+
+    public function getStatus(): string
+    {
+        return $this->status;
     }
 }
