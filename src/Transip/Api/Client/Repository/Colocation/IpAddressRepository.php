@@ -4,12 +4,15 @@ namespace Transip\Api\Client\Repository\Colocation;
 
 use Transip\Api\Client\Entity\Vps\IpAddress;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\ColocationRepository;
 
 class IpAddressRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'ip-addresses';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['colocations', 'ip-addresses'];
+        return [ColocationRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**

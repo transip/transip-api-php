@@ -4,12 +4,15 @@ namespace Transip\Api\Client\Repository\Domain;
 
 use Transip\Api\Client\Entity\Domain\SslCertificate;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\DomainRepository;
 
 class SslRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'ssl';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['domains', 'ssl'];
+        return [DomainRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**

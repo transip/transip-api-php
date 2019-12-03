@@ -6,9 +6,11 @@ use Transip\Api\Client\Entity\AvailabilityZone;
 
 class AvailabilityZoneRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'availability-zones';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['availability-zones'];
+        return [self::RESOURCE_NAME];
     }
 
     /**

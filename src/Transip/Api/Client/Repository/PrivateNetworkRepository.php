@@ -6,9 +6,11 @@ use Transip\Api\Client\Entity\PrivateNetwork;
 
 class PrivateNetworkRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'private-networks';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['private-networks'];
+        return [self::RESOURCE_NAME];
     }
 
     /**

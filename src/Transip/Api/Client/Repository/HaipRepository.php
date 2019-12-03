@@ -6,9 +6,11 @@ use Transip\Api\Client\Entity\Haip;
 
 class HaipRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'haips';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['haips'];
+        return [self::RESOURCE_NAME];
     }
 
     /**

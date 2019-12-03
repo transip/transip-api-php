@@ -4,12 +4,15 @@ namespace Transip\Api\Client\Repository\Domain;
 
 use Transip\Api\Client\Entity\Domain\DnsSecEntry;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\DomainRepository;
 
 class DnsSecRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'dnssec';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['domains', 'dnssec'];
+        return [DomainRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**

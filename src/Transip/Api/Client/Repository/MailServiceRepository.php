@@ -6,9 +6,11 @@ use Transip\Api\Client\Entity\MailServiceInformation;
 
 class MailServiceRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'mail-service';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['mail-service'];
+        return [self::RESOURCE_NAME];
     }
 
     public function getMailServiceInformation(): MailServiceInformation

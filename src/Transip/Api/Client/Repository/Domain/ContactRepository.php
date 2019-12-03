@@ -4,12 +4,15 @@ namespace Transip\Api\Client\Repository\Domain;
 
 use Transip\Api\Client\Entity\Domain\WhoisContact;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\DomainRepository;
 
 class ContactRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'contacts';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['domains', 'contacts'];
+        return [DomainRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**

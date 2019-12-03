@@ -4,12 +4,14 @@ namespace Transip\Api\Client\Repository\Vps;
 
 use Transip\Api\Client\Entity\Product;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\VpsRepository;
 
 class AddonRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'addons';
     protected function getRepositoryResourceNames(): array
     {
-        return ['vps', 'addons'];
+        return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**

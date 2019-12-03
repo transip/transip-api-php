@@ -4,12 +4,15 @@ namespace Transip\Api\Client\Repository\Vps;
 
 use Transip\Api\Client\Entity\Vps\IpAddress;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\VpsRepository;
 
 class IpAddressRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'ip-addresses';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['vps', 'ip-addresses'];
+        return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**

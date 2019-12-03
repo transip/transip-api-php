@@ -4,12 +4,15 @@ namespace Transip\Api\Client\Repository\Haip;
 
 use Transip\Api\Client\Entity\Vps\IpAddress;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\HaipRepository;
 
 class IpAddressRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'ip-addresses';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['haips', 'ip-addresses'];
+        return [HaipRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**
