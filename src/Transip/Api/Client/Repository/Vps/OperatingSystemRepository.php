@@ -4,12 +4,15 @@ namespace Transip\Api\Client\Repository\Vps;
 
 use Transip\Api\Client\Entity\Vps\OperatingSystem;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\VpsRepository;
 
 class OperatingSystemRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'operating-systems';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['vps', 'operating-systems'];
+        return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**

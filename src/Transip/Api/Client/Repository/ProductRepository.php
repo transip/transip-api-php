@@ -6,9 +6,11 @@ use Transip\Api\Client\Entity\Product;
 
 class ProductRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'products';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['products'];
+        return [self::RESOURCE_NAME];
     }
 
     /**

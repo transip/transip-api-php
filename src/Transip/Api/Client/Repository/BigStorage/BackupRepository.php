@@ -4,12 +4,15 @@ namespace Transip\Api\Client\Repository\BigStorage;
 
 use Transip\Api\Client\Entity\BigStorage\Backup;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\BigStorageRepository;
 
 class BackupRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'backups';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['big-storages', 'backups'];
+        return [BigStorageRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**

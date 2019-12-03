@@ -6,9 +6,11 @@ use Transip\Api\Client\Entity\Tld;
 
 class DomainTldRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'tlds';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['tlds'];
+        return [self::RESOURCE_NAME];
     }
 
     /**

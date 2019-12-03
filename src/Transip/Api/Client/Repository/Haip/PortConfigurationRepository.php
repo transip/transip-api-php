@@ -4,12 +4,15 @@ namespace Transip\Api\Client\Repository\Haip;
 
 use Transip\Api\Client\Entity\Haip\PortConfiguration;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\HaipRepository;
 
 class PortConfigurationRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'port-configurations';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['haips', 'port-configurations'];
+        return [HaipRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**

@@ -6,9 +6,11 @@ use Transip\Api\Client\Entity\BigStorage;
 
 class BigStorageRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'big-storages';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['big-storages'];
+        return [self::RESOURCE_NAME];
     }
 
     /**

@@ -2,20 +2,23 @@
 
 namespace Transip\Api\Client\Repository\Vps;
 
+use Transip\Api\Client\Entity\Vps;
 use Transip\Api\Client\Entity\Vps\UsageDataCpu;
 use Transip\Api\Client\Entity\Vps\UsageDataDisk;
 use Transip\Api\Client\Entity\Vps\UsageDataNetwork;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\VpsRepository;
 
 class UsageRepository extends ApiRepository
 {
     public const TYPE_CPU = 'cpu';
     public const TYPE_DISK = 'disk';
     public const TYPE_NETWORK = 'network';
+    public const RESOURCE_NAME = 'usage';
 
     protected function getRepositoryResourceNames(): array
     {
-        return ['vps', 'usage'];
+        return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**

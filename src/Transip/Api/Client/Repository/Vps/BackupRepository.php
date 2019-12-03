@@ -4,12 +4,15 @@ namespace Transip\Api\Client\Repository\Vps;
 
 use Transip\Api\Client\Entity\Vps\Backup;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\VpsRepository;
 
 class BackupRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'backups';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['vps', 'backups'];
+        return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**

@@ -6,9 +6,11 @@ use Transip\Api\Client\Entity\DomainCheckResult;
 
 class DomainAvailabilityRepository extends ApiRepository
 {
+    protected const RESOURCE_NAME = 'domain-availability';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['domain-availability'];
+        return [self::RESOURCE_NAME];
     }
 
     public function checkDomainName(string $domainName): DomainCheckResult

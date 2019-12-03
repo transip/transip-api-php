@@ -9,9 +9,11 @@ use Transip\Api\Client\Entity\Domain\WhoisContact;
 
 class DomainRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'domains';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['domains'];
+        return [self::RESOURCE_NAME];
     }
 
     /**

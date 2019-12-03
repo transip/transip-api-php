@@ -6,9 +6,11 @@ use Transip\Api\Client\Entity\TrafficInformation;
 
 class TrafficRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'traffic';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['traffic'];
+        return [self::RESOURCE_NAME];
     }
 
     public function getTrafficPool(): TrafficInformation

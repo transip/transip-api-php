@@ -4,12 +4,15 @@ namespace Transip\Api\Client\Repository\Vps;
 
 use Transip\Api\Client\Entity\Product;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\VpsRepository;
 
 class UpgradeRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'upgrades';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['vps', 'upgrades'];
+        return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**

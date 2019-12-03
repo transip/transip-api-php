@@ -4,12 +4,15 @@ namespace Transip\Api\Client\Repository\Haip;
 
 use Transip\Api\Client\Entity\Haip\Certificate;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\HaipRepository;
 
 class CertificateRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'certificates';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['haips', 'certificates'];
+        return [HaipRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**

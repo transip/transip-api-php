@@ -6,9 +6,11 @@ use Transip\Api\Client\Entity\Vps;
 
 class VpsRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'vpss';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['vpses'];
+        return [self::RESOURCE_NAME];
     }
 
     /**
@@ -16,15 +18,15 @@ class VpsRepository extends ApiRepository
      */
     public function getAll(): array
     {
-        $vpses      = [];
+        $vpss      = [];
         $response   = $this->httpClient->get($this->getResourceUrl());
-        $vpsesArray = $response['vpses'] ?? [];
+        $vpssArray = $response['vpss'] ?? [];
 
-        foreach ($vpsesArray as $vpsArray) {
-            $vpses[] = new Vps($vpsArray);
+        foreach ($vpssArray as $vpsArray) {
+            $vpss[] = new Vps($vpsArray);
         }
 
-        return $vpses;
+        return $vpss;
     }
 
     public function getByName(string $name): Vps

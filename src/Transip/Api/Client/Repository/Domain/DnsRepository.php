@@ -4,12 +4,15 @@ namespace Transip\Api\Client\Repository\Domain;
 
 use Transip\Api\Client\Entity\Domain\DnsEntry;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\DomainRepository;
 
 class DnsRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'dns';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['domains', 'dns'];
+        return [DomainRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**

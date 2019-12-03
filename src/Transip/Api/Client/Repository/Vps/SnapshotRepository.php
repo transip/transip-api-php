@@ -4,12 +4,15 @@ namespace Transip\Api\Client\Repository\Vps;
 
 use Transip\Api\Client\Entity\Vps\Snapshot;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\VpsRepository;
 
 class SnapshotRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'snapshots';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['vps', 'snapshots'];
+        return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**

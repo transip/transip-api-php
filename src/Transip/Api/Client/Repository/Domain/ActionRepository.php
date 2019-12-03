@@ -7,12 +7,15 @@ use Transip\Api\Client\Entity\Domain\Nameserver;
 use Transip\Api\Client\Entity\Domain\WhoisContact;
 use Transip\Api\Client\Entity\Domain\Action;
 use Transip\Api\Client\Repository\ApiRepository;
+use Transip\Api\Client\Repository\DomainRepository;
 
 class ActionRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'actions';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['domains', 'actions'];
+        return [DomainRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     public function getByDomainName(string $domainName): Action

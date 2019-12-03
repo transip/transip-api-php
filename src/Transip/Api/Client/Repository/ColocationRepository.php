@@ -6,9 +6,11 @@ use Transip\Api\Client\Entity\Colocation;
 
 class ColocationRepository extends ApiRepository
 {
+    public const RESOURCE_NAME = 'colocations';
+
     protected function getRepositoryResourceNames(): array
     {
-        return ['colocations'];
+        return [self::RESOURCE_NAME];
     }
 
     /**
