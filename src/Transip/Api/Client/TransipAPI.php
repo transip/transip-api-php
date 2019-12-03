@@ -4,6 +4,7 @@ namespace Transip\Api\Client;
 
 use Transip\Api\Client\HttpClient\GuzzleClient;
 use Transip\Api\Client\HttpClient\HttpClientInterface;
+use Transip\Api\Client\Repository\ApiTestRepository;
 use Transip\Api\Client\Repository\AvailabilityZoneRepository;
 use Transip\Api\Client\Repository\BigStorageRepository;
 use Transip\Api\Client\Repository\BigStorage\BackupRepository as BigStorageBackupRepository;
@@ -248,6 +249,11 @@ class TransipAPI
     public function colocationIpAddress(): ColoIpAddressRepository
     {
         return new ColoIpAddressRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function test(): ApiTestRepository
+    {
+        return new ApiTestRepository($this->httpClient, $this->endpoint);
     }
 
     public function setHttpClient(HttpClientInterface $httpClient): void
