@@ -8,11 +8,6 @@ class DomainAvailabilityRepository extends ApiRepository
 {
     protected const RESOURCE_NAME = 'domain-availability';
 
-    protected function getRepositoryResourceNames(): array
-    {
-        return [self::RESOURCE_NAME];
-    }
-
     public function checkDomainName(string $domainName): DomainCheckResult
     {
         $response          = $this->httpClient->get($this->getResourceUrl($domainName));

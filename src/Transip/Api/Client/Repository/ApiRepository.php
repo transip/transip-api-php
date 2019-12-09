@@ -37,5 +37,8 @@ abstract class ApiRepository
         return "{$this->endpoint}{$urlSuffix}";
     }
 
-    abstract protected function getRepositoryResourceNames(): array;
+    protected function getRepositoryResourceNames(): array
+    {
+        return [static::RESOURCE_NAME];
+    }
 }

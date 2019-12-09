@@ -8,11 +8,6 @@ class HaipRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'haips';
 
-    protected function getRepositoryResourceNames(): array
-    {
-        return [self::RESOURCE_NAME];
-    }
-
     /**
      * @return Haip[]
      */

@@ -8,11 +8,6 @@ class PrivateNetworkRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'private-networks';
 
-    protected function getRepositoryResourceNames(): array
-    {
-        return [self::RESOURCE_NAME];
-    }
-
     /**
      * @return PrivateNetwork[]
      */

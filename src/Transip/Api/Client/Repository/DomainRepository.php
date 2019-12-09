@@ -11,11 +11,6 @@ class DomainRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'domains';
 
-    protected function getRepositoryResourceNames(): array
-    {
-        return [self::RESOURCE_NAME];
-    }
-
     /**
      * @return Domain[]
      */

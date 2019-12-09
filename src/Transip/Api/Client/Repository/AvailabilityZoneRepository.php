@@ -8,11 +8,6 @@ class AvailabilityZoneRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'availability-zones';
 
-    protected function getRepositoryResourceNames(): array
-    {
-        return [self::RESOURCE_NAME];
-    }
-
     /**
      * @return AvailabilityZone[]
      */
