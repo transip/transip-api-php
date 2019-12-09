@@ -10,6 +10,7 @@ use Transip\Api\Client\Repository\BigStorageRepository;
 use Transip\Api\Client\Repository\BigStorage\BackupRepository as BigStorageBackupRepository;
 use Transip\Api\Client\Repository\ColocationRepository;
 use Transip\Api\Client\Repository\Colocation\IpAddressRepository as ColoIpAddressRepository;
+use Transip\Api\Client\Repository\Colocation\RemoteHandsRepository as ColoRemoteHandsRepository;
 use Transip\Api\Client\Repository\DomainRepository;
 use Transip\Api\Client\Repository\DomainAvailabilityRepository;
 use Transip\Api\Client\Repository\Domain\ActionRepository as DomainActionRepository;
@@ -249,6 +250,11 @@ class TransipAPI
     public function colocationIpAddress(): ColoIpAddressRepository
     {
         return new ColoIpAddressRepository($this->httpClient, $this->endpoint);
+    }
+
+    public function colocationRemoteHands(): ColoRemoteHandsRepository
+    {
+        return new ColoRemoteHandsRepository($this->httpClient, $this->endpoint);
     }
 
     public function test(): ApiTestRepository
