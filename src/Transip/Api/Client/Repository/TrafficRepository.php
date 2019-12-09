@@ -8,11 +8,6 @@ class TrafficRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'traffic';
 
-    protected function getRepositoryResourceNames(): array
-    {
-        return [self::RESOURCE_NAME];
-    }
-
     public function getTrafficPool(): TrafficInformation
     {
         return $this->getByVpsName('');

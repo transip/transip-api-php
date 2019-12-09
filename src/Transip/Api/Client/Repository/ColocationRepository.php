@@ -8,11 +8,6 @@ class ColocationRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'colocations';
 
-    protected function getRepositoryResourceNames(): array
-    {
-        return [self::RESOURCE_NAME];
-    }
-
     /**
      * @return Colocation[]
      */

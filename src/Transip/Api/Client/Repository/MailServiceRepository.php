@@ -8,11 +8,6 @@ class MailServiceRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'mail-service';
 
-    protected function getRepositoryResourceNames(): array
-    {
-        return [self::RESOURCE_NAME];
-    }
-
     public function getMailServiceInformation(): MailServiceInformation
     {
         $response               = $this->httpClient->get($this->getResourceUrl());

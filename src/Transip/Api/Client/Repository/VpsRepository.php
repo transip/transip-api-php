@@ -8,11 +8,6 @@ class VpsRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'vpss';
 
-    protected function getRepositoryResourceNames(): array
-    {
-        return [self::RESOURCE_NAME];
-    }
-
     /**
      * @return Vps[]
      */

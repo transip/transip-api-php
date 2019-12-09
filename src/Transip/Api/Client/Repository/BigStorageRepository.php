@@ -8,11 +8,6 @@ class BigStorageRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'big-storages';
 
-    protected function getRepositoryResourceNames(): array
-    {
-        return [self::RESOURCE_NAME];
-    }
-
     /**
      * @return BigStorage[]
      */

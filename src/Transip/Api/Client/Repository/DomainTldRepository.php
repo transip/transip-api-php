@@ -8,11 +8,6 @@ class DomainTldRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'tlds';
 
-    protected function getRepositoryResourceNames(): array
-    {
-        return [self::RESOURCE_NAME];
-    }
-
     /**
      * @return Tld[]
      */
