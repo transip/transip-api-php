@@ -58,6 +58,35 @@ class VpsRepository extends ApiRepository
         $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
 
+    /**
+     * Example array with multiple VPSs
+     *
+        $vpss = [
+            [
+                'productName'      => "vps-bladevps-x1",
+                'operatingSystem'  => "ubuntu-18.04",
+                'addons'           => ["vpsAddon-1-extra-cpu-core"],
+                'hostname'         => "",
+                'availabilityZone' => "rtm0",
+                'description'      => "loadbalancer0"
+            ],
+            [
+                'productName'      => "vps-bladevps-x1",
+                'operatingSystem'  => "ubuntu-18.04",
+                'addons'           => ["vpsAddon-1-extra-cpu-core"],
+                'hostname'         => "",
+                'availabilityZone' => "ams0",
+                'description'      => "loadbalancer1"
+            ]
+        ];
+     *
+     * @param array $vpss
+     */
+    public function orderMultiple(array $vpss): void
+    {
+        $this->httpClient->post($this->getResourceUrl(), ['vpss' => $vpss]);
+    }
+
     public function cloneVps(string $vpsName, string $availabilityZone = ''): void
     {
         $parameters['vpsName'] = $vpsName;
