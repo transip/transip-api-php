@@ -50,31 +50,31 @@ class HttpRequestException extends Exception
 
         switch($response->getStatusCode()) {
             case BadRequestException::STATUS_CODE:
-                return new BadRequestException($errorMessage, $response->getStatusCode(), $innerException,$response);
+                return new BadRequestException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case UnauthorizedException::STATUS_CODE:
-                return new UnauthorizedException($errorMessage, $response->getStatusCode(), $innerException,$response);
+                return new UnauthorizedException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case ForbiddenException::STATUS_CODE:
-                return new ForbiddenException($errorMessage, $response->getStatusCode(), $innerException,$response);
+                return new ForbiddenException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case NotFoundException::STATUS_CODE:
-                return new NotFoundException($errorMessage, $response->getStatusCode(), $innerException,$response);
+                return new NotFoundException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case MethodNotAllowedException::STATUS_CODE:
-                return new MethodNotAllowedException($errorMessage, $response->getStatusCode(), $innerException,$response);
+                return new MethodNotAllowedException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case NotAcceptableException::STATUS_CODE:
-                return new NotAcceptableException($errorMessage, $response->getStatusCode(), $innerException,$response);
+                return new NotAcceptableException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case RequestTimeoutException::STATUS_CODE:
-                return new RequestTimeoutException($errorMessage, $response->getStatusCode(), $innerException,$response);
+                return new RequestTimeoutException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case ConflictException::STATUS_CODE:
-                return new ConflictException($errorMessage, $response->getStatusCode(), $innerException,$response);
+                return new ConflictException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case UnprocessableEntityException::STATUS_CODE:
-                return new UnprocessableEntityException($errorMessage, $response->getStatusCode(), $innerException,$response);
+                return new UnprocessableEntityException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case TooManyRequestException::STATUS_CODE:
-                return new TooManyRequestException($errorMessage, $response->getStatusCode(), $innerException,$response);
+                return new TooManyRequestException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case InternalServerErrorException::STATUS_CODE:
-                return new InternalServerErrorException($errorMessage, $response->getStatusCode(), $innerException,$response);
+                return new InternalServerErrorException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case NotImplementedException::STATUS_CODE:
-                return new NotImplementedException($errorMessage, $response->getStatusCode(), $innerException,$response);
+                return new NotImplementedException($errorMessage, $response->getStatusCode(), $innerException, $response);
             default:
-                return new HttpRequestException($errorMessage, $response->getStatusCode(), $innerException,$response);
+                return new HttpRequestException($errorMessage, $response->getStatusCode(), $innerException, $response);
         }
     }
 

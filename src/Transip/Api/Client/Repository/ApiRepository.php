@@ -11,16 +11,9 @@ abstract class ApiRepository
      */
     protected $httpClient;
 
-    /**
-     * @var string $endpoint
-     */
-    private $endpoint;
-
-    public function __construct(HttpClientInterface $httpClient, string $endpoint)
+    public function __construct(HttpClientInterface $httpClient)
     {
-        $endpoint         = rtrim($endpoint, '/');
         $this->httpClient = $httpClient;
-        $this->endpoint   = $endpoint;
     }
 
     protected function getResourceUrl(...$args): string
@@ -34,7 +27,7 @@ abstract class ApiRepository
                 $urlSuffix .= "/{$id}";
             }
         }
-        return "{$this->endpoint}{$urlSuffix}";
+        return $urlSuffix;
     }
 
     protected function getRepositoryResourceNames(): array
