@@ -11,7 +11,8 @@
     "minimum-stability": "stable",
     "require": {
         "guzzlehttp/guzzle": "^6.3",
-         "ext-json": "*"
+         "ext-json": "*",
+         "ext-openssl": "*"
     }
     ,
     "autoload": {

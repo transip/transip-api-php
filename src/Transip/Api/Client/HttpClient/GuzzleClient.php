@@ -11,27 +11,36 @@ use Transip\Api\Client\Exception\HttpConnectException;
 use Transip\Api\Client\Exception\HttpRequestException;
 use Exception;
 
-class GuzzleClient implements HttpClientInterface
+class GuzzleClient extends HttpClient implements HttpClientInterface
 {
     /**
      * @var Client $client
      */
-    protected $client;
+    private $client;
 
-    public function __construct(string $token)
+    public function __construct(string $endpoint)
     {
-        $this->client = new Client(['headers' => ['Authorization' => "Bearer {$token}"]]);
+        $this->client = new Client();
+        parent::__construct($this, $endpoint);
     }
 
-    public function get(string $url, array $content = []): array
+    public function setToken(string $token): void
+    {
+        $this->client = new Client(['headers' => ['Authorization' => "Bearer {$token}"]]);
+        $this->token = $token;
+    }
+
+    public function get(string $url, array $query = []): array
     {
         $options = [];
-        if (count($content) > 0) {
-            $options['query'] = $content;
+        if (count($query) > 0) {
+            $options['query'] = $query;
         }
 
+        $this->checkAndRenewToken();
+
         try {
-            $response = $this->client->get($url, $options);
+            $response = $this->client->get("{$this->endpoint}{$url}", $options);
         } catch (ConnectException $connectException) {
             throw HttpConnectException::connectException($connectException);
         } catch (RequestException $requestException) {
@@ -57,12 +66,14 @@ class GuzzleClient implements HttpClientInterface
         return $responseBody;
     }
 
-    public function post(string $url, array $content = []): void
+    public function post(string $url, array $body = []): void
     {
-        $options['body'] = json_encode($content);
+        $options['body'] = json_encode($body);
+
+        $this->checkAndRenewToken();
 
         try {
-            $response = $this->client->post($url, $options);
+            $response = $this->client->post("{$this->endpoint}{$url}", $options);
         } catch (RequestException $requestException) {
             throw HttpRequestException::requestException($requestException, $requestException->getResponse());
         } catch (Exception $exception) {
@@ -74,12 +85,44 @@ class GuzzleClient implements HttpClientInterface
         }
     }
 
-    public function put(string $url, array $content): void
+    public function postAuthentication(string $url, string $signature, array $body): array
     {
-        $options['body'] = json_encode($content);
+        $options['headers'] = ['Signature' => $signature];
+        $options['body']    = json_encode($body);
 
         try {
-            $response = $this->client->put($url, $options);
+            $response = $this->client->post("{$this->endpoint}{$url}", $options);
+        } catch (RequestException $requestException) {
+            throw HttpRequestException::requestException($requestException, $requestException->getResponse());
+        } catch (Exception $exception) {
+            throw HttpClientException::genericRequestException($exception);
+        }
+
+        if ($response->getStatusCode() !== 201) {
+            throw ApiException::unexpectedStatusCode($response);
+        }
+
+        if ($response->getBody() == null) {
+            throw ApiException::emptyResponse($response);
+        }
+
+        $responseBody = json_decode($response->getBody(), true);
+
+        if ($responseBody === null) {
+            throw ApiException::malformedJsonResponse($response);
+        }
+
+        return $responseBody;
+    }
+
+    public function put(string $url, array $body): void
+    {
+        $options['body'] = json_encode($body);
+
+        $this->checkAndRenewToken();
+
+        try {
+            $response = $this->client->put("{$this->endpoint}{$url}", $options);
         } catch (RequestException $requestException) {
             throw HttpRequestException::requestException($requestException, $requestException->getResponse());
         } catch (Exception $exception) {
@@ -91,12 +134,14 @@ class GuzzleClient implements HttpClientInterface
         }
     }
 
-    public function patch(string $url, array $content): void
+    public function patch(string $url, array $body): void
     {
-        $options['body'] = json_encode($content);
+        $options['body'] = json_encode($body);
+
+        $this->checkAndRenewToken();
 
         try {
-            $response = $this->client->patch($url, $options);
+            $response = $this->client->patch("{$this->endpoint}{$url}", $options);
         } catch (RequestException $requestException) {
             throw HttpRequestException::requestException($requestException, $requestException->getResponse());
         } catch (Exception $exception) {
@@ -108,12 +153,14 @@ class GuzzleClient implements HttpClientInterface
         }
     }
 
-    public function delete(string $url, array $content = []): void
+    public function delete(string $url, array $body = []): void
     {
-        $options['body'] = json_encode($content);
+        $options['body'] = json_encode($body);
+
+        $this->checkAndRenewToken();
 
         try {
-            $response = $this->client->delete($url, $options);
+            $response = $this->client->delete("{$this->endpoint}{$url}", $options);
         } catch (RequestException $requestException) {
             throw HttpRequestException::requestException($requestException, $requestException->getResponse());
         } catch (Exception $exception) {

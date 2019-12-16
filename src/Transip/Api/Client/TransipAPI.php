@@ -5,6 +5,7 @@ namespace Transip\Api\Client;
 use Transip\Api\Client\HttpClient\GuzzleClient;
 use Transip\Api\Client\HttpClient\HttpClientInterface;
 use Transip\Api\Client\Repository\ApiTestRepository;
+use Transip\Api\Client\Repository\AuthRepository;
 use Transip\Api\Client\Repository\AvailabilityZoneRepository;
 use Transip\Api\Client\Repository\BigStorageRepository;
 use Transip\Api\Client\Repository\BigStorage\BackupRepository as BigStorageBackupRepository;
@@ -51,215 +52,224 @@ class TransipAPI
      */
     private $httpClient;
 
-    /**
-     * @var string $endpoint
-     */
-    private $endpoint;
-
-    /**
-     * @var string $token
-     */
-    private $token = '';
-
-
-    public function __construct(string $token = '', string $endpointUrl = '')
-    {
-        $this->endpoint = self::TRANSIP_API_ENDPOINT;
-
-        if ($token != '') {
-            $this->token = $token;
-        }
+    public function __construct(
+        string $login,
+        string $privateKey,
+        bool $generateWhitelistOnlyTokens = true,
+        string $token = '',
+        string $endpointUrl = ''
+    ) {
+        $endpoint = self::TRANSIP_API_ENDPOINT;
 
         if ($endpointUrl != '') {
-            $this->endpoint = $endpointUrl;
+            $endpoint = $endpointUrl;
         }
 
-        $this->httpClient = new GuzzleClient($this->token);
+        $this->httpClient = new GuzzleClient($endpoint);
+
+        if ($login != '') {
+            $this->httpClient->setLogin($login);
+        }
+
+        if ($privateKey != '') {
+            $this->httpClient->setPrivateKey($privateKey);
+        }
+
+        if ($token != '') {
+            $this->httpClient->setToken($token);
+        }
+
+        $this->httpClient->setGenerateWhitelistOnlyTokens($generateWhitelistOnlyTokens);
     }
 
     public function availabilityZone(): AvailabilityZoneRepository
     {
-        return new AvailabilityZoneRepository($this->httpClient, $this->endpoint);
+        return new AvailabilityZoneRepository($this->httpClient);
     }
 
     public function products(): ProductRepository
     {
-        return new ProductRepository($this->httpClient, $this->endpoint);
+        return new ProductRepository($this->httpClient);
     }
 
     public function domains(): DomainRepository
     {
-        return new DomainRepository($this->httpClient, $this->endpoint);
+        return new DomainRepository($this->httpClient);
     }
 
     public function domainAction(): DomainActionRepository
     {
-        return new DomainActionRepository($this->httpClient, $this->endpoint);
+        return new DomainActionRepository($this->httpClient);
     }
 
     public function domainBranding(): DomainBrandingRepository
     {
-        return new DomainBrandingRepository($this->httpClient, $this->endpoint);
+        return new DomainBrandingRepository($this->httpClient);
     }
 
     public function domainContact(): DomainContactRepository
     {
-        return new DomainContactRepository($this->httpClient, $this->endpoint);
+        return new DomainContactRepository($this->httpClient);
     }
 
     public function domainDns(): DomainDnsRepository
     {
-        return new DomainDnsRepository($this->httpClient, $this->endpoint);
+        return new DomainDnsRepository($this->httpClient);
     }
 
     public function domainDnsSec(): DomainDnsSecRepository
     {
-        return new DomainDnsSecRepository($this->httpClient, $this->endpoint);
+        return new DomainDnsSecRepository($this->httpClient);
     }
 
     public function domainNameserver(): DomainNameserverRepository
     {
-        return new DomainNameserverRepository($this->httpClient, $this->endpoint);
+        return new DomainNameserverRepository($this->httpClient);
     }
 
     public function domainSsl(): DomainSslRepository
     {
-        return new DomainSslRepository($this->httpClient, $this->endpoint);
+        return new DomainSslRepository($this->httpClient);
     }
 
     public function domainWhois(): DomainWhoisRepository
     {
-        return new DomainWhoisRepository($this->httpClient, $this->endpoint);
+        return new DomainWhoisRepository($this->httpClient);
     }
 
     public function domainZoneFile(): DomainZoneFileRepository
     {
-        return new DomainZoneFileRepository($this->httpClient, $this->endpoint);
+        return new DomainZoneFileRepository($this->httpClient);
     }
 
     public function domainAvailability(): DomainAvailabilityRepository
     {
-        return new DomainAvailabilityRepository($this->httpClient, $this->endpoint);
+        return new DomainAvailabilityRepository($this->httpClient);
     }
 
     public function domainTlds(): DomainTldRepository
     {
-        return new DomainTldRepository($this->httpClient, $this->endpoint);
+        return new DomainTldRepository($this->httpClient);
     }
 
     public function domainWhitelabel(): DomainWhitelabelRepository
     {
-        return new DomainWhitelabelRepository($this->httpClient, $this->endpoint);
+        return new DomainWhitelabelRepository($this->httpClient);
     }
 
     public function vps(): VpsRepository
     {
-        return new VpsRepository($this->httpClient, $this->endpoint);
+        return new VpsRepository($this->httpClient);
     }
 
     public function traffic(): TrafficRepository
     {
-        return new TrafficRepository($this->httpClient, $this->endpoint);
+        return new TrafficRepository($this->httpClient);
     }
 
     public function vpsAddons(): AddonRepository
     {
-        return new AddonRepository($this->httpClient, $this->endpoint);
+        return new AddonRepository($this->httpClient);
     }
 
     public function vpsBackups(): VpsBackupRepository
     {
-        return new VpsBackupRepository($this->httpClient, $this->endpoint);
+        return new VpsBackupRepository($this->httpClient);
     }
 
     public function vpsIpAddresses(): VpsIpAddressRepository
     {
-        return new VpsIpAddressRepository($this->httpClient, $this->endpoint);
+        return new VpsIpAddressRepository($this->httpClient);
     }
 
     public function vpsOperatingSystems(): OperatingSystemRepository
     {
-        return new OperatingSystemRepository($this->httpClient, $this->endpoint);
+        return new OperatingSystemRepository($this->httpClient);
     }
 
     public function vpsSnapshots(): SnapshotRepository
     {
-        return new SnapshotRepository($this->httpClient, $this->endpoint);
+        return new SnapshotRepository($this->httpClient);
     }
 
     public function vpsUpgrades(): UpgradeRepository
     {
-        return new UpgradeRepository($this->httpClient, $this->endpoint);
+        return new UpgradeRepository($this->httpClient);
     }
 
     public function vpsUsage(): UsageRepository
     {
-        return new UsageRepository($this->httpClient, $this->endpoint);
+        return new UsageRepository($this->httpClient);
     }
 
     public function privateNetworks(): PrivateNetworkRepository
     {
-        return new PrivateNetworkRepository($this->httpClient, $this->endpoint);
+        return new PrivateNetworkRepository($this->httpClient);
     }
 
     public function bigStorages(): BigStorageRepository
     {
-        return new BigStorageRepository($this->httpClient, $this->endpoint);
+        return new BigStorageRepository($this->httpClient);
     }
 
     public function bigStorageBackups(): BigStorageBackupRepository
     {
-        return new BigStorageBackupRepository($this->httpClient, $this->endpoint);
+        return new BigStorageBackupRepository($this->httpClient);
     }
 
     public function mailService(): MailServiceRepository
     {
-        return new MailServiceRepository($this->httpClient, $this->endpoint);
+        return new MailServiceRepository($this->httpClient);
     }
 
     public function haip(): HaipRepository
     {
-        return new HaipRepository($this->httpClient, $this->endpoint);
+        return new HaipRepository($this->httpClient);
     }
 
     public function haipIpAddresses(): HaipIpAddressRepository
     {
-        return new HaipIpAddressRepository($this->httpClient, $this->endpoint);
+        return new HaipIpAddressRepository($this->httpClient);
     }
 
     public function haipPortConfigurations(): PortConfigurationRepository
     {
-        return new PortConfigurationRepository($this->httpClient, $this->endpoint);
+        return new PortConfigurationRepository($this->httpClient);
     }
 
     public function haipCertificates(): HaipCertificateRepository
     {
-        return new HaipCertificateRepository($this->httpClient, $this->endpoint);
+        return new HaipCertificateRepository($this->httpClient);
     }
 
     public function haipStatusReports(): StatusReportRepository
     {
-        return new StatusReportRepository($this->httpClient, $this->endpoint);
+        return new StatusReportRepository($this->httpClient);
     }
 
     public function colocation(): ColocationRepository
     {
-        return new ColocationRepository($this->httpClient, $this->endpoint);
+        return new ColocationRepository($this->httpClient);
     }
 
     public function colocationIpAddress(): ColoIpAddressRepository
     {
-        return new ColoIpAddressRepository($this->httpClient, $this->endpoint);
+        return new ColoIpAddressRepository($this->httpClient);
     }
 
     public function colocationRemoteHands(): ColoRemoteHandsRepository
     {
-        return new ColoRemoteHandsRepository($this->httpClient, $this->endpoint);
+        return new ColoRemoteHandsRepository($this->httpClient);
     }
 
     public function test(): ApiTestRepository
     {
-        return new ApiTestRepository($this->httpClient, $this->endpoint);
+        return new ApiTestRepository($this->httpClient);
+    }
+
+    public function auth(): AuthRepository
+    {
+        return new AuthRepository($this->httpClient);
     }
 
     public function setHttpClient(HttpClientInterface $httpClient): void
@@ -267,15 +277,13 @@ class TransipAPI
         $this->httpClient = $httpClient;
     }
 
-    public function setEndpoint(string $endpoint): void
-    {
-        $this->endpoint = $endpoint;
-    }
-
     public function setToken(string $token): void
     {
-        $this->token = $token;
-        $httpClientClass = get_class($this->httpClient);
-        $this->httpClient = new $httpClientClass($this->token);
+        $this->httpClient->setToken($token);
+    }
+
+    public function setEndpointUrl(string $endpointUrl): void
+    {
+        $this->httpClient->setEndpoint($endpointUrl);
     }
 }
