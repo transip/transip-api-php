@@ -160,18 +160,18 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
 
     private function exceptionHandler(Exception $exception): void
     {
-        $class = get_class($exception);
-        switch ($class) {
-            case BadResponseException::class:
-                if ($exception->hasResponse()) {
-                    throw HttpBadResponseException::badResponseException($exception, $exception->getResponse());
-                }
-                // Guzzle misclassifies curl exception as a client exception (so there is no response)
-                throw HttpClientException::genericRequestException($exception);
-            case RequestException::class:
-                throw HttpRequestException::requestException($exception);
-            case Exception::class:
-                throw HttpClientException::genericRequestException($exception);
+        try {
+            throw $exception;
+        } catch (BadResponseException $badResponseException) {
+            if ($badResponseException->hasResponse()) {
+                throw HttpBadResponseException::badResponseException($badResponseException, $badResponseException->getResponse());
+            }
+            // Guzzle misclassifies curl exception as a client exception (so there is no response)
+            throw HttpClientException::genericRequestException($badResponseException);
+        } catch (RequestException $requestException) {
+            throw HttpRequestException::requestException($requestException);
+        } catch (Exception $exception) {
+            throw HttpClientException::genericRequestException($exception);
         }
     }
 }
