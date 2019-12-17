@@ -74,6 +74,8 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
 
         try {
             $response = $this->client->post("{$this->endpoint}{$url}", $options);
+        } catch (ConnectException $connectException) {
+            throw HttpConnectException::connectException($connectException);
         } catch (RequestException $requestException) {
             throw HttpRequestException::requestException($requestException, $requestException->getResponse());
         } catch (Exception $exception) {
@@ -92,6 +94,8 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
 
         try {
             $response = $this->client->post("{$this->endpoint}{$url}", $options);
+        } catch (ConnectException $connectException) {
+            throw HttpConnectException::connectException($connectException);
         } catch (RequestException $requestException) {
             throw HttpRequestException::requestException($requestException, $requestException->getResponse());
         } catch (Exception $exception) {
@@ -123,6 +127,8 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
 
         try {
             $response = $this->client->put("{$this->endpoint}{$url}", $options);
+        } catch (ConnectException $connectException) {
+            throw HttpConnectException::connectException($connectException);
         } catch (RequestException $requestException) {
             throw HttpRequestException::requestException($requestException, $requestException->getResponse());
         } catch (Exception $exception) {
@@ -142,6 +148,8 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
 
         try {
             $response = $this->client->patch("{$this->endpoint}{$url}", $options);
+        } catch (ConnectException $connectException) {
+            throw HttpConnectException::connectException($connectException);
         } catch (RequestException $requestException) {
             throw HttpRequestException::requestException($requestException, $requestException->getResponse());
         } catch (Exception $exception) {
@@ -161,6 +169,8 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
 
         try {
             $response = $this->client->delete("{$this->endpoint}{$url}", $options);
+        } catch (ConnectException $connectException) {
+            throw HttpConnectException::connectException($connectException);
         } catch (RequestException $requestException) {
             throw HttpRequestException::requestException($requestException, $requestException->getResponse());
         } catch (Exception $exception) {
