@@ -4,7 +4,7 @@ namespace Transip\Api\Client\Exception\HttpRequest;
 
 use Transip\Api\Client\Exception\HttpBadResponseException;
 
-class NotImplementedException extends HttpBadResponseException
+class BadBadResponseException extends HttpBadResponseException
 {
-    const STATUS_CODE = 501;
+    const STATUS_CODE = 400;
 }

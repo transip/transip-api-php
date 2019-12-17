@@ -2,9 +2,9 @@
 
 namespace Transip\Api\Client\Exception\HttpRequest;
 
-use Transip\Api\Client\Exception\HttpRequestException;
+use Transip\Api\Client\Exception\HttpBadResponseException;
 
-class InternalServerErrorException extends HttpRequestException
+class InternalServerErrorException extends HttpBadResponseException
 {
     const STATUS_CODE = 500;
 }
