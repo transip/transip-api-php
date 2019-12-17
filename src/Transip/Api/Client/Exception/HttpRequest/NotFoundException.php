@@ -2,9 +2,9 @@
 
 namespace Transip\Api\Client\Exception\HttpRequest;
 
-use Transip\Api\Client\Exception\HttpRequestException;
+use Transip\Api\Client\Exception\HttpBadResponseException;
 
-class NotFoundException extends HttpRequestException
+class NotFoundException extends HttpBadResponseException
 {
     const STATUS_CODE = 404;
 }

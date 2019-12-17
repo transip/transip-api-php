@@ -2,9 +2,9 @@
 
 namespace Transip\Api\Client\Exception\HttpRequest;
 
-use Transip\Api\Client\Exception\HttpRequestException;
+use Transip\Api\Client\Exception\HttpBadResponseException;
 
-class NotAcceptableException extends HttpRequestException
+class NotAcceptableException extends HttpBadResponseException
 {
     const STATUS_CODE = 406;
 }
