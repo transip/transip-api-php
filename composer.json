@@ -12,7 +12,8 @@
     "require": {
         "guzzlehttp/guzzle": "^6.3",
          "ext-json": "*",
-         "ext-openssl": "*"
+         "ext-openssl": "*",
+        "symfony/cache": "^5.0"
     }
     ,
     "autoload": {

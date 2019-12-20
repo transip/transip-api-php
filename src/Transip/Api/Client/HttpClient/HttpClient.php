@@ -2,7 +2,10 @@
 
 namespace Transip\Api\Client\HttpClient;
 
+use Symfony\Component\Cache\Adapter\AdapterInterface;
+use Transip\Api\Client\FilesystemAdapter;
 use Transip\Api\Client\Repository\AuthRepository;
+use Transip\Api\Client\TransipAPI;
 
 abstract class HttpClient
 {
@@ -36,11 +39,21 @@ abstract class HttpClient
      */
     protected $generateWhitelistOnlyTokens = false;
 
+    /**
+     * @var AdapterInterface
+     */
+    protected $cache;
+
     public function __construct(HttpClientInterface $httpClient, string $endpoint)
     {
         $endpoint             = rtrim($endpoint, '/');
         $this->endpoint       = $endpoint;
         $this->authRepository = new AuthRepository($httpClient);
+    }
+
+    public function setCache(AdapterInterface $cache)
+    {
+        $this->cache = $cache;
     }
 
     public function checkAndRenewToken(): void
@@ -49,6 +62,13 @@ abstract class HttpClient
         if ($expirationTime <= (time() - 2)) {
             $token = $this->authRepository->createToken($this->login, $this->privateKey, $this->generateWhitelistOnlyTokens);
             $this->setToken($token);
+
+            // Save new token to a temporary file
+            $cacheItem = $this->cache->getItem(TransipAPI::TEMP_TOKEN_FILE_NAME);
+            $cacheItem->set($token);
+            $cacheItem->expiresAfter($this->authRepository->getExpiryTime());
+
+            $this->cache->save($cacheItem);
         }
     }
 

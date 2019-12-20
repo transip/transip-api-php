@@ -8,6 +8,11 @@ class AuthRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'auth';
 
+    /**
+     * @var string expiryTime
+     */
+    protected $expiryTime;
+
     protected function getRepositoryResourceNames(): array
     {
         return [self::RESOURCE_NAME];
@@ -32,6 +37,7 @@ class AuthRepository extends ApiRepository
         bool $readOnly = false
     ): ?string {
 
+        $this->expiryTime = $expirationTime;
         if ($label == '') {
             $label = "api.client-" . time();
         }
@@ -50,6 +56,11 @@ class AuthRepository extends ApiRepository
         $token     = $response['token'] ?? null;
 
         return $token;
+    }
+
+    public function getExpiryTime()
+    {
+        return strtotime($this->expiryTime, 0) - 2;
     }
 
     public function getExpirationTimeFromToken(string $token): int

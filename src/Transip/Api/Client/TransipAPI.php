@@ -2,6 +2,11 @@
 
 namespace Transip\Api\Client;
 
+// composer autoload.
+require (__DIR__ . '/../../../../vendor/autoload.php');
+
+use Symfony\Component\Cache\Adapter\AdapterInterface;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Transip\Api\Client\HttpClient\GuzzleClient;
 use Transip\Api\Client\HttpClient\HttpClientInterface;
 use Transip\Api\Client\Repository\ApiTestRepository;
@@ -46,6 +51,7 @@ use Transip\Api\Client\Repository\HaipRepository;
 class TransipAPI
 {
     private const TRANSIP_API_ENDPOINT = "https://api.transip.nl/v6";
+    public const TEMP_TOKEN_FILE_NAME = 'token.txt';
 
     /**
      * @var HttpClientInterface $httpClient
@@ -57,7 +63,8 @@ class TransipAPI
         string $privateKey,
         bool $generateWhitelistOnlyTokens = true,
         string $token = '',
-        string $endpointUrl = ''
+        string $endpointUrl = '',
+        AdapterInterface $cache = null
     ) {
         $endpoint = self::TRANSIP_API_ENDPOINT;
 
@@ -77,8 +84,19 @@ class TransipAPI
 
         if ($token != '') {
             $this->httpClient->setToken($token);
+        } else {
+            if ($cache === null) {
+                $cache = new FilesystemAdapter();
+            }
+            $cacheItem = $cache->getItem(self::TEMP_TOKEN_FILE_NAME);
+
+            if ($cacheItem->isHit()) {
+                $storedToken = $cacheItem->get();
+                $this->httpClient->setToken($storedToken);
+            }
         }
 
+        $this->httpClient->setCache($cache);
         $this->httpClient->setGenerateWhitelistOnlyTokens($generateWhitelistOnlyTokens);
     }
 
