@@ -46,6 +46,7 @@ use Transip\Api\Client\Repository\HaipRepository;
 class TransipAPI
 {
     private const TRANSIP_API_ENDPOINT = "https://api.transip.nl/v6";
+    public const TEMP_TOKEN_FILE_NAME = 'token.txt';
 
     /**
      * @var HttpClientInterface $httpClient
@@ -77,6 +78,12 @@ class TransipAPI
 
         if ($token != '') {
             $this->httpClient->setToken($token);
+        } else {
+            $filesystem = new FilesystemAdapter();
+            $storedToken = $filesystem->readTempFile(self::TEMP_TOKEN_FILE_NAME);
+            if ($storedToken !== null) {
+                $this->httpClient->setToken($storedToken);
+            }
         }
 
         $this->httpClient->setGenerateWhitelistOnlyTokens($generateWhitelistOnlyTokens);
