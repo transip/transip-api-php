@@ -2,6 +2,7 @@
 
 namespace Transip\Api\Client\HttpClient;
 
+use Transip\Api\Client\FilesystemAdapter;
 use Transip\Api\Client\Repository\AuthRepository;
 
 abstract class HttpClient
@@ -45,12 +46,26 @@ abstract class HttpClient
 
     public function checkAndRenewToken(): void
     {
+        $tokenFileName = 'token.txt';
+        $filesystem = new FilesystemAdapter();
+
+        // Ensure to read saved token if it was generated before
+        $storedToken = $filesystem->readTempFile($tokenFileName);
+        if ($storedToken !== null) {
+            $this->token = $storedToken;
+        }
+
         $expirationTime = $this->authRepository->getExpirationTimeFromToken($this->token);
         if ($expirationTime <= (time() - 2)) {
             $token = $this->authRepository->createToken($this->login, $this->privateKey, $this->generateWhitelistOnlyTokens);
             $this->setToken($token);
+
+            // Save new token to a temporary file
+            $filesystem->saveTempFile($tokenFileName, $token);
         }
     }
+
+    public function ensureTokenDoesNotExist()
 
     public function setEndpoint(string $endpoint): void
     {
