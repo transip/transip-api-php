@@ -40,7 +40,7 @@ class FilesystemAdapter
     {
         $systemTempDirectory = sys_get_temp_dir() . '/transip-cache';
         if (!file_exists($systemTempDirectory . '/.')) {
-            @mkdir($systemTempDirectory, 0777, true);
+            @mkdir($systemTempDirectory, 0700, true);
         }
         return $systemTempDirectory;
     }
