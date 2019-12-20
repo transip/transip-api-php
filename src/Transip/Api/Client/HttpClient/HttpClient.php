@@ -66,7 +66,7 @@ abstract class HttpClient
             // Save new token to a temporary file
             $cacheItem = $this->cache->getItem(TransipAPI::TEMP_TOKEN_FILE_NAME);
             $cacheItem->set($token);
-            $cacheItem->expiresAfter(72000);
+            $cacheItem->expiresAfter($this->authRepository->getExpiryTime());
 
             $this->cache->save($cacheItem);
         }
