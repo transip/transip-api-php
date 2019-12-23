@@ -6,7 +6,7 @@ use Transip\Api\Client\Entity\Vps;
 
 class VpsRepository extends ApiRepository
 {
-    public const RESOURCE_NAME = 'vpss';
+    public const RESOURCE_NAME = 'vps';
 
     /**
      * @return Vps[]

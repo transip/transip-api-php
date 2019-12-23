@@ -4,6 +4,14 @@ namespace Transip\Api\Client\Entity;
 
 class Haip extends AbstractEntity
 {
+    public const IPSETUP_BOTH = 'both';
+    public const IPSETUP_NOIPV6 = 'noipv6';
+    public const IPSETUP_IPV6TO4 = 'ipv6to4';
+    public const IPSETUP_IPV4TO6 = 'ipv4to6';
+
+    public const BALANCINGMODE_ROUNDROBIN = 'roundrobin';
+    public const BALANCINGMODE_COOKIE = 'cookie';
+    public const BALANCINGMODE_SOURCE = 'source';
 
     /**
      * @var string

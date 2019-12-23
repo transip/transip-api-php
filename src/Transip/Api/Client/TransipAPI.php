@@ -41,6 +41,7 @@ use Transip\Api\Client\Repository\Vps\OperatingSystemRepository;
 use Transip\Api\Client\Repository\Vps\SnapshotRepository;
 use Transip\Api\Client\Repository\Vps\UpgradeRepository;
 use Transip\Api\Client\Repository\Vps\UsageRepository;
+use Transip\Api\Client\Repository\Vps\VncDataRepository;
 use Transip\Api\Client\Repository\VpsRepository;
 use Transip\Api\Client\Repository\Haip\PortConfigurationRepository;
 use Transip\Api\Client\Repository\Haip\IpAddressRepository as HaipIpAddressRepository;
@@ -218,6 +219,11 @@ class TransipAPI
     public function vpsUsage(): UsageRepository
     {
         return new UsageRepository($this->httpClient);
+    }
+
+    public function vpsVncData(): VncDataRepository
+    {
+        return new VncDataRepository($this->httpClient);
     }
 
     public function privateNetworks(): PrivateNetworkRepository
