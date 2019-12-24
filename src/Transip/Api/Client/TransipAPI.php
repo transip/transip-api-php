@@ -52,7 +52,6 @@ use Transip\Api\Client\Repository\HaipRepository;
 class TransipAPI
 {
     private const TRANSIP_API_ENDPOINT = "https://api.transip.nl/v6";
-    public const TEMP_TOKEN_FILE_NAME = 'token.txt';
 
     /**
      * @var HttpClientInterface $httpClient
@@ -83,22 +82,18 @@ class TransipAPI
             $this->httpClient->setPrivateKey($privateKey);
         }
 
-        if ($token != '') {
-            $this->httpClient->setToken($token);
-        } else {
-            if ($cache === null) {
-                $cache = new FilesystemAdapter();
-            }
-            $cacheItem = $cache->getItem(self::TEMP_TOKEN_FILE_NAME);
-
-            if ($cacheItem->isHit()) {
-                $storedToken = $cacheItem->get();
-                $this->httpClient->setToken($storedToken);
-            }
+        if ($cache === null) {
+            $cache = new FilesystemAdapter();
         }
 
         $this->httpClient->setCache($cache);
         $this->httpClient->setGenerateWhitelistOnlyTokens($generateWhitelistOnlyTokens);
+
+        if ($token != '') {
+            $this->httpClient->setToken($token);
+        } else {
+            $this->httpClient->getTokenFromCache();
+        }
     }
 
     public function availabilityZone(): AvailabilityZoneRepository
@@ -309,5 +304,10 @@ class TransipAPI
     public function setEndpointUrl(string $endpointUrl): void
     {
         $this->httpClient->setEndpoint($endpointUrl);
+    }
+
+    public function clearCache()
+    {
+        $this->httpClient->clearCache();
     }
 }
