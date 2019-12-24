@@ -35,4 +35,34 @@ class Snapshot extends AbstractEntity
      * @var string $operatingSystem
      */
     public $operatingSystem;
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getDateTimeCreate(): string
+    {
+        return $this->dateTimeCreate;
+    }
+
+    public function getDiskSize(): string
+    {
+        return $this->diskSize;
+    }
+
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    public function getOperatingSystem(): string
+    {
+        return $this->operatingSystem;
+    }
 }
