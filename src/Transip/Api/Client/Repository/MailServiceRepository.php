@@ -17,11 +17,11 @@ class MailServiceRepository extends ApiRepository
 
     public function regenerateMailServicePassword(): void
     {
-        $this->httpClient->patch($this->getResourceUrl(), ['action' => 'reset']);
+        $this->httpClient->patch($this->getResourceUrl(),[]);
     }
 
     public function addMailServiceDnsEntriesToDomains(array $domainNames): void
     {
-        $this->httpClient->post($this->getResourceUrl(), ['domains' => $domainNames]);
+        $this->httpClient->post($this->getResourceUrl(), ['domainNames' => $domainNames]);
     }
 }

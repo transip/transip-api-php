@@ -34,8 +34,6 @@ class BackupRepository extends ApiRepository
 
     public function revertBackup(string $bigStorageName, int $backupId): void
     {
-        $parameters['action'] = 'revert';
-        $parameters['backupId'] = $backupId;
-        $this->httpClient->patch($this->getResourceUrl($bigStorageName), $parameters);
+        $this->httpClient->patch($this->getResourceUrl($bigStorageName, $backupId), ['action' => 'revert']);
     }
 }
