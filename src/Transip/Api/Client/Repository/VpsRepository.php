@@ -14,7 +14,8 @@ class VpsRepository extends ApiRepository
     public function getAll(): array
     {
         $vpss      = [];
-        $response   = $this->httpClient->get($this->getResourceUrl());
+        $response  = $this->crawlPagination($this->getResourceUrl(), 'vpss');
+
         $vpssArray = $response['vpss'] ?? [];
 
         foreach ($vpssArray as $vpsArray) {

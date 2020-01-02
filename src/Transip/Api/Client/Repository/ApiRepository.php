@@ -34,4 +34,38 @@ abstract class ApiRepository
     {
         return [static::RESOURCE_NAME];
     }
+
+    protected function crawlPagination(string $urlToFetch, $keyToStack)
+    {
+        $returnData = [];
+        $nextQueryString = '';
+
+        do {
+            $response = $this->httpClient->get($urlToFetch . $nextQueryString);
+            $nextQueryString = $this->getNextUrlFromResponse($response);
+
+            foreach ($response[$keyToStack] as $dataToAdd) {
+                $returnData[] = $dataToAdd;
+            }
+        } while ($nextQueryString != '');
+
+        return [$keyToStack => $returnData];
+    }
+
+    protected function getNextUrlFromResponse(array $response): ?string
+    {
+        $links = $response['_links'];
+
+        foreach ($links as $linkData) {
+            $linkDataName = $linkData['rel'];
+
+            if ($linkDataName === 'next') {
+                list($url, $queryString) = explode('?', $linkData['link']);
+
+                return "?{$queryString}";
+            }
+        }
+
+        return null;
+    }
 }
