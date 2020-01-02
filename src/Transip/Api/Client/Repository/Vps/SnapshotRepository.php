@@ -22,7 +22,7 @@ class SnapshotRepository extends ApiRepository
     public function getByVpsName(string $vpsName): array
     {
         $snapshots      = [];
-        $response         = $this->httpClient->get($this->getResourceUrl($vpsName));
+        $response       = $this->httpClient->get($this->getResourceUrl($vpsName));
         $snapshotsArray = $response['snapshots'] ?? [];
 
         foreach ($snapshotsArray as $snapshotArray) {
@@ -39,10 +39,14 @@ class SnapshotRepository extends ApiRepository
         return new Snapshot($snapshot);
     }
 
-    public function createSnapshot(string $vpsName, string $description): void
+    public function createSnapshot(string $vpsName, string $description, bool $shouldStartVps = true): void
     {
-        $url = $this->getResourceUrl($vpsName);
-        $this->httpClient->post($url, ['description' => $description]);
+        $url        = $this->getResourceUrl($vpsName);
+        $parameters = [
+            'description'    => $description,
+            'shouldStartVps' => $shouldStartVps,
+        ];
+        $this->httpClient->post($url, $parameters);
     }
 
     public function revertSnapshot(string $vpsName, string $snapshotName, string $destinationVpsName = ''): void
@@ -53,7 +57,7 @@ class SnapshotRepository extends ApiRepository
 
     public function deleteSnapshot(string $vpsName, string $snapshotName): void
     {
-        $url = $this->getResourceUrl($vpsName, $snapshotName) ;
+        $url = $this->getResourceUrl($vpsName, $snapshotName);
         $this->httpClient->delete($url);
     }
 }

@@ -14,4 +14,21 @@ class DomainAvailabilityRepository extends ApiRepository
         $domainCheckResult = $response['availability'] ?? null;
         return new DomainCheckResult($domainCheckResult);
     }
+
+    /**
+     * @param array $domainNames
+     * @return DomainCheckResult[]
+     */
+    public function checkMultipleDomainNames(array $domainNames): array
+    {
+        $domainCheckResults = [];
+        $response           = $this->httpClient->get($this->getResourceUrl(), ['domainNames' => $domainNames]);
+        $domainCheckArray   = $response['availability'] ?? [];
+
+        foreach ($domainCheckArray as $domainArray) {
+            $domainCheckResults[] = new DomainCheckResult($domainArray);
+        }
+
+        return $domainCheckResults;
+    }
 }
