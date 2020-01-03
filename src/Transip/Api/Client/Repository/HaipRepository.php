@@ -24,6 +24,25 @@ class HaipRepository extends ApiRepository
         return $haips;
     }
 
+    /**
+     * @param int $page
+     * @param int $itemsPerPage
+     * @return Haip[]
+     */
+    public function getSelection(int $page, int $itemsPerPage): array
+    {
+        $haips      = [];
+        $query      = ['pageSize' => $itemsPerPage, 'page' => $page];
+        $response   = $this->httpClient->get($this->getResourceUrl(), $query);
+        $haipsArray = $response['haips'] ?? [];
+
+        foreach ($haipsArray as $haipArray) {
+            $haips[] = new Haip($haipArray);
+        }
+
+        return $haips;
+    }
+
     public function findByDescription(string $description): array
     {
         $haips = [];
