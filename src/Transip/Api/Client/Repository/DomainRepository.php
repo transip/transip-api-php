@@ -27,6 +27,25 @@ class DomainRepository extends ApiRepository
         return $domains;
     }
 
+    /**
+     * @param int $page
+     * @param int $itemsPerPage
+     * @return Domain[]
+     */
+    public function getSelection(int $page, int $itemsPerPage): array
+    {
+        $domains      = [];
+        $query        = ['pageSize' => $itemsPerPage, 'page' => $page];
+        $response     = $this->httpClient->get($this->getResourceUrl(), $query);
+        $domainsArray = $response['domains'] ?? [];
+
+        foreach ($domainsArray as $domainArray) {
+            $domains[] = new Domain($domainArray);
+        }
+
+        return $domains;
+    }
+
     public function getByName(string $name): Domain
     {
         $response = $this->httpClient->get($this->getResourceUrl($name));

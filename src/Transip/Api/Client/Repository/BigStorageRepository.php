@@ -24,6 +24,25 @@ class BigStorageRepository extends ApiRepository
         return $bigStorages;
     }
 
+    /**
+     * @param int $page
+     * @param int $itemsPerPage
+     * @return BigStorage[]
+     */
+    public function getSelection(int $page, int $itemsPerPage): array
+    {
+        $bigStorages      = [];
+        $query            = ['pageSize' => $itemsPerPage, 'page' => $page];
+        $response         = $this->httpClient->get($this->getResourceUrl(), $query);
+        $bigStoragesArray = $response['bigStorages'] ?? [];
+
+        foreach ($bigStoragesArray as $bigstorageArray) {
+            $bigStorages[] = new BigStorage($bigstorageArray);
+        }
+
+        return $bigStorages;
+    }
+
     public function getByName(string $privateNetworkName): BigStorage
     {
         $response        = $this->httpClient->get($this->getResourceUrl($privateNetworkName));

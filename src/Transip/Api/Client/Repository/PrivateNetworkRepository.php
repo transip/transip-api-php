@@ -24,6 +24,25 @@ class PrivateNetworkRepository extends ApiRepository
         return $privateNetworks;
     }
 
+    /**
+     * @param int $page
+     * @param int $itemsPerPage
+     * @return PrivateNetwork[]
+     */
+    public function getSelection(int $page, int $itemsPerPage): array
+    {
+        $privateNetworks      = [];
+        $query                = ['pageSize' => $itemsPerPage, 'page' => $page];
+        $response             = $this->httpClient->get($this->getResourceUrl(), $query);
+        $privateNetworksArray = $response['privateNetworks'] ?? [];
+
+        foreach ($privateNetworksArray as $privateNetworkArray) {
+            $privateNetworks[] = new PrivateNetwork($privateNetworkArray);
+        }
+
+        return $privateNetworks;
+    }
+
     public function getByName(string $privateNetworkName): PrivateNetwork
     {
         $response       = $this->httpClient->get($this->getResourceUrl($privateNetworkName));

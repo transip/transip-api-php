@@ -14,8 +14,26 @@ class VpsRepository extends ApiRepository
     public function getAll(): array
     {
         $vpss      = [];
-        $response  = $this->crawlPagination($this->getResourceUrl(), 'vpss');
+        $response  = $this->httpClient->get($this->getResourceUrl());
+        $vpssArray = $response['vpss'] ?? [];
 
+        foreach ($vpssArray as $vpsArray) {
+            $vpss[] = new Vps($vpsArray);
+        }
+
+        return $vpss;
+    }
+
+    /**
+     * @param int $page
+     * @param int $itemsPerPage
+     * @return Vps[]
+     */
+    public function getSelection(int $page, int $itemsPerPage): array
+    {
+        $vpss      = [];
+        $query     = ['pageSize' => $itemsPerPage, 'page' => $page];
+        $response  = $this->httpClient->get($this->getResourceUrl(), $query);
         $vpssArray = $response['vpss'] ?? [];
 
         foreach ($vpssArray as $vpsArray) {
