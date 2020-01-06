@@ -36,6 +36,7 @@ use Transip\Api\Client\Repository\DomainTldRepository;
 use Transip\Api\Client\Repository\TrafficRepository;
 use Transip\Api\Client\Repository\Vps\AddonRepository;
 use Transip\Api\Client\Repository\Vps\BackupRepository as VpsBackupRepository;
+use Transip\Api\Client\Repository\Vps\FirewallRepository as VpsFirewallRepository;
 use Transip\Api\Client\Repository\Vps\IpAddressRepository as VpsIpAddressRepository;
 use Transip\Api\Client\Repository\Vps\OperatingSystemRepository;
 use Transip\Api\Client\Repository\Vps\SnapshotRepository;
@@ -189,6 +190,11 @@ class TransipAPI
     public function vpsBackups(): VpsBackupRepository
     {
         return new VpsBackupRepository($this->httpClient);
+    }
+
+    public function vpsFirewall(): VpsFirewallRepository
+    {
+        return new VpsFirewallRepository($this->httpClient);
     }
 
     public function vpsIpAddresses(): VpsIpAddressRepository
