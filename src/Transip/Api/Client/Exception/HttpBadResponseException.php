@@ -5,7 +5,7 @@ namespace Transip\Api\Client\Exception;
 use Exception;
 use GuzzleHttp\Exception\ConnectException;
 use Psr\Http\Message\ResponseInterface;
-use Transip\Api\Client\Exception\HttpRequest\BadBadResponseException;
+use Transip\Api\Client\Exception\HttpRequest\BadResponseException;
 use Transip\Api\Client\Exception\HttpRequest\ConflictException;
 use Transip\Api\Client\Exception\HttpRequest\ForbiddenException;
 use Transip\Api\Client\Exception\HttpRequest\InternalServerErrorException;
@@ -50,8 +50,8 @@ class HttpBadResponseException extends Exception
         $errorMessage    = $decodedResponse['error'] ?? $response->getBody();
 
         switch($response->getStatusCode()) {
-            case BadBadResponseException::STATUS_CODE:
-                return new BadBadResponseException($errorMessage, $response->getStatusCode(), $innerException, $response);
+            case BadResponseException::STATUS_CODE:
+                return new BadResponseException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case UnauthorizedException::STATUS_CODE:
                 return new UnauthorizedException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case ForbiddenException::STATUS_CODE:
