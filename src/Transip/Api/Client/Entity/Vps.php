@@ -15,6 +15,11 @@ class Vps extends AbstractEntity
     public $description;
 
     /**
+     * @var string $productName
+     */
+    public $productName;
+
+    /**
      * @var string $operatingSystem
      */
     public $operatingSystem;
@@ -87,6 +92,11 @@ class Vps extends AbstractEntity
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    public function getProductName(): string
+    {
+        return $this->productName;
     }
 
     public function getOperatingSystem(): string
