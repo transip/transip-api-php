@@ -21,9 +21,9 @@ class DnsRepository extends ApiRepository
      */
     public function getByDomainName(string $domainName): array
     {
-        $response        = $this->httpClient->get($this->getResourceUrl($domainName));
-        $dnsEntriesArray = $response['dnsEntries'] ?? null;
         $dnsEntries      = [];
+        $response        = $this->httpClient->get($this->getResourceUrl($domainName));
+        $dnsEntriesArray = $this->getParameterFromResponse($response, 'dnsEntries');
 
         foreach ($dnsEntriesArray as $dnsEntryArray) {
             $dnsEntries[] = new DnsEntry($dnsEntryArray);

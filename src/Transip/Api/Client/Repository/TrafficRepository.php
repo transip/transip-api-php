@@ -16,7 +16,8 @@ class TrafficRepository extends ApiRepository
     public function getByVpsName(string $vpsName): TrafficInformation
     {
         $response           = $this->httpClient->get($this->getResourceUrl($vpsName));
-        $trafficInformation = $response['trafficInformation'] ?? [];
+        $trafficInformation = $this->getParameterFromResponse($response, 'trafficInformation');
+
         return new TrafficInformation($trafficInformation);
     }
 }

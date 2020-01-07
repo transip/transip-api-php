@@ -21,15 +21,23 @@ class PortConfigurationRepository extends ApiRepository
      */
     public function getByHaipName(string $haipName): array
     {
-        $portConfigurations = [];
-        $response           = $this->httpClient->get($this->getResourceUrl($haipName));
-        $portConfigurationArray   = $response['portConfigurations'] ?? [];
+        $portConfigurations     = [];
+        $response               = $this->httpClient->get($this->getResourceUrl($haipName));
+        $portConfigurationArray = $this->getParameterFromResponse($response, 'portConfigurations');
 
         foreach ($portConfigurationArray as $portConfigurationStruct) {
             $portConfigurations[] = new PortConfiguration($portConfigurationStruct);
         }
 
         return $portConfigurations;
+    }
+
+    public function getByPortConfigurationId(string $haipName, int $portConfigurationId): PortConfiguration
+    {
+        $response                = $this->httpClient->get($this->getResourceUrl($haipName, $portConfigurationId));
+        $portConfigurationStruct = $this->getParameterFromResponse($response, 'portConfiguration');
+
+        return new PortConfiguration($portConfigurationStruct);
     }
 
     public function update(string $haipName, PortConfiguration $portConfiguration): void
@@ -58,13 +66,5 @@ class PortConfigurationRepository extends ApiRepository
         ];
 
         $this->httpClient->post($url, $requestData);
-    }
-
-    public function getByPortConfigurationId(string $haipName, int $portConfigurationId): PortConfiguration
-    {
-        $response                = $this->httpClient->get($this->getResourceUrl($haipName, $portConfigurationId));
-        $portConfigurationStruct = $response['portConfiguration'] ?? [];
-
-        return new PortConfiguration($portConfigurationStruct);
     }
 }

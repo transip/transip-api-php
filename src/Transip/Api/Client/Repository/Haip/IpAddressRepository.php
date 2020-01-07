@@ -21,9 +21,8 @@ class IpAddressRepository extends ApiRepository
      */
     public function getByHaipName(string $haipName): array
     {
-        $ipAddresses      = [];
         $response         = $this->httpClient->get($this->getResourceUrl($haipName));
-        $ipAddressesArray = $response['ipAddresses'] ?? [];
+        $ipAddressesArray = $this->getParameterFromResponse($response, 'ipAddresses');
 
         return $ipAddressesArray;
     }

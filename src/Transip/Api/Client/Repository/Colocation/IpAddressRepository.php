@@ -23,7 +23,7 @@ class IpAddressRepository extends ApiRepository
     {
         $ipAddresses      = [];
         $response         = $this->httpClient->get($this->getResourceUrl($coloName));
-        $ipAddressesArray = $response['ipAddresses'] ?? [];
+        $ipAddressesArray = $this->getParameterFromResponse($response, 'ipAddresses');
 
         foreach ($ipAddressesArray as $ipAddressArray) {
             $ipAddresses[] = new IpAddress($ipAddressArray);
@@ -35,7 +35,8 @@ class IpAddressRepository extends ApiRepository
     public function getByColoNameAddress(string $coloName, string $ipAddress): IpAddress
     {
         $response  = $this->httpClient->get($this->getResourceUrl($coloName, $ipAddress));
-        $ipAddress = $response['ipAddress'] ?? null;
+        $ipAddress = $this->getParameterFromResponse($response, 'ipAddress');
+
         return new IpAddress($ipAddress);
     }
 

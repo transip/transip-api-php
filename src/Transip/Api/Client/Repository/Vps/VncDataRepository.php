@@ -17,7 +17,8 @@ class VncDataRepository extends ApiRepository
 
     public function getByVpsName(string $vpsName): VncData {
         $response     = $this->httpClient->get($this->getResourceUrl($vpsName));
-        $vncDataArray = $response['vncData'] ?? [];
+        $vncDataArray = $this->getParameterFromResponse($response, 'vncData');
+
         return new VncData($vncDataArray);
     }
 }

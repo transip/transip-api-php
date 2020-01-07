@@ -53,7 +53,7 @@ class AuthRepository extends ApiRepository
 
         $signature = $this->createSignature($privateKey, $requestBody);
         $response  = $this->httpClient->postAuthentication($this->getResourceUrl(), $signature, $requestBody);
-        $token     = $response['token'] ?? null;
+        $token     = $this->getParameterFromResponse($response, 'token');
 
         return $token;
     }
@@ -98,7 +98,6 @@ class AuthRepository extends ApiRepository
             $matches
         )
         ) {
-            throw new Exception($privateKey);
             throw new Exception('Could not find a valid private key');
         }
 

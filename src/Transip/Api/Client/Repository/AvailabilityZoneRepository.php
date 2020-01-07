@@ -15,7 +15,7 @@ class AvailabilityZoneRepository extends ApiRepository
     {
         $availabilityZones      = [];
         $response               = $this->httpClient->get($this->getResourceUrl());
-        $availabilityZonesArray = $response['availabilityZones'] ?? [];
+        $availabilityZonesArray = $this->getParameterFromResponse($response, 'availabilityZones');
 
         foreach ($availabilityZonesArray as $availabilityZoneArray) {
             $availabilityZones[] = new AvailabilityZone($availabilityZoneArray);

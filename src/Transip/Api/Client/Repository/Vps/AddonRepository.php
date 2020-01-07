@@ -22,7 +22,7 @@ class AddonRepository extends ApiRepository
     {
         $addons        = [];
         $response      = $this->httpClient->get($this->getResourceUrl($vpsName));
-        $categoryArray = $response['addons'] ?? [];
+        $categoryArray = $this->getParameterFromResponse($response, 'addons');
 
         foreach ($categoryArray as $category => $addonsArray) {
             foreach ($addonsArray as $addonArray) {
