@@ -15,7 +15,7 @@ class VpsRepository extends ApiRepository
     {
         $vpss      = [];
         $response  = $this->httpClient->get($this->getResourceUrl());
-        $vpssArray = $response['vpss'] ?? [];
+        $vpssArray = $this->getParameterFromResponse($response, 'vpss');
 
         foreach ($vpssArray as $vpsArray) {
             $vpss[] = new Vps($vpsArray);
@@ -34,7 +34,7 @@ class VpsRepository extends ApiRepository
         $vpss      = [];
         $query     = ['pageSize' => $itemsPerPage, 'page' => $page];
         $response  = $this->httpClient->get($this->getResourceUrl(), $query);
-        $vpssArray = $response['vpss'] ?? [];
+        $vpssArray = $this->getParameterFromResponse($response, 'vpss');
 
         foreach ($vpssArray as $vpsArray) {
             $vpss[] = new Vps($vpsArray);
@@ -46,7 +46,8 @@ class VpsRepository extends ApiRepository
     public function getByName(string $name): Vps
     {
         $response = $this->httpClient->get($this->getResourceUrl($name));
-        $vps      = $response['vps'] ?? null;
+        $vps      = $this->getParameterFromResponse($response, 'vps');
+
         return new Vps($vps);
     }
 

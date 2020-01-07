@@ -15,7 +15,7 @@ class DomainTldRepository extends ApiRepository
     {
         $tlds      = [];
         $response  = $this->httpClient->get($this->getResourceUrl());
-        $tldsArray = $response['tlds'] ?? [];
+        $tldsArray = $this->getParameterFromResponse($response, 'tlds');
 
         foreach ($tldsArray as $tldArray) {
             $tlds[] = new Tld($tldArray);
@@ -27,7 +27,8 @@ class DomainTldRepository extends ApiRepository
     public function getByTld(string $tld): Tld
     {
         $response = $this->httpClient->get($this->getResourceUrl($tld));
-        $tldArray = $response['tld'] ?? null;
+        $tldArray = $this->getParameterFromResponse($response, 'tld');
+
         return new Tld($tldArray);
     }
 }

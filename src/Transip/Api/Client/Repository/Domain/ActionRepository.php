@@ -21,8 +21,9 @@ class ActionRepository extends ApiRepository
     public function getByDomainName(string $domainName): Action
     {
         $response = $this->httpClient->get($this->getResourceUrl($domainName));
-        $vps      = $response['action'] ?? null;
-        return new Action($vps);
+        $action   = $this->getParameterFromResponse($response, 'action');
+
+        return new Action($action);
     }
 
     /**

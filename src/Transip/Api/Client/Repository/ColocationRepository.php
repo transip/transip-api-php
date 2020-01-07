@@ -15,7 +15,7 @@ class ColocationRepository extends ApiRepository
     {
         $colocations      = [];
         $response         = $this->httpClient->get($this->getResourceUrl());
-        $colocationsArray = $response['colocations'] ?? [];
+        $colocationsArray = $this->getParameterFromResponse($response, 'colocations');
 
         foreach ($colocationsArray as $colocationArray) {
             $colocations[] = new Colocation($colocationArray);
@@ -27,7 +27,8 @@ class ColocationRepository extends ApiRepository
     public function getByName(string $name): Colocation
     {
         $response   = $this->httpClient->get($this->getResourceUrl($name));
-        $colocation = $response['colocation'] ?? null;
+        $colocation = $this->getParameterFromResponse($response, 'colocation');
+
         return new Colocation($colocation);
     }
 }

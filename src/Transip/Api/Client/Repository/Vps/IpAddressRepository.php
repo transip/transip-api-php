@@ -23,7 +23,7 @@ class IpAddressRepository extends ApiRepository
     {
         $ipAddresses      = [];
         $response         = $this->httpClient->get($this->getResourceUrl($vpsName));
-        $ipAddressesArray = $response['ipAddresses'] ?? [];
+        $ipAddressesArray = $this->getParameterFromResponse($response, 'ipAddresses');
 
         foreach ($ipAddressesArray as $ipAddressArray) {
             $ipAddresses[] = new IpAddress($ipAddressArray);
@@ -35,7 +35,8 @@ class IpAddressRepository extends ApiRepository
     public function getByVpsNameAddress(string $vpsName, string $ipAddress): IpAddress
     {
         $response  = $this->httpClient->get($this->getResourceUrl($vpsName, $ipAddress));
-        $ipAddress = $response['ipAddress'] ?? null;
+        $ipAddress = $this->getParameterFromResponse($response, 'ipAddress');
+
         return new IpAddress($ipAddress);
     }
 

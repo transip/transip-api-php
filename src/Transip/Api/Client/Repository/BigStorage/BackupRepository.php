@@ -23,7 +23,7 @@ class BackupRepository extends ApiRepository
     {
         $backups      = [];
         $response     = $this->httpClient->get($this->getResourceUrl($bigStorageName));
-        $backupsArray = $response['backups'] ?? [];
+        $backupsArray = $this->getParameterFromResponse($response, 'backups');
 
         foreach ($backupsArray as $backupArray) {
             $backups[] = new Backup($backupArray);

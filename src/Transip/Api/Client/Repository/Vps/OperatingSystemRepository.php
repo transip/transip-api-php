@@ -22,7 +22,7 @@ class OperatingSystemRepository extends ApiRepository
     {
         $operatingSystems      = [];
         $response              = $this->httpClient->get($this->getResourceUrl('placeholder'));
-        $operatingSystemsArray = $response['operatingSystems'] ?? [];
+        $operatingSystemsArray = $this->getParameterFromResponse($response, 'operatingSystems');
 
         foreach ($operatingSystemsArray as $operatingSystemArray) {
             $operatingSystems[] = new OperatingSystem($operatingSystemArray);

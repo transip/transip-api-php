@@ -15,7 +15,7 @@ class HaipRepository extends ApiRepository
     {
         $haips      = [];
         $response   = $this->httpClient->get($this->getResourceUrl());
-        $haipsArray = $response['haips'] ?? [];
+        $haipsArray = $this->getParameterFromResponse($response, 'haips');
 
         foreach ($haipsArray as $haipArray) {
             $haips[] = new Haip($haipArray);
@@ -34,7 +34,7 @@ class HaipRepository extends ApiRepository
         $haips      = [];
         $query      = ['pageSize' => $itemsPerPage, 'page' => $page];
         $response   = $this->httpClient->get($this->getResourceUrl(), $query);
-        $haipsArray = $response['haips'] ?? [];
+        $haipsArray = $this->getParameterFromResponse($response, 'haips');
 
         foreach ($haipsArray as $haipArray) {
             $haips[] = new Haip($haipArray);
@@ -46,7 +46,7 @@ class HaipRepository extends ApiRepository
     public function findByDescription(string $description): array
     {
         $haips = [];
-        foreach($this->getAll() as $haip) {
+        foreach ($this->getAll() as $haip) {
             if ($haip->getDescription() === $description) {
                 $haips[] = $haip;
             }
@@ -58,7 +58,7 @@ class HaipRepository extends ApiRepository
     public function getByName(string $name): Haip
     {
         $response = $this->httpClient->get($this->getResourceUrl($name));
-        $haip     = $response['haip'] ?? null;
+        $haip     = $this->getParameterFromResponse($response, 'haip');
 
         return new Haip($haip);
     }

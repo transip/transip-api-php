@@ -23,7 +23,7 @@ class UpgradeRepository extends ApiRepository
     {
         $products      = [];
         $response      = $this->httpClient->get($this->getResourceUrl($vpsName));
-        $upgradesArray = $response['upgrades'] ?? [];
+        $upgradesArray = $this->getParameterFromResponse($response, 'upgrades');
 
         foreach ($upgradesArray as $upgradeArray) {
             $products[] = new Product($upgradeArray);

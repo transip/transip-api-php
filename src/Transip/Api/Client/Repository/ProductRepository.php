@@ -15,7 +15,7 @@ class ProductRepository extends ApiRepository
     {
         $products      = [];
         $response      = $this->httpClient->get($this->getResourceUrl());
-        $categoryArray = $response['products'] ?? [];
+        $categoryArray = $this->getParameterFromResponse($response, 'products');
 
         foreach ($categoryArray as $category => $productsArray) {
             foreach ($productsArray as $productArray) {
