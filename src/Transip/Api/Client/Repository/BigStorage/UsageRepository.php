@@ -15,11 +15,10 @@ class UsageRepository extends ApiRepository
         return [BigStorageRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
-    protected function getUsageStatistics(
+    public function getUsageStatistics(
         string $bigStorageName,
         int $dateTimeStart = 0,
-        int $dateTimeEnd = 0,
-        string $dateTimeFormat = null
+        int $dateTimeEnd = 0
     ): array {
         $usages     = [];
         $parameters = [];
@@ -29,9 +28,6 @@ class UsageRepository extends ApiRepository
         }
         if ($dateTimeEnd > 0) {
             $parameters['dateTimeEnd'] = $dateTimeEnd;
-        }
-        if ($dateTimeFormat !== null) {
-            $parameters['dateTimeFormat'] = $dateTimeFormat;
         }
 
         $response = $this->httpClient->get($this->getResourceUrl($bigStorageName), $parameters);
