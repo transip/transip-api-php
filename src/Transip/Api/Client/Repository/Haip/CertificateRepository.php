@@ -21,9 +21,9 @@ class CertificateRepository extends ApiRepository
      */
     public function getByHaipName(string $haipName): array
     {
-        $certificates = [];
-        $response           = $this->httpClient->get($this->getResourceUrl($haipName));
-        $certificateArray   = $response['certificates'] ?? [];
+        $certificates     = [];
+        $response         = $this->httpClient->get($this->getResourceUrl($haipName));
+        $certificateArray = $this->getParameterFromResponse($response, 'certificates');
 
         foreach ($certificateArray as $certificateStruct) {
             $certificates[] = new Certificate($certificateStruct);

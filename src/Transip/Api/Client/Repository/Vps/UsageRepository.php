@@ -47,7 +47,7 @@ class UsageRepository extends ApiRepository
 
         $usages          = [];
         $response        = $this->httpClient->get($this->getResourceUrl($vpsName), $parameters);
-        $usageTypesArray = $response['usage'] ?? [];
+        $usageTypesArray = $this->getParameterFromResponse($response, 'usage');
 
         foreach ($usageTypesArray as $usageType => $usageArray) {
             switch ($usageType) {

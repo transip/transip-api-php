@@ -18,7 +18,8 @@ class BrandingRepository extends ApiRepository
     public function getByDomainName(string $domainName): Branding
     {
         $response = $this->httpClient->get($this->getResourceUrl($domainName));
-        $branding = $response['branding'] ?? null;
+        $branding = $this->getParameterFromResponse($response, 'branding');
+
         return new Branding($branding);
     }
 

@@ -23,7 +23,7 @@ class DnsSecRepository extends ApiRepository
     {
         $dnssecEntries      = [];
         $response           = $this->httpClient->get($this->getResourceUrl($domainName));
-        $dnssecEntriesArray = $response['dnsSecEntries'] ?? [];
+        $dnssecEntriesArray = $this->getParameterFromResponse($response, 'dnsSecEntries');
 
         foreach ($dnssecEntriesArray as $dnssecEntryArray) {
             $dnssecEntries[] = new DnsSecEntry($dnssecEntryArray);

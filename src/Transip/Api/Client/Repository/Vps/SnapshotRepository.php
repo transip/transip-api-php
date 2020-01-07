@@ -23,7 +23,7 @@ class SnapshotRepository extends ApiRepository
     {
         $snapshots      = [];
         $response       = $this->httpClient->get($this->getResourceUrl($vpsName));
-        $snapshotsArray = $response['snapshots'] ?? [];
+        $snapshotsArray = $this->getParameterFromResponse($response, 'snapshots');
 
         foreach ($snapshotsArray as $snapshotArray) {
             $snapshots[] = new Snapshot($snapshotArray);
@@ -35,7 +35,8 @@ class SnapshotRepository extends ApiRepository
     public function getByVpsNameSnapshotName(string $vpsName, string $snapshotName): Snapshot
     {
         $response = $this->httpClient->get($this->getResourceUrl($vpsName, $snapshotName));
-        $snapshot = $response['snapshot'] ?? null;
+        $snapshot = $this->getParameterFromResponse($response, 'snapshot');
+
         return new Snapshot($snapshot);
     }
 

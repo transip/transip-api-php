@@ -23,7 +23,7 @@ class NameserverRepository extends ApiRepository
     {
         $nameservers      = [];
         $response         = $this->httpClient->get($this->getResourceUrl($domainName));
-        $nameserversArray = $response['nameservers'] ?? [];
+        $nameserversArray = $this->getParameterFromResponse($response, 'nameservers');
 
         foreach ($nameserversArray as $nameserverArray) {
             $nameservers[] = new Nameserver($nameserverArray);

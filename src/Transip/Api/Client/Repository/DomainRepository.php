@@ -18,7 +18,7 @@ class DomainRepository extends ApiRepository
     {
         $domains      = [];
         $response     = $this->httpClient->get($this->getResourceUrl());
-        $domainsArray = $response['domains'] ?? [];
+        $domainsArray = $this->getParameterFromResponse($response, 'domains');
 
         foreach ($domainsArray as $domainArray) {
             $domains[] = new Domain($domainArray);
@@ -37,7 +37,8 @@ class DomainRepository extends ApiRepository
         $domains      = [];
         $query        = ['pageSize' => $itemsPerPage, 'page' => $page];
         $response     = $this->httpClient->get($this->getResourceUrl(), $query);
-        $domainsArray = $response['domains'] ?? [];
+        $domainsArray = $this->getParameterFromResponse($response, 'domains');
+
 
         foreach ($domainsArray as $domainArray) {
             $domains[] = new Domain($domainArray);
@@ -49,15 +50,16 @@ class DomainRepository extends ApiRepository
     public function getByName(string $name): Domain
     {
         $response = $this->httpClient->get($this->getResourceUrl($name));
-        $domain      = $response['domain'] ?? null;
+        $domain   = $this->getParameterFromResponse($response, 'domain');
+
         return new Domain($domain);
     }
 
     /**
      * @param string         $domainName
-     * @param WhoisContact[] $contacts optional
+     * @param WhoisContact[] $contacts    optional
      * @param Nameserver[]   $nameservers optional
-     * @param DnsEntry[]     $dnsEntries optional
+     * @param DnsEntry[]     $dnsEntries  optional
      */
     public function register(
         string $domainName,
@@ -71,15 +73,15 @@ class DomainRepository extends ApiRepository
             'nameservers' => $nameservers,
             'dnsEntries'  => $dnsEntries,
         ];
-        $this->httpClient->post($this->getResourceUrl(),$parameters);
+        $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
 
     /**
      * @param string         $domainName
      * @param string         $authCode
-     * @param WhoisContact[] $contacts optional
+     * @param WhoisContact[] $contacts    optional
      * @param Nameserver[]   $nameservers optional
-     * @param DnsEntry[]     $dnsEntries optional
+     * @param DnsEntry[]     $dnsEntries  optional
      */
     public function transfer(
         string $domainName,
@@ -95,7 +97,7 @@ class DomainRepository extends ApiRepository
             'nameservers' => $nameservers,
             'dnsEntries'  => $dnsEntries,
         ];
-        $this->httpClient->post($this->getResourceUrl(),$parameters);
+        $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
 
     public function update(Domain $domain): void

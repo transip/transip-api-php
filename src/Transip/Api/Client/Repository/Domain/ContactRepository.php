@@ -23,7 +23,7 @@ class ContactRepository extends ApiRepository
     {
         $contacts      = [];
         $response      = $this->httpClient->get($this->getResourceUrl($domainName));
-        $contactsArray = $response['contacts'] ?? [];
+        $contactsArray = $this->getParameterFromResponse($response, 'contacts');
 
         foreach ($contactsArray as $contactArray) {
             $contacts[] = new WhoisContact($contactArray);

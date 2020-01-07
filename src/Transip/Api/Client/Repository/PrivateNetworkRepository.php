@@ -15,7 +15,7 @@ class PrivateNetworkRepository extends ApiRepository
     {
         $privateNetworks      = [];
         $response             = $this->httpClient->get($this->getResourceUrl());
-        $privateNetworksArray = $response['privateNetworks'] ?? [];
+        $privateNetworksArray = $this->getParameterFromResponse($response, 'privateNetworks');
 
         foreach ($privateNetworksArray as $privateNetworkArray) {
             $privateNetworks[] = new PrivateNetwork($privateNetworkArray);
@@ -34,7 +34,7 @@ class PrivateNetworkRepository extends ApiRepository
         $privateNetworks      = [];
         $query                = ['pageSize' => $itemsPerPage, 'page' => $page];
         $response             = $this->httpClient->get($this->getResourceUrl(), $query);
-        $privateNetworksArray = $response['privateNetworks'] ?? [];
+        $privateNetworksArray = $this->getParameterFromResponse($response, 'privateNetworks');
 
         foreach ($privateNetworksArray as $privateNetworkArray) {
             $privateNetworks[] = new PrivateNetwork($privateNetworkArray);
@@ -46,7 +46,8 @@ class PrivateNetworkRepository extends ApiRepository
     public function getByName(string $privateNetworkName): PrivateNetwork
     {
         $response       = $this->httpClient->get($this->getResourceUrl($privateNetworkName));
-        $privateNetwork = $response['privateNetwork'] ?? null;
+        $privateNetwork = $this->getParameterFromResponse($response, 'privateNetwork');
+
         return new PrivateNetwork($privateNetwork);
     }
 

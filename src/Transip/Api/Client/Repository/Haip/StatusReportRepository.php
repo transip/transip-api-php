@@ -24,7 +24,7 @@ class StatusReportRepository extends ApiRepository
     {
         $statusReports     = [];
         $response          = $this->httpClient->get($this->getResourceUrl($haipName));
-        $statusReportArray = $response['statusReports'] ?? [];
+        $statusReportArray = $this->getParameterFromResponse($response, 'statusReports');
 
         foreach ($statusReportArray as $statusReport) {
             $statusReports[] = new StatusReport($statusReport);

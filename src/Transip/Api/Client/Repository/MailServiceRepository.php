@@ -11,7 +11,8 @@ class MailServiceRepository extends ApiRepository
     public function getMailServiceInformation(): MailServiceInformation
     {
         $response               = $this->httpClient->get($this->getResourceUrl());
-        $mailServiceInformation = $response['mailServiceInformation'] ?? [];
+        $mailServiceInformation = $this->getParameterFromResponse($response, 'mailServiceInformation');
+
         return new MailServiceInformation($mailServiceInformation);
     }
 
