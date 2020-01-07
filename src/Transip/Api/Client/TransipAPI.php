@@ -14,6 +14,7 @@ use Transip\Api\Client\Repository\AuthRepository;
 use Transip\Api\Client\Repository\AvailabilityZoneRepository;
 use Transip\Api\Client\Repository\BigStorageRepository;
 use Transip\Api\Client\Repository\BigStorage\BackupRepository as BigStorageBackupRepository;
+use Transip\Api\Client\Repository\BigStorage\UsageRepository as BigStorageUsageRepository;
 use Transip\Api\Client\Repository\ColocationRepository;
 use Transip\Api\Client\Repository\Colocation\IpAddressRepository as ColoIpAddressRepository;
 use Transip\Api\Client\Repository\Colocation\RemoteHandsRepository as ColoRemoteHandsRepository;
@@ -240,6 +241,11 @@ class TransipAPI
     public function bigStorageBackups(): BigStorageBackupRepository
     {
         return new BigStorageBackupRepository($this->httpClient);
+    }
+
+    public function bigStorageUsage(): BigStorageUsageRepository
+    {
+        return new BigStorageUsageRepository($this->httpClient);
     }
 
     public function mailService(): MailServiceRepository
