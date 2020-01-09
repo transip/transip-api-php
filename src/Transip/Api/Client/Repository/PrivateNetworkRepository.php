@@ -43,6 +43,18 @@ class PrivateNetworkRepository extends ApiRepository
         return $privateNetworks;
     }
 
+    public function findByDescription(string $description): array
+    {
+        $privateNetworks = [];
+        foreach ($this->getAll() as $privateNetwork) {
+            if ($privateNetwork->getDescription() === $description) {
+                $privateNetworks[] = $privateNetwork;
+            }
+        }
+
+        return $privateNetworks;
+    }
+
     public function getByName(string $privateNetworkName): PrivateNetwork
     {
         $response       = $this->httpClient->get($this->getResourceUrl($privateNetworkName));
@@ -51,9 +63,14 @@ class PrivateNetworkRepository extends ApiRepository
         return new PrivateNetwork($privateNetwork);
     }
 
-    public function order(): void
+    public function order(string $description = ''): void
     {
-        $this->httpClient->post($this->getResourceUrl());
+        $parameters = [];
+        if ($description) {
+            $parameters['description'] = $description;
+        }
+
+        $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
 
     public function update(PrivateNetwork $privateNetwork): void
