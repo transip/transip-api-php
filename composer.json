@@ -10,12 +10,11 @@
     ],
     "minimum-stability": "stable",
     "require": {
+        "symfony/cache": "^5.0",
         "guzzlehttp/guzzle": "^6.3",
-         "ext-json": "*",
-         "ext-openssl": "*",
-        "symfony/cache": "^5.0"
-    }
-    ,
+        "ext-json": "*",
+        "ext-openssl": "*"
+    },
     "autoload": {
         "psr-4": {
             "Transip\\Api\\Client\\": "src/Transip/Api/Client"

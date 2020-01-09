@@ -2,9 +2,6 @@
 
 namespace Transip\Api\Client;
 
-// composer autoload.
-require (__DIR__ . '/../../../../vendor/autoload.php');
-
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Transip\Api\Client\HttpClient\GuzzleClient;
