@@ -107,37 +107,12 @@ class AuthRepository extends ApiRepository
 
         $key = "-----BEGIN PRIVATE KEY-----\n" . $key . "-----END PRIVATE KEY-----";
 
-        $digest = $this->sha512Asn1(json_encode($parameters));
-        if (!@openssl_private_encrypt($digest, $signature, $key)) {
+        if (!@openssl_sign(json_encode($parameters), $signature, $key,OPENSSL_ALGO_SHA512)) {
             throw new Exception(
                 'Could not sign your request, please set a valid private key in the PRIVATE_KEY constant.'
             );
         }
 
         return base64_encode($signature);
-    }
-
-    /**
-     * Creates a SHA512 ASN.1 header.
-     *
-     * @param $data
-     * @return string
-     */
-    private function sha512Asn1($data)
-    {
-        $digest = hash('sha512', $data, true);
-
-        // this ASN1 header is sha512 specific
-        $asn1 = chr(0x30) . chr(0x51);
-        $asn1 .= chr(0x30) . chr(0x0d);
-        $asn1 .= chr(0x06) . chr(0x09);
-        $asn1 .= chr(0x60) . chr(0x86) . chr(0x48) . chr(0x01) . chr(0x65);
-        $asn1 .= chr(0x03) . chr(0x04);
-        $asn1 .= chr(0x02) . chr(0x03);
-        $asn1 .= chr(0x05) . chr(0x00);
-        $asn1 .= chr(0x04) . chr(0x40);
-        $asn1 .= $digest;
-
-        return $asn1;
     }
 }
