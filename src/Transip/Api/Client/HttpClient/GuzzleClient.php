@@ -26,7 +26,13 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
 
     public function setToken(string $token): void
     {
-        $this->client = new Client(['headers' => ['Authorization' => "Bearer {$token}"]]);
+        $config = [
+            'headers' => [
+                'Authorization' => "Bearer {$token}",
+                'User-Agent' => self::USER_AGENT
+            ]
+        ];
+        $this->client = new Client($config);
         $this->token = $token;
     }
 
