@@ -11,6 +11,7 @@ abstract class HttpClient
 {
     public const TOKEN_CACHE_KEY = 'token';
     public const KEY_FINGERPRINT_CACHE_KEY = 'key-fingerprint';
+    public const USER_AGENT = 'TransIP ApiClient';
 
     /**
      * @var AuthRepository $authRepository
@@ -126,5 +127,10 @@ abstract class HttpClient
     public function setGenerateWhitelistOnlyTokens(bool $generateWhitelistOnlyTokens): void
     {
         $this->generateWhitelistOnlyTokens = $generateWhitelistOnlyTokens;
+    }
+
+    public function getUserAgent()
+    {
+        return self::USER_AGENT . " v" . TransipAPI::TRANSIP_API_LIBRARY_VERSION;
     }
 }

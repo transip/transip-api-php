@@ -50,15 +50,24 @@ use Transip\Api\Client\Repository\HaipRepository;
 
 class TransipAPI
 {
-    private const TRANSIP_API_ENDPOINT = "https://api.transip.nl/v6";
+    public const TRANSIP_API_ENDPOINT = "https://api.transip.nl/v6";
+    public const TRANSIP_API_LIBRARY_VERSION = "6.0";
 
     /**
      * @var HttpClientInterface $httpClient
      */
     private $httpClient;
 
+    /**
+     * @param string                $customerLoginName           The loginName used to login to the TransIP Control Panel.
+     * @param string                $privateKey                  The Privatekey generated in the control panel
+     * @param bool                  $generateWhitelistOnlyTokens Whether the generated token should use the whitelist
+     * @param string                $token                       AccessToken (optional, private key will generate this for you)
+     * @param string                $endpointUrl                 Use a different endpoint
+     * @param AdapterInterface|null $cache                       Symphony cache adapter, to hold the generated AccessToken
+     */
     public function __construct(
-        string $login,
+        string $customerLoginName,
         string $privateKey,
         bool $generateWhitelistOnlyTokens = true,
         string $token = '',
@@ -73,8 +82,8 @@ class TransipAPI
 
         $this->httpClient = new GuzzleClient($endpoint);
 
-        if ($login != '') {
-            $this->httpClient->setLogin($login);
+        if ($customerLoginName != '') {
+            $this->httpClient->setLogin($customerLoginName);
         }
 
         if ($privateKey != '') {

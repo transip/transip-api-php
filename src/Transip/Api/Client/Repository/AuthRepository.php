@@ -19,7 +19,7 @@ class AuthRepository extends ApiRepository
     }
 
     /**
-     * @param string $customerLoginName
+     * @param string $customerLoginName           Account name used to login into TransIP CP
      * @param string $privateKey                  The generated private key from the control panel
      * @param bool   $generateWhitelistOnlyTokens Whether whitelisted IP address is needed to use the token generated in this function
      * @param string $label                       Label shown in the control panel, has to be unique
@@ -80,15 +80,6 @@ class AuthRepository extends ApiRepository
         return intval($expirationTime);
     }
 
-    /**
-     * Method for creating a signature based on
-     * Same sign method as used in SOAP API.
-     *
-     * @param string $privateKey
-     * @param array  $parameters
-     * @return string
-     * @throws Exception
-     */
     private function createSignature(string $privateKey, array $parameters): string
     {
         // Fixup our private key, copy-pasting the key might lead to whitespace faults
