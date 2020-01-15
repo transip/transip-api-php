@@ -27,6 +27,8 @@ use Transip\Api\Client\Repository\Domain\SslRepository as DomainSslRepository;
 use Transip\Api\Client\Repository\Domain\WhoisRepository as DomainWhoisRepository;
 use Transip\Api\Client\Repository\Domain\ZoneFileRepository as DomainZoneFileRepository;
 use Transip\Api\Client\Repository\DomainWhitelabelRepository;
+use Transip\Api\Client\Repository\Invoice\PdfRepository;
+use Transip\Api\Client\Repository\InvoiceRepository;
 use Transip\Api\Client\Repository\MailServiceRepository;
 use Transip\Api\Client\Repository\PrivateNetworkRepository;
 use Transip\Api\Client\Repository\ProductRepository;
@@ -307,6 +309,16 @@ class TransipAPI
     public function auth(): AuthRepository
     {
         return new AuthRepository($this->httpClient);
+    }
+
+    public function invoice(): InvoiceRepository
+    {
+        return new InvoiceRepository($this->httpClient);
+    }
+
+    public function invoicePdf(): PdfRepository
+    {
+        return new PdfRepository($this->httpClient);
     }
 
     public function setHttpClient(HttpClientInterface $httpClient): void
