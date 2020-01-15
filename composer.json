@@ -1,11 +1,12 @@
 {
-    "name": "transip/api.client",
-    "description": "TransIP REST Api client",
+    "name": "transip/restapi-php-library",
+    "license": "GNU GENERAL PUBLIC LICENSE",
+    "description": "TransIP REST API Library",
     "type": "project",
     "authors": [
         {
-            "name": "Stefan Konig",
-            "email": "skonig@transip.nl"
+            "name": "TransIP",
+            "email": "support@transip.nl"
         }
     ],
     "minimum-stability": "stable",
