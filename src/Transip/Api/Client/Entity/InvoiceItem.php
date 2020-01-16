@@ -22,17 +22,12 @@ class InvoiceItem extends AbstractEntity
     /**
      * @var string
      */
-    public $invoiceItemDate;
+    public $date;
 
     /**
      * @var int
      */
     public $quantity;
-
-    /**
-     * @var string
-     */
-    public $currency;
 
     /**
      * @var int
@@ -99,9 +94,9 @@ class InvoiceItem extends AbstractEntity
     /**
      * @return string
      */
-    public function getInvoiceItemDate(): string
+    public function getDate(): string
     {
-        return $this->invoiceItemDate;
+        return $this->date;
     }
 
     /**
@@ -110,14 +105,6 @@ class InvoiceItem extends AbstractEntity
     public function getQuantity(): int
     {
         return $this->quantity;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCurrency(): string
-    {
-        return $this->currency;
     }
 
     /**
