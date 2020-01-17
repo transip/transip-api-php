@@ -15,6 +15,9 @@ class UsageRepository extends ApiRepository
         return [BigStorageRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
+    /**
+     * @return UsageDataDisk[]
+     */
     public function getUsageStatistics(
         string $bigStorageName,
         int $dateTimeStart = 0,
