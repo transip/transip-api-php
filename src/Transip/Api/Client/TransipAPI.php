@@ -53,7 +53,7 @@ use Transip\Api\Client\Repository\HaipRepository;
 class TransipAPI
 {
     public const TRANSIP_API_ENDPOINT = "https://api.transip.nl/v6";
-    public const TRANSIP_API_LIBRARY_VERSION = "6.0";
+    public const TRANSIP_API_LIBRARY_VERSION = "6.0.0";
 
     /**
      * @var HttpClientInterface $httpClient
@@ -336,7 +336,22 @@ class TransipAPI
         $this->httpClient->setEndpoint($endpointUrl);
     }
 
-    public function clearCache()
+    public function getLogin(): string
+    {
+        return $this->httpClient->getLogin();
+    }
+
+    public function getEndpointUrl(): string
+    {
+        return $this->httpClient->getEndpoint();
+    }
+
+    public function getGenerateWhitelistOnlyTokens(): bool
+    {
+        return $this->httpClient->getGenerateWhitelistOnlyTokens();
+    }
+
+    public function clearCache(): void
     {
         $this->httpClient->clearCache();
     }
