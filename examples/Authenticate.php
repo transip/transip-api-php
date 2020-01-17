@@ -2,7 +2,11 @@
 
 use Transip\Api\Client\TransipAPI;
 
-include(__DIR__ . '/../vendor/autoload.php');
+/**
+ * This is an example on how to authenticate before using the REST API Library.
+ */
+
+require_once(__DIR__ . '/../vendor/autoload.php');
 
 // Your login name on the TransIP website.
 $login = '';

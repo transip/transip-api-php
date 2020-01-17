@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-1.0.0
+6.0.0
 -----
 
 * Implemented feature for the ability in API Test to clear the Token cache
