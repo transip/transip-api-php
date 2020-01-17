@@ -1,6 +1,6 @@
 {
     "name": "transip/restapi-php-library",
-    "license": "GNU GENERAL PUBLIC LICENSE",
+    "license": "MIT LICENSE",
     "description": "TransIP REST API Library",
     "type": "project",
     "authors": [
