@@ -55,7 +55,7 @@ abstract class HttpClient
         $this->authRepository = new AuthRepository($httpClient);
     }
 
-    public function setCache(AdapterInterface $cache)
+    public function setCache(AdapterInterface $cache): void
     {
         $this->cache = $cache;
     }
@@ -80,7 +80,7 @@ abstract class HttpClient
         }
     }
 
-    public function getTokenFromCache()
+    public function getTokenFromCache(): void
     {
         $cachedToken = $this->cache->getItem(self::TOKEN_CACHE_KEY);
         $cachedKeyFP = $this->cache->getItem(self::KEY_FINGERPRINT_CACHE_KEY);
@@ -109,9 +109,19 @@ abstract class HttpClient
         $this->cache->deleteItem(self::KEY_FINGERPRINT_CACHE_KEY);
     }
 
+    public function getEndpoint(): string
+    {
+        return $this->endpoint;
+    }
+
     public function setEndpoint(string $endpoint): void
     {
         $this->endpoint = $endpoint;
+    }
+
+    public function getLogin(): string
+    {
+        return $this->login;
     }
 
     public function setLogin(string $login): void
@@ -124,12 +134,17 @@ abstract class HttpClient
         $this->privateKey = $privateKey;
     }
 
+    public function getGenerateWhitelistOnlyTokens(): bool
+    {
+        return $this->generateWhitelistOnlyTokens;
+    }
+
     public function setGenerateWhitelistOnlyTokens(bool $generateWhitelistOnlyTokens): void
     {
         $this->generateWhitelistOnlyTokens = $generateWhitelistOnlyTokens;
     }
 
-    public function getUserAgent()
+    public function getUserAgent(): string
     {
         return self::USER_AGENT . " v" . TransipAPI::TRANSIP_API_LIBRARY_VERSION;
     }
