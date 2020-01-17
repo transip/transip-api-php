@@ -8,6 +8,9 @@ class InvoiceRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'invoices';
 
+    /**
+     * @return Invoice[]
+     */
     public function getAll(): array
     {
         $invoices   = [];
@@ -21,6 +24,9 @@ class InvoiceRepository extends ApiRepository
         return $invoices;
     }
 
+    /**
+     * @return Invoice[]
+     */
     public function getSelection(int $page, int $itemsPerPage): array
     {
         $invoices   = [];

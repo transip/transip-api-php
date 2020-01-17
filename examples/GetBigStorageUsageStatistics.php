@@ -7,20 +7,37 @@
 
 require_once('Authenticate.php');
 
-// Get usage statistics
-$usageStatistics = $api->bigStorageUsage()->getUsageStatistics('example-bigstorage');
-
-print_r($usageStatistics);
+// Your big storage name
+$bigStorageName = 'example-bigstorage38';
 
 
-// Get usage statistics with start and end dates
-$dateTimeStart = DateTime::createFromFormat('Y-m-d H:i:s', '2020-01-01 13:37:00');
-$dateTimeEnd   = DateTime::createFromFormat('Y-m-d H:i:s', '2020-01-20 20:58:00');
+/**
+ * Example 1: Get usage statistics for 1 day
+ */
+// $usageStatistics = $api->bigStorageUsage()->getUsageStatistics($bigStorageName);
+// print_r($usageStatistics);
+
+
+/**
+ * Example 2: Get usage statistics for last three days
+ */
+$dateToday        = new \DateTimeImmutable();
+$dateThreeDaysAgo = $dateToday->sub(new \DateInterval('P3D'));
+
+$dateTimeStart    = $dateThreeDaysAgo;
+$dateTimeEnd      = $dateToday;
 
 $usageStatistics = $api->bigStorageUsage()->getUsageStatistics(
-    'example-bigstorage',
+    $bigStorageName,
     $dateTimeStart->getTimestamp(),
     $dateTimeEnd->getTimestamp()
 );
 
-print_r($usageStatistics);
+foreach ($usageStatistics as $statistic) {
+
+    // Convert unix timestamp to human readable date
+    $date = new DateTime("@{$statistic->getDate()}");
+
+    // Render statistics
+    echo "IO Operations per second - Date: {$date->format('Y-m-d H:i')}, Read: {$statistic->getIopsRead()}, Write: {$statistic->getIopsWrite()} \n";
+}

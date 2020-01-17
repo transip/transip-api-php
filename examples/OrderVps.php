@@ -8,7 +8,9 @@
 
 require_once('Authenticate.php');
 
-// Order a VPS with only required fields
+/**
+ * Example 1: Simply order a VPS
+ */
 $productName               = 'vps-bladevps-x1';
 $operatingSystemToInstall  = 'debian-9';
 
@@ -17,8 +19,9 @@ $api->vps()->order(
     $operatingSystemToInstall
 );
 
-
-// Order a VPS with optional fields
+/**
+ * Example 2: Order a VPS with an addon and choose your data center
+ */
 $addons           = ['vpsAddon-1-extra-ip-address'];
 $hostName         = 'server.yoursite.com';
 $availabilityZone = 'ams0';
