@@ -27,6 +27,7 @@ $dateThreeDaysAgo = $dateToday->sub(new \DateInterval('P3D'));
 $dateTimeStart    = $dateThreeDaysAgo;
 $dateTimeEnd      = $dateToday;
 
+// Get usage statistics from the API
 $usageStatistics = $api->bigStorageUsage()->getUsageStatistics(
     $bigStorageName,
     $dateTimeStart->getTimestamp(),

@@ -1,6 +1,6 @@
 <?php
 
-use Transip\Api\Client\TransipAPI;
+use Transip\Api\Library\TransipAPI;
 
 /**
  * This is an example on how to authenticate before using the REST API Library.

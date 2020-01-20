@@ -7,7 +7,7 @@
 
 require_once('Authenticate.php');
 
-// List all available products
+// Get all available products
 $products = $api->products()->getAll();
 
 print_r($products);
