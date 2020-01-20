@@ -6,7 +6,7 @@ require(__DIR__ . '/../../Authenticate.php');
 
 // Create a Firewall rules object
 $firewallRule = new FirewallRule();
-$firewallRule->setDescription($description);
+$firewallRule->setDescription('New description here');
 $firewallRule->setStartPort(80);
 $firewallRule->setEndPort(80);
 $firewallRule->setProtocol('tcp');
