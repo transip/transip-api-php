@@ -32,14 +32,14 @@ class AuthRepository extends ApiRepository
         string $customerLoginName,
         string $privateKey,
         bool $generateWhitelistOnlyTokens = false,
+        bool $readOnly = false,
         string $label = '',
-        string $expirationTime = '1 day',
-        bool $readOnly = false
+        string $expirationTime = '1 day'
     ): ?string {
 
         $this->expiryTime = $expirationTime;
         if ($label == '') {
-            $label = "api.client-" . time();
+            $label = 'api.client-' . time();
         }
 
         $requestBody = [

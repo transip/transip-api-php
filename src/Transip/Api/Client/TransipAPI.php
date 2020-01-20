@@ -355,4 +355,15 @@ class TransipAPI
     {
         $this->httpClient->clearCache();
     }
+
+    /**
+     * When set to true, all tokens generated will be set to read only mode. This means no purchases or changes can be
+     * made using the api.
+     *
+     * @param bool $mode
+     */
+    public function setReadOnlyMode(bool $mode = false): void
+    {
+        $this->httpClient->setReadOnlyMode($mode);
+    }
 }

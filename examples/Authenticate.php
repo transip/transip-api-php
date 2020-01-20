@@ -23,8 +23,11 @@ $api = new TransipAPI(
     $generateWhitelistOnlyTokens
 );
 
+// Set all generated tokens to read only mode (optional)
+// $api->setReadOnlyMode(true);
+
 // Create a test connection to the api
-$response = $api->test()->test();
+// $response = $api->test()->test();
 
 // if ($response === true) {
 //     echo 'API connection successful!';

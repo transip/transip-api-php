@@ -48,6 +48,11 @@ abstract class HttpClient
      */
     protected $cache;
 
+    /**
+     * @var bool
+     */
+    protected $readOnlyMode = false;
+
     public function __construct(HttpClientInterface $httpClient, string $endpoint)
     {
         $endpoint             = rtrim($endpoint, '/');
@@ -64,7 +69,12 @@ abstract class HttpClient
     {
         $expirationTime = $this->authRepository->getExpirationTimeFromToken($this->token);
         if ($expirationTime <= (time() - 2)) {
-            $token = $this->authRepository->createToken($this->login, $this->privateKey, $this->generateWhitelistOnlyTokens);
+            $token = $this->authRepository->createToken(
+                $this->login,
+                $this->privateKey,
+                $this->generateWhitelistOnlyTokens,
+                $this->readOnlyMode
+            );
             $this->setToken($token);
 
             // Save new token to cache
@@ -147,5 +157,10 @@ abstract class HttpClient
     public function getUserAgent(): string
     {
         return self::USER_AGENT . " v" . TransipAPI::TRANSIP_API_LIBRARY_VERSION;
+    }
+
+    public function setReadOnlyMode(bool $mode): void
+    {
+        $this->readOnlyMode = $mode;
     }
 }
