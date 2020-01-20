@@ -23,7 +23,7 @@ Please ensure that these PHP extensions are installed on your web server.
 ## Getting started
 How to get authenticated:
 ```php
-use Transip\Api\Client\TransipAPI;
+use Transip\Api\Library\TransipAPI;
 
 require_once(__DIR__ . '/vendor/autoload.php');
 
