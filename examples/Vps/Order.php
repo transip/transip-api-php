@@ -6,7 +6,7 @@
  * associated to the newly delivered VPS will be returned in a new call respectively.
  */
 
-require_once('Authenticate.php');
+require_once(__DIR__ . '/../Authenticate.php');
 
 /**
  * Example 1: Simply order a VPS
