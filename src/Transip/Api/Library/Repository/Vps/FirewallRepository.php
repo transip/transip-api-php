@@ -22,7 +22,7 @@ class FirewallRepository extends ApiRepository
     public function getByVpsName(string $vpsName): Firewall
     {
         $response      = $this->httpClient->get($this->getResourceUrl($vpsName));
-        $firewallArray = $this->getParameterFromResponse($response, 'VpsFirewall');
+        $firewallArray = $this->getParameterFromResponse($response, 'vpsFirewall');
 
         return new Firewall($firewallArray);
     }
