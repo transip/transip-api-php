@@ -2,7 +2,7 @@
 
 namespace Transip\Api\Library\Repository;
 
-use Exception;
+use RuntimeException;
 
 class AuthRepository extends ApiRepository
 {
@@ -31,7 +31,7 @@ class AuthRepository extends ApiRepository
      * @param string $expirationTime              The maximum expiration time is one month
      * @param bool   $readOnly                    Whether the key can be used to change anything
      * @return string accessToken
-     * @throws Exception
+     * @throws RuntimeException
      */
     public function createToken(
         string $customerLoginName,
@@ -78,7 +78,7 @@ class AuthRepository extends ApiRepository
             $data           = $data = explode('.', $token);
             $body           = json_decode(base64_decode($data[1]), true);
             $expirationTime = $body['exp'] ?? 0;
-        } catch (Exception $exception) {
+        } catch (RuntimeException $exception) {
             $expirationTime = 0;
         }
 
@@ -94,7 +94,7 @@ class AuthRepository extends ApiRepository
             $matches
         )
         ) {
-            throw new Exception('Could not find a valid private key');
+            throw new RuntimeException('Could not find a valid private key');
         }
 
         $key = $matches[2];
@@ -104,8 +104,8 @@ class AuthRepository extends ApiRepository
         $key = "-----BEGIN PRIVATE KEY-----\n" . $key . "-----END PRIVATE KEY-----";
 
         if (!@openssl_sign(json_encode($parameters), $signature, $key,OPENSSL_ALGO_SHA512)) {
-            throw new Exception(
-                'Could not sign your request, please set a valid private key in the PRIVATE_KEY constant.'
+            throw new RuntimeException(
+                'The provided private key is invalid'
             );
         }
 
