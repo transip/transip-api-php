@@ -162,4 +162,15 @@ abstract class HttpClient
     {
         $this->readOnlyMode = $mode;
     }
+
+    /**
+     * Set the prefix for the label that is used to create the token, this will show up in the Transip ControlPanel
+     * by default this is 'api.lib-'
+     *
+     * @param string $labelPrefix
+     */
+    public function setTokenLabelPrefix(string $labelPrefix): void
+    {
+        $this->authRepository->setLabelPrefix($labelPrefix);
+    }
 }

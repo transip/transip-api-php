@@ -3,7 +3,6 @@
 namespace Transip\Api\Library\Exception;
 
 use Exception;
-use GuzzleHttp\Exception\ConnectException;
 use Psr\Http\Message\ResponseInterface;
 use Transip\Api\Library\Exception\HttpRequest\BadResponseException;
 use Transip\Api\Library\Exception\HttpRequest\ConflictException;
