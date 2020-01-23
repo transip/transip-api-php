@@ -13,6 +13,11 @@ class AuthRepository extends ApiRepository
      */
     protected $expiryTime;
 
+    /**
+     * @var string
+     */
+    protected $labelPrefix = 'api.lib-';
+
     protected function getRepositoryResourceNames(): array
     {
         return [self::RESOURCE_NAME];
@@ -39,7 +44,7 @@ class AuthRepository extends ApiRepository
 
         $this->expiryTime = $expirationTime;
         if ($label == '') {
-            $label = 'api.client-' . time();
+            $label = $this->getLabelPrefix() . time();
         }
 
         $requestBody = [
@@ -105,5 +110,15 @@ class AuthRepository extends ApiRepository
         }
 
         return base64_encode($signature);
+    }
+
+    public function getLabelPrefix(): string
+    {
+        return $this->labelPrefix;
+    }
+
+    public function setLabelPrefix(string $labelPrefix): void
+    {
+        $this->labelPrefix = $labelPrefix;
     }
 }

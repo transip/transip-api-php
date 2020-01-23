@@ -336,6 +336,11 @@ class TransipAPI
         $this->httpClient->setEndpoint($endpointUrl);
     }
 
+    public function setTokenLabelPrefix(string $endpointUrl): void
+    {
+        $this->httpClient->setTokenLabelPrefix($endpointUrl);
+    }
+
     public function getLogin(): string
     {
         return $this->httpClient->getLogin();
