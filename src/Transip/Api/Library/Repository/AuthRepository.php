@@ -2,6 +2,7 @@
 
 namespace Transip\Api\Library\Repository;
 
+use Exception;
 use RuntimeException;
 
 class AuthRepository extends ApiRepository
@@ -78,7 +79,7 @@ class AuthRepository extends ApiRepository
             $data           = $data = explode('.', $token);
             $body           = json_decode(base64_decode($data[1]), true);
             $expirationTime = $body['exp'] ?? 0;
-        } catch (RuntimeException $exception) {
+        } catch (Exception $exception) {
             $expirationTime = 0;
         }
 
