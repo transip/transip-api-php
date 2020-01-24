@@ -24,6 +24,24 @@ class DomainTldRepository extends ApiRepository
         return $tlds;
     }
 
+    /**
+     * @return Tld[]
+     */
+    public function getSelection(int $page, int $itemsPerPage): array
+    {
+        $tlds     = [];
+        $query    = ['pageSize' => $itemsPerPage, 'page' => $page];
+        $response = $this->httpClient->get($this->getResourceUrl(), $query);
+        $tldList  = $this->getParameterFromResponse($response, 'tlds');
+
+
+        foreach ($tldList as $tld) {
+            $tlds[] = new Tld($tld);
+        }
+
+        return $tlds;
+    }
+
     public function getByTld(string $tld): Tld
     {
         $response = $this->httpClient->get($this->getResourceUrl($tld));

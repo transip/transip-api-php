@@ -25,8 +25,6 @@ class BigStorageRepository extends ApiRepository
     }
 
     /**
-     * @param int $page
-     * @param int $itemsPerPage
      * @return BigStorage[]
      */
     public function getSelection(int $page, int $itemsPerPage): array

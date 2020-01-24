@@ -16,7 +16,6 @@ class BackupRepository extends ApiRepository
     }
 
     /**
-     * @param string $vpsName
      * @return Backup[]
      */
     public function getByVpsName(string $vpsName): array

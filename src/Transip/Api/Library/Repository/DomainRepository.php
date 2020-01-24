@@ -28,8 +28,6 @@ class DomainRepository extends ApiRepository
     }
 
     /**
-     * @param int $page
-     * @param int $itemsPerPage
      * @return Domain[]
      */
     public function getSelection(int $page, int $itemsPerPage): array

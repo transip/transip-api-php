@@ -16,7 +16,6 @@ class CertificateRepository extends ApiRepository
     }
 
     /**
-     * @param string $haipName
      * @return Certificate[]
      */
     public function getByHaipName(string $haipName): array

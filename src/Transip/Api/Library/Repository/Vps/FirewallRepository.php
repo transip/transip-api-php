@@ -15,10 +15,6 @@ class FirewallRepository extends ApiRepository
         return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
-    /**
-     * @param string $vpsName
-     * @return Firewall
-     */
     public function getByVpsName(string $vpsName): Firewall
     {
         $response      = $this->httpClient->get($this->getResourceUrl($vpsName));

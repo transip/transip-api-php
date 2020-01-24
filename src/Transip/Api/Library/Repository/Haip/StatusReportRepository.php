@@ -17,7 +17,6 @@ class StatusReportRepository extends ApiRepository
     }
 
     /**
-     * @param string $haipName
      * @return StatusReport[]
      */
     public function getByHaipName(string $haipName): array

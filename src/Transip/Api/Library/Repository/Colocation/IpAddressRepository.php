@@ -16,7 +16,6 @@ class IpAddressRepository extends ApiRepository
     }
 
     /**
-     * @param string $coloName
      * @return IpAddress[]
      */
     public function getByColoName(string $coloName): array
