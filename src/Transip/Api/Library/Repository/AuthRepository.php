@@ -24,16 +24,6 @@ class AuthRepository extends ApiRepository
         return [self::RESOURCE_NAME];
     }
 
-    /**
-     * @param string $customerLoginName           Account name used to login into TransIP CP
-     * @param string $privateKey                  The generated private key from the control panel
-     * @param bool   $generateWhitelistOnlyTokens Whether whitelisted IP address is needed to use the token generated in this function
-     * @param string $label                       Label shown in the control panel, has to be unique
-     * @param string $expirationTime              The maximum expiration time is one month
-     * @param bool   $readOnly                    Whether the key can be used to change anything
-     * @return string accessToken
-     * @throws RuntimeException
-     */
     public function createToken(
         string $customerLoginName,
         string $privateKey,

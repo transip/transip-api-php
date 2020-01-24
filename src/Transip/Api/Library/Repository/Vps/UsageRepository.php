@@ -21,13 +21,6 @@ class UsageRepository extends ApiRepository
         return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
-    /**
-     * @param string $vpsName
-     * @param array  $types
-     * @param int    $dateTimeStart
-     * @param int    $dateTimeEnd
-     * @return array
-     */
     public function getByVpsName(
         string $vpsName,
         array $types = [],

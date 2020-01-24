@@ -16,7 +16,6 @@ class DnsRepository extends ApiRepository
     }
 
     /**
-     * @param string $domainName
      * @return DnsEntry[]
      */
     public function getByDomainName(string $domainName): array
