@@ -42,7 +42,6 @@ class AuthRepository extends ApiRepository
         string $label = '',
         string $expirationTime = '1 day'
     ): ?string {
-
         $this->expiryTime = $expirationTime;
         if ($label == '') {
             $label = $this->getLabelPrefix() . time();
@@ -50,7 +49,7 @@ class AuthRepository extends ApiRepository
 
         $requestBody = [
             'login'           => $customerLoginName,
-            'nonce'           => uniqid(),
+            'nonce'           => bin2hex(random_bytes(16)),
             'read_only'       => $readOnly,
             'expiration_time' => $expirationTime,
             'label'           => $label,
@@ -104,7 +103,7 @@ class AuthRepository extends ApiRepository
 
         $key = "-----BEGIN PRIVATE KEY-----\n" . $key . "-----END PRIVATE KEY-----";
 
-        if (!@openssl_sign(json_encode($parameters), $signature, $key,OPENSSL_ALGO_SHA512)) {
+        if (!@openssl_sign(json_encode($parameters), $signature, $key, OPENSSL_ALGO_SHA512)) {
             throw new RuntimeException(
                 'The provided private key is invalid'
             );
