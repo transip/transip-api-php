@@ -2,11 +2,11 @@
 
 namespace Transip\Api\Library\Exception;
 
-use Exception;
+use RuntimeException;
 
-class ApiClientException extends Exception
+class ApiClientException extends RuntimeException
 {
-    CONST CODE_API_RESPONSE_MISSING_PARAMETER = 1101;
+    const CODE_API_RESPONSE_MISSING_PARAMETER = 1101;
 
     /**
      * @param string $message

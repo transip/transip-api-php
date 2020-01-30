@@ -3,6 +3,7 @@
 namespace Transip\Api\Library\Exception;
 
 use Exception;
+use RuntimeException;
 use Psr\Http\Message\ResponseInterface;
 use Transip\Api\Library\Exception\HttpRequest\BadResponseException;
 use Transip\Api\Library\Exception\HttpRequest\ConflictException;
@@ -17,7 +18,7 @@ use Transip\Api\Library\Exception\HttpRequest\TooManyBadResponseException;
 use Transip\Api\Library\Exception\HttpRequest\UnauthorizedException;
 use Transip\Api\Library\Exception\HttpRequest\UnprocessableEntityException;
 
-class HttpBadResponseException extends Exception
+class HttpBadResponseException extends RuntimeException
 {
     /**
      * @var Exception $innerException
@@ -48,7 +49,7 @@ class HttpBadResponseException extends Exception
         $decodedResponse = json_decode($errorMessage, true);
         $errorMessage    = $decodedResponse['error'] ?? $response->getBody();
 
-        switch($response->getStatusCode()) {
+        switch ($response->getStatusCode()) {
             case BadResponseException::STATUS_CODE:
                 return new BadResponseException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case UnauthorizedException::STATUS_CODE:
