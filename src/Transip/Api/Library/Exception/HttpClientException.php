@@ -3,8 +3,9 @@
 namespace Transip\Api\Library\Exception;
 
 use Exception;
+use RuntimeException;
 
-class HttpClientException extends Exception
+class HttpClientException extends RuntimeException
 {
     /**
      * @var Exception $innerException

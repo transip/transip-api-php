@@ -2,16 +2,16 @@
 
 namespace Transip\Api\Library\Exception;
 
-use Exception;
+use RuntimeException;
 use Psr\Http\Message\ResponseInterface;
 
-class ApiException extends Exception
+class ApiException extends RuntimeException
 {
-    CONST CODE_API_EMPTY_RESPONSE = 1001;
+    const CODE_API_EMPTY_RESPONSE = 1001;
 
-    CONST CODE_API_UNEXPECTED_STATUS_CODE = 1002;
+    const CODE_API_UNEXPECTED_STATUS_CODE = 1002;
 
-    CONST CODE_API_MALFORMED_JSON_RESPONSE = 1003;
+    const CODE_API_MALFORMED_JSON_RESPONSE = 1003;
 
     /**
      * @var ResponseInterface $response
