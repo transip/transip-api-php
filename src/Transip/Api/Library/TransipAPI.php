@@ -32,6 +32,7 @@ use Transip\Api\Library\Repository\InvoiceRepository;
 use Transip\Api\Library\Repository\MailServiceRepository;
 use Transip\Api\Library\Repository\PrivateNetworkRepository;
 use Transip\Api\Library\Repository\ProductRepository;
+use Transip\Api\Library\Repository\Product\ElementRepository as ProductElementRepository;
 use Transip\Api\Library\Repository\DomainTldRepository;
 use Transip\Api\Library\Repository\TrafficRepository;
 use Transip\Api\Library\Repository\Vps\AddonRepository;
@@ -114,6 +115,11 @@ class TransipAPI
     public function products(): ProductRepository
     {
         return new ProductRepository($this->httpClient);
+    }
+
+    public function productElements(): ProductElementRepository
+    {
+        return new ProductElementRepository($this->httpClient);
     }
 
     public function domains(): DomainRepository
