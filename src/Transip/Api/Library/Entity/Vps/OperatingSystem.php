@@ -27,7 +27,7 @@ class OperatingSystem extends AbstractEntity
     public $version;
 
     /**
-     * @var float $price
+     * @var int $price
      */
     public $price;
 
@@ -51,7 +51,7 @@ class OperatingSystem extends AbstractEntity
         return $this->version;
     }
 
-    public function getPrice(): float
+    public function getPrice(): int
     {
         return $this->price;
     }

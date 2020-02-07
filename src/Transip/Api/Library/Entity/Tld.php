@@ -20,12 +20,12 @@ class Tld extends AbstractEntity
     public $name;
 
     /**
-     * @var float $price
+     * @var int $price
      */
     public $price;
 
     /**
-     * @var float $recurringPrice
+     * @var int $recurringPrice
      */
     public $recurringPrice;
 
@@ -59,12 +59,12 @@ class Tld extends AbstractEntity
         return $this->name;
     }
 
-    public function getPrice(): float
+    public function getPrice(): int
     {
         return $this->price;
     }
 
-    public function getRecurringPrice(): float
+    public function getRecurringPrice(): int
     {
         return $this->recurringPrice;
     }
