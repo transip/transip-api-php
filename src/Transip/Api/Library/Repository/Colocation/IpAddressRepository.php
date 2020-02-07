@@ -41,7 +41,7 @@ class IpAddressRepository extends ApiRepository
 
     public function update(string $coloName, IpAddress $ipAddress): void
     {
-        $url = $this->getResourceUrl($coloName,  $ipAddress->getAddress());
+        $url = $this->getResourceUrl($coloName, $ipAddress->getAddress());
         $this->httpClient->put($url, ['ipAddress' => $ipAddress]);
     }
 
