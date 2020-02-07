@@ -37,10 +37,12 @@ use Transip\Api\Library\Repository\DomainTldRepository;
 use Transip\Api\Library\Repository\TrafficRepository;
 use Transip\Api\Library\Repository\Vps\AddonRepository;
 use Transip\Api\Library\Repository\Vps\BackupRepository as VpsBackupRepository;
+use Transip\Api\Library\Repository\Vps\MonitoringContactRepository;
 use Transip\Api\Library\Repository\Vps\FirewallRepository as VpsFirewallRepository;
 use Transip\Api\Library\Repository\Vps\IpAddressRepository as VpsIpAddressRepository;
 use Transip\Api\Library\Repository\Vps\OperatingSystemRepository;
 use Transip\Api\Library\Repository\Vps\SnapshotRepository;
+use Transip\Api\Library\Repository\Vps\TCPMonitorRepository;
 use Transip\Api\Library\Repository\Vps\UpgradeRepository;
 use Transip\Api\Library\Repository\Vps\UsageRepository;
 use Transip\Api\Library\Repository\Vps\VncDataRepository;
@@ -187,14 +189,14 @@ class TransipAPI
         return new DomainWhitelabelRepository($this->httpClient);
     }
 
-    public function vps(): VpsRepository
-    {
-        return new VpsRepository($this->httpClient);
-    }
-
     public function traffic(): TrafficRepository
     {
         return new TrafficRepository($this->httpClient);
+    }
+
+    public function vps(): VpsRepository
+    {
+        return new VpsRepository($this->httpClient);
     }
 
     public function vpsAddons(): AddonRepository
@@ -240,6 +242,16 @@ class TransipAPI
     public function vpsVncData(): VncDataRepository
     {
         return new VncDataRepository($this->httpClient);
+    }
+
+    public function vpsTCPMonitor(): TCPMonitorRepository
+    {
+        return new TCPMonitorRepository($this->httpClient);
+    }
+
+    public function vpsTCPMonitorContact(): MonitoringContactRepository
+    {
+        return new MonitoringContactRepository($this->httpClient);
     }
 
     public function privateNetworks(): PrivateNetworkRepository

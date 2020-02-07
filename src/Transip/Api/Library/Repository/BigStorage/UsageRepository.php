@@ -36,7 +36,7 @@ class UsageRepository extends ApiRepository
         $response = $this->httpClient->get($this->getResourceUrl($bigStorageName), $parameters);
         $usageStatistics = $this->getParameterFromResponse($response, 'usage');
 
-        foreach($usageStatistics as $usage) {
+        foreach ($usageStatistics as $usage) {
             $usages[] = new UsageDataDisk($usage);
         }
 

@@ -25,6 +25,6 @@ class VncDataRepository extends ApiRepository
 
     public function regenerateVncCredentials(string $vpsName): void
     {
-        $this->httpClient->patch($this->getResourceUrl($vpsName),[]);
+        $this->httpClient->patch($this->getResourceUrl($vpsName), []);
     }
 }

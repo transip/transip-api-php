@@ -29,7 +29,7 @@ class UsageRepository extends ApiRepository
     ): array {
         $parameters = [];
         if (count($types) > 0) {
-            $parameters['types'] = implode(',',$types);
+            $parameters['types'] = implode(',', $types);
         }
         if ($dateTimeStart > 0) {
             $parameters['dateTimeStart'] = $dateTimeStart;

@@ -18,7 +18,7 @@ class MailServiceRepository extends ApiRepository
 
     public function regenerateMailServicePassword(): void
     {
-        $this->httpClient->patch($this->getResourceUrl(),[]);
+        $this->httpClient->patch($this->getResourceUrl(), []);
     }
 
     public function addMailServiceDnsEntriesToDomains(array $domainNames): void

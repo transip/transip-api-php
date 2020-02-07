@@ -51,6 +51,6 @@ class ActionRepository extends ApiRepository
 
     public function cancelAction(string $domainName): void
     {
-        $this->httpClient->delete($this->getResourceUrl($domainName),[]);
+        $this->httpClient->delete($this->getResourceUrl($domainName), []);
     }
 }
