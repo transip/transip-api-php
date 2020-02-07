@@ -26,8 +26,9 @@ use Transip\Api\Library\Repository\Domain\NameserverRepository as DomainNameserv
 use Transip\Api\Library\Repository\Domain\SslRepository as DomainSslRepository;
 use Transip\Api\Library\Repository\Domain\WhoisRepository as DomainWhoisRepository;
 use Transip\Api\Library\Repository\DomainWhitelabelRepository;
-use Transip\Api\Library\Repository\Invoice\PdfRepository;
 use Transip\Api\Library\Repository\InvoiceRepository;
+use Transip\Api\Library\Repository\Invoice\ItemRepository as InvoiceItemRepository;
+use Transip\Api\Library\Repository\Invoice\PdfRepository as InvoicePdfRepository;
 use Transip\Api\Library\Repository\MailServiceRepository;
 use Transip\Api\Library\Repository\PrivateNetworkRepository;
 use Transip\Api\Library\Repository\ProductRepository;
@@ -121,6 +122,21 @@ class TransipAPI
     public function productElements(): ProductElementRepository
     {
         return new ProductElementRepository($this->httpClient);
+    }
+
+    public function invoice(): InvoiceRepository
+    {
+        return new InvoiceRepository($this->httpClient);
+    }
+
+    public function invoicePdf(): InvoicePdfRepository
+    {
+        return new InvoicePdfRepository($this->httpClient);
+    }
+
+    public function invoiceItem(): InvoiceItemRepository
+    {
+        return new InvoiceItemRepository($this->httpClient);
     }
 
     public function domains(): DomainRepository
@@ -320,16 +336,6 @@ class TransipAPI
     public function auth(): AuthRepository
     {
         return new AuthRepository($this->httpClient);
-    }
-
-    public function invoice(): InvoiceRepository
-    {
-        return new InvoiceRepository($this->httpClient);
-    }
-
-    public function invoicePdf(): PdfRepository
-    {
-        return new PdfRepository($this->httpClient);
     }
 
     public function setHttpClient(HttpClientInterface $httpClient): void
