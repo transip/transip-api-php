@@ -25,7 +25,6 @@ use Transip\Api\Library\Repository\Domain\DnsSecRepository as DomainDnsSecReposi
 use Transip\Api\Library\Repository\Domain\NameserverRepository as DomainNameserverRepository;
 use Transip\Api\Library\Repository\Domain\SslRepository as DomainSslRepository;
 use Transip\Api\Library\Repository\Domain\WhoisRepository as DomainWhoisRepository;
-use Transip\Api\Library\Repository\Domain\ZoneFileRepository as DomainZoneFileRepository;
 use Transip\Api\Library\Repository\DomainWhitelabelRepository;
 use Transip\Api\Library\Repository\Invoice\PdfRepository;
 use Transip\Api\Library\Repository\InvoiceRepository;
@@ -168,12 +167,6 @@ class TransipAPI
     {
         return new DomainWhoisRepository($this->httpClient);
     }
-
-    public function domainZoneFile(): DomainZoneFileRepository
-    {
-        return new DomainZoneFileRepository($this->httpClient);
-    }
-
     public function domainAvailability(): DomainAvailabilityRepository
     {
         return new DomainAvailabilityRepository($this->httpClient);
