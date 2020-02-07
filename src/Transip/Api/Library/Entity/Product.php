@@ -15,12 +15,12 @@ class Product extends AbstractEntity
     public $description;
 
     /**
-     * @var float $price
+     * @var int $price
      */
     public $price;
 
     /**
-     * @var float $recurringPrice
+     * @var int $recurringPrice
      */
     public $recurringPrice;
 
@@ -39,12 +39,12 @@ class Product extends AbstractEntity
         return $this->description;
     }
 
-    public function getPrice(): ?float
+    public function getPrice(): int
     {
         return $this->price;
     }
 
-    public function getRecurringPrice(): ?float
+    public function getRecurringPrice(): int
     {
         return $this->recurringPrice;
     }
