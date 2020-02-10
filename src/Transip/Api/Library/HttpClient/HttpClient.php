@@ -163,6 +163,11 @@ abstract class HttpClient
         $this->readOnlyMode = $mode;
     }
 
+    public function getReadOnlyMode(): bool
+    {
+        return $this->readOnlyMode;
+    }
+
     /**
      * Set the prefix for the label that is used to create the token, this will show up in the Transip ControlPanel
      * by default this is 'api.lib-'

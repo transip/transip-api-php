@@ -388,4 +388,9 @@ class TransipAPI
     {
         $this->httpClient->setReadOnlyMode($mode);
     }
+
+    public function getReadOnlyMode(): bool
+    {
+        return $this->httpClient->getReadOnlyMode();
+    }
 }
