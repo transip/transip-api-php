@@ -13,8 +13,8 @@ class InvoiceRepository extends ApiRepository
      */
     public function getAll(): array
     {
-        $invoices   = [];
-        $response   = $this->httpClient->get($this->getResourceUrl());
+        $invoices      = [];
+        $response      = $this->httpClient->get($this->getResourceUrl());
         $invoicesArray = $this->getParameterFromResponse($response, 'invoices');
 
         foreach ($invoicesArray as $invoiceArray) {
@@ -25,13 +25,15 @@ class InvoiceRepository extends ApiRepository
     }
 
     /**
+     * @param int $page
+     * @param int $itemsPerPage
      * @return Invoice[]
      */
     public function getSelection(int $page, int $itemsPerPage): array
     {
-        $invoices   = [];
-        $query      = ['pageSize' => $itemsPerPage, 'page' => $page];
-        $response   = $this->httpClient->get($this->getResourceUrl(), $query);
+        $invoices      = [];
+        $query         = ['pageSize' => $itemsPerPage, 'page' => $page];
+        $response      = $this->httpClient->get($this->getResourceUrl(), $query);
         $invoicesArray = $this->getParameterFromResponse($response, 'invoices');
 
         foreach ($invoicesArray as $invoiceArray) {

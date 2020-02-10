@@ -16,6 +16,7 @@ class IpAddressRepository extends ApiRepository
     }
 
     /**
+     * @param string $vpsName
      * @return IpAddress[]
      */
     public function getByVpsName(string $vpsName): array

@@ -1,6 +1,8 @@
 <?php
 
-namespace Transip\Api\Library\Entity;
+namespace Transip\Api\Library\Entity\Invoice;
+
+use Transip\Api\Library\Entity\AbstractEntity;
 
 class InvoiceItem extends AbstractEntity
 {
@@ -67,73 +69,46 @@ class InvoiceItem extends AbstractEntity
         $this->discounts = $itemDiscounts;
     }
 
-    /**
-     * @return string
-     */
     public function getProduct(): string
     {
         return $this->product;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @return bool
-     */
     public function isRecurring(): bool
     {
         return $this->isRecurring;
     }
 
-    /**
-     * @return string
-     */
     public function getDate(): string
     {
         return $this->date;
     }
 
-    /**
-     * @return int
-     */
     public function getQuantity(): int
     {
         return $this->quantity;
     }
 
-    /**
-     * @return int
-     */
     public function getPrice(): int
     {
         return $this->price;
     }
 
-    /**
-     * @return int
-     */
     public function getPriceInclVat(): int
     {
         return $this->priceInclVat;
     }
 
-    /**
-     * @return int
-     */
     public function getVat(): int
     {
         return $this->vat;
     }
 
-    /**
-     * @return int
-     */
     public function getVatPercentage(): int
     {
         return $this->vatPercentage;

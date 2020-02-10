@@ -45,24 +45,6 @@ class Invoice extends AbstractEntity
     public $totalAmountInclVat;
 
     /**
-     * @var InvoiceItem[]
-     */
-    public $invoiceItems;
-
-    public function __construct(array $valueArray = [])
-    {
-        parent::__construct($valueArray);
-
-        $invoiceItems     = [];
-        $invoiceItemArray = $valueArray['invoiceItems'] ?? [];
-        foreach ($invoiceItemArray as $invoiceItem) {
-            $invoiceItems[] = new InvoiceItem($invoiceItem);
-        }
-
-        $this->invoiceItems = $invoiceItems;
-    }
-
-    /**
      * @return string
      */
     public function getInvoiceNumber(): string
@@ -124,13 +106,5 @@ class Invoice extends AbstractEntity
     public function getTotalAmountInclVat(): int
     {
         return $this->totalAmountInclVat;
-    }
-
-    /**
-     * @return InvoiceItem[]
-     */
-    public function getInvoiceItems(): array
-    {
-        return $this->invoiceItems;
     }
 }
