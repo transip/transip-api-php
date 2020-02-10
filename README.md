@@ -1,7 +1,7 @@
 # TransIP PHP RestAPI Library 
 
 ## Requirements
-PHP 7.1 and later.
+PHP 7.2.0 and later.
 
 ## Composer
 You can install the RestAPI Library using [Composer](http://getcomposer.org/). Run the following command:
@@ -54,6 +54,3 @@ Look into the examples/ directory for further information on how to use the PHP 
 
 ## Documentation
 See the [TransIP RestAPI docs](https://api.transip.nl/rest/docs.html)
-
-# License
-MIT License

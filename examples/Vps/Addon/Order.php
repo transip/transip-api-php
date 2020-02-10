@@ -18,4 +18,3 @@ $vpsAddons = [
 
 // Order addon(s)
 $api->vpsAddons()->order($vpsName, $vpsAddons);
-

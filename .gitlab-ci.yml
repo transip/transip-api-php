@@ -1,0 +1,36 @@
+variables:
+  DOCKER_IMAGE: '$IMAGE_URL'
+image: '$DOCKER_IMAGE'
+stages:
+  - lint
+  - deploy
+
+lint:php:
+  stage: lint
+  script:
+    - parallel-lint .
+  tags:
+    - k8s
+
+lint:php-codestyle:
+  stage: lint
+  script:
+    - php-cs-fixer fix -v --dry-run --using-cache=no . --config .php_cs.dist
+  tags:
+    - k8s
+
+lint:composer:
+  stage: 'lint'
+  script:
+    - 'composer validate --no-interaction --strict'
+  tags:
+    - k8s
+
+deploy:create-github-deploy:
+  stage: deploy
+  only:
+    - tags
+  script:
+    - ci/deploy_to_github.sh
+  tags:
+    - k8s
