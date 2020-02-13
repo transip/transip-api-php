@@ -58,12 +58,12 @@ if ($response === true) {
 }
 ```
 
-### Get all domains
+## Get all domains
 ```php
 $allDomains = $api->domains()->getAll();
 ```
 
-### Update a single DNS record
+## Update a single DNS record
 ```php
 $homeIpAddress = '37.97.254.1'; 
 
