@@ -20,9 +20,9 @@ lint:php-codestyle:
     - k8s
 
 lint:composer:
-  stage: 'lint'
+  stage: lint
   script:
-    - 'composer validate --no-interaction --strict'
+    - composer validate --no-interaction --strict
   tags:
     - k8s
 
