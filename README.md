@@ -1,10 +1,25 @@
-# TransIP PHP RestAPI Library 
+<a href="https://transip.eu" target="_blank">
+    <img width="200px" src="https://www.transip.nl/img/cp/transip-logo.svg">
+</a>
+
+# RestAPI library for PHP
+
+This library is a complete implementation for communicating with the TransIP RestAPI. It covers all resource calls available in the [TransIP RestAPI Docs](https://api.transip.nl/rest/docs.html) and it allows your project(s) to connect to the TransIP RestAPI easily. Using this library you can order, update and remove products from your TransIP account. 
+
+[![Latest Stable Version](https://poser.pugx.org/transip/restapi-php-library/v/stable?format=flat-square)](https://packagist.org/packages/transip/restapi-php-library)
+[![Total Downloads](https://poser.pugx.org/transip/restapi-php-library/downloads?format=flat-square)](https://packagist.org/packages/transip/restapi-php-library)
+[![License](https://poser.pugx.org/transip/restapi-php-library/license?format=flat-square)](https://packagist.org/packages/transip/restapi-php-library)
 
 ## Requirements
-PHP 7.2.0 and later.
+
+The PHP RestAPI library requires the following in order to work properly:
+
+* PHP 7.2.0 or later.
+* [json](https://www.php.net/manual/en/book.json.php) (php extension)
+* [openssl](https://www.php.net/manual/en/book.openssl.php) (php extension)
 
 ## Composer
-You can install the RestAPI Library using [Composer](http://getcomposer.org/). Run the following command:
+You can install the RestAPI library using [Composer](http://getcomposer.org/). Run the following command:
 ```bash
 composer require transip/restapi-php-library
 ```
@@ -12,13 +27,6 @@ To use the library in your code, use Composer's [autoloader](https://getcomposer
 ```php
 require_once('vendor/autoload.php');
 ```
-
-## Dependencies
-The PHP RestAPI Library requires the following extensions in order to work properly:
-* [json](https://www.php.net/manual/en/book.json.php)
-* [openssl](https://www.php.net/manual/en/book.openssl.php)
-
-Please ensure that these PHP extensions are installed on your web server.
 
 ## Getting started
 How to get authenticated:
@@ -50,7 +58,22 @@ if ($response === true) {
 }
 ```
 
-Look into the examples/ directory for further information on how to use the PHP RestAPI Library.
+## Get all domains
+```php
+$allDomains = $api->domains()->getAll();
+```
 
-## Documentation
-See the [TransIP RestAPI docs](https://api.transip.nl/rest/docs.html)
+## Update a single DNS record
+```php
+$homeIpAddress = '37.97.254.1'; 
+
+$dnsEntry = new \Transip\Api\Library\Entity\Domain\DnsEntry();
+$dnsEntry->setName('homeip'); // subdomain
+$dnsEntry->setExpire(300);
+$dnsEntry->setType('A');
+$dnsEntry->setContent($homeIpAddress);
+
+$api->domainDns()->updateEntry('example.com', $dnsEntry);
+```
+
+For basic examples, please take a look into the `examples/` directory. You can also see all resource calls implemented in our [command line application](https://github.com/transip/tipctl)
