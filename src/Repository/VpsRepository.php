@@ -55,7 +55,8 @@ class VpsRepository extends ApiRepository
         array $addons = [],
         string $hostname = '',
         string $availabilityZone = '',
-        string $description = ''
+        string $description = '',
+        string $base64InstallText = ''
     ): void {
         $parameters['productName']     = $productName;
         $parameters['operatingSystem'] = $operatingSystemName;
@@ -71,6 +72,9 @@ class VpsRepository extends ApiRepository
         }
         if ($description !== '') {
             $parameters['description'] = $description;
+        }
+        if ($base64InstallText !== '') {
+            $parameters['base64InstallText'] = $base64InstallText;
         }
 
         $this->httpClient->post($this->getResourceUrl(), $parameters);
