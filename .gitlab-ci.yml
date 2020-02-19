@@ -4,6 +4,7 @@ image: '$DOCKER_IMAGE'
 stages:
   - lint
   - deploy
+  - release
 
 lint:php:
   stage: lint
@@ -26,11 +27,20 @@ lint:composer:
   tags:
     - k8s
 
-deploy:create-github-deploy:
+deploy:deploy-to-github:
   stage: deploy
   only:
     - tags
   script:
     - ci/deploy_to_github.sh
+  tags:
+    - k8s
+
+deploy:release-to-github:
+  stage: release
+  only:
+    - tags
+  script:
+    - ci/release_to_github.sh
   tags:
     - k8s
