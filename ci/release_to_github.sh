@@ -3,7 +3,6 @@
 set -e
 
 readonly TAG_VERSION="$1"
-readonly FILE_TO_PUSH="$2"
 
 if [ -z "$GITHUB_TOKEN" ] ; then
   echo "we need a github token in order to proceed";
