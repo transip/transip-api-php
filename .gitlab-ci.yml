@@ -36,11 +36,11 @@ deploy:deploy-to-github:
   tags:
     - k8s
 
-deploy:release-to-github:
+release:release-to-github:
   stage: release
   only:
     - tags
   script:
-    - ci/release_to_github.sh
+    - ci/release_to_github.sh $CI_COMMIT_TAG
   tags:
     - k8s
