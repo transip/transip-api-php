@@ -76,4 +76,4 @@ $dnsEntry->setContent($homeIpAddress);
 $api->domainDns()->updateEntry('example.com', $dnsEntry);
 ```
 
-For basic examples, please take a look into the `examples/` directory. You can also see all resource calls implemented in our [command line application](https://github.com/transip/tipctl)
+For basic examples, please take a look into the `examples/` directory. You can also see all resource calls implemented in our [command line application](https://github.com/transip/tipctl#how-php-resource-calls-are-implemented)
