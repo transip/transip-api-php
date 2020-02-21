@@ -408,6 +408,6 @@ class TransipAPI
 
     public function getTestMode(): bool
     {
-        return $this->httpClient->getGenerateWhitelistOnlyTokens();
+        return $this->httpClient->getTestMode();
     }
 }
