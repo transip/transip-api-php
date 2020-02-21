@@ -400,4 +400,14 @@ class TransipAPI
     {
         $this->setToken(self::TRANSIP_API_DEMO_TOKEN);
     }
+
+    public function setTestMode(bool $testMode): void
+    {
+        $this->httpClient->setTestMode($testMode);
+    }
+
+    public function getTestMode(): bool
+    {
+        return $this->httpClient->getGenerateWhitelistOnlyTokens();
+    }
 }
