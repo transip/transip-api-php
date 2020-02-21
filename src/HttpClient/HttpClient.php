@@ -184,7 +184,7 @@ abstract class HttpClient
         $this->authRepository->setLabelPrefix($labelPrefix);
     }
 
-    public function isTestMode(): bool
+    public function getTestMode(): bool
     {
         return $this->testMode;
     }
