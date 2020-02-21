@@ -16,6 +16,7 @@ class SslRepository extends ApiRepository
     }
 
     /**
+     * @param string $domainName
      * @return SslCertificate[]
      */
     public function getByDomainName(string $domainName): array

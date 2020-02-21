@@ -16,6 +16,7 @@ class ContactRepository extends ApiRepository
     }
 
     /**
+     * @param string $domainName
      * @return WhoisContact[]
      */
     public function getByDomainName(string $domainName): array

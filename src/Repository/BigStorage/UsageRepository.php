@@ -16,6 +16,9 @@ class UsageRepository extends ApiRepository
     }
 
     /**
+     * @param string $bigStorageName
+     * @param int    $dateTimeStart
+     * @param int    $dateTimeEnd
      * @return UsageDataDisk[]
      */
     public function getUsageStatistics(

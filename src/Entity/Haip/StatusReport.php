@@ -6,31 +6,36 @@ use Transip\Api\Library\Entity\AbstractEntity;
 
 class StatusReport extends AbstractEntity
 {
-
     /**
      * @var int
      */
     public $port;
+
     /**
      * @var string
      */
     public $ipVersion;
+
     /**
      * @var string
      */
     public $ipAddress;
+
     /**
      * @var string
      */
     public $loadBalancerName;
+
     /**
      * @var string
      */
     public $loadBalancerIp;
+
     /**
      * @var string
      */
     public $state;
+
     /**
      * @var string
      */

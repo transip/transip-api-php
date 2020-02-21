@@ -16,6 +16,7 @@ class SnapshotRepository extends ApiRepository
     }
 
     /**
+     * @param string $vpsName
      * @return Snapshot[]
      */
     public function getByVpsName(string $vpsName): array

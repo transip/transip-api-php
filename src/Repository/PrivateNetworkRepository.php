@@ -25,6 +25,8 @@ class PrivateNetworkRepository extends ApiRepository
     }
 
     /**
+     * @param int $page
+     * @param int $itemsPerPage
      * @return PrivateNetwork[]
      */
     public function getSelection(int $page, int $itemsPerPage): array
@@ -42,6 +44,7 @@ class PrivateNetworkRepository extends ApiRepository
     }
 
     /**
+     * @param string $description
      * @return PrivateNetwork[]
      */
     public function findByDescription(string $description): array
