@@ -2,6 +2,7 @@
 
 namespace Transip\Api\Library\HttpClient;
 
+use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Transip\Api\Library\Repository\AuthRepository;
 use Transip\Api\Library\TransipAPI;
@@ -57,6 +58,21 @@ abstract class HttpClient
      */
     protected $testMode = false;
 
+    /**
+     * @var int
+     */
+    private $rateLimitLimit = -1;
+
+    /**
+     * @var int
+     */
+    private $rateLimitRemaining = -1;
+
+    /**
+     * @var int
+     */
+    private $rateLimitReset = -1;
+
     public function __construct(HttpClientInterface $httpClient, string $endpoint)
     {
         $endpoint             = rtrim($endpoint, '/');
@@ -110,6 +126,13 @@ abstract class HttpClient
                 $this->clearCache();
             }
         }
+    }
+
+    protected function parseResponseHeaders(ResponseInterface $response): void
+    {
+        $this->rateLimitLimit     = $response->getHeader("X-Rate-Limit-Limit")[0] ?? -1;
+        $this->rateLimitRemaining = $response->getHeader("X-Rate-Limit-Remaining")[0] ?? -1;
+        $this->rateLimitReset     = $response->getHeader("X-Rate-Limit-Reset")[0] ?? -1;
     }
 
     private function getFingerPrintFromKey(string $privateKey): string
@@ -192,5 +215,20 @@ abstract class HttpClient
     public function setTestMode(bool $testMode): void
     {
         $this->testMode = $testMode;
+    }
+
+    public function getRateLimitLimit(): int
+    {
+        return $this->rateLimitLimit;
+    }
+
+    public function getRateLimitRemaining(): int
+    {
+        return $this->rateLimitRemaining;
+    }
+
+    public function getRateLimitReset(): int
+    {
+        return $this->rateLimitReset;
     }
 }

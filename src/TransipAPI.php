@@ -410,4 +410,34 @@ class TransipAPI
     {
         return $this->httpClient->getTestMode();
     }
+
+    /**
+     * The maximum amount of requests
+     *
+     * @return int
+     */
+    public function getRateLimitLimit(): int
+    {
+        return $this->httpClient->getRateLimitLimit();
+    }
+
+    /**
+     * The amount request remaining till the limit is reached
+     *
+     * @return int
+     */
+    public function getRateLimitRemaining(): int
+    {
+        return $this->httpClient->getRateLimitRemaining();
+    }
+
+    /**
+     * Timestamp the rate limit will be reset to maximum
+     *
+     * @return int
+     */
+    public function getRateLimitReset(): int
+    {
+        return $this->httpClient->getRateLimitReset();
+    }
 }

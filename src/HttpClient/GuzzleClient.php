@@ -66,6 +66,8 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
             throw ApiException::malformedJsonResponse($response);
         }
 
+        $this->parseResponseHeaders($response);
+
         return $responseBody;
     }
 
@@ -85,6 +87,8 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
         if ($response->getStatusCode() !== 201) {
             throw ApiException::unexpectedStatusCode($response);
         }
+
+        $this->parseResponseHeaders($response);
     }
 
     public function postAuthentication(string $url, string $signature, array $body): array
@@ -131,6 +135,8 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
         if ($response->getStatusCode() !== 204) {
             throw ApiException::unexpectedStatusCode($response);
         }
+
+        $this->parseResponseHeaders($response);
     }
 
     public function patch(string $url, array $body): void
@@ -149,6 +155,8 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
         if ($response->getStatusCode() !== 204) {
             throw ApiException::unexpectedStatusCode($response);
         }
+
+        $this->parseResponseHeaders($response);
     }
 
     public function delete(string $url, array $body = []): void
@@ -167,6 +175,8 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
         if ($response->getStatusCode() !== 204) {
             throw ApiException::unexpectedStatusCode($response);
         }
+
+        $this->parseResponseHeaders($response);
     }
 
     private function exceptionHandler(Exception $exception): void

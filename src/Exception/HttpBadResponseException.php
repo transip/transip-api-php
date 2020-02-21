@@ -14,6 +14,7 @@ use Transip\Api\Library\Exception\HttpRequest\NotAcceptableException;
 use Transip\Api\Library\Exception\HttpRequest\NotFoundException;
 use Transip\Api\Library\Exception\HttpRequest\NotImplementedException;
 use Transip\Api\Library\Exception\HttpRequest\BadResponseTimeoutException;
+use Transip\Api\Library\Exception\HttpRequest\RateLimitException;
 use Transip\Api\Library\Exception\HttpRequest\TooManyBadResponseException;
 use Transip\Api\Library\Exception\HttpRequest\UnauthorizedException;
 use Transip\Api\Library\Exception\HttpRequest\UnprocessableEntityException;
@@ -74,6 +75,8 @@ class HttpBadResponseException extends RuntimeException
                 return new InternalServerErrorException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case NotImplementedException::STATUS_CODE:
                 return new NotImplementedException($errorMessage, $response->getStatusCode(), $innerException, $response);
+            case RateLimitException::STATUS_CODE:
+                return new RateLimitException($errorMessage, $response->getStatusCode(), $innerException, $response);
             default:
                 return new HttpBadResponseException($errorMessage, $response->getStatusCode(), $innerException, $response);
         }
