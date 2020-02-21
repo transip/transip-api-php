@@ -1,12 +1,17 @@
 CHANGELOG
 =========
 
+6.0.1
+-----
+- Added search by tag for domain(s) and VPS(s)
+- Added test and demo mode
+- Added access to rate limit statistics
+
 6.0.0 PHP RestAPI Library
 -----
 
 - API is now RESTful
 - Token based authentication
-- Added Testmode
 - IP Ranges are now allowed in the whitelist
 
 - Added new functionality for:
