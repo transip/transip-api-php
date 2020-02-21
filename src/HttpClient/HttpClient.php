@@ -52,6 +52,11 @@ abstract class HttpClient
      */
     protected $readOnlyMode = false;
 
+    /**
+     * @var bool
+     */
+    protected $testMode = false;
+
     public function __construct(HttpClientInterface $httpClient, string $endpoint)
     {
         $endpoint             = rtrim($endpoint, '/');
@@ -177,5 +182,15 @@ abstract class HttpClient
     public function setTokenLabelPrefix(string $labelPrefix): void
     {
         $this->authRepository->setLabelPrefix($labelPrefix);
+    }
+
+    public function isTestMode(): bool
+    {
+        return $this->testMode;
+    }
+
+    public function setTestMode(bool $testMode): void
+    {
+        $this->testMode = $testMode;
     }
 }

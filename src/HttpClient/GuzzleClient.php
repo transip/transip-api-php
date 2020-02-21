@@ -44,6 +44,7 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
         }
 
         $this->checkAndRenewToken();
+        $options = $this->checkAndSetTestModeToOptions($options);
 
         try {
             $response = $this->client->get("{$this->endpoint}{$url}", $options);
@@ -73,6 +74,7 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
         $options['body'] = json_encode($body);
 
         $this->checkAndRenewToken();
+        $options = $this->checkAndSetTestModeToOptions($options);
 
         try {
             $response = $this->client->post("{$this->endpoint}{$url}", $options);
@@ -118,6 +120,7 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
         $options['body'] = json_encode($body);
 
         $this->checkAndRenewToken();
+        $options = $this->checkAndSetTestModeToOptions($options);
 
         try {
             $response = $this->client->put("{$this->endpoint}{$url}", $options);
@@ -135,6 +138,7 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
         $options['body'] = json_encode($body);
 
         $this->checkAndRenewToken();
+        $options = $this->checkAndSetTestModeToOptions($options);
 
         try {
             $response = $this->client->patch("{$this->endpoint}{$url}", $options);
@@ -152,6 +156,7 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
         $options['body'] = json_encode($body);
 
         $this->checkAndRenewToken();
+        $options = $this->checkAndSetTestModeToOptions($options);
 
         try {
             $response = $this->client->delete("{$this->endpoint}{$url}", $options);
@@ -179,5 +184,20 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
         } catch (Exception $exception) {
             throw HttpClientException::genericRequestException($exception);
         }
+    }
+
+    private function checkAndSetTestModeToOptions(array $options): array
+    {
+        if ($this->testMode == false) {
+            return $options;
+        }
+
+        if (!array_key_exists('query', $options)) {
+            $options['query'] = [];
+        }
+
+        $options['query']['test'] = 1;
+
+        return $options;
     }
 }
