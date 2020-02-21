@@ -51,6 +51,21 @@ class VpsRepository extends ApiRepository
         return new Vps($vps);
     }
 
+    public function getByTagNames(array $tags): array
+    {
+        $tags      = implode(',', $tags);
+        $query     = ['tags' => $tags];
+        $response  = $this->httpClient->get($this->getResourceUrl(), $query);
+        $vpssArray = $this->getParameterFromResponse($response, 'vpss');
+
+        $vpss = [];
+        foreach ($vpssArray as $vpsArray) {
+            $vpss[] = new Vps($vpsArray);
+        }
+
+        return $vpss;
+    }
+
     public function order(
         string $productName,
         string $operatingSystemName,

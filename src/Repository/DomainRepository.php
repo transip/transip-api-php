@@ -55,6 +55,21 @@ class DomainRepository extends ApiRepository
         return new Domain($domain);
     }
 
+    public function getByTagNames(array $tags): array
+    {
+        $tags         = implode(',', $tags);
+        $query        = ['tags' => $tags];
+        $response     = $this->httpClient->get($this->getResourceUrl(), $query);
+        $domainsArray = $this->getParameterFromResponse($response, 'domains');
+
+        $domains = [];
+        foreach ($domainsArray as $domainArray) {
+            $domains[] = new Domain($domainArray);
+        }
+
+        return $domains;
+    }
+
     /**
      * @param string         $domainName
      * @param WhoisContact[] $contacts    optional
