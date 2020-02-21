@@ -16,6 +16,7 @@ class BackupRepository extends ApiRepository
     }
 
     /**
+     * @param string $bigStorageName
      * @return Backup[]
      */
     public function getByBigStorageName(string $bigStorageName): array

@@ -25,6 +25,8 @@ class HaipRepository extends ApiRepository
     }
 
     /**
+     * @param int $page
+     * @param int $itemsPerPage
      * @return Haip[]
      */
     public function getSelection(int $page, int $itemsPerPage): array
@@ -42,6 +44,7 @@ class HaipRepository extends ApiRepository
     }
 
     /**
+     * @param string $description
      * @return Haip[]
      */
     public function findByDescription(string $description): array

@@ -16,6 +16,7 @@ class DnsSecRepository extends ApiRepository
     }
 
     /**
+     * @param string $domainName
      * @return DnsSecEntry[]
      */
     public function getByDomainName(string $domainName): array

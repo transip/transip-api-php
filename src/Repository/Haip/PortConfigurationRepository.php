@@ -16,6 +16,7 @@ class PortConfigurationRepository extends ApiRepository
     }
 
     /**
+     * @param string $haipName
      * @return PortConfiguration[]
      */
     public function getByHaipName(string $haipName): array

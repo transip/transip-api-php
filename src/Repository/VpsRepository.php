@@ -25,6 +25,8 @@ class VpsRepository extends ApiRepository
     }
 
     /**
+     * @param int $page
+     * @param int $itemsPerPage
      * @return Vps[]
      */
     public function getSelection(int $page, int $itemsPerPage): array

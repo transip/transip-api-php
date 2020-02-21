@@ -16,6 +16,7 @@ class UpgradeRepository extends ApiRepository
     }
 
     /**
+     * @param string $vpsName
      * @return Product[]
      */
     public function getByVpsName(string $vpsName): array

@@ -6,7 +6,6 @@ use Transip\Api\Library\Entity\AbstractEntity;
 
 class PortConfiguration extends AbstractEntity
 {
-
     /**
      * @var int
      */

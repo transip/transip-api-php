@@ -25,6 +25,8 @@ class DomainTldRepository extends ApiRepository
     }
 
     /**
+     * @param int $page
+     * @param int $itemsPerPage
      * @return Tld[]
      */
     public function getSelection(int $page, int $itemsPerPage): array

@@ -16,6 +16,7 @@ class NameserverRepository extends ApiRepository
     }
 
     /**
+     * @param string $domainName
      * @return Nameserver[]
      */
     public function getByDomainName(string $domainName): array

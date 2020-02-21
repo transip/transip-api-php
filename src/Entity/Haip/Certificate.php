@@ -6,7 +6,6 @@ use Transip\Api\Library\Entity\AbstractEntity;
 
 class Certificate extends AbstractEntity
 {
-
     /**
      * @var string
      */

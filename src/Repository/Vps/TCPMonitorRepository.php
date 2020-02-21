@@ -16,6 +16,7 @@ class TCPMonitorRepository extends ApiRepository
     }
 
     /**
+     * @param string $vpsName
      * @return TCPMonitor[]
      */
     public function getByVpsName(string $vpsName): array
