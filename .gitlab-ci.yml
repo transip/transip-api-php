@@ -28,6 +28,14 @@ lint:composer:
   tags:
     - k8s
 
+lint:secretsscan:
+  image: '$IMAGE_URL_PYTHON'
+  stage: lint
+  script:
+    - ci/scan_secrets.sh
+  tags:
+    - k8s
+
 validate:tag-message:
   stage: validate
   only:
