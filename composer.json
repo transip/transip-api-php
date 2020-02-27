@@ -1,5 +1,5 @@
 {
-    "name": "transip/restapi-php-library",
+    "name": "transip/transip-api-php",
     "description": "TransIP Rest API Library",
     "license": "Apache-2.0",
     "authors": [

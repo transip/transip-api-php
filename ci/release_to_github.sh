@@ -21,7 +21,7 @@ description="$(git show --format=%N $TAG_VERSION | tail -n+3 | convert_to_json)"
 
 json_output=$(curl -H "Authorization: token ${GITHUB_TOKEN}" \
   -H "Content-Type: application/json" \
-  -X POST "https://api.github.com/repos/transip/restapi-php-library/releases" \
+  -X POST "https://api.github.com/repos/transip/transip-api-php/releases" \
   -d "{\"tag_name\": \"${TAG_VERSION}\", \"name\": \"${TAG_VERSION}\", \"body\": ${description}, \"draft\": false, \"prerelease\": false}")
 
 echo $json_output

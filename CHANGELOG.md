@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+6.0.2
+-----
+- Merged v6.0 restapi-php-library into v5.18 transip-api-php repository
+- Changed entity properties to protected
+
 6.0.1
 -----
 - Added search by tag for domain(s) and VPS(s)
@@ -40,4 +45,4 @@ CHANGELOG
 5.x and older
 -----
 
-This changelog is a continuance of the SOAP API PHP Library. To see further back on features implemented in the past, see the changelog for the [SOAP API PHP Library (deprecated)](https://github.com/transip/transip-api-php/blob/master/CHANGELOG).
+This changelog is a continuance of the SOAP API PHP Library. To see further back on features implemented in the past, see the changelog in the v5.x tag.
