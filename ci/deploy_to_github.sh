@@ -13,4 +13,4 @@ fi
 # as github shows this as new branch
 git remote set-head origin -d
 
-git push --prune https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/transip/restapi-php-library.git +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
+git push --prune https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/transip/transip-api-php.git +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
