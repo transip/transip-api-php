@@ -9,37 +9,37 @@ class TCPMonitor extends AbstractEntity
     /**
      * @var string
      */
-    public $ipAddress;
+    protected $ipAddress;
 
     /**
      * @var string
      */
-    public $label;
+    protected $label;
 
     /**
      * @var array
      */
-    public $ports;
+    protected $ports;
 
     /**
      * @var int
      */
-    public $interval;
+    protected $interval;
 
     /**
      * @var int
      */
-    public $allowedTimeouts;
+    protected $allowedTimeouts;
 
     /**
      * @var TCPMonitorContact[]
      */
-    public $contacts;
+    protected $contacts;
 
     /**
      * @var TCPMonitorIgnoreTime[]
      */
-    public $ignoreTimes;
+    protected $ignoreTimes;
 
     public function __construct(array $valueArray = [])
     {

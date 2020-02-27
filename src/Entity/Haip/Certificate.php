@@ -9,17 +9,17 @@ class Certificate extends AbstractEntity
     /**
      * @var string
      */
-    public $id;
+    protected $id;
 
     /**
      * @var string
      */
-    public $commonName;
+    protected $commonName;
 
     /**
      * @var string
      */
-    public $expirationDate;
+    protected $expirationDate;
 
     public function getId(): string
     {

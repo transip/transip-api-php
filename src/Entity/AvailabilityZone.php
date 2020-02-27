@@ -7,17 +7,17 @@ class AvailabilityZone extends AbstractEntity
     /**
      * @var string $name
      */
-    public $name;
+    protected $name;
 
     /**
      * @var string $country
      */
-    public $country;
+    protected $country;
 
     /**
      * @var bool $isDefault
      */
-    public $isDefault;
+    protected $isDefault;
 
     public function getName(): string
     {

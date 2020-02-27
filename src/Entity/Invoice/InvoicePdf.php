@@ -9,7 +9,7 @@ class InvoicePdf extends AbstractEntity
     /**
      * @var string
      */
-    public $pdf;
+    protected $pdf;
 
     public function getBase64Encoded(): string
     {

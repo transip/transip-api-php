@@ -7,37 +7,37 @@ class BigStorage extends AbstractEntity
     /**
      * @var string $name
      */
-    public $name;
+    protected $name;
 
     /**
      * @var string $description
      */
-    public $description;
+    protected $description;
 
     /**
      * @var int $diskSize
      */
-    public $diskSize;
+    protected $diskSize;
 
     /**
      * @var string $vpsName
      */
-    public $vpsName;
+    protected $vpsName;
 
     /**
      * @var string $status
      */
-    public $status;
+    protected $status;
 
     /**
      * @var bool $isLocked
      */
-    public $isLocked;
+    protected $isLocked;
 
     /**
      * @var string $availabilityZone
      */
-    public $availabilityZone;
+    protected $availabilityZone;
 
     public function getName(): string
     {

@@ -9,11 +9,11 @@ class InvoiceItemDiscount extends AbstractEntity
     /**
      * @var string
      */
-    public $description;
+    protected $description;
     /**
      * @var int
      */
-    public $amount;
+    protected $amount;
 
     public function getDescription(): string
     {

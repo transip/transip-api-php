@@ -7,12 +7,12 @@ class UsageDataNetwork extends UsageData
     /**
      * @var float $mbitIn
      */
-    public $mbitIn;
+    protected $mbitIn;
 
     /**
      * @var float $mbitOut
      */
-    public $mbitOut;
+    protected $mbitOut;
 
     public function getMbitIn(): float
     {

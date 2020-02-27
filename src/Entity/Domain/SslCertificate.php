@@ -9,22 +9,22 @@ class SslCertificate extends AbstractEntity
     /**
      * @var int $certificateId
      */
-    public $certificateId;
+    protected $certificateId;
 
     /**
      * @var string $commonName
      */
-    public $commonName;
+    protected $commonName;
 
     /**
      * @var string $expirationDate
      */
-    public $expirationDate;
+    protected $expirationDate;
 
     /**
      * @var string $status
      */
-    public $status;
+    protected $status;
 
     public function getCertificateId(): int
     {

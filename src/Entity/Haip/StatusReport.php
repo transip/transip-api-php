@@ -9,37 +9,37 @@ class StatusReport extends AbstractEntity
     /**
      * @var int
      */
-    public $port;
+    protected $port;
 
     /**
      * @var string
      */
-    public $ipVersion;
+    protected $ipVersion;
 
     /**
      * @var string
      */
-    public $ipAddress;
+    protected $ipAddress;
 
     /**
      * @var string
      */
-    public $loadBalancerName;
+    protected $loadBalancerName;
 
     /**
      * @var string
      */
-    public $loadBalancerIp;
+    protected $loadBalancerIp;
 
     /**
      * @var string
      */
-    public $state;
+    protected $state;
 
     /**
      * @var string
      */
-    public $lastChange;
+    protected $lastChange;
 
     public function getPort(): int
     {

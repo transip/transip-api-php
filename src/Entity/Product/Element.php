@@ -9,17 +9,17 @@ class Element extends AbstractEntity
     /**
      * @var string $name
      */
-    public $name;
+    protected $name;
 
     /**
      * @var string $description
      */
-    public $description;
+    protected $description;
 
     /**
      * @var int $amount
      */
-    public $amount;
+    protected $amount;
 
     public function getName(): string
     {

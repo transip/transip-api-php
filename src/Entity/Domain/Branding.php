@@ -9,37 +9,37 @@ class Branding extends AbstractEntity
     /**
      * @var string $companyName
      */
-    public $companyName;
+    protected $companyName;
 
     /**
      * @var string $supportEmail
      */
-    public $supportEmail;
+    protected $supportEmail;
 
     /**
      * @var string $companyUrl
      */
-    public $companyUrl;
+    protected $companyUrl;
 
     /**
      * @var string $termsOfUsageUrl
      */
-    public $termsOfUsageUrl;
+    protected $termsOfUsageUrl;
 
     /**
      * @var string $bannerLine1
      */
-    public $bannerLine1;
+    protected $bannerLine1;
 
     /**
      * @var string $bannerLine2
      */
-    public $bannerLine2;
+    protected $bannerLine2;
 
     /**
      * @var string $bannerLine3
      */
-    public $bannerLine3;
+    protected $bannerLine3;
 
     public function getCompanyName(): string
     {

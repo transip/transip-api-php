@@ -7,12 +7,12 @@ class Colocation extends AbstractEntity
     /**
      * @var string $name
      */
-    public $name;
+    protected $name;
 
     /**
      * @var array $ipRanges
      */
-    public $ipRanges;
+    protected $ipRanges;
 
     public function getName(): string
     {

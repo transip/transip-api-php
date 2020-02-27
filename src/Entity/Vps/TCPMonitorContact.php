@@ -9,17 +9,17 @@ class TCPMonitorContact extends AbstractEntity
     /**
      * @var int
      */
-    public $id;
+    protected $id;
 
     /**
      * @var bool
      */
-    public $enableEmail;
+    protected $enableEmail;
 
     /**
      * @var bool
      */
-    public $enableSMS;
+    protected $enableSMS;
 
     /**
      * @return int

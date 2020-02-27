@@ -14,17 +14,17 @@ class DomainCheckResult extends AbstractEntity
     /**
      * @var string $domainName
      */
-    public $domainName;
+    protected $domainName;
 
     /**
      * @var string $status
      */
-    public $status;
+    protected $status;
 
     /**
      * @var array $actions
      */
-    public $actions;
+    protected $actions;
 
     public function getDomainName(): string
     {

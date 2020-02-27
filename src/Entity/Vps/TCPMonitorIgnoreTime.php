@@ -9,12 +9,12 @@ class TCPMonitorIgnoreTime extends AbstractEntity
     /**
      * @var string
      */
-    public $timeFrom;
+    protected $timeFrom;
 
     /**
      * @var string
      */
-    public $timeTo;
+    protected $timeTo;
 
     /**
      * @return string

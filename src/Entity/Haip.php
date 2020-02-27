@@ -16,77 +16,77 @@ class Haip extends AbstractEntity
     /**
      * @var string
      */
-    public $name;
+    protected $name;
 
     /**
      * @var string
      */
-    public $description;
+    protected $description;
 
     /**
      * @var string
      */
-    public $status;
+    protected $status;
 
     /**
      * @var bool
      */
-    public $isLoadBalancingEnabled;
+    protected $isLoadBalancingEnabled;
 
     /**
      * @var string
      */
-    public $loadBalancingMode;
+    protected $loadBalancingMode;
 
     /**
      * @var string
      */
-    public $stickyCookieName;
+    protected $stickyCookieName;
 
     /**
      * @var string
      */
-    public $healthCheckInterval;
+    protected $healthCheckInterval;
 
     /**
      * @var string
      */
-    public $httpHealthCheckPath;
+    protected $httpHealthCheckPath;
 
     /**
      * @var string
      */
-    public $httpHealthCheckPort;
+    protected $httpHealthCheckPort;
 
     /**
      * @var bool
      */
-    public $httpHealthCheckSsl;
+    protected $httpHealthCheckSsl;
 
     /**
      * @var string
      */
-    public $ipv4Address;
+    protected $ipv4Address;
 
     /**
      * @var string
      */
-    public $ipv6Address;
+    protected $ipv6Address;
 
     /**
      * @var string
      */
-    public $ipSetup;
+    protected $ipSetup;
 
     /**
      * @var string
      */
-    public $ptrRecord;
+    protected $ptrRecord;
 
     /**
      * @var string[]
      */
-    public $ipAddresses;
+    protected $ipAddresses;
 
     public function getName(): string
     {

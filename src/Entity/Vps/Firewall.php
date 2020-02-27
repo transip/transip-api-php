@@ -9,12 +9,12 @@ class Firewall extends AbstractEntity
     /**
      * @var bool $isEnabled
      */
-    public $isEnabled;
+    protected $isEnabled;
 
     /**
      * @var FirewallRule[] $ruleSet
      */
-    public $ruleSet;
+    protected $ruleSet;
 
     public function __construct(array $valueArray = [])
     {

@@ -9,52 +9,52 @@ class InvoiceItem extends AbstractEntity
     /**
      * @var string
      */
-    public $product;
+    protected $product;
 
     /**
      * @var string
      */
-    public $description;
+    protected $description;
 
     /**
      * @var bool
      */
-    public $isRecurring;
+    protected $isRecurring;
 
     /**
      * @var string
      */
-    public $date;
+    protected $date;
 
     /**
      * @var int
      */
-    public $quantity;
+    protected $quantity;
 
     /**
      * @var int
      */
-    public $price;
+    protected $price;
 
     /**
      * @var int
      */
-    public $priceInclVat;
+    protected $priceInclVat;
 
     /**
      * @var int
      */
-    public $vat;
+    protected $vat;
 
     /**
      * @var int
      */
-    public $vatPercentage;
+    protected $vatPercentage;
 
     /**
      * @var InvoiceItemDiscount[]
      */
-    public $discounts;
+    protected $discounts;
 
     public function __construct(array $valueArray = [])
     {

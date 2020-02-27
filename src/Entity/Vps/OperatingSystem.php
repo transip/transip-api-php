@@ -9,27 +9,27 @@ class OperatingSystem extends AbstractEntity
     /**
      * @var string $name
      */
-    public $name;
+    protected $name;
 
     /**
      * @var string $description
      */
-    public $description;
+    protected $description;
 
     /**
      * @var bool $isPreinstallableImage
      */
-    public $isPreinstallableImage;
+    protected $isPreinstallableImage;
 
     /**
      * @var string $version
      */
-    public $version;
+    protected $version;
 
     /**
      * @var int $price
      */
-    public $price;
+    protected $price;
 
     public function getName(): string
     {

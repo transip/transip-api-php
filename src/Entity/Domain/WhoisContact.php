@@ -31,72 +31,72 @@ class WhoisContact extends AbstractEntity
     /**
      * @var string $type
      */
-    public $type;
+    protected $type;
 
     /**
      * @var string $firstName
      */
-    public $firstName;
+    protected $firstName;
 
     /**
      * @var string $lastName
      */
-    public $lastName;
+    protected $lastName;
 
     /**
      * @var string $companyName
      */
-    public $companyName;
+    protected $companyName;
 
     /**
      * @var string $companyKvk
      */
-    public $companyKvk;
+    protected $companyKvk;
 
     /**
      * @var string $companyType
      */
-    public $companyType;
+    protected $companyType;
 
     /**
      * @var string $street
      */
-    public $street;
+    protected $street;
 
     /**
      * @var string $number
      */
-    public $number;
+    protected $number;
 
     /**
      * @var string $postalCode
      */
-    public $postalCode;
+    protected $postalCode;
 
     /**
      * @var string $city
      */
-    public $city;
+    protected $city;
 
     /**
      * @var string $phoneNumber
      */
-    public $phoneNumber;
+    protected $phoneNumber;
 
     /**
      * @var string $faxNumber
      */
-    public $faxNumber;
+    protected $faxNumber;
 
     /**
      * @var string $email
      */
-    public $email;
+    protected $email;
 
     /**
      * @var string $country
      */
-    public $country;
+    protected $country;
 
     public function getType(): string
     {

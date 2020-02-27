@@ -20,22 +20,22 @@ class DnsEntry extends AbstractEntity
     /**
      * @var string $name
      */
-    public $name;
+    protected $name;
 
     /**
      * @var int $expire
      */
-    public $expire;
+    protected $expire;
 
     /**
      * @var string $type
      */
-    public $type;
+    protected $type;
 
     /**
      * @var string $content
      */
-    public $content;
+    protected $content;
 
     public function getName(): string
     {
