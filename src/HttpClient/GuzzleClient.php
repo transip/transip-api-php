@@ -11,7 +11,7 @@ use Transip\Api\Library\Exception\HttpRequestException;
 use Transip\Api\Library\Exception\HttpBadResponseException;
 use Exception;
 
-class GuzzleClient extends HttpClient implements HttpClientInterface
+class GuzzleClient extends HttpClient
 {
     /**
      * @var Client $client
@@ -21,7 +21,7 @@ class GuzzleClient extends HttpClient implements HttpClientInterface
     public function __construct(string $endpoint)
     {
         $this->client = new Client();
-        parent::__construct($this, $endpoint);
+        parent::__construct($endpoint);
     }
 
     public function setToken(string $token): void

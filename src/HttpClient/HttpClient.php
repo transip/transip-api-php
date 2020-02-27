@@ -7,7 +7,7 @@ use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Transip\Api\Library\Repository\AuthRepository;
 use Transip\Api\Library\TransipAPI;
 
-abstract class HttpClient
+abstract class HttpClient implements HttpClientInterface
 {
     public const TOKEN_CACHE_KEY = 'token';
     public const KEY_FINGERPRINT_CACHE_KEY = 'key-fingerprint';
@@ -73,11 +73,11 @@ abstract class HttpClient
      */
     private $rateLimitReset = -1;
 
-    public function __construct(HttpClientInterface $httpClient, string $endpoint)
+    public function __construct(string $endpoint)
     {
         $endpoint             = rtrim($endpoint, '/');
         $this->endpoint       = $endpoint;
-        $this->authRepository = new AuthRepository($httpClient);
+        $this->authRepository = new AuthRepository($this);
     }
 
     public function setCache(AdapterInterface $cache): void
@@ -231,4 +231,12 @@ abstract class HttpClient
     {
         return $this->rateLimitReset;
     }
+
+    abstract public function setToken(string $token): void;
+    abstract public function get(string $url, array $query = []): array;
+    abstract public function post(string $url, array $body = []): void;
+    abstract public function postAuthentication(string $url, string $signature, array $body): array;
+    abstract public function put(string $url, array $body): void;
+    abstract public function patch(string $url, array $body): void;
+    abstract public function delete(string $url, array $body = []): void;
 }
