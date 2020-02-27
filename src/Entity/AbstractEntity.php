@@ -2,7 +2,9 @@
 
 namespace Transip\Api\Library\Entity;
 
-class AbstractEntity
+use JsonSerializable;
+
+class AbstractEntity implements JsonSerializable
 {
     public function __construct(array $valueArray = [])
     {
@@ -11,5 +13,10 @@ class AbstractEntity
                 $this->$field = $value;
             }
         }
+    }
+
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
     }
 }

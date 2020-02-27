@@ -9,17 +9,17 @@ class Nameserver extends AbstractEntity
     /**
      * @var string $hostname
      */
-    public $hostname;
+    protected $hostname;
 
     /**
      * @var string $ipv4
      */
-    public $ipv4;
+    protected $ipv4;
 
     /**
      * @var string $ipv6
      */
-    public $ipv6;
+    protected $ipv6;
 
     public function getHostname(): string
     {

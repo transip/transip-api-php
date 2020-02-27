@@ -7,42 +7,42 @@ class Invoice extends AbstractEntity
     /**
      * @var string
      */
-    public $invoiceNumber;
+    protected $invoiceNumber;
 
     /**
      * @var string
      */
-    public $creationDate;
+    protected $creationDate;
 
     /**
      * @var string
      */
-    public $payDate;
+    protected $payDate;
 
     /**
      * @var string
      */
-    public $dueDate;
+    protected $dueDate;
 
     /**
      * @var string
      */
-    public $invoiceStatus;
+    protected $invoiceStatus;
 
     /**
      * @var string
      */
-    public $currency;
+    protected $currency;
 
     /**
      * @var int
      */
-    public $totalAmount;
+    protected $totalAmount;
 
     /**
      * @var int
      */
-    public $totalAmountInclVat;
+    protected $totalAmountInclVat;
 
     /**
      * @return string

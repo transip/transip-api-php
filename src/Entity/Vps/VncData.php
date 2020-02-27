@@ -9,27 +9,27 @@ class VncData extends AbstractEntity
     /**
      * @var string $host
      */
-    public $host;
+    protected $host;
 
     /**
      * @var string $path
      */
-    public $path;
+    protected $path;
 
     /**
      * @var string $url
      */
-    public $url;
+    protected $url;
 
     /**
      * @var string $token
      */
-    public $token;
+    protected $token;
 
     /**
      * @var string $password
      */
-    public $password;
+    protected $password;
 
     public function getHost(): string
     {

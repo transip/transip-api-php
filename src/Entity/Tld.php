@@ -17,42 +17,42 @@ class Tld extends AbstractEntity
     /**
      * @var string $name
      */
-    public $name;
+    protected $name;
 
     /**
      * @var int $price
      */
-    public $price;
+    protected $price;
 
     /**
      * @var int $recurringPrice
      */
-    public $recurringPrice;
+    protected $recurringPrice;
 
     /**
      * @var array $capabilities
      */
-    public $capabilities;
+    protected $capabilities;
 
     /**
      * @var int $minLength
      */
-    public $minLength;
+    protected $minLength;
 
     /**
      * @var int $maxLength
      */
-    public $maxLength;
+    protected $maxLength;
 
     /**
      * @var int $registrationPeriodLength
      */
-    public $registrationPeriodLength;
+    protected $registrationPeriodLength;
 
     /**
      * @var int $cancelTimeFrame
      */
-    public $cancelTimeFrame;
+    protected $cancelTimeFrame;
 
     public function getName(): string
     {

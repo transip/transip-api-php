@@ -9,32 +9,32 @@ class Backup extends AbstractEntity
     /**
      * @var int $id
      */
-    public $id;
+    protected $id;
 
     /**
      * @var string $status
      */
-    public $status;
+    protected $status;
 
     /**
      * @var string $dateTimeCreate
      */
-    public $dateTimeCreate;
+    protected $dateTimeCreate;
 
     /**
      * @var string $diskSize
      */
-    public $diskSize;
+    protected $diskSize;
 
     /**
      * @var string $operatingSystem
      */
-    public $operatingSystem;
+    protected $operatingSystem;
 
     /**
      * @var string $availabilityZone
      */
-    public $availabilityZone;
+    protected $availabilityZone;
 
     public function getId(): int
     {

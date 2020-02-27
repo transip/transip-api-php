@@ -7,12 +7,12 @@ class UsageDataDisk extends UsageData
     /**
      * @var float $iopsRead
      */
-    public $iopsRead;
+    protected $iopsRead;
 
     /**
      * @var float $iopsWrite
      */
-    public $iopsWrite;
+    protected $iopsWrite;
 
     public function getIopsRead(): float
     {

@@ -13,27 +13,27 @@ class FirewallRule extends AbstractEntity
     /**
      * @var string $description
      */
-    public $description;
+    protected $description;
 
     /**
      * @var int $startPort
      */
-    public $startPort;
+    protected $startPort;
 
     /**
      * @var int $endPort
      */
-    public $endPort;
+    protected $endPort;
 
     /**
      * @var string $protocol
      */
-    public $protocol;
+    protected $protocol;
 
     /**
      * @var array $whitelist
      */
-    public $whitelist;
+    protected $whitelist;
 
     public function getDescription(): string
     {

@@ -9,17 +9,17 @@ class Action extends AbstractEntity
     /**
      * @var string $name
      */
-    public $name;
+    protected $name;
 
     /**
      * @var string $message
      */
-    public $message;
+    protected $message;
 
     /**
      * @var bool $hasFailed
      */
-    public $hasFailed;
+    protected $hasFailed;
 
     public function getName(): string
     {

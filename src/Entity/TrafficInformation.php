@@ -7,27 +7,27 @@ class TrafficInformation extends AbstractEntity
     /**
      * @var string $startDate
      */
-    public $startDate;
+    protected $startDate;
 
     /**
      * @var string $endDate
      */
-    public $endDate;
+    protected $endDate;
 
     /**
      * @var int $usedInBytes
      */
-    public $usedInBytes;
+    protected $usedInBytes;
 
     /**
      * @var int $usedTotalBytes
      */
-    public $usedTotalBytes;
+    protected $usedTotalBytes;
 
     /**
      * @var int $maxInBytes
      */
-    public $maxInBytes;
+    protected $maxInBytes;
 
     public function getStartDate(): string
     {

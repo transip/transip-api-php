@@ -9,32 +9,32 @@ class PortConfiguration extends AbstractEntity
     /**
      * @var int
      */
-    public $id;
+    protected $id;
 
     /**
      * @var string
      */
-    public $name;
+    protected $name;
 
     /**
      * @var int
      */
-    public $sourcePort;
+    protected $sourcePort;
 
     /**
      * @var int
      */
-    public $targetPort;
+    protected $targetPort;
 
     /**
      * @var string
      */
-    public $mode;
+    protected $mode;
 
     /**
      * @var string
      */
-    public $endpointSslMode;
+    protected $endpointSslMode;
 
     public function getId(): int
     {

@@ -7,27 +7,27 @@ class MailServiceInformation extends AbstractEntity
     /**
      * @var string $username
      */
-    public $username;
+    protected $username;
 
     /**
      * @var string $password
      */
-    public $password;
+    protected $password;
 
     /**
      * @var int $usage
      */
-    public $usage;
+    protected $usage;
 
     /**
      * @var int $quota
      */
-    public $quota;
+    protected $quota;
 
     /**
      * @var string $dnsTxt
      */
-    public $dnsTxt;
+    protected $dnsTxt;
 
     public function getUsername(): string
     {

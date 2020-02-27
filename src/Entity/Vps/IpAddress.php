@@ -9,27 +9,27 @@ class IpAddress extends AbstractEntity
     /**
      * @var string $address
      */
-    public $address;
+    protected $address;
 
     /**
      * @var string $subnetMask
      */
-    public $subnetMask;
+    protected $subnetMask;
 
     /**
      * @var string $gateway
      */
-    public $gateway;
+    protected $gateway;
 
     /**
      * @var string[] $dnsResolvers
      */
-    public $dnsResolvers;
+    protected $dnsResolvers;
 
     /**
      * @var string $reverseDns
      */
-    public $reverseDns;
+    protected $reverseDns;
 
     public function getAddress(): string
     {

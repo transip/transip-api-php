@@ -7,27 +7,27 @@ class PrivateNetwork extends AbstractEntity
     /**
      * @var string $name
      */
-    public $name;
+    protected $name;
 
     /**
      * @var string $description
      */
-    public $description;
+    protected $description;
 
     /**
      * @var bool $isBlocked
      */
-    public $isBlocked;
+    protected $isBlocked;
 
     /**
      * @var bool $isLocked
      */
-    public $isLocked;
+    protected $isLocked;
 
     /**
      * @var string[] $vpsNames
      */
-    public $vpsNames;
+    protected $vpsNames;
 
     public function getName(): string
     {

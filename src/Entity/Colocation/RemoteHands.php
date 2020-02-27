@@ -9,27 +9,27 @@ class RemoteHands extends AbstractEntity
     /**
      * @var string $coloName
      */
-    public $coloName;
+    protected $coloName;
 
     /**
      * @var string $contactName
      */
-    public $contactName;
+    protected $contactName;
 
     /**
      * @var string $phoneNumber
      */
-    public $phoneNumber;
+    protected $phoneNumber;
 
     /**
      * @var int $expectedDuration
      */
-    public $expectedDuration;
+    protected $expectedDuration;
 
     /**
      * @var string $instructions
      */
-    public $instructions;
+    protected $instructions;
 
     public function getColoName(): string
     {

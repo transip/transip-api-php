@@ -9,22 +9,22 @@ class DnsSecEntry extends AbstractEntity
     /**
      * @var int $keyTag
      */
-    public $keyTag;
+    protected $keyTag;
 
     /**
      * @var int $flags
      */
-    public $flags;
+    protected $flags;
 
     /**
      * @var int $algorithm
      */
-    public $algorithm;
+    protected $algorithm;
 
     /**
      * @var string $publicKey
      */
-    public $publicKey;
+    protected $publicKey;
 
     public function getKeyTag(): int
     {

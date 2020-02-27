@@ -7,27 +7,27 @@ class Product extends AbstractEntity
     /**
      * @var string $name
      */
-    public $name;
+    protected $name;
 
     /**
      * @var string $description
      */
-    public $description;
+    protected $description;
 
     /**
      * @var int $price
      */
-    public $price;
+    protected $price;
 
     /**
      * @var int $recurringPrice
      */
-    public $recurringPrice;
+    protected $recurringPrice;
 
     /**
      * @var string $category
      */
-    public $category;
+    protected $category;
 
     public function getName(): string
     {

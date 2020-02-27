@@ -9,7 +9,7 @@ abstract class UsageData extends AbstractEntity
     /**
      * @var int $date
      */
-    public $date;
+    protected $date;
 
     public function getDate(): int
     {

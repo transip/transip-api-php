@@ -7,87 +7,87 @@ class Vps extends AbstractEntity
     /**
      * @var string $name
      */
-    public $name;
+    protected $name;
 
     /**
      * @var string $description
      */
-    public $description;
+    protected $description;
 
     /**
      * @var string $productName
      */
-    public $productName;
+    protected $productName;
 
     /**
      * @var string $operatingSystem
      */
-    public $operatingSystem;
+    protected $operatingSystem;
 
     /**
      * @var int $diskSize
      */
-    public $diskSize;
+    protected $diskSize;
 
     /**
      * @var int $memorySize
      */
-    public $memorySize;
+    protected $memorySize;
 
     /**
      * @var int $cpus
      */
-    public $cpus;
+    protected $cpus;
 
     /**
      * @var string $status
      */
-    public $status;
+    protected $status;
 
     /**
      * @var string $ipAddress
      */
-    public $ipAddress;
+    protected $ipAddress;
 
     /**
      * @var string $macAddress
      */
-    public $macAddress;
+    protected $macAddress;
 
     /**
      * @var int $currentSnapshots
      */
-    public $currentSnapshots;
+    protected $currentSnapshots;
 
     /**
      * @var int $maxSnapshots
      */
-    public $maxSnapshots;
+    protected $maxSnapshots;
 
     /**
      * @var bool $isLocked
      */
-    public $isLocked;
+    protected $isLocked;
 
     /**
      * @var bool $isBlocked
      */
-    public $isBlocked;
+    protected $isBlocked;
 
     /**
      * @var bool $isCustomerLocked
      */
-    public $isCustomerLocked;
+    protected $isCustomerLocked;
 
     /**
      * @var string $availabilityZone
      */
-    public $availabilityZone;
+    protected $availabilityZone;
 
     /**
      * @var array
      */
-    public $tags;
+    protected $tags;
 
     public function getName(): string
     {

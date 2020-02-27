@@ -9,32 +9,32 @@ class Snapshot extends AbstractEntity
     /**
      * @var string $name
      */
-    public $name;
+    protected $name;
 
     /**
      * @var string $description
      */
-    public $description;
+    protected $description;
 
     /**
      * @var string $dateTimeCreate
      */
-    public $dateTimeCreate;
+    protected $dateTimeCreate;
 
     /**
      * @var string $diskSize
      */
-    public $diskSize;
+    protected $diskSize;
 
     /**
      * @var string $status
      */
-    public $status;
+    protected $status;
 
     /**
      * @var string $operatingSystem
      */
-    public $operatingSystem;
+    protected $operatingSystem;
 
     public function getName(): string
     {

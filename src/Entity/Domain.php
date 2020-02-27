@@ -7,52 +7,52 @@ class Domain extends AbstractEntity
     /**
      * @var string $name
      */
-    public $name;
+    protected $name;
 
     /**
      * @var string $authCode
      */
-    public $authCode;
+    protected $authCode;
 
     /**
      * @var bool $isTransferLocked
      */
-    public $isTransferLocked;
+    protected $isTransferLocked;
 
     /**
      * @var string $registrationDate
      */
-    public $registrationDate;
+    protected $registrationDate;
 
     /**
      * @var string $renewalDate
      */
-    public $renewalDate;
+    protected $renewalDate;
 
     /**
      * @var bool $isWhitelabel
      */
-    public $isWhitelabel;
+    protected $isWhitelabel;
 
     /**
      * @var string $cancellationDate
      */
-    public $cancellationDate;
+    protected $cancellationDate;
 
     /**
      * @var string $cancellationStatus
      */
-    public $cancellationStatus;
+    protected $cancellationStatus;
 
     /**
      * @var bool $isDnsOnly
      */
-    public $isDnsOnly;
+    protected $isDnsOnly;
 
     /**
      * @var array $tags
      */
-    public $tags = [];
+    protected $tags = [];
 
     public function getName(): string
     {

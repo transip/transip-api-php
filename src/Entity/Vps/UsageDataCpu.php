@@ -7,7 +7,7 @@ class UsageDataCpu extends UsageData
     /**
      * @var float $percentage
      */
-    public $percentage;
+    protected $percentage;
 
     public function getPercentage(): float
     {

@@ -9,22 +9,22 @@ class Contact extends AbstractEntity
     /**
      * @var int
      */
-    public $id;
+    protected $id;
 
     /**
      * @var string
      */
-    public $name;
+    protected $name;
 
     /**
      * @var string
      */
-    public $telephone;
+    protected $telephone;
 
     /**
      * @var string
      */
-    public $email;
+    protected $email;
 
     /**
      * @return int
