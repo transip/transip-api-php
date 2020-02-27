@@ -1,0 +1,64 @@
+variables:
+  DOCKER_IMAGE: '$IMAGE_URL'
+image: '$DOCKER_IMAGE'
+stages:
+  - lint
+  - validate
+  - deploy
+  - release
+
+lint:php:
+  stage: lint
+  script:
+    - parallel-lint .
+  tags:
+    - k8s
+
+lint:php-codestyle:
+  stage: lint
+  script:
+    - php-cs-fixer fix -v --dry-run --using-cache=no . --config .php_cs.dist
+  tags:
+    - k8s
+
+lint:composer:
+  stage: lint
+  script:
+    - composer validate --no-interaction --strict
+  tags:
+    - k8s
+
+lint:secretsscan:
+  image: '$IMAGE_URL_PYTHON'
+  stage: lint
+  script:
+    - ci/scan_secrets.sh
+  tags:
+    - k8s
+
+validate:tag-message:
+  stage: validate
+  only:
+    - tags
+  script:
+    - ci/validate_tag_message.sh $CI_COMMIT_TAG
+  tags:
+    - k8s
+
+deploy:deploy-to-github:
+  stage: deploy
+  only:
+    - tags
+  script:
+    - ci/deploy_to_github.sh
+  tags:
+    - k8s
+
+release:release-to-github:
+  stage: release
+  only:
+    - tags
+  script:
+    - ci/release_to_github.sh $CI_COMMIT_TAG
+  tags:
+    - k8s

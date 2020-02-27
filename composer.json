@@ -1,7 +1,6 @@
 {
     "name": "transip/transip-api-php",
-    "description": "The TransIP API offers you the opportunity to use our services freely.",
-    "type": "library",
+    "description": "TransIP Rest API Library",
     "license": "Apache-2.0",
     "authors": [
         {
@@ -9,8 +8,17 @@
             "email": "support@transip.eu"
         }
     ],
-    "autoload": {
-        "classmap": ["Transip/"]
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^7.2.0",
+        "symfony/cache": "^5.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "ext-json": "*",
+        "ext-openssl": "*"
     },
-    "require": {}
+    "autoload": {
+        "psr-4": {
+            "Transip\\Api\\Library\\": "src/"
+        }
+    }
 }
