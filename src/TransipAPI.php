@@ -440,4 +440,22 @@ class TransipAPI
     {
         return $this->httpClient->getRateLimitReset();
     }
+
+    public function getTokenExpiryTime(): string
+    {
+        return $this->httpClient->getTokenExpirationTime();
+    }
+
+    /**
+     * You are able to set a expiry time for the token that is generated after authentication. The following options are
+     * allowed $expiryTime: '30 minutes', '1 hour', '1 day', '1 week', '2 weeks', '1 month'
+     *
+     * This is set to '1 day' by default
+     *
+     * @param string $expiryTime
+     */
+    public function setTokenExpiryTime(string $expiryTime): void
+    {
+        $this->httpClient->setTokenExpirationTime($expiryTime);
+    }
 }
