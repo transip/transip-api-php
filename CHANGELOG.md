@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.0.3
+-----
+- You can optionally set a token expiry time
+
 6.0.2
 -----
 - Merged v6.0 restapi-php-library into v5.18 transip-api-php repository
