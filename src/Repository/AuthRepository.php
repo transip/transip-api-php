@@ -10,11 +10,6 @@ class AuthRepository extends ApiRepository
     public const RESOURCE_NAME = 'auth';
 
     /**
-     * @var string expiryTime
-     */
-    protected $expiryTime;
-
-    /**
      * @var string
      */
     protected $labelPrefix = 'api.lib-';
@@ -32,8 +27,7 @@ class AuthRepository extends ApiRepository
         string $label = '',
         string $expirationTime = '1 day'
     ): ?string {
-        $this->expiryTime = $expirationTime;
-        if ($label == '') {
+        if ($label === '') {
             $label = $this->getLabelPrefix() . time();
         }
 
@@ -53,14 +47,25 @@ class AuthRepository extends ApiRepository
         return $token;
     }
 
-    public function getExpiryTime()
+    public function tokenHasExpired(string $token): bool
     {
-        return strtotime($this->expiryTime, 0) - 2;
+        if ($token === '') {
+            return true;
+        }
+
+        $expirationTime = $this->getExpirationTimeFromToken($token);
+        $currentTime = time();
+
+        $diff = $expirationTime - $currentTime;
+
+        // if the token expires in 60 seconds, don't use it.
+        // if $diff has a negative value then token has expired
+        return ($diff < 60);
     }
 
     public function getExpirationTimeFromToken(string $token): int
     {
-        if ($token == '') {
+        if ($token === '') {
             return 0;
         }
 

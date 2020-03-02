@@ -73,6 +73,11 @@ abstract class HttpClient implements HttpClientInterface
      */
     private $rateLimitReset = -1;
 
+    /**
+     * @var string
+     */
+    private $chosenTokenExpiry = '1 day';
+
     public function __construct(string $endpoint)
     {
         $endpoint             = rtrim($endpoint, '/');
@@ -87,25 +92,31 @@ abstract class HttpClient implements HttpClientInterface
 
     public function checkAndRenewToken(): void
     {
-        $expirationTime = $this->authRepository->getExpirationTimeFromToken($this->token);
-        if ($expirationTime <= (time() - 2)) {
+        if ($this->authRepository->tokenHasExpired($this->token)) {
+            // Create a new token
             $token = $this->authRepository->createToken(
                 $this->login,
                 $this->privateKey,
                 $this->generateWhitelistOnlyTokens,
-                $this->readOnlyMode
+                $this->readOnlyMode,
+                '',
+                $this->getChosenTokenExpiry()
             );
             $this->setToken($token);
+
+            $tokenExpiryTime = $this->authRepository->getExpirationTimeFromToken($this->token);
+            $cacheExpiryTime = new \DateTime("@{$tokenExpiryTime}");
 
             // Save new token to cache
             $cacheItem = $this->cache->getItem(self::TOKEN_CACHE_KEY);
             $cacheItem->set($token);
-            $cacheItem->expiresAfter($this->authRepository->getExpiryTime());
+            $cacheItem->expiresAt($cacheExpiryTime);
             $this->cache->save($cacheItem);
+
             // Save private key fingerprint to cache
             $cacheItem = $this->cache->getItem(self::KEY_FINGERPRINT_CACHE_KEY);
             $cacheItem->set($this->getFingerPrintFromKey($this->privateKey));
-            $cacheItem->expiresAfter($this->authRepository->getExpiryTime());
+            $cacheItem->expiresAt($cacheExpiryTime);
             $this->cache->save($cacheItem);
         }
     }
@@ -230,6 +241,16 @@ abstract class HttpClient implements HttpClientInterface
     public function getRateLimitReset(): int
     {
         return $this->rateLimitReset;
+    }
+
+    public function getChosenTokenExpiry(): string
+    {
+        return $this->chosenTokenExpiry;
+    }
+
+    public function setChosenTokenExpiry(string $chosenTokenExpiry): void
+    {
+        $this->chosenTokenExpiry = $chosenTokenExpiry;
     }
 
     abstract public function setToken(string $token): void;
