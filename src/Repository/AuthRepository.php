@@ -26,8 +26,7 @@ class AuthRepository extends ApiRepository
         bool $readOnly = false,
         string $label = '',
         string $expirationTime = '1 day'
-    ): ?string
-    {
+    ): ?string {
         if ($label === '') {
             $label = $this->getLabelPrefix() . time();
         }
