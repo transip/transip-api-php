@@ -76,7 +76,7 @@ abstract class HttpClient implements HttpClientInterface
     /**
      * @var string
      */
-    private $tokenExpirationTime = '1 day';
+    private $chosenTokenExpiry = '1 day';
 
     public function __construct(string $endpoint)
     {
@@ -100,7 +100,7 @@ abstract class HttpClient implements HttpClientInterface
                 $this->generateWhitelistOnlyTokens,
                 $this->readOnlyMode,
                 '',
-                $this->getTokenExpirationTime()
+                $this->getChosenTokenExpiry()
             );
             $this->setToken($token);
 
@@ -243,14 +243,14 @@ abstract class HttpClient implements HttpClientInterface
         return $this->rateLimitReset;
     }
 
-    public function getTokenExpirationTime(): string
+    public function getChosenTokenExpiry(): string
     {
-        return $this->tokenExpirationTime;
+        return $this->chosenTokenExpiry;
     }
 
-    public function setTokenExpirationTime(string $tokenExpirationTime): void
+    public function setChosenTokenExpiry(string $chosenTokenExpiry): void
     {
-        $this->tokenExpirationTime = $tokenExpirationTime;
+        $this->chosenTokenExpiry = $chosenTokenExpiry;
     }
 
     abstract public function setToken(string $token): void;

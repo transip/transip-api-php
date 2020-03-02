@@ -443,7 +443,7 @@ class TransipAPI
 
     public function getTokenExpiryTime(): string
     {
-        return $this->httpClient->getTokenExpirationTime();
+        return $this->httpClient->getChosenTokenExpiry();
     }
 
     /**
@@ -456,6 +456,6 @@ class TransipAPI
      */
     public function setTokenExpiryTime(string $expiryTime): void
     {
-        $this->httpClient->setTokenExpirationTime($expiryTime);
+        $this->httpClient->setChosenTokenExpiry($expiryTime);
     }
 }
