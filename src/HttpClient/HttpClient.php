@@ -104,19 +104,19 @@ abstract class HttpClient implements HttpClientInterface
             );
             $this->setToken($token);
 
-            $cacheExpiry = $this->authRepository->getExpirationTimeFromToken($this->token);
-            $cacheExpiry = new \DateTime("@{$cacheExpiry}");
+            $tokenExpiryTime = $this->authRepository->getExpirationTimeFromToken($this->token);
+            $cacheExpiryTime = new \DateTime("@{$tokenExpiryTime}");
 
             // Save new token to cache
             $cacheItem = $this->cache->getItem(self::TOKEN_CACHE_KEY);
             $cacheItem->set($token);
-            $cacheItem->expiresAt($cacheExpiry);
+            $cacheItem->expiresAt($cacheExpiryTime);
             $this->cache->save($cacheItem);
 
             // Save private key fingerprint to cache
             $cacheItem = $this->cache->getItem(self::KEY_FINGERPRINT_CACHE_KEY);
             $cacheItem->set($this->getFingerPrintFromKey($this->privateKey));
-            $cacheItem->expiresAt($cacheExpiry);
+            $cacheItem->expiresAt($cacheExpiryTime);
             $this->cache->save($cacheItem);
         }
     }
