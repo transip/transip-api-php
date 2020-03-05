@@ -1,3 +1,12 @@
+TRANSIP API V5.20
+NEW
+- Seperated register and transfer functions requiring extra contact fields
+
+TRANSIP API V5.19
+NEW
+- Added functionality to request extra contact fields for domain name
+- Changed Register and Transfers to support extra contact fields
+
 TRANSIP API V5.18
 NEW
 - Added functionality to convert vps backups to snapshots.

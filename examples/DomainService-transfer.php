@@ -29,11 +29,11 @@ try
 	$tldInfo = Transip_DomainService::getTldInfo($tldName);
 	if(in_array(Transip_Tld::CAPABILITY_CANTRANSFERWITHOWNERCHANGE, $tldInfo->capabilities))
 	{
-		Transip_DomainService::transferWithOwnerChange($domain, $authCode);
+		Transip_DomainService::transferWithOwnerChange($domain, $authCode, []);
 	}
 	elseif(in_array(Transip_Tld::CAPABILITY_CANTRANSFERWITHOUTOWNERCHANGE, $tldInfo->capabilities))
 	{
-		Transip_DomainService::transferWithoutOwnerChange($domain, $authCode);
+		Transip_DomainService::transferWithoutOwnerChange($domain, $authCode, []);
 	}
 	else
 	{

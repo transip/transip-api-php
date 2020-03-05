@@ -106,7 +106,7 @@ class Transip_Haip
 	public $ipSetup = '';
 
 	/**
-	 * An array of Vpses attached to the HA-IP.
+	 * An array of Vpss attached to the HA-IP.
 	 *
 	 * @var Transip_Vps[]
 	 */
@@ -115,7 +115,7 @@ class Transip_Haip
 	/**
 	 * Name of Vps attached to the HA-IP.
 	 *
-	 * @deprecated Only shows data for one of the attached Vpses; use $attachedVpses instead.
+	 * @deprecated Only shows data for one of the attached Vpss; use $attachedVpses instead.
 	 * @var string
 	 */
 	public $vpsName = '';
@@ -123,7 +123,7 @@ class Transip_Haip
 	/**
 	 * IPv4 address of Vps attached to the HA-IP.
 	 *
-	 * @deprecated Only shows data for one of the attached Vpses; use $attachedVpses instead.
+	 * @deprecated Only shows data for one of the attached Vpss; use $attachedVpses instead.
 	 * @var string
 	 */
 	public $vpsIpv4Address = '';
@@ -131,7 +131,7 @@ class Transip_Haip
 	/**
 	 * IPv6 address of Vps attached to the HA-IP.
 	 *
-	 * @deprecated Only shows data for one of the attached Vpses; use $attachedVpses instead.
+	 * @deprecated Only shows data for one of the attached Vpss; use $attachedVpses instead.
 	 * @var string
 	 */
 	public $vpsIpv6Address = '';

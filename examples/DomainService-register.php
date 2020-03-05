@@ -10,8 +10,8 @@ try
 	// for this the call should be like:
 	// $domain = new Transip_Domain('transip.nl', <array of nameservers>, <array of contacts>,
 	//                   <array of dns entries>);
-	$domain = new Transip_Domain('transip.nl');
-	$propositionNumber = Transip_DomainService::register($domain);
+	$domain = new Transip_Domain('example.com');
+	$propositionNumber = Transip_DomainService::register($domain, []);
 	echo 'The domain ' . $domain->name . ' has been requested with proposition number ' . $propositionNumber;
 }
 catch(SoapFault $e)

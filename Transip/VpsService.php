@@ -22,7 +22,7 @@ class Transip_VpsService
 	/** The SOAP service that corresponds with this class. */
 	const SERVICE = 'VpsService';
 	/** The API version. */
-	const API_VERSION = '5.18';
+	const API_VERSION = '5.20';
 	/** @var SoapClient  The SoapClient used to perform the SOAP calls. */
 	protected static $_soapClient = null;
 
@@ -553,7 +553,7 @@ class Transip_VpsService
 	}
 
 	/**
-	 * Get all Vpses
+	 * Get all Vpss
 	 *
 	 * @return Transip_Vps[] Array of Vps objects
 	 */
