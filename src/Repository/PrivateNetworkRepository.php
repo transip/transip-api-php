@@ -87,14 +87,14 @@ class PrivateNetworkRepository extends ApiRepository
 
     public function attachVps(string $privateNetworkName, string $vpsName): void
     {
-        $parameters['action']  = 'addvps';
+        $parameters['action']  = 'attachvps';
         $parameters['vpsName'] = $vpsName;
         $this->httpClient->patch($this->getResourceUrl($privateNetworkName), $parameters);
     }
 
     public function detachVps(string $privateNetworkName, string $vpsName): void
     {
-        $parameters['action']  = 'removevps';
+        $parameters['action']  = 'detachvps';
         $parameters['vpsName'] = $vpsName;
         $this->httpClient->patch($this->getResourceUrl($privateNetworkName), $parameters);
     }
