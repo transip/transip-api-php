@@ -4,6 +4,7 @@ CHANGELOG
 6.0.3
 -----
 - You can optionally set a token expiry time
+- Fix in PrivateNetwork attach/detach methods
 
 6.0.2
 -----
