@@ -70,7 +70,7 @@ class AuthRepository extends ApiRepository
         }
 
         try {
-            $data           = $data = explode('.', $token);
+            $data           = explode('.', $token);
             $body           = json_decode(base64_decode($data[1]), true);
             $expirationTime = $body['exp'] ?? 0;
         } catch (Exception $exception) {
