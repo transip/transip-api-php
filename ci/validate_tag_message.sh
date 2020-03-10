@@ -10,10 +10,10 @@ if [ -z "$TAG_VERSION" ] ; then
   exit 1;
 fi
 
-description="$(git show --format=%N $TAG_VERSION | tail -n+3)"
+description="$(git tag -n999 --format='%(contents)' $TAG_VERSION)"
 
 # Ensure tag message is not empty
-if [ -z "$description" ] ; then
+if echo $description | grep "Merge"; then
   echo "the tag message is empty, you must enter a tag message before deployment";
   exit 1;
 fi
