@@ -23,7 +23,7 @@ class Transip_DomainService
 	/** The SOAP service that corresponds with this class. */
 	const SERVICE = 'DomainService';
 	/** The API version. */
-	const API_VERSION = '5.18';
+	const API_VERSION = '5.20';
 	/** @var SoapClient  The SoapClient used to perform the SOAP calls. */
 	protected static $_soapClient = null;
 
@@ -306,17 +306,116 @@ class Transip_DomainService
 	}
 
 	/**
+	 * Will get additional contact data fields for domain.
+	 * 
+	 * <br />
+	 * 
+	 * <b>COUNTRY_CODE</b>: A 2 letter country from the <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Decoding_table" target="_blanc">ISO 3166-1 alpha-2 standard</a>. <br />
+	 * <b>PERSONAL_IDENTIFICATION_NUMBER</b>: Your personal id number when registering as a natural person. Kvk when registering as a company. <br />
+	 * <b>REGISTRANT_TYPE</b>: Fill in whether you register the domain name as a person or as a company. <br />
+	 * <b>VAT_NUMBER</b>: A valid VAT number is required to register this domain. <br />
+	 * <b>FIRST_NAME</b>: Your full first name has to be provided here.<br />
+	 * <b>LAST_NAME</b>: Your full last name has to be provided here.<br />
+	 * <b>BIRTH_DATE</b>: You have to supply your birth date here. Please do so in the format ‘YYYY-MM-DD’.<br />
+	 * <b>COMPANY_REGISTRATION_ID</b>: Please provide the company registration id if the domain is being registered on behalf of or by a company.<br />
+	 * <b>INTENDED_USE</b>: You should provide a short explanation on what you are going to use this domain for.<br />
+	 * <b>CODICE_FISCALE</b>: A valid Codice Fiscale (16 characters) is required to register this domain.<br />
+	 * <b>ADMIN_IDENTIFICATION_NUMBER</b>: Provide the identifier for the adminstrative contact. For example a personal id.<br />
+	 * <b>ADMIN_IDENTIFICATION_TYPE</b>: Administrative contact Identification type<br />
+	 * <b>OWNER_IDENTIFICATION_NUMBER</b>: Provide the identifier for the holder. For example a personal id or AVT.<br />
+	 * <b>OWNER_IDENTIFICATION_TYPE</b>: Holder Identifier type<br />
+	 * <b>OWNER_LEGAL_FORM</b>: Select the legal form for the holder.<br />
+	 * <b>TECH_IDENTIFICATION_NUMBER</b>: Provide the identifier for the technical contact. For example a personal id.<br />
+	 * <b>TECH_IDENTIFICATION_TYPE</b>: Technical contact Identifier type<br />
+	 * <b>OWNER_VAT_NUMBER</b>: For the registration of this domain a valid VAT number of the registrant is required<br />
+	 * <b>TECH_VAT_NUMBER</b>: For the registration of this domain a valid VAT number of the technical contact is required<br />
+	 * <b>COMMUNITY_ID</b>: The community ID from the Sponsored Community is a unique code that consists of 16 characters.<br />
+	 * <b>LEGAL_FORM_DUTCH</b>: Choose legalform<br />
+	 * 
+	 * <br />
+	 * 
+	 * Tld specific cases <br />
+	 * 
+	 * <b>.amsterdam</b> <br />
+	 * Choose one of the following options for LEGAL_FORM_DUTCH: ANDERS, BGG, BRO, BV, BVI/O, COOP, CV, EENMANSZAAK, EESV, KERK, MAATSCHAP, NV, OWM, PERSOON, REDR, STICHTING, VERENIGING, VOF <br />
+	 * 
+	 * <br />
+	 * 
+	 * <b>.es and .com.es</b> <br />
+	 * For ADMIN_IDENTIFICATION_TYPE, OWNER_IDENTIFICATION_TYPE and TECH_IDENTIFICATION_TYPE use following values: <br />
+	 * For Non Spanish identification number use: <b>0</b> <br />
+	 * For Spanish identification number use: <b>1</b> <br />
+	 * For Spanish identification number for residents use: <b>3</b> <br />
+	 * 
+	 * <br />
+	 * 
+	 * <b>.fr</b> <br />
+	 * If registering as a person use: FIRST_NAME, LAST_NAME. <br />
+	 * If registering as a company use: FIRST_NAME, LAST_NAME, VAT_NUMBER, COUNTRY_CODE <br />
+	 * 
+	 * <br />
+	 * 
+	 * <b>.it</b> <br />
+	 * <b>1.</b> Use only COUNTRY_CODE in NOT any of the following codes: AT, BE, CY, CZ, DE, DK, EE, ES, FI, FR, GB, GR, HU, IE, LT, LU, LV, MT, NL, PL, PT, SE, SI, SK, BG or RO <br />
+	 * <b>2.</b> If COUNTRY_CODE is IT use: COUNTRY_CODE and CODICE_FISCALE <br />
+	 * <b>3.</b> If REGISTRANT_TYPE is company and COUNTRY_CODE is any of the following: AT, BE, CY, CZ, DE, DK, EE, ES, FI, FR, GB, GR, HU, IE, LT, LU, LV, MT, NL, PL, PT, SE, SI, SK, BG or RO use: COUNTRY_CODE, REGISTRANT_TYPE and VAT_NUMBER <br />
+	 * <b>4.</b> If REGISTRANT_TYPE is person and COUNTRY_CODE is any of the following: AT, BE, CY, CZ, DE, DK, EE, ES, FI, FR, GB, GR, HU, IE, LT, LU, LV, MT, NL, PL, PT, SE, SI, SK, BG or RO use: COUNTRY_CODE, REGISTRANT_TYPE and PERSONAL_IDENTIFICATION_NUMBER <br />
+	 * 
+	 * <br />
+	 * 
+	 * <b>.nu</b> <br />
+	 * <b>1.</b> Use only PERSONAL_IDENTIFICATION_NUMBER when registrant is a person <br />
+	 * <b>2.</b> If ordering as a company and VAT_COUNTRY_CODE is NOT: AT, BE, CY, CZ, DE, DK, EE, ES, FI, FR, GB, GR, HU, IE, IT, LT, LU, LV, MT, NL, PL, PT, SE, SI, SK, BG, RO use PERSONAL_IDENTIFICATION_NUMBER and VAT_COUNTRY_CODE <br />
+	 * <b>3.</b> If ordering as a company and VAT_COUNTRY_CODE is one of the following: AT, BE, CY, CZ, DE, DK, EE, ES, FI, FR, GB, GR, HU, IE, IT, LT, LU, LV, MT, NL, PL, PT, SE, SI, SK, BG, RO use PERSONAL_IDENTIFICATION_NUMBER, VAT_COUNTRY_CODE and VAT_NUMBER <br />
+	 * 
+	 * <br />
+	 * 
+	 * <b>.pm, .re, .tf, .wf and .yt</b> <br />
+	 * <b>1.</b> If registering as a person use: FIRST_NAME and LAST_NAME <br />
+	 * <b>2.</b> If registering as a company use: VAT_NUMBER, VAT_COUNTRY_CODE, FIRST_NAME and LAST_NAME <br />
+	 * 
+	 * <br />
+	 * 
+	 * <b>.se</b> <br />
+	 * <b>1.</b> If registering as a person use: PERSONAL_IDENTIFICATION_NUMBER <br />
+	 * <b>2.</b> If registering as a company use: PERSONAL_IDENTIFICATION_NUMBER, VAT_COUNTRY_CODE and VAT_NUMBER
+	 *
+	 * @param string $domainName 
+	 * @example examples/DomainService-DomainService-getExtraContactFields.php
+	 * @return array 
+	 */
+	public static function getExtraContactFields($domainName)
+	{
+		return self::_getSoapClient(array_merge(array($domainName), array('__method' => 'getExtraContactFields')))->getExtraContactFields($domainName);
+	}
+
+	/**
 	 * Registers a domain name, will automatically create and sign a proposition for it
 	 *
 	 * @param Transip_Domain $domain The Domain object holding information about the domain that needs to be registered.
 	 * @requires readwrite mode
 	 * @example examples/DomainService-DomainService-register-whois.php
 	 * @return string proposition number
-	 * @throws ApiException
+	 * @throws UserException
 	 */
 	public static function register($domain)
 	{
 		return self::_getSoapClient(array_merge(array($domain), array('__method' => 'register')))->register($domain);
+	}
+
+	/**
+	 * Registers a domain name, will automatically create and sign a proposition for it
+	 *
+	 * @param Transip_Domain $domain The Domain object holding information about the domain that needs to be registered.
+	 * @param array $extraContactFields The ExtraContactFields that are required for this domain.
+	 * @requires readwrite mode
+	 * @example examples/DomainService-DomainService-register-whois.php
+	 * @return string proposition number
+	 * @throws UserException
+	 */
+	public static function registerWithExtraContactFields($domain, $extraContactFields)
+	{
+		return self::_getSoapClient(array_merge(array($domain, $extraContactFields), array('__method' => 'registerWithExtraContactFields')))->registerWithExtraContactFields($domain, $extraContactFields);
 	}
 
 	/**
@@ -335,11 +434,12 @@ class Transip_DomainService
 	}
 
 	/**
-	 * Transfers a domain with changing the owner, not all TLDs support this (e.g. nl)
+	 * Transfers a domain without changing the owner
 	 *
 	 * @param Transip_Domain $domain the Domain object holding information about the domain that needs to be transfered
 	 * @param string $authCode the authorization code for domains needing this for transfers (e.g. .com or .org transfers). Leave empty when n/a.
 	 * @return string proposition number
+	 * @throws UserException
 	 * @requires readwrite mode
 	 * @example examples/DomainService-DomainService-transfer.php
 	 */
@@ -349,17 +449,50 @@ class Transip_DomainService
 	}
 
 	/**
+	 * Transfers a domain with changing the owner, not all TLDs support this (e.g. nl)
+	 *
+	 * @param Transip_Domain $domain the Domain object holding information about the domain that needs to be transfered
+	 * @param string $authCode the authorization code for domains needing this for transfers (e.g. .com or .org transfers). Leave empty when n/a.
+	 * @param array $extraContactFields The ExtraContactFields that are required for this domain.
+	 * @return string proposition number
+	 * @throws UserException
+	 * @requires readwrite mode
+	 * @example examples/DomainService-DomainService-transfer.php
+	 */
+	public static function transferWithOwnerChangeWithExtraContactFields($domain, $authCode, $extraContactFields)
+	{
+		return self::_getSoapClient(array_merge(array($domain, $authCode, $extraContactFields), array('__method' => 'transferWithOwnerChangeWithExtraContactFields')))->transferWithOwnerChangeWithExtraContactFields($domain, $authCode, $extraContactFields);
+	}
+
+	/**
 	 * Transfers a domain without changing the owner
 	 *
 	 * @param Transip_Domain $domain the Domain object holding information about the domain that needs to be transfered
 	 * @param string $authCode the authorization code for domains needing this for transfers (e.g. .com or .org transfers). Leave empty when n/a.
 	 * @return string proposition number
+	 * @throws UserException
 	 * @requires readwrite mode
 	 * @example examples/DomainService-DomainService-transfer.php
 	 */
 	public static function transferWithoutOwnerChange($domain, $authCode)
 	{
 		return self::_getSoapClient(array_merge(array($domain, $authCode), array('__method' => 'transferWithoutOwnerChange')))->transferWithoutOwnerChange($domain, $authCode);
+	}
+
+	/**
+	 * Transfers a domain without changing the owner
+	 *
+	 * @param Transip_Domain $domain the Domain object holding information about the domain that needs to be transfered
+	 * @param string $authCode the authorization code for domains needing this for transfers (e.g. .com or .org transfers). Leave empty when n/a.
+	 * @param array $extraContactFields The ExtraContactFields that are required for this domain.
+	 * @return string proposition number
+	 * @throws UserException
+	 * @requires readwrite mode
+	 * @example examples/DomainService-DomainService-transfer.php
+	 */
+	public static function transferWithoutOwnerChangeWithExtraContactFields($domain, $authCode, $extraContactFields)
+	{
+		return self::_getSoapClient(array_merge(array($domain, $authCode, $extraContactFields), array('__method' => 'transferWithoutOwnerChangeWithExtraContactFields')))->transferWithoutOwnerChangeWithExtraContactFields($domain, $authCode, $extraContactFields);
 	}
 
 	/**
