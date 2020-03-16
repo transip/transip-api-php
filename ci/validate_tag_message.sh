@@ -10,7 +10,7 @@ if [ -z "$TAG_VERSION" ] ; then
   exit 1;
 fi
 
-description="$(git tag -n999 --format='%(contents)' $TAG_VERSION)"
+description="$(git tag -l -n999 --format='%(contents)' $TAG_VERSION)"
 
 # Ensure tag message is not empty
 if echo $description | grep "Merge"; then
