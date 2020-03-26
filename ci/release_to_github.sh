@@ -17,7 +17,7 @@ function convert_to_json() {
   python -c 'import json,sys;print json.dumps(sys.stdin.read().strip())'
 }
 
-description="$(git tag -n999 --format='%(contents)' $TAG_VERSION | convert_to_json)"
+description="$(git tag -l -n999 --format='%(contents)' $TAG_VERSION | convert_to_json)"
 
 json_output=$(curl -H "Authorization: token ${GITHUB_TOKEN}" \
   -H "Content-Type: application/json" \
