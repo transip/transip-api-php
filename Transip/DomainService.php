@@ -23,7 +23,7 @@ class Transip_DomainService
 	/** The SOAP service that corresponds with this class. */
 	const SERVICE = 'DomainService';
 	/** The API version. */
-	const API_VERSION = '5.21';
+	const API_VERSION = '5.22';
 	/** @var SoapClient  The SoapClient used to perform the SOAP calls. */
 	protected static $_soapClient = null;
 
@@ -453,7 +453,7 @@ class Transip_DomainService
 	 *
 	 * @param Transip_Domain $domain the Domain object holding information about the domain that needs to be transfered
 	 * @param string $authCode the authorization code for domains needing this for transfers (e.g. .com or .org transfers). Leave empty when n/a.
-	 * @param array $extraContactFields The ExtraContactFields that are required for this domain.
+	 * @param string[] $extraContactFields The ExtraContactFields that are required for this domain.
 	 * @return string proposition number
 	 * @throws UserException
 	 * @requires readwrite mode
