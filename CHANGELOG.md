@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+6.1.0 [WiP - not yet released]
+-----
+- Added bigstorage description argument in order function
+- 
+
 6.0.3
 -----
 - You can optionally set a token expiry time

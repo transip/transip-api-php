@@ -56,13 +56,15 @@ class BigStorageRepository extends ApiRepository
         string $size,
         bool $offsiteBackup = true,
         string $availabilityZone = '',
-        string $vpsName = ''
+        string $vpsName = '',
+        string $description = ''
     ): void {
         $parameters = [
             'size'             => $size,
             'offsiteBackups'   => $offsiteBackup,
             'availabilityZone' => $availabilityZone,
             'vpsName'          => $vpsName,
+            'description'      => $description,
         ];
         $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
