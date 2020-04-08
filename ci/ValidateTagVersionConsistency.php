@@ -2,12 +2,7 @@
 
 use Transip\Api\Library\TransipAPI;
 
-define('BASE_PATH', dirname(__DIR__));
-
-chdir(BASE_PATH);
-exec('composer dump-autoload');
-
-require_once(BASE_PATH . '/vendor/autoload.php');
+require_once(__DIR__ . '/../vendor/autoload.php');
 
 if (!isset($argv[1])) {
     throw new RuntimeException("An argument must be provided, usage example: php {$argv[0]} v6.1.3");
