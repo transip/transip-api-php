@@ -45,6 +45,16 @@ validate:tag-message:
   tags:
     - k8s
 
+validate:tag-version-consistency:
+  stage: validate
+  only:
+    - tags
+  script:
+    - composer dump-autoload
+    - php ci/ValidateTagVersionConsistency.php $CI_COMMIT_TAG
+  tags:
+    - k8s
+
 deploy:deploy-to-github:
   stage: deploy
   only:
