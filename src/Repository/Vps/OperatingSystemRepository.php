@@ -31,15 +31,30 @@ class OperatingSystemRepository extends ApiRepository
         return $operatingSystems;
     }
 
+    /**
+     * @param string   $vpsName
+     * @param string   $operatingSystemName
+     * @param string   $hostname
+     * @param string   $base64InstallText
+     * @param string   $installFlavour
+     * @param string   $username
+     * @param string[] $sshKeys
+     */
     public function install(
         string $vpsName,
         string $operatingSystemName,
         string $hostname = '',
-        string $base64InstallText = ''
+        string $base64InstallText = '',
+        string $installFlavour = '',
+        string $username = '',
+        array $sshKeys = []
     ): void {
         $parameters['operatingSystemName'] = $operatingSystemName;
         $parameters['hostname']            = $hostname;
         $parameters['base64InstallText']   = $base64InstallText;
+        $parameters['installFlavour']      = $installFlavour;
+        $parameters['username']            = $username;
+        $parameters['sshKeys']             = $sshKeys;
         $this->httpClient->post($this->getResourceUrl($vpsName), $parameters);
     }
 }

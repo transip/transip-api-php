@@ -66,6 +66,18 @@ class VpsRepository extends ApiRepository
         return $vpss;
     }
 
+    /**
+     * @param string   $productName
+     * @param string   $operatingSystemName
+     * @param array    $addons
+     * @param string   $hostname
+     * @param string   $availabilityZone
+     * @param string   $description
+     * @param string   $base64InstallText
+     * @param string   $installFlavour
+     * @param string   $username
+     * @param string[] $sshKeys
+     */
     public function order(
         string $productName,
         string $operatingSystemName,
@@ -73,7 +85,10 @@ class VpsRepository extends ApiRepository
         string $hostname = '',
         string $availabilityZone = '',
         string $description = '',
-        string $base64InstallText = ''
+        string $base64InstallText = '',
+        string $installFlavour = '',
+        string $username = '',
+        array $sshKeys = []
     ): void {
         $parameters['productName']     = $productName;
         $parameters['operatingSystem'] = $operatingSystemName;
@@ -93,6 +108,15 @@ class VpsRepository extends ApiRepository
         if ($base64InstallText !== '') {
             $parameters['base64InstallText'] = $base64InstallText;
         }
+        if ($installFlavour !== '') {
+            $parameters['installFlavour'] = $installFlavour;
+        }
+        if ($username !== '') {
+            $parameters['username'] = $username;
+        }
+        if ($sshKeys !== '') {
+            $parameters['sshKeys'] = $sshKeys;
+        }
 
         $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
@@ -107,7 +131,10 @@ class VpsRepository extends ApiRepository
                 'addons'           => ["vpsAddon-1-extra-cpu-core"],
                 'hostname'         => "",
                 'availabilityZone' => "rtm0",
-                'description'      => "loadbalancer0"
+                'description'      => "loadbalancer0",
+                'installFlavour'   => "cloudinit",
+                'username'         => "kevin",
+                'sshKeys'          => ["ssh-rsa AAAAB3NzaC1yc2EAAA..."],
             ],
             [
                 'productName'      => "vps-bladevps-x1",
