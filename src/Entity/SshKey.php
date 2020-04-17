@@ -20,6 +20,16 @@ class SshKey extends AbstractEntity
     protected $description;
 
     /**
+     * @var string
+     */
+    protected $creationDate;
+
+    /**
+     * @var string
+     */
+    protected $fingerPrint;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -65,5 +75,21 @@ class SshKey extends AbstractEntity
     public function setDescription(string $description): void
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreationDate(): string
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFingerPrint(): string
+    {
+        return $this->fingerPrint;
     }
 }
