@@ -6,6 +6,10 @@ use Transip\Api\Library\Entity\AbstractEntity;
 
 class OperatingSystem extends AbstractEntity
 {
+    public const INSTALL_FLAVOUR_INSTALLER = 'installer';
+    public const INSTALL_FLAVOUR_PREINSTALLABLE = 'preinstallable';
+    public const INSTALL_FLAVOUR_CLOUDINIT = 'cloudinit';
+
     /**
      * @var string $name
      */
@@ -17,11 +21,6 @@ class OperatingSystem extends AbstractEntity
     protected $description;
 
     /**
-     * @var bool $isPreinstallableImage
-     */
-    protected $isPreinstallableImage;
-
-    /**
      * @var string $version
      */
     protected $version;
@@ -30,6 +29,11 @@ class OperatingSystem extends AbstractEntity
      * @var int $price
      */
     protected $price;
+
+    /**
+     * @var array
+     */
+    protected $installFlavours = [];
 
     public function getName(): string
     {
@@ -41,11 +45,6 @@ class OperatingSystem extends AbstractEntity
         return $this->description;
     }
 
-    public function isPreinstallableImage(): bool
-    {
-        return $this->isPreinstallableImage;
-    }
-
     public function getVersion(): string
     {
         return $this->version;
@@ -54,5 +53,10 @@ class OperatingSystem extends AbstractEntity
     public function getPrice(): int
     {
         return $this->price;
+    }
+
+    public function getInstallFlavours(): array
+    {
+        return $this->installFlavours;
     }
 }
