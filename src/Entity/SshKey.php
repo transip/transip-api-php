@@ -27,7 +27,7 @@ class SshKey extends AbstractEntity
     /**
      * @var string
      */
-    protected $fingerPrint;
+    protected $fingerprint;
 
     /**
      * @return int
