@@ -31,7 +31,7 @@ class OperatingSystem extends AbstractEntity
     protected $price;
 
     /**
-     * @var array
+     * @var string[]
      */
     protected $installFlavours = [];
 
