@@ -5,7 +5,7 @@ CHANGELOG
 -----
 - Added SSH Keys resource
 - Added CloudInit installation functionality to order and install VPS resource
-- Removed isPreinstallable bool from OperatingSystem Entity
+- Deprecated isPreinstallableImage getter in OperatingSystem Entity
 - Added Bigstorage description argument to order resource
 
 6.0.3
