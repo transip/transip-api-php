@@ -1,10 +1,12 @@
 CHANGELOG
 =========
 
-6.1.0 [WiP - not yet released]
+6.1.0
 -----
-- Added bigstorage description argument in order function
-- 
+- Added SSH Keys resource
+- Added CloudInit installation functionality to order and install VPS resource
+- Removed isPreinstallable bool from OperatingSystem Entity
+- Added Bigstorage description argument to order resource
 
 6.0.3
 -----
