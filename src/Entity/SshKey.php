@@ -88,7 +88,7 @@ class SshKey extends AbstractEntity
     /**
      * @return string
      */
-    public function getFingerPrint(): string
+    public function getFingerprint(): string
     {
         return $this->fingerprint;
     }
