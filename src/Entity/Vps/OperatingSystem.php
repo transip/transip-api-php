@@ -45,6 +45,15 @@ class OperatingSystem extends AbstractEntity
         return $this->description;
     }
 
+    /**
+     * @deprecated
+     * @return bool
+     */
+    public function isPreinstallableImage(): bool
+    {
+        return in_array(self::INSTALL_FLAVOUR_PREINSTALLABLE, $this->getInstallFlavours(), true);
+    }
+
     public function getVersion(): string
     {
         return $this->version;
