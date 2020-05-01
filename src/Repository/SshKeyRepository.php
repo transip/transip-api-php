@@ -24,6 +24,21 @@ class SshKeyRepository extends ApiRepository
         return $sshKeys;
     }
 
+    public function getSelection(int $page, int $itemsPerPage): array
+    {
+        $invoices     = [];
+        $query        = ['pageSize' => $itemsPerPage, 'page' => $page];
+        $response     = $this->httpClient->get($this->getResourceUrl(), $query);
+        $sshKeysArray = $this->getParameterFromResponse($response, 'sshKeys');
+
+        $sshKeys = [];
+        foreach ($sshKeysArray as $sshKeyArray) {
+            $sshKeys[] = new SshKey($sshKeyArray);
+        }
+
+        return $sshKeys;
+    }
+
     public function getById(string $sshKeyId): SshKey
     {
         $response = $this->httpClient->get($this->getResourceUrl($sshKeyId));
