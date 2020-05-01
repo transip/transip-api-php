@@ -34,6 +34,7 @@ use Transip\Api\Library\Repository\PrivateNetworkRepository;
 use Transip\Api\Library\Repository\ProductRepository;
 use Transip\Api\Library\Repository\Product\ElementRepository as ProductElementRepository;
 use Transip\Api\Library\Repository\DomainTldRepository;
+use Transip\Api\Library\Repository\SshKeyRepository;
 use Transip\Api\Library\Repository\TrafficRepository;
 use Transip\Api\Library\Repository\Vps\AddonRepository;
 use Transip\Api\Library\Repository\Vps\BackupRepository as VpsBackupRepository;
@@ -123,6 +124,11 @@ class TransipAPI
     public function productElements(): ProductElementRepository
     {
         return new ProductElementRepository($this->httpClient);
+    }
+
+    public function sshKey(): SshKeyRepository
+    {
+        return new SshKeyRepository($this->httpClient);
     }
 
     public function invoice(): InvoiceRepository
