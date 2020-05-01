@@ -41,8 +41,8 @@ class SshKeyRepository extends ApiRepository
 
     public function getById(string $sshKeyId): SshKey
     {
-        $response = $this->httpClient->get($this->getResourceUrl($sshKeyId));
-        $sshKeyArray  = $this->getParameterFromResponse($response, 'sshKey');
+        $response    = $this->httpClient->get($this->getResourceUrl($sshKeyId));
+        $sshKeyArray = $this->getParameterFromResponse($response, 'sshKey');
 
         return new SshKey($sshKeyArray);
     }
