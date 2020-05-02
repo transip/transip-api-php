@@ -5,8 +5,10 @@ namespace Transip\Api\Library\HttpClient;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\RequestException;
+use Psr\Http\Message\ResponseInterface;
 use Transip\Api\Library\Exception\ApiException;
 use Transip\Api\Library\Exception\HttpClientException;
+use Transip\Api\Library\Exception\HttpRequest\UnauthorizedException;
 use Transip\Api\Library\Exception\HttpRequestException;
 use Transip\Api\Library\Exception\HttpBadResponseException;
 use Exception;
@@ -46,11 +48,7 @@ class GuzzleClient extends HttpClient
         $this->checkAndRenewToken();
         $options = $this->checkAndSetTestModeToOptions($options);
 
-        try {
-            $response = $this->client->get("{$this->endpoint}{$url}", $options);
-        } catch (Exception $exception) {
-            $this->exceptionHandler($exception);
-        }
+        $response = $this->performRequest('get', $url, $options);
 
         if ($response->getStatusCode() !== 200) {
             throw ApiException::unexpectedStatusCode($response);
@@ -78,11 +76,7 @@ class GuzzleClient extends HttpClient
         $this->checkAndRenewToken();
         $options = $this->checkAndSetTestModeToOptions($options);
 
-        try {
-            $response = $this->client->post("{$this->endpoint}{$url}", $options);
-        } catch (Exception $exception) {
-            $this->exceptionHandler($exception);
-        }
+        $response = $this->performRequest('post', $url, $options);
 
         if ($response->getStatusCode() !== 201) {
             throw ApiException::unexpectedStatusCode($response);
@@ -99,7 +93,8 @@ class GuzzleClient extends HttpClient
         try {
             $response = $this->client->post("{$this->endpoint}{$url}", $options);
         } catch (Exception $exception) {
-            $this->exceptionHandler($exception);
+            $newException = $this->exceptionHandler($exception);
+            throw new $newException;
         }
 
         if ($response->getStatusCode() !== 201) {
@@ -126,11 +121,7 @@ class GuzzleClient extends HttpClient
         $this->checkAndRenewToken();
         $options = $this->checkAndSetTestModeToOptions($options);
 
-        try {
-            $response = $this->client->put("{$this->endpoint}{$url}", $options);
-        } catch (Exception $exception) {
-            $this->exceptionHandler($exception);
-        }
+        $response = $this->performRequest('put', $url, $options);
 
         if ($response->getStatusCode() !== 204) {
             throw ApiException::unexpectedStatusCode($response);
@@ -146,11 +137,7 @@ class GuzzleClient extends HttpClient
         $this->checkAndRenewToken();
         $options = $this->checkAndSetTestModeToOptions($options);
 
-        try {
-            $response = $this->client->patch("{$this->endpoint}{$url}", $options);
-        } catch (Exception $exception) {
-            $this->exceptionHandler($exception);
-        }
+        $response = $this->performRequest('patch', $url, $options);
 
         if ($response->getStatusCode() !== 204) {
             throw ApiException::unexpectedStatusCode($response);
@@ -166,11 +153,7 @@ class GuzzleClient extends HttpClient
         $this->checkAndRenewToken();
         $options = $this->checkAndSetTestModeToOptions($options);
 
-        try {
-            $response = $this->client->delete("{$this->endpoint}{$url}", $options);
-        } catch (Exception $exception) {
-            $this->exceptionHandler($exception);
-        }
+        $response = $this->performRequest('delete', $url, $options);
 
         if ($response->getStatusCode() !== 204) {
             throw ApiException::unexpectedStatusCode($response);
@@ -179,21 +162,50 @@ class GuzzleClient extends HttpClient
         $this->parseResponseHeaders($response);
     }
 
-    private function exceptionHandler(Exception $exception): void
+    private function exceptionHandler(Exception $exception): Exception
     {
         if ($exception instanceof BadResponseException) {
             if ($exception->hasResponse()) {
-                throw HttpBadResponseException::badResponseException($exception, $exception->getResponse());
+                return HttpBadResponseException::badResponseException($exception, $exception->getResponse());
             }
             // Guzzle misclassifies curl exception as a client exception (so there is no response)
-            throw HttpClientException::genericRequestException($exception);
+            return HttpClientException::genericRequestException($exception);
         }
 
         if ($exception instanceof RequestException) {
-            throw HttpRequestException::requestException($exception);
+            return HttpRequestException::requestException($exception);
         }
 
-        throw HttpClientException::genericRequestException($exception);
+        return HttpClientException::genericRequestException($exception);
+    }
+
+    private function performRequest(string $method, $url, $options): ?ResponseInterface
+    {
+        $method = strtolower($method);
+        if (!in_array($method, ['get', 'post', 'put', 'delete', 'patch'])) {
+            throw new Exception('Invalid HTTP request method');
+        }
+
+        $tries = 0;
+        $response = null;
+        do {
+            $tries++;
+            try {
+                $response = $this->client->{$method}("{$this->endpoint}{$url}", $options);
+            } catch (Exception $exception) {
+                $exception = $this->exceptionHandler($exception);
+                if ($exception instanceof UnauthorizedException &&
+                    $exception->getMessage() === 'Your access token has been revoked.') {
+                    $this->clearCache();
+                    $this->setToken('');
+                    $this->checkAndRenewToken();
+                } else {
+                    throw $exception;
+                }
+            }
+        } while($response === null && $tries < 2);
+
+        return $response;
     }
 
     private function checkAndSetTestModeToOptions(array $options): array
