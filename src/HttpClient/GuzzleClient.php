@@ -179,7 +179,7 @@ class GuzzleClient extends HttpClient
         return HttpClientException::genericRequestException($exception);
     }
 
-    private function performRequest(string $method, $url, $options): ?ResponseInterface
+    private function performRequest(string $method, string $url, array $options): ?ResponseInterface
     {
         $method = strtolower($method);
         if (!in_array($method, ['get', 'post', 'put', 'delete', 'patch'])) {
