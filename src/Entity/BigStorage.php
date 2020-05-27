@@ -39,6 +39,11 @@ class BigStorage extends AbstractEntity
      */
     protected $availabilityZone;
 
+    /**
+     * @var string $serial
+     */
+    protected $serial;
+
     public function getName(): string
     {
         return $this->name;
@@ -84,5 +89,10 @@ class BigStorage extends AbstractEntity
     {
         $this->vpsName = $vpsName;
         return $this;
+    }
+
+    public function getSerial(): string
+    {
+        return $this->serial;
     }
 }
