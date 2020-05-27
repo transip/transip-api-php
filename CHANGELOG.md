@@ -1,7 +1,8 @@
 CHANGELOG
 =========
 
-6.1.1
+6.2.0
+-----
 - Added the serial property to BigStorage
 
 6.1.0
