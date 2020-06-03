@@ -7,6 +7,7 @@ require_once('Nameserver.php');
 require_once('WhoisContact.php');
 require_once('DnsEntry.php');
 require_once('DomainBranding.php');
+require_once('ExtraContactField.php');
 require_once('Tld.php');
 require_once('DomainAction.php');
 
@@ -23,7 +24,7 @@ class Transip_DomainService
 	/** The SOAP service that corresponds with this class. */
 	const SERVICE = 'DomainService';
 	/** The API version. */
-	const API_VERSION = '5.22';
+	const API_VERSION = '5.23';
 	/** @var SoapClient  The SoapClient used to perform the SOAP calls. */
 	protected static $_soapClient = null;
 
@@ -58,6 +59,7 @@ class Transip_DomainService
 				'WhoisContact' => 'Transip_WhoisContact',
 				'DnsEntry' => 'Transip_DnsEntry',
 				'DomainBranding' => 'Transip_DomainBranding',
+				'ExtraContactField' => 'Transip_ExtraContactField',
 				'Tld' => 'Transip_Tld',
 				'DomainAction' => 'Transip_DomainAction',
 			);
@@ -407,7 +409,7 @@ class Transip_DomainService
 	 * Registers a domain name, will automatically create and sign a proposition for it
 	 *
 	 * @param Transip_Domain $domain The Domain object holding information about the domain that needs to be registered.
-	 * @param string[] $extraContactFields The ExtraContactFields that are required for this domain.
+	 * @param Transip_ExtraContactField[] $extraContactFields The ExtraContactFields that are required for this domain.
 	 * @requires readwrite mode
 	 * @example examples/DomainService-DomainService-register-whois.php
 	 * @return string proposition number
