@@ -17,9 +17,13 @@ try
     // To know if your domain needs extra contact fields see examples/DomainService-getExtraContactFields.php
     // The format for the extra contact fields should be like:
     // $extraContactFields = ['extraContactField' => 'value', ...];
-    $extraContactFields = [];
 
-    $propositionNumber = Transip_DomainService::register($domain, $extraContactFields);
+    $extraContactFieldName = 'EXAMPLE_NAME';
+    $extraContactFieldValue = 'example_value';
+    $extraContactField = new Transip_ExtraContactField($extraContactFieldName, $extraContactFieldValue);
+    $extraContactFields = [$extraContactField];
+
+    $propositionNumber = Transip_DomainService::registerWithExtraContactFields($domain, $extraContactFields);
     echo 'The domain ' . $domain->name . ' has been requested with proposition number ' . $propositionNumber;
 }
 catch(SoapFault $e)
