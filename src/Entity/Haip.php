@@ -13,6 +13,10 @@ class Haip extends AbstractEntity
     public const BALANCINGMODE_COOKIE = 'cookie';
     public const BALANCINGMODE_SOURCE = 'source';
 
+    public const TLSMODE_TLS12 = 'tls12';
+    public const TLSMODE_TLS11_12 = 'tls11_12';
+    public const TLSMODE_TLS10_11_12 = 'tls10_11_12';
+
     /**
      * @var string
      */
@@ -87,6 +91,11 @@ class Haip extends AbstractEntity
      * @var string[]
      */
     protected $ipAddresses;
+
+    /**
+     * @var string
+     */
+    protected $tlsMode;
 
     public function getName(): string
     {
@@ -215,5 +224,15 @@ class Haip extends AbstractEntity
     {
         $this->ptrRecord = $ptrRecord;
         return $this;
+    }
+
+    public function getTlsMode(): string
+    {
+        return $this->tlsMode;
+    }
+
+    public function setTlsMode(string $tlsMode): void
+    {
+        $this->tlsMode = $tlsMode;
     }
 }
