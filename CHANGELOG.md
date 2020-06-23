@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.3.0
+-----
+* Added tls mode property to HA-IP
+
 6.2.0
 -----
 - Added the serial property to BigStorage
