@@ -10,6 +10,11 @@ class Vps extends AbstractEntity
     protected $name;
 
     /**
+     * @var string $uuid
+     */
+    protected $uuid;
+
+    /**
      * @var string $description
      */
     protected $description;
@@ -92,6 +97,11 @@ class Vps extends AbstractEntity
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function getUuid(): string
+    {
+        return $this->uuid;
     }
 
     public function getDescription(): string

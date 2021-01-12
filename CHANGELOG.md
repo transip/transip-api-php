@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.4.0
+-----
+* Added UUID property to VPS
+
 6.3.0
 -----
 * Added tls mode property to HA-IP
