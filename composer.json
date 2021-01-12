@@ -16,6 +16,10 @@
         "ext-json": "*",
         "ext-openssl": "*"
     },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.17",
+        "php-parallel-lint/php-parallel-lint": "^1.2"
+    },
     "autoload": {
         "psr-4": {
             "Transip\\Api\\Library\\": "src/"

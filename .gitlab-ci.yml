@@ -9,15 +9,19 @@ stages:
 
 lint:php:
   stage: lint
+  before_script:
+    - composer install
   script:
-    - parallel-lint .
+    - ./vendor/bin/parallel-lint --exclude vendor/ .
   tags:
     - k8s-tbk
 
 lint:php-codestyle:
   stage: lint
+  before_script:
+    - composer install
   script:
-    - php-cs-fixer fix -v --dry-run --using-cache=no . --config .php_cs.dist
+    - ./vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no . --config .php_cs.dist
   tags:
     - k8s-tbk
 

@@ -99,7 +99,7 @@ class Vps extends AbstractEntity
         return $this->name;
     }
 
-    public function getUUID(): string
+    public function getUuid(): string
     {
         return $this->uuid;
     }
