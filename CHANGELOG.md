@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.5.0
+-----
+* Added isLocked property to HA-IP
+
 6.4.0
 -----
 * Added UUID property to VPS
