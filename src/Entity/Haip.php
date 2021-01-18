@@ -97,6 +97,11 @@ class Haip extends AbstractEntity
      */
     protected $tlsMode;
 
+    /**
+     * @var bool
+     */
+    protected $isLocked;
+
     public function getName(): string
     {
         return $this->name;
@@ -234,5 +239,10 @@ class Haip extends AbstractEntity
     public function setTlsMode(string $tlsMode): void
     {
         $this->tlsMode = $tlsMode;
+    }
+
+    public function isLocked(): bool
+    {
+        return $this->isLocked;
     }
 }
