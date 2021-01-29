@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.6.0
+-----
+* Added VPS license resource
+
 6.5.0
 -----
 * Added isLocked property to HA-IP

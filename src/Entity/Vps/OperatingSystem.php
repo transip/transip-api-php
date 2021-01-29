@@ -6,9 +6,9 @@ use Transip\Api\Library\Entity\AbstractEntity;
 
 class OperatingSystem extends AbstractEntity
 {
-    public const INSTALL_FLAVOUR_INSTALLER = 'installer';
+    public const INSTALL_FLAVOUR_INSTALLER      = 'installer';
     public const INSTALL_FLAVOUR_PREINSTALLABLE = 'preinstallable';
-    public const INSTALL_FLAVOUR_CLOUDINIT = 'cloudinit';
+    public const INSTALL_FLAVOUR_CLOUDINIT      = 'cloudinit';
 
     /**
      * @var string $name
@@ -35,6 +35,21 @@ class OperatingSystem extends AbstractEntity
      */
     protected $installFlavours = [];
 
+    /**
+     * @var LicenseProduct[]
+     */
+    protected $licenses = [];
+
+    public function __construct(array $valueArray = [])
+    {
+        parent::__construct($valueArray);
+
+        $licenses = $valueArray['licenses'] ?? [];
+        foreach ($licenses as $license) {
+            $this->licenses[] = new LicenseProduct($license);
+        }
+    }
+
     public function getName(): string
     {
         return $this->name;
@@ -46,7 +61,7 @@ class OperatingSystem extends AbstractEntity
     }
 
     /**
-     * @deprecated
+     * @deprecated use getInstallFlavours() instead
      * @return bool
      */
     public function isPreinstallableImage(): bool
@@ -67,5 +82,13 @@ class OperatingSystem extends AbstractEntity
     public function getInstallFlavours(): array
     {
         return $this->installFlavours;
+    }
+
+    /**
+     * @return LicenseProduct[]
+     */
+    public function getLicenses(): array
+    {
+        return $this->licenses;
     }
 }
