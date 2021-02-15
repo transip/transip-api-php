@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.6.1
+-----
+* Enabled PHP 8.0 support 
+
 6.6.0
 -----
 * Added VPS license resource
