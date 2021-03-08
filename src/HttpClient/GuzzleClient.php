@@ -16,7 +16,7 @@ class GuzzleClient extends HttpClient
     /**
      * @var Client $client
      */
-    private $client;
+    protected $client;
 
     public function __construct(string $endpoint)
     {
@@ -179,7 +179,7 @@ class GuzzleClient extends HttpClient
         $this->parseResponseHeaders($response);
     }
 
-    private function exceptionHandler(Exception $exception): void
+    protected function exceptionHandler(Exception $exception): void
     {
         if ($exception instanceof BadResponseException) {
             if ($exception->hasResponse()) {
@@ -196,7 +196,7 @@ class GuzzleClient extends HttpClient
         throw HttpClientException::genericRequestException($exception);
     }
 
-    private function checkAndSetTestModeToOptions(array $options): array
+    protected function checkAndSetTestModeToOptions(array $options): array
     {
         if ($this->testMode == false) {
             return $options;

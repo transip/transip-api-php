@@ -24,12 +24,12 @@ class HttpBadResponseException extends RuntimeException
     /**
      * @var Exception $innerException
      */
-    private $innerException;
+    protected $innerException;
 
     /**
      * @var ResponseInterface $response
      */
-    private $response;
+    protected $response;
 
     /**
      * @param string            $message

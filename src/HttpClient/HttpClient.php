@@ -61,22 +61,22 @@ abstract class HttpClient implements HttpClientInterface
     /**
      * @var int
      */
-    private $rateLimitLimit = -1;
+    protected $rateLimitLimit = -1;
 
     /**
      * @var int
      */
-    private $rateLimitRemaining = -1;
+    protected $rateLimitRemaining = -1;
 
     /**
      * @var int
      */
-    private $rateLimitReset = -1;
+    protected $rateLimitReset = -1;
 
     /**
      * @var string
      */
-    private $chosenTokenExpiry = '1 day';
+    protected $chosenTokenExpiry = '1 day';
 
     public function __construct(string $endpoint)
     {
@@ -146,7 +146,7 @@ abstract class HttpClient implements HttpClientInterface
         $this->rateLimitReset     = $response->getHeader("X-Rate-Limit-Reset")[0] ?? -1;
     }
 
-    private function getFingerPrintFromKey(string $privateKey): string
+    protected function getFingerPrintFromKey(string $privateKey): string
     {
         return hash('SHA512', $privateKey);
     }

@@ -64,7 +64,7 @@ class TransipAPI
     /**
      * @var HttpClientInterface $httpClient
      */
-    private $httpClient;
+    protected $httpClient;
 
     /**
      * @param string                $customerLoginName           The loginName used to login to the TransIP Control Panel.

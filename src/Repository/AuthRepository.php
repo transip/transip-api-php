@@ -80,7 +80,7 @@ class AuthRepository extends ApiRepository
         return intval($expirationTime);
     }
 
-    private function createSignature(string $privateKey, array $parameters): string
+    protected function createSignature(string $privateKey, array $parameters): string
     {
         // Fixup our private key, copy-pasting the key might lead to whitespace faults
         if (!preg_match(

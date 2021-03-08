@@ -10,7 +10,7 @@ class HttpClientException extends RuntimeException
     /**
      * @var Exception $innerException
      */
-    private $innerException;
+    protected $innerException;
 
     /**
      * @param string    $message

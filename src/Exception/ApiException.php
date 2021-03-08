@@ -16,7 +16,7 @@ class ApiException extends RuntimeException
     /**
      * @var ResponseInterface $response
      */
-    private $response;
+    protected $response;
 
     /**
      * @param string $message
