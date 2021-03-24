@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.6.2
+-----
+* Added isDefault property to SshKey 
+
 6.6.1
 -----
 * Enabled PHP 8.0 support 

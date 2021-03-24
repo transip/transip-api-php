@@ -30,6 +30,11 @@ class SshKey extends AbstractEntity
     protected $fingerprint;
 
     /**
+     * @var string
+     */
+    protected $isDefault;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -91,5 +96,21 @@ class SshKey extends AbstractEntity
     public function getFingerprint(): string
     {
         return $this->fingerprint;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIsDefault(): string
+    {
+        return $this->isDefault;
+    }
+
+    /**
+     * @param string $isDefault
+     */
+    public function setIsDefault(string $isDefault): void
+    {
+        $this->isDefault = $isDefault;
     }
 }
