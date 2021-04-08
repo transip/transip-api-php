@@ -18,9 +18,9 @@ class GuzzleClient extends HttpClient
      */
     private $client;
 
-    public function __construct(string $endpoint)
+    public function __construct(string $endpoint, Client $client = null)
     {
-        $this->client = new Client();
+        $this->client = $client ?? new Client();
         parent::__construct($endpoint);
     }
 

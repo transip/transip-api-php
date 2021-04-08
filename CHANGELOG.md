@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.6.3
+-----
+* Added support for using your own GuzzleClient and HttpClient
+
 6.6.2
 -----
 * Added isDefault property to SshKey 
