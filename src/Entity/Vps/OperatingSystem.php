@@ -42,12 +42,12 @@ class OperatingSystem extends AbstractEntity
 
     public function __construct(array $valueArray = [])
     {
-        parent::__construct($valueArray);
-
         $licenses = $valueArray['licenses'] ?? [];
         foreach ($licenses as $license) {
             $this->licenses[] = new LicenseProduct($license);
         }
+        unset($valueArray['licenses']);
+        parent::__construct($valueArray);
     }
 
     public function getName(): string

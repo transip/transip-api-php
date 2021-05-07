@@ -27,4 +27,9 @@ class FirewallRepository extends ApiRepository
     {
         $this->httpClient->put($this->getResourceUrl($vpsName), ['vpsFirewall' => $firewall]);
     }
+
+    public function reset(string $vpsName): void
+    {
+        $this->httpClient->patch($this->getResourceUrl($vpsName), ['action' => 'reset']);
+    }
 }
