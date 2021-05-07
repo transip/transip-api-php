@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+6.7.0
+-----
+* Fixed minor bug in getAll for vpsOperatingSystems
+* Added a reset function for the VpsFirewall 
+
 6.6.3
 -----
 * Added support for using your own GuzzleClient and HttpClient
