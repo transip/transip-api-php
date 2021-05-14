@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.7.1
+-----
+Added getRdata function in DnsEntry
+
 6.7.0
 -----
 * Fixed minor bug in getAll for vpsOperatingSystems
