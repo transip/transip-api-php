@@ -5,8 +5,10 @@ namespace Transip\Api\Library\HttpClient;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\RequestException;
+use Psr\Http\Message\ResponseInterface;
 use Transip\Api\Library\Exception\ApiException;
 use Transip\Api\Library\Exception\HttpClientException;
+use Transip\Api\Library\Exception\HttpRequest\AccessTokenException;
 use Transip\Api\Library\Exception\HttpRequestException;
 use Transip\Api\Library\Exception\HttpBadResponseException;
 use Exception;
@@ -36,21 +38,32 @@ class GuzzleClient extends HttpClient
         $this->token = $token;
     }
 
-    public function get(string $url, array $query = []): array
+    private function sendRequest(string $method, string $uri, array $options = []): ResponseInterface
     {
-        $options = [];
-        if (count($query) > 0) {
-            $options['query'] = $query;
+        try {
+            return $this->request($method, $uri, $options);
+        } catch (AccessTokenException $exception) {
+            $this->clearCache();
+            $this->setToken('');
+            return $this->request($method, $uri, $options);
         }
+    }
 
+    private function request(string $method, string $uri, array $options = []): ResponseInterface
+    {
         $this->checkAndRenewToken();
         $options = $this->checkAndSetTestModeToOptions($options);
 
         try {
-            $response = $this->client->get("{$this->endpoint}{$url}", $options);
+            return $this->client->request($method, "{$this->endpoint}{$uri}", $options);
         } catch (Exception $exception) {
-            $this->exceptionHandler($exception);
+            $this->handleException($exception);
         }
+    }
+
+    public function get(string $uri, array $query = []): array
+    {
+        $response = $this->sendRequest('GET', $uri, ['query' => $query]);
 
         if ($response->getStatusCode() !== 200) {
             throw ApiException::unexpectedStatusCode($response);
@@ -71,18 +84,11 @@ class GuzzleClient extends HttpClient
         return $responseBody;
     }
 
-    public function post(string $url, array $body = []): void
+    public function post(string $uri, array $body = []): void
     {
         $options['body'] = json_encode($body);
 
-        $this->checkAndRenewToken();
-        $options = $this->checkAndSetTestModeToOptions($options);
-
-        try {
-            $response = $this->client->post("{$this->endpoint}{$url}", $options);
-        } catch (Exception $exception) {
-            $this->exceptionHandler($exception);
-        }
+        $response = $this->sendRequest('POST', $uri, $options);
 
         if ($response->getStatusCode() !== 201) {
             throw ApiException::unexpectedStatusCode($response);
@@ -91,15 +97,15 @@ class GuzzleClient extends HttpClient
         $this->parseResponseHeaders($response);
     }
 
-    public function postAuthentication(string $url, string $signature, array $body): array
+    public function postAuthentication(string $uri, string $signature, array $body): array
     {
         $options['headers'] = ['Signature' => $signature];
         $options['body']    = json_encode($body);
 
         try {
-            $response = $this->client->post("{$this->endpoint}{$url}", $options);
+            $response = $this->client->post("{$this->endpoint}{$uri}", $options);
         } catch (Exception $exception) {
-            $this->exceptionHandler($exception);
+            $this->handleException($exception);
         }
 
         if ($response->getStatusCode() !== 201) {
@@ -119,18 +125,11 @@ class GuzzleClient extends HttpClient
         return $responseBody;
     }
 
-    public function put(string $url, array $body): void
+    public function put(string $uri, array $body): void
     {
         $options['body'] = json_encode($body);
 
-        $this->checkAndRenewToken();
-        $options = $this->checkAndSetTestModeToOptions($options);
-
-        try {
-            $response = $this->client->put("{$this->endpoint}{$url}", $options);
-        } catch (Exception $exception) {
-            $this->exceptionHandler($exception);
-        }
+        $response = $this->sendRequest('PUT', $uri, $options);
 
         if ($response->getStatusCode() !== 204) {
             throw ApiException::unexpectedStatusCode($response);
@@ -139,18 +138,11 @@ class GuzzleClient extends HttpClient
         $this->parseResponseHeaders($response);
     }
 
-    public function patch(string $url, array $body): void
+    public function patch(string $uri, array $body): void
     {
         $options['body'] = json_encode($body);
 
-        $this->checkAndRenewToken();
-        $options = $this->checkAndSetTestModeToOptions($options);
-
-        try {
-            $response = $this->client->patch("{$this->endpoint}{$url}", $options);
-        } catch (Exception $exception) {
-            $this->exceptionHandler($exception);
-        }
+        $response = $this->sendRequest('PATCH', $uri, $options);
 
         if ($response->getStatusCode() !== 204) {
             throw ApiException::unexpectedStatusCode($response);
@@ -159,18 +151,11 @@ class GuzzleClient extends HttpClient
         $this->parseResponseHeaders($response);
     }
 
-    public function delete(string $url, array $body = []): void
+    public function delete(string $uri, array $body = []): void
     {
         $options['body'] = json_encode($body);
 
-        $this->checkAndRenewToken();
-        $options = $this->checkAndSetTestModeToOptions($options);
-
-        try {
-            $response = $this->client->delete("{$this->endpoint}{$url}", $options);
-        } catch (Exception $exception) {
-            $this->exceptionHandler($exception);
-        }
+        $response = $this->sendRequest('DELETE', $uri, $options);
 
         if ($response->getStatusCode() !== 204) {
             throw ApiException::unexpectedStatusCode($response);
@@ -179,7 +164,7 @@ class GuzzleClient extends HttpClient
         $this->parseResponseHeaders($response);
     }
 
-    private function exceptionHandler(Exception $exception): void
+    private function handleException(Exception $exception): void
     {
         if ($exception instanceof BadResponseException) {
             if ($exception->hasResponse()) {

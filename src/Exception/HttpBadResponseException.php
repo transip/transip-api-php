@@ -5,6 +5,7 @@ namespace Transip\Api\Library\Exception;
 use Exception;
 use RuntimeException;
 use Psr\Http\Message\ResponseInterface;
+use Transip\Api\Library\Exception\HttpRequest\AccessTokenException;
 use Transip\Api\Library\Exception\HttpRequest\BadResponseException;
 use Transip\Api\Library\Exception\HttpRequest\ConflictException;
 use Transip\Api\Library\Exception\HttpRequest\ForbiddenException;
@@ -31,6 +32,11 @@ class HttpBadResponseException extends RuntimeException
      */
     private $response;
 
+    private const ACCESS_TOKEN_EXCEPTION_MESSAGES = [
+        'Your access token has been revoked.',
+        'Your access token has expired.',
+    ];
+
     /**
      * @param string            $message
      * @param int               $code
@@ -54,6 +60,9 @@ class HttpBadResponseException extends RuntimeException
             case BadResponseException::STATUS_CODE:
                 return new BadResponseException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case UnauthorizedException::STATUS_CODE:
+                if (in_array($errorMessage, self::ACCESS_TOKEN_EXCEPTION_MESSAGES, true)) {
+                    return new AccessTokenException($errorMessage, $response->getStatusCode(), $innerException, $response);
+                }
                 return new UnauthorizedException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case ForbiddenException::STATUS_CODE:
                 return new ForbiddenException($errorMessage, $response->getStatusCode(), $innerException, $response);
