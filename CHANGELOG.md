@@ -1,9 +1,13 @@
 CHANGELOG
 =========
 
+6.7.2
+-----
+* Access token automatically renews when it is revoked
+
 6.7.1
 -----
-Added getRdata function in DnsEntry
+* Added getRdata function in DnsEntry
 
 6.7.0
 -----
