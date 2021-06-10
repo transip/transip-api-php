@@ -19,6 +19,9 @@ class LicenseProduct extends AbstractEntity
     protected $type;
 
     /** @var int */
+    protected $minQuantity;
+
+    /** @var int */
     protected $maxQuantity;
 
     public function getName(): string
@@ -39,6 +42,11 @@ class LicenseProduct extends AbstractEntity
     public function getType(): string
     {
         return $this->type;
+    }
+
+    public function getMinQuantity(): int
+    {
+        return $this->minQuantity;
     }
 
     public function getMaxQuantity(): int
