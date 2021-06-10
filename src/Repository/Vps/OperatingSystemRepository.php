@@ -32,6 +32,23 @@ class OperatingSystemRepository extends ApiRepository
     }
 
     /**
+     * @param string $vpsName
+     * @return OperatingSystem[]
+     */
+    public function getByVpsName(string $vpsName): array
+    {
+        $operatingSystems      = [];
+        $response              = $this->httpClient->get($this->getResourceUrl($vpsName));
+        $operatingSystemsArray = $this->getParameterFromResponse($response, 'operatingSystems');
+
+        foreach ($operatingSystemsArray as $operatingSystemArray) {
+            $operatingSystems[] = new OperatingSystem($operatingSystemArray);
+        }
+
+        return $operatingSystems;
+    }
+
+    /**
      * @param string   $vpsName
      * @param string   $operatingSystemName
      * @param string   $hostname

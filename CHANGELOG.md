@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+6.8.0
+-----
+* Added getByVpsName method to the OperatingSystem resource
+* Added minQuantity to the LicenceProduct
+
 6.7.2
 -----
 * Access token automatically renews when it is revoked
