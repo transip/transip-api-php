@@ -4,6 +4,9 @@ namespace Transip\Api\Library\Repository;
 
 use Transip\Api\Library\Entity\TrafficInformation;
 
+/**
+ * @deprecated deprecated since version 6.8.0, use trafficPool instead
+ */
 class TrafficRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'traffic';
