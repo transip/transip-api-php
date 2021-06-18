@@ -35,6 +35,7 @@ use Transip\Api\Library\Repository\ProductRepository;
 use Transip\Api\Library\Repository\Product\ElementRepository as ProductElementRepository;
 use Transip\Api\Library\Repository\DomainTldRepository;
 use Transip\Api\Library\Repository\SshKeyRepository;
+use Transip\Api\Library\Repository\TrafficPoolRepository;
 use Transip\Api\Library\Repository\TrafficRepository;
 use Transip\Api\Library\Repository\Vps\AddonRepository;
 use Transip\Api\Library\Repository\Vps\BackupRepository as VpsBackupRepository;
@@ -208,9 +209,17 @@ class TransipAPI
         return new DomainWhitelabelRepository($this->httpClient);
     }
 
+    /**
+     * @deprecated deprecated since version 6.8.0, use trafficPool instead
+     */
     public function traffic(): TrafficRepository
     {
         return new TrafficRepository($this->httpClient);
+    }
+
+    public function trafficPool(): TrafficPoolRepository
+    {
+        return new TrafficPoolRepository($this->httpClient);
     }
 
     public function vps(): VpsRepository

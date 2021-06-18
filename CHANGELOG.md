@@ -5,6 +5,7 @@ CHANGELOG
 -----
 * Added getByVpsName method to the OperatingSystem resource
 * Added minQuantity to the LicenceProduct
+* Deprecated Traffic endpoint in favor of TrafficPool endpoint
 
 6.7.2
 -----
