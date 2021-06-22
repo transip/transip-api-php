@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.9.0
+-----
+* Added support for NAPTR DNS resource record
+
 6.8.0
 -----
 * Added getByVpsName method to the OperatingSystem resource
