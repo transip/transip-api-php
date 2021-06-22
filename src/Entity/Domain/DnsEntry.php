@@ -16,6 +16,7 @@ class DnsEntry extends AbstractEntity
     public const TYPE_SSHFP    = 'SSHFP';
     public const TYPE_TLSA     = 'TLSA';
     public const TYPE_CAA      = 'CAA';
+    public const TYPE_NAPTR    = 'NAPTR';
 
     /**
      * @var string $name
