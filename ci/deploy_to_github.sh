@@ -9,6 +9,10 @@ if [ -z "$GITHUB_TOKEN" ] ; then
   exit 1;
 fi
 
+# force a full clone, instead of expecting a non shallow cloned repository
+git clone $CI_REPOSITORY_URL /tmp/repository
+cd /tmp/repository
+
 # Remove the default origin/HEAD -> origin/master ref
 # as github shows this as new branch
 git remote set-head origin -d
