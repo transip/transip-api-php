@@ -1,3 +1,7 @@
+TRANSIP API V5.24
+NEW
+- Added support for NAPTR DNS resource record
+
 TRANSIP API V5.20
 NEW
 - Seperated register and transfer functions requiring extra contact fields
