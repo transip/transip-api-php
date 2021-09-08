@@ -1,3 +1,7 @@
+TRANSIP API V5.25
+NEW
+- Added support for ALIAS DNS resource record
+
 TRANSIP API V5.24
 NEW
 - Added support for NAPTR DNS resource record

@@ -20,6 +20,7 @@ class Transip_DnsEntry
 	const TYPE_TLSA = 'TLSA';
 	const TYPE_CAA = 'CAA';
 	const TYPE_NAPTR = 'NAPTR';
+	const TYPE_ALIAS = 'ALIAS';
 
 	/**
 	 * The name of the dns entry, for example '@' or 'www'
