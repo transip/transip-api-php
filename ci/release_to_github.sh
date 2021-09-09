@@ -14,7 +14,7 @@ if [ -z "$TAG_VERSION" ] ; then
 fi
 
 function convert_to_json() {
-  python -c 'import json,sys;print json.dumps(sys.stdin.read().strip())'
+  python -c 'import json,sys;print( json.dumps(sys.stdin.read().strip()) )'
 }
 
 description="$(git tag -l -n999 --format='%(contents)' $TAG_VERSION | convert_to_json)"
