@@ -69,6 +69,7 @@ deploy:deploy-to-github:
     - k8s-tbk
 
 release:release-to-github:
+  image: '$IMAGE_URL_PYTHON'
   stage: release
   only:
     - tags
