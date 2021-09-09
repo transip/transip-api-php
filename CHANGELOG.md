@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.9.1
+-----
+* Added support for ALIAS DNS resource record
+
 6.9.0
 -----
 * Added support for NAPTR DNS resource record
