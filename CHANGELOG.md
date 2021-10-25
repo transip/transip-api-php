@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+6.9.2
+-----
+* Fixed a bug where a custom Guzzle Client will always get overridden.
+* Fixed an issue where you were only able to use the Guzzle http client implementation.
+
 6.9.1
 -----
 * Added support for ALIAS DNS resource record
