@@ -2,16 +2,18 @@
 
 namespace Transip\Api\Library\HttpClient;
 
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\HandlerStack;
 use Psr\Http\Message\ResponseInterface;
 use Transip\Api\Library\Exception\ApiException;
 use Transip\Api\Library\Exception\HttpClientException;
 use Transip\Api\Library\Exception\HttpRequest\AccessTokenException;
 use Transip\Api\Library\Exception\HttpRequestException;
 use Transip\Api\Library\Exception\HttpBadResponseException;
-use Exception;
+use Transip\Api\Library\HttpClient\Middleware\TokenAuthorization;
 
 class GuzzleClient extends HttpClient
 {
@@ -28,13 +30,12 @@ class GuzzleClient extends HttpClient
 
     public function setToken(string $token): void
     {
-        $config = [
-            'headers' => [
-                'Authorization' => "Bearer {$token}",
-                'User-Agent' => self::USER_AGENT
-            ]
-        ];
-        $this->client = new Client($config);
+        /** @var HandlerStack $stack */
+        $stack = $this->client->getConfig('handler') ?? HandlerStack::create();
+
+        $stack->remove(TokenAuthorization::HANDLER_NAME);
+        $stack->push(new TokenAuthorization($token, self::USER_AGENT), TokenAuthorization::HANDLER_NAME);
+
         $this->token = $token;
     }
 
