@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.10.0
+-----
+* Added support for Domain AutoDNS
+
 6.9.2
 -----
 * Fixed a bug where a custom Guzzle Client will always get overridden.

@@ -50,6 +50,11 @@ class Domain extends AbstractEntity
     protected $isDnsOnly;
 
     /**
+     * @var bool $hasAutoDns
+     */
+    protected $hasAutoDns;
+
+    /**
      * @var array $tags
      */
     protected $tags = [];
@@ -133,5 +138,15 @@ class Domain extends AbstractEntity
     {
         $this->tags = array_diff($this->getTags(), [$tag]);
         return $this;
+    }
+
+    public function getHasAutoDns(): bool
+    {
+        return $this->hasAutoDns;
+    }
+
+    public function setHasAutoDns(bool $hasAutoDns): void
+    {
+        $this->hasAutoDns = $hasAutoDns;
     }
 }
