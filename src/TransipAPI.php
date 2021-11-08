@@ -7,6 +7,7 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Transip\Api\Library\HttpClient\GuzzleClient;
 use Transip\Api\Library\HttpClient\HttpClient;
 use Transip\Api\Library\HttpClient\HttpClientInterface;
+use Transip\Api\Library\Repository\ApiRepository;
 use Transip\Api\Library\Repository\ApiTestRepository;
 use Transip\Api\Library\Repository\AuthRepository;
 use Transip\Api\Library\Repository\AvailabilityZoneRepository;
@@ -31,6 +32,8 @@ use Transip\Api\Library\Repository\InvoiceRepository;
 use Transip\Api\Library\Repository\Invoice\ItemRepository as InvoiceItemRepository;
 use Transip\Api\Library\Repository\Invoice\PdfRepository as InvoicePdfRepository;
 use Transip\Api\Library\Repository\MailServiceRepository;
+use Transip\Api\Library\Repository\OpenStackProject\UserRepository as OpenStackProjectUserRepository;
+use Transip\Api\Library\Repository\OpenStackProjectRepository;
 use Transip\Api\Library\Repository\PrivateNetworkRepository;
 use Transip\Api\Library\Repository\ProductRepository;
 use Transip\Api\Library\Repository\Product\ElementRepository as ProductElementRepository;
@@ -351,6 +354,16 @@ class TransipAPI
     public function colocationRemoteHands(): ColoRemoteHandsRepository
     {
         return new ColoRemoteHandsRepository($this->httpClient);
+    }
+
+    public function openStackProjects(): OpenStackProjectRepository
+    {
+        return new OpenStackProjectRepository($this->httpClient);
+    }
+
+    public function openStackProjectUsers(): OpenStackProjectUserRepository
+    {
+        return new OpenStackProjectUserRepository($this->httpClient);
     }
 
     public function test(): ApiTestRepository
