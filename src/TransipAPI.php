@@ -34,6 +34,7 @@ use Transip\Api\Library\Repository\Invoice\PdfRepository as InvoicePdfRepository
 use Transip\Api\Library\Repository\MailServiceRepository;
 use Transip\Api\Library\Repository\OpenStackProject\UserRepository as OpenStackProjectUserRepository;
 use Transip\Api\Library\Repository\OpenStackProjectRepository;
+use Transip\Api\Library\Repository\OpenStackUserRepository;
 use Transip\Api\Library\Repository\PrivateNetworkRepository;
 use Transip\Api\Library\Repository\ProductRepository;
 use Transip\Api\Library\Repository\Product\ElementRepository as ProductElementRepository;
@@ -364,6 +365,11 @@ class TransipAPI
     public function openStackProjectUsers(): OpenStackProjectUserRepository
     {
         return new OpenStackProjectUserRepository($this->httpClient);
+    }
+
+    public function openStackUsers(): OpenStackUserRepository
+    {
+        return new OpenStackUserRepository($this->httpClient);
     }
 
     public function test(): ApiTestRepository
