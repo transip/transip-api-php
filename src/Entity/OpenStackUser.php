@@ -54,4 +54,14 @@ class OpenStackUser extends AbstractEntity
     {
         return $this->email;
     }
+
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
 }

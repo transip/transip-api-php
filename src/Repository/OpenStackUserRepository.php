@@ -93,14 +93,14 @@ class OpenStackUserRepository extends ApiRepository
         );
     }
 
-    public function updateUser(string $userId, OpenStackUser $openStackUser): void
+    public function updateUser(OpenStackUser $openStackUser): void
     {
         $parameters = [
             'user' => $openStackUser
         ];
 
         $this->httpClient->put(
-            $this->getResourceUrl($userId),
+            $this->getResourceUrl($openStackUser->getId()),
             $parameters
         );
     }

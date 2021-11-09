@@ -66,4 +66,20 @@ class OpenStackProject extends AbstractEntity
     {
         return $this->isBlocked;
     }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
 }
