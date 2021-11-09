@@ -48,9 +48,9 @@ class OpenStackProjectRepository extends ApiRepository
     public function getByProjectId(string $projectId): OpenStackProject
     {
         $response  = $this->httpClient->get($this->getResourceUrl($projectId));
-        $userArray = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_SINGUlAR);
+        $projectArray = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_SINGUlAR);
 
-        return new OpenStackProject($userArray);
+        return new OpenStackProject($projectArray);
     }
 
     public function updateProject(OpenStackProject $project): void

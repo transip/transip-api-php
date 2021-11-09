@@ -23,13 +23,15 @@ class OpenStackUserRepository extends ApiRepository
     {
         $projects      = [];
         $response      = $this->httpClient->get($this->getResourceUrl());
-        $projectsArray = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_PLURAL);
+        $users      = [];
+        $response   = $this->httpClient->get($this->getResourceUrl());
+        $usersArray = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_PLURAL);
 
-        foreach ($projectsArray as $projectArray) {
-            $projects[] = new OpenStackUser($projectArray);
+        foreach ($usersArray as $userArray) {
+            $users[] = new OpenStackUser($userArray);
         }
 
-        return $projects;
+        return $users;
     }
 
     public function getByUserId(string $userId): OpenStackUser
