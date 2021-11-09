@@ -2,7 +2,6 @@
 
 namespace Transip\Api\Library\Repository\OpenStackProject;
 
-use Transip\Api\Library\Entity\AbstractEntity;
 use Transip\Api\Library\Entity\OpenStackUser;
 use Transip\Api\Library\Repository\ApiRepository;
 use Transip\Api\Library\Repository\OpenStackProjectRepository;
@@ -10,6 +9,8 @@ use Transip\Api\Library\Repository\OpenStackProjectRepository;
 class UserRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'users';
+
+    public const RESOURCE_PARAMETER_PLURAL   = 'users';
 
     protected function getRepositoryResourceNames(): array
     {
@@ -24,7 +25,7 @@ class UserRepository extends ApiRepository
     {
         $users      = [];
         $response   = $this->httpClient->get($this->getResourceUrl($projectId));
-        $usersArray = $this->getParameterFromResponse($response, 'users');
+        $usersArray = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_PLURAL);
 
         foreach ($usersArray as $userArray) {
             $users[] = new OpenStackUser($userArray);

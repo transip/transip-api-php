@@ -8,6 +8,9 @@ class OpenStackProjectRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'openstack-projects';
 
+    public const RESOURCE_PARAMETER_SINGUlAR = 'project';
+    public const RESOURCE_PARAMETER_PLURAL   = 'projects';
+
     protected function getRepositoryResourceNames(): array
     {
         return [self::RESOURCE_NAME];
@@ -20,26 +23,7 @@ class OpenStackProjectRepository extends ApiRepository
     {
         $projects      = [];
         $response      = $this->httpClient->get($this->getResourceUrl());
-        $projectsArray = $this->getParameterFromResponse($response, 'projects');
-
-        foreach ($projectsArray as $projectArray) {
-            $projects[] = new OpenStackProject($projectArray);
-        }
-
-        return $projects;
-    }
-
-    /**
-     * @param int $page
-     * @param int $itemsPerPage
-     * @return OpenStackProject[]
-     */
-    public function getSelection(int $page, int $itemsPerPage): array
-    {
-        $projects      = [];
-        $query         = ['pageSize' => $itemsPerPage, 'page' => $page];
-        $response      = $this->httpClient->get($this->getResourceUrl(), $query);
-        $projectsArray = $this->getParameterFromResponse($response, 'projects');
+        $projectsArray = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_PLURAL);
 
         foreach ($projectsArray as $projectArray) {
             $projects[] = new OpenStackProject($projectArray);
@@ -64,7 +48,7 @@ class OpenStackProjectRepository extends ApiRepository
     public function getByProjectId(string $projectId): OpenStackProject
     {
         $response  = $this->httpClient->get($this->getResourceUrl($projectId));
-        $userArray = $this->getParameterFromResponse($response, 'project');
+        $userArray = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_SINGUlAR);
 
         return new OpenStackProject($userArray);
     }
