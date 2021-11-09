@@ -55,4 +55,36 @@ class OpenStackProjectRepository extends ApiRepository
 
         return new OpenStackProject($userArray);
     }
+
+    public function updateProject(string $projectID, OpenStackProject $project): void
+    {
+        $parameters = [
+            'project' => $project,
+        ];
+
+        $this->httpClient->patch(
+            $this->getResourceUrl($projectID),
+            $parameters
+        );
+    }
+
+    public function handover(string $projectID, string $targetCustomerName): void
+    {
+        $parameters = [
+            'action'             => 'handover',
+            'targetCustomerName' => $targetCustomerName,
+        ];
+
+        $this->httpClient->patch(
+            $this->getResourceUrl($projectID),
+            $parameters
+        );
+    }
+
+    public function cancel(string $projectID): void
+    {
+        $this->httpClient->delete(
+            $this->getResourceUrl($projectID)
+        );
+    }
 }

@@ -55,4 +55,53 @@ class OpenStackUserRepository extends ApiRepository
 
         return new OpenStackUser($userArray);
     }
+
+    public function create(
+        string $username,
+        string $description,
+        string $email,
+        string $password,
+        string $projectId
+    ): void {
+        $parameters = [
+            'username'    => $username,
+            'description' => $description,
+            'email'       => $email,
+            'password'    => $password,
+            'projectId'   => $projectId,
+        ];
+
+        $this->httpClient->post($this->getResourceUrl(), $parameters);
+    }
+
+    public function delete(string $userId): void
+    {
+        $this->httpClient->delete(
+            $this->getResourceUrl($userId)
+        );
+    }
+
+    public function updatePassword(string $userId, string $password): void
+    {
+        $parameters = [
+            'newPassword' => $password
+        ];
+
+        $this->httpClient->patch(
+            $this->getResourceUrl($userId),
+            $parameters
+        );
+    }
+
+    public function updateUser(string $userId, OpenStackUser $openStackUser): void
+    {
+        $parameters = [
+            'user' => $openStackUser
+        ];
+
+        $this->httpClient->put(
+            $this->getResourceUrl($userId),
+            $parameters
+        );
+    }
 }
