@@ -48,6 +48,19 @@ class OpenStackProjectRepository extends ApiRepository
         return $projects;
     }
 
+    public function create(string $name, string $description): void
+    {
+        $parameters = [
+            'name'        => $name,
+            'description' => $description,
+        ];
+
+        $this->httpClient->post(
+            $this->getResourceUrl(),
+            $parameters
+        );
+    }
+
     public function getByProjectId(string $projectId): OpenStackProject
     {
         $response  = $this->httpClient->get($this->getResourceUrl($projectId));
