@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.11.0
+-----
+* Added destination big storage name for backup restore
+
 6.10.0
 -----
 * Added support for Domain AutoDNS
