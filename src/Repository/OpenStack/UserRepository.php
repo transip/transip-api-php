@@ -1,12 +1,13 @@
 <?php
 
-namespace Transip\Api\Library\Repository;
+namespace Transip\Api\Library\Repository\OpenStack;
 
 use Transip\Api\Library\Entity\OpenStackUser;
+use Transip\Api\Library\Repository\ApiRepository;
 
-class OpenStackUserRepository extends ApiRepository
+class UserRepository extends ApiRepository
 {
-    public const RESOURCE_NAME = 'openstack-users';
+    public const RESOURCE_NAME = 'openstack/users';
 
     public const RESOURCE_PARAMETER_SINGUlAR = 'user';
     public const RESOURCE_PARAMETER_PLURAL   = 'users';
@@ -21,8 +22,6 @@ class OpenStackUserRepository extends ApiRepository
      */
     public function getAll(): array
     {
-        $projects      = [];
-        $response      = $this->httpClient->get($this->getResourceUrl());
         $users      = [];
         $response   = $this->httpClient->get($this->getResourceUrl());
         $usersArray = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_PLURAL);

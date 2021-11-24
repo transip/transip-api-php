@@ -1,10 +1,10 @@
 <?php
 
-namespace Transip\Api\Library\Repository\OpenStackProject;
+namespace Transip\Api\Library\Repository\OpenStack\Project;
 
 use Transip\Api\Library\Entity\OpenStackUser;
 use Transip\Api\Library\Repository\ApiRepository;
-use Transip\Api\Library\Repository\OpenStackProjectRepository;
+use Transip\Api\Library\Repository\OpenStack\ProjectRepository;
 
 class UserRepository extends ApiRepository
 {
@@ -14,7 +14,7 @@ class UserRepository extends ApiRepository
 
     protected function getRepositoryResourceNames(): array
     {
-        return [OpenStackProjectRepository::RESOURCE_NAME, self::RESOURCE_NAME];
+        return [ProjectRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**

@@ -1,12 +1,13 @@
 <?php
 
-namespace Transip\Api\Library\Repository;
+namespace Transip\Api\Library\Repository\OpenStack;
 
 use Transip\Api\Library\Entity\OpenStackProject;
+use Transip\Api\Library\Repository\ApiRepository;
 
-class OpenStackProjectRepository extends ApiRepository
+class ProjectRepository extends ApiRepository
 {
-    public const RESOURCE_NAME = 'openstack-projects';
+    public const RESOURCE_NAME = 'openstack/projects';
 
     public const RESOURCE_PARAMETER_SINGUlAR = 'project';
     public const RESOURCE_PARAMETER_PLURAL   = 'projects';
