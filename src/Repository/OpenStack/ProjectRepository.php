@@ -60,7 +60,7 @@ class ProjectRepository extends ApiRepository
             'project' => $project,
         ];
 
-        $this->httpClient->patch(
+        $this->httpClient->put(
             $this->getResourceUrl($project->getId()),
             $parameters
         );
