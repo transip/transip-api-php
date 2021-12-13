@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.12.0
+-----
+* Added OpenStack resource
+
 6.11.0
 -----
 * Added destination big storage name for backup restore
