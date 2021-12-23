@@ -9,7 +9,7 @@ class UserRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'openstack/users';
 
-    public const RESOURCE_PARAMETER_SINGUlAR = 'user';
+    public const RESOURCE_PARAMETER_SINGULAR = 'user';
     public const RESOURCE_PARAMETER_PLURAL   = 'users';
 
     protected function getRepositoryResourceNames(): array
@@ -36,7 +36,7 @@ class UserRepository extends ApiRepository
     public function getByUserId(string $userId): OpenStackUser
     {
         $response  = $this->httpClient->get($this->getResourceUrl($userId));
-        $userArray = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_SINGUlAR);
+        $userArray = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_SINGULAR);
 
         return new OpenStackUser($userArray);
     }
