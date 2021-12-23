@@ -14,24 +14,23 @@ class OpenStackUser extends AbstractEntity
     protected $id;
 
     /**
-     * @description Login name
-     * @example `hosting101-support`
-     * @readonly
-     * @type string
+     * Login name
+     *
+     * @var string
      */
     protected $username;
 
     /**
-     * @description Description
-     * @example `Supporter account`
-     * @type string
+     * Description
+     *
+     * @var string
      */
     protected $description;
 
     /**
-     * @description Email address
-     * @example `support@example.com`
-     * @type string
+     * Email address
+     *
+     * @var string
      */
     protected $email;
 

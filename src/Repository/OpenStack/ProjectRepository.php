@@ -9,7 +9,7 @@ class ProjectRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'openstack/projects';
 
-    public const RESOURCE_PARAMETER_SINGUlAR = 'project';
+    public const RESOURCE_PARAMETER_SINGULAR = 'project';
     public const RESOURCE_PARAMETER_PLURAL   = 'projects';
 
     protected function getRepositoryResourceNames(): array
@@ -49,7 +49,7 @@ class ProjectRepository extends ApiRepository
     public function getByProjectId(string $projectId): OpenStackProject
     {
         $response  = $this->httpClient->get($this->getResourceUrl($projectId));
-        $projectArray = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_SINGUlAR);
+        $projectArray = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_SINGULAR);
 
         return new OpenStackProject($projectArray);
     }
