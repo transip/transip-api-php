@@ -2,9 +2,7 @@
 
 namespace Transip\Api\Library\Entity;
 
-use JsonSerializable;
-
-class AbstractEntity implements JsonSerializable
+class AbstractEntity implements \JsonSerializable
 {
     public function __construct(array $valueArray = [])
     {
@@ -15,6 +13,14 @@ class AbstractEntity implements JsonSerializable
         }
     }
 
+    /**
+     * This method returns data that can be serialized by json_encode()
+     * natively.
+     *
+     * @return mixed
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return get_object_vars($this);
