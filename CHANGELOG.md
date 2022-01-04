@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.12.1
+-----
+* Fixed a json serializable return datatype deprecation that occurred when running on PHP 8.1
+
 6.12.0
 -----
 * Added OpenStack resource
