@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.13.0
+-----
+* You can now provide a license to override the default license of a preinstallable operating system when invoking a reinstall
+
 6.12.1
 -----
 * Fixed a json serializable return datatype deprecation that occurred when running on PHP 8.1
