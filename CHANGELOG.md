@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.14.0
+-----
+* Added licenses parameter to vps order resource
+
 6.13.0
 -----
 * You can now provide a license to override the default license of a preinstallable operating system when invoking a reinstall
