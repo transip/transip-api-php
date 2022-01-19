@@ -77,6 +77,7 @@ class VpsRepository extends ApiRepository
      * @param string   $installFlavour
      * @param string   $username
      * @param string[] $sshKeys
+     * @param string[] $licenses
      */
     public function order(
         string $productName,
@@ -88,7 +89,8 @@ class VpsRepository extends ApiRepository
         string $base64InstallText = '',
         string $installFlavour = '',
         string $username = '',
-        array $sshKeys = []
+        array $sshKeys = [],
+        array $licenses = []
     ): void {
         $parameters['productName']     = $productName;
         $parameters['operatingSystem'] = $operatingSystemName;
@@ -114,8 +116,11 @@ class VpsRepository extends ApiRepository
         if ($username !== '') {
             $parameters['username'] = $username;
         }
-        if ($sshKeys !== '') {
+        if ($sshKeys !== []) {
             $parameters['sshKeys'] = $sshKeys;
+        }
+        if ($licenses !== []) {
+            $parameters['licenses'] = $licenses;
         }
 
         $this->httpClient->post($this->getResourceUrl(), $parameters);
