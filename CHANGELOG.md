@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+6.15.0
+-----
+* Added ssl endpoints
+* Added email endpoints
+
 6.14.0
 -----
 * Added licenses parameter to vps order resource
