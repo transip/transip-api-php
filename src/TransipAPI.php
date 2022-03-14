@@ -28,6 +28,9 @@ use Transip\Api\Library\Repository\Domain\NameserverRepository as DomainNameserv
 use Transip\Api\Library\Repository\Domain\SslRepository as DomainSslRepository;
 use Transip\Api\Library\Repository\Domain\WhoisRepository as DomainWhoisRepository;
 use Transip\Api\Library\Repository\DomainWhitelabelRepository;
+use Transip\Api\Library\Repository\Email\MailboxRepository;
+use Transip\Api\Library\Repository\Email\MailForwardRepository;
+use Transip\Api\Library\Repository\Email\MailListRepository;
 use Transip\Api\Library\Repository\InvoiceRepository;
 use Transip\Api\Library\Repository\Invoice\ItemRepository as InvoiceItemRepository;
 use Transip\Api\Library\Repository\Invoice\PdfRepository as InvoicePdfRepository;
@@ -370,6 +373,21 @@ class TransipAPI
     public function openStackUsers(): OpenStackUserRepository
     {
         return new OpenStackUserRepository($this->httpClient);
+    }
+
+    public function mailForwards(): MailForwardRepository
+    {
+        return new MailForwardRepository($this->httpClient);
+    }
+
+    public function mailboxes(): MailboxRepository
+    {
+        return new MailboxRepository($this->httpClient);
+    }
+
+    public function mailLists(): MailListRepository
+    {
+        return new MailListRepository($this->httpClient);
     }
 
     public function test(): ApiTestRepository
