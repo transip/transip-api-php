@@ -1,8 +1,6 @@
 <?php
 
-namespace Transip\Api\Library\Entity\Domain;
-
-use Transip\Api\Library\Entity\AbstractEntity;
+namespace Transip\Api\Library\Entity;
 
 class SslCertificate extends AbstractEntity
 {

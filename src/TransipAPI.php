@@ -40,6 +40,7 @@ use Transip\Api\Library\Repository\ProductRepository;
 use Transip\Api\Library\Repository\Product\ElementRepository as ProductElementRepository;
 use Transip\Api\Library\Repository\DomainTldRepository;
 use Transip\Api\Library\Repository\SshKeyRepository;
+use Transip\Api\Library\Repository\SslCertificateRepository;
 use Transip\Api\Library\Repository\TrafficPoolRepository;
 use Transip\Api\Library\Repository\TrafficRepository;
 use Transip\Api\Library\Repository\Vps\AddonRepository;
@@ -137,6 +138,11 @@ class TransipAPI
     public function sshKey(): SshKeyRepository
     {
         return new SshKeyRepository($this->httpClient);
+    }
+
+    public function sslCertificate(): SslCertificateRepository
+    {
+        return new SslCertificateRepository($this->httpClient);
     }
 
     public function invoice(): InvoiceRepository
