@@ -11,7 +11,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": "^7.2.0|^8.0",
-        "symfony/cache": "^3.4|^4.4|^5.0",
+        "symfony/cache": "^3.4|^4.4|^5.0|^6.0",
         "guzzlehttp/guzzle": "^6.3|^7.0",
         "ext-json": "*",
         "ext-openssl": "*"
