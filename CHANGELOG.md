@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+6.16.0
+-----
+* Added ssl certificate details endpoint
+
+6.15.1
+-----
+* bump symfony/cache to 6.0 compatibility
+
 6.15.0
 -----
 * Added ssl endpoints
