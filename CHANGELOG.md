@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.16.1
+-----
+* Added IMAP, SMTP and POP3 information to mailbox resource
+
 6.16.0
 -----
 * Added ssl certificate details endpoint

@@ -47,6 +47,36 @@ class Mailbox extends AbstractEntity
     public $isLocked;
 
     /**
+     * @var string $imapServer
+     */
+    public $imapServer;
+
+    /**
+     * @var int $imapPort
+     */
+    public $imapPort;
+
+    /**
+     * @var string $smtpServer
+     */
+    public $smtpServer;
+
+    /**
+     * @var int $smtpPort
+     */
+    public $smtpPort;
+
+    /**
+     * @var string $pop3Server
+     */
+    public $pop3Server;
+
+    /**
+     * @var int $pop3Port
+     */
+    public $pop3Port;
+
+    /**
      * @return string
      */
     public function getIdentifier(): string
@@ -172,5 +202,101 @@ class Mailbox extends AbstractEntity
     public function setIsLocked(bool $isLocked): void
     {
         $this->isLocked = $isLocked;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImapServer(): string
+    {
+        return $this->imapServer;
+    }
+
+    /**
+     * @param string $imapServer
+     */
+    public function setImapServer(string $imapServer): void
+    {
+        $this->imapServer = $imapServer;
+    }
+
+    /**
+     * @return int
+     */
+    public function getImapPort(): int
+    {
+        return $this->imapPort;
+    }
+
+    /**
+     * @param int $imapPort
+     */
+    public function setImapPort(int $imapPort): void
+    {
+        $this->imapPort = $imapPort;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSmtpServer(): string
+    {
+        return $this->smtpServer;
+    }
+
+    /**
+     * @param string $smtpServer
+     */
+    public function setSmtpServer(string $smtpServer): void
+    {
+        $this->smtpServer = $smtpServer;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSmtpPort(): int
+    {
+        return $this->smtpPort;
+    }
+
+    /**
+     * @param int $smtpPort
+     */
+    public function setSmtpPort(int $smtpPort): void
+    {
+        $this->smtpPort = $smtpPort;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPop3Server(): string
+    {
+        return $this->pop3Server;
+    }
+
+    /**
+     * @param string $pop3Server
+     */
+    public function setPop3Server(string $pop3Server): void
+    {
+        $this->pop3Server = $pop3Server;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPop3Port(): int
+    {
+        return $this->pop3Port;
+    }
+
+    /**
+     * @param int $pop3Port
+     */
+    public function setPop3Port(int $pop3Port): void
+    {
+        $this->pop3Port = $pop3Port;
     }
 }
