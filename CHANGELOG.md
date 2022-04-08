@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.16.2
+-----
+* Added status to domain entity
+
 6.16.1
 -----
 * Added IMAP, SMTP and POP3 information to mailbox resource
