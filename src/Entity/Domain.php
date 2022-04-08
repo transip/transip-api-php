@@ -59,6 +59,11 @@ class Domain extends AbstractEntity
      */
     protected $tags = [];
 
+    /**
+     * @var string $status
+     */
+    protected $status = '';
+
     public function getName(): string
     {
         return $this->name;
@@ -148,5 +153,21 @@ class Domain extends AbstractEntity
     public function setHasAutoDns(bool $hasAutoDns): void
     {
         $this->hasAutoDns = $hasAutoDns;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
     }
 }
