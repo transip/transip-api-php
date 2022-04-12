@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.16.3
+-----
+* Removed unneeded composer.lock
+
 6.16.2
 -----
 * Added status to domain entity
