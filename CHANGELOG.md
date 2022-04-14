@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.17.0
+-----
+* Added vps settings and rescue image endpoints
+
 6.16.3
 -----
 * Removed unneeded composer.lock
