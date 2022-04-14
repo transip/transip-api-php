@@ -54,6 +54,8 @@ use Transip\Api\Library\Repository\Vps\MonitoringContactRepository;
 use Transip\Api\Library\Repository\Vps\FirewallRepository as VpsFirewallRepository;
 use Transip\Api\Library\Repository\Vps\IpAddressRepository as VpsIpAddressRepository;
 use Transip\Api\Library\Repository\Vps\OperatingSystemRepository;
+use Transip\Api\Library\Repository\Vps\RescueImageRepository;
+use Transip\Api\Library\Repository\Vps\SettingRepository;
 use Transip\Api\Library\Repository\Vps\SnapshotRepository;
 use Transip\Api\Library\Repository\Vps\TCPMonitorRepository;
 use Transip\Api\Library\Repository\Vps\UpgradeRepository;
@@ -275,6 +277,16 @@ class TransipAPI
     public function vpsSnapshots(): SnapshotRepository
     {
         return new SnapshotRepository($this->httpClient);
+    }
+
+    public function vpsSettings(): SettingRepository
+    {
+        return new SettingRepository($this->httpClient);
+    }
+
+    public function vpsRescueImages(): RescueImageRepository
+    {
+        return new RescueImageRepository($this->httpClient);
     }
 
     public function vpsUpgrades(): UpgradeRepository
