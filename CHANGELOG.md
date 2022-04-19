@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.18.0
+-----
+* Added colocation access request endpoint
+
 6.17.0
 -----
 * Added vps settings and rescue image endpoints
