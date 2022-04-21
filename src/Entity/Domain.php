@@ -2,6 +2,9 @@
 
 namespace Transip\Api\Library\Entity;
 
+use Transip\Api\Library\Entity\Domain\Nameserver;
+use Transip\Api\Library\Entity\Domain\WhoisContact;
+
 class Domain extends AbstractEntity
 {
     /**
@@ -63,6 +66,49 @@ class Domain extends AbstractEntity
      * @var string $status
      */
     protected $status = '';
+
+    /**
+     * @var Nameserver[] $nameservers
+     */
+    protected $nameservers = [];
+
+    /**
+     * @var WhoisContact[] $contacts
+     */
+    protected $contacts = [];
+
+    public function __construct(array $valueArray = [])
+    {
+        foreach ($valueArray as $field => $value) {
+            if ($field === 'nameservers') {
+                $this->initNameservers($value);
+                continue;
+            }
+
+            if ($field === 'contacts') {
+                $this->initContacts($value);
+                continue;
+            }
+
+            if (property_exists($this, $field)) {
+                $this->$field = $value;
+            }
+        }
+    }
+
+    private function initNameservers(array $nameservers = [])
+    {
+        $this->nameservers = array_map(static function ($nameserver) {
+            return new Nameserver(($nameserver));
+        }, $nameservers);
+    }
+
+    private function initContacts(array $contacts = [])
+    {
+        $this->contacts = array_map(static function ($contact) {
+            return new WhoisContact($contact);
+        }, $contacts);
+    }
 
     public function getName(): string
     {
@@ -169,5 +215,37 @@ class Domain extends AbstractEntity
     public function setStatus(string $status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return Nameserver[]
+     */
+    public function getNameservers()
+    {
+        return $this->nameservers;
+    }
+
+    /**
+     * @param Nameserver[] $nameservers
+     */
+    public function setNameservers($nameservers): void
+    {
+        $this->nameservers = $nameservers;
+    }
+
+    /**
+     * @return Contact[]
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
+
+    /**
+     * @param Contact[] $contacts
+     */
+    public function setContacts($contacts): void
+    {
+        $this->contacts = $contacts;
     }
 }

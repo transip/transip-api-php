@@ -14,10 +14,13 @@ class DomainRepository extends ApiRepository
     /**
      * @return Domain[]
      */
-    public function getAll(): array
+    public function getAll(array $includes = []): array
     {
         $domains      = [];
-        $response     = $this->httpClient->get($this->getResourceUrl());
+        $query = [];
+        $query        = $this->addIncludesToQuery($query, $includes);
+
+        $response     = $this->httpClient->get($this->getResourceUrl(), $query);
         $domainsArray = $this->getParameterFromResponse($response, 'domains');
 
         foreach ($domainsArray as $domainArray) {
@@ -32,13 +35,13 @@ class DomainRepository extends ApiRepository
      * @param int $itemsPerPage
      * @return Domain[]
      */
-    public function getSelection(int $page, int $itemsPerPage): array
+    public function getSelection(int $page, int $itemsPerPage, array $includes = []): array
     {
         $domains      = [];
         $query        = ['pageSize' => $itemsPerPage, 'page' => $page];
+        $query        = $this->addIncludesToQuery($query, $includes);
         $response     = $this->httpClient->get($this->getResourceUrl(), $query);
         $domainsArray = $this->getParameterFromResponse($response, 'domains');
-
 
         foreach ($domainsArray as $domainArray) {
             $domains[] = new Domain($domainArray);
@@ -47,12 +50,25 @@ class DomainRepository extends ApiRepository
         return $domains;
     }
 
-    public function getByName(string $name): Domain
+    public function getByName(string $name, array $includes = []): Domain
     {
-        $response = $this->httpClient->get($this->getResourceUrl($name));
+        $query = $this->addIncludesToQuery([], $includes);
+        $response = $this->httpClient->get($this->getResourceUrl($name), $query);
+
         $domain   = $this->getParameterFromResponse($response, 'domain');
 
         return new Domain($domain);
+    }
+
+    private function addIncludesToQuery(array $query = [], array $includes = [])
+    {
+        $includeString = implode(',', $includes);
+
+        if ($includeString !== '') {
+            $query = array_merge($query, ['include' => $includeString]);
+        }
+
+        return $query;
     }
 
     public function getByTagNames(array $tags): array
