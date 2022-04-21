@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.19.0
+-----
+* Added includes to Domain
+
 6.18.0
 -----
 * Added colocation access request endpoint
