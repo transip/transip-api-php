@@ -2,12 +2,11 @@
 
 namespace Transip\Api\Library;
 
-use Symfony\Component\Cache\Adapter\AdapterInterface;
+use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Transip\Api\Library\HttpClient\GuzzleClient;
 use Transip\Api\Library\HttpClient\HttpClient;
 use Transip\Api\Library\HttpClient\HttpClientInterface;
-use Transip\Api\Library\Repository\ApiRepository;
 use Transip\Api\Library\Repository\ApiTestRepository;
 use Transip\Api\Library\Repository\AuthRepository;
 use Transip\Api\Library\Repository\AvailabilityZoneRepository;
@@ -81,12 +80,12 @@ class TransipAPI
     private $httpClient;
 
     /**
-     * @param string                $customerLoginName           The loginName used to login to the TransIP Control Panel.
-     * @param string                $privateKey                  The Privatekey generated in the control panel
-     * @param bool                  $generateWhitelistOnlyTokens Whether the generated token should use the whitelist
-     * @param string                $token                       AccessToken (optional, private key will generate this for you)
-     * @param string                $endpointUrl                 Use a different endpoint
-     * @param AdapterInterface|null $cache                       Symphony cache adapter, to hold the generated AccessToken
+     * @param string                      $customerLoginName           The loginName used to login to the TransIP Control Panel.
+     * @param string                      $privateKey                  The Privatekey generated in the control panel
+     * @param bool                        $generateWhitelistOnlyTokens Whether the generated token should use the whitelist
+     * @param string                      $token                       AccessToken (optional, private key will generate this for you)
+     * @param string                      $endpointUrl                 Use a different endpoint
+     * @param CacheItemPoolInterface|null $cache                       Cache adapter, to hold the generated AccessToken
      */
     public function __construct(
         string $customerLoginName,
@@ -94,22 +93,22 @@ class TransipAPI
         bool $generateWhitelistOnlyTokens = true,
         string $token = '',
         string $endpointUrl = '',
-        AdapterInterface $cache = null,
-        HttpClient $httpClient = null
+        ?CacheItemPoolInterface $cache = null,
+        ?HttpClient $httpClient = null
     ) {
         $endpoint = self::TRANSIP_API_ENDPOINT;
 
-        if ($endpointUrl != '') {
+        if ($endpointUrl) {
             $endpoint = $endpointUrl;
         }
 
         $this->httpClient = $httpClient ?? new GuzzleClient($endpoint);
 
-        if ($customerLoginName != '') {
+        if ($customerLoginName) {
             $this->httpClient->setLogin($customerLoginName);
         }
 
-        if ($privateKey != '') {
+        if ($privateKey) {
             $this->httpClient->setPrivateKey($privateKey);
         }
 
@@ -120,7 +119,7 @@ class TransipAPI
         $this->httpClient->setCache($cache);
         $this->httpClient->setGenerateWhitelistOnlyTokens($generateWhitelistOnlyTokens);
 
-        if ($token != '') {
+        if ($token) {
             $this->httpClient->setToken($token);
         } else {
             $this->httpClient->getTokenFromCache();

@@ -2,8 +2,8 @@
 
 namespace Transip\Api\Library\HttpClient;
 
+use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\ResponseInterface;
-use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Transip\Api\Library\Repository\AuthRepository;
 use Transip\Api\Library\TransipAPI;
 
@@ -44,7 +44,7 @@ abstract class HttpClient implements HttpClientInterface
     protected $generateWhitelistOnlyTokens = false;
 
     /**
-     * @var AdapterInterface
+     * @var CacheItemPoolInterface
      */
     protected $cache;
 
@@ -85,7 +85,7 @@ abstract class HttpClient implements HttpClientInterface
         $this->authRepository = new AuthRepository($this);
     }
 
-    public function setCache(AdapterInterface $cache): void
+    public function setCache(CacheItemPoolInterface $cache): void
     {
         $this->cache = $cache;
     }
