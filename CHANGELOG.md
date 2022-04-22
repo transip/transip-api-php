@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.21.0
+-----
+* Added default domain contacts endpoint
+
 6.19.0
 -----
 * Added includes to Domain
