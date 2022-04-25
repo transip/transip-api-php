@@ -37,7 +37,7 @@ class MailList extends AbstractEntity
     /**
      * @param int $id
      */
-    public function setId(string $id): void
+    public function setId(int $id): void
     {
         $this->id = $id;
     }

@@ -131,6 +131,24 @@ class DomainRepository extends ApiRepository
         $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
 
+    /**
+     * @param string $domainName
+     * @param string $targetCustomerName
+     * @return void
+     */
+    public function handover(
+        string $domainName,
+        string $targetCustomerName
+    ): void {
+        $parameters = [
+            'domainName'         => $domainName,
+            'action'             => 'handover',
+            'targetCustomerName' => $targetCustomerName,
+        ];
+        $this->httpClient->patch($this->getResourceUrl(), $parameters);
+    }
+
+
     public function update(Domain $domain): void
     {
         $this->httpClient->put($this->getResourceUrl($domain->getName()), ['domain' => $domain]);

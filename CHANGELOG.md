@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+6.22.0
+-----
+* Added domain handover
+* Fixed incorrect type on MailList.setId
+
 6.21.0
 -----
 * Added default domain contacts endpoint
