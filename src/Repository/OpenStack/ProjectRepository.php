@@ -12,6 +12,9 @@ class ProjectRepository extends ApiRepository
     public const RESOURCE_PARAMETER_SINGULAR = 'project';
     public const RESOURCE_PARAMETER_PLURAL   = 'projects';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [self::RESOURCE_NAME];

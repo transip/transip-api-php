@@ -21,6 +21,10 @@ class MailServiceRepository extends ApiRepository
         $this->httpClient->patch($this->getResourceUrl(), []);
     }
 
+    /**
+     * @param string[] $domainNames
+     * @return void
+     */
     public function addMailServiceDnsEntriesToDomains(array $domainNames): void
     {
         $this->httpClient->post($this->getResourceUrl(), ['domainNames' => $domainNames]);

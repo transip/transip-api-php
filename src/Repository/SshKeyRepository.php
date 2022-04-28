@@ -13,8 +13,8 @@ class SshKeyRepository extends ApiRepository
      */
     public function getAll(): array
     {
-        $sshKeys       = [];
-        $response      = $this->httpClient->get($this->getResourceUrl());
+        $sshKeys      = [];
+        $response     = $this->httpClient->get($this->getResourceUrl());
         $sshKeysArray = $this->getParameterFromResponse($response, 'sshKeys');
 
         foreach ($sshKeysArray as $sshKeyArray) {
@@ -24,6 +24,11 @@ class SshKeyRepository extends ApiRepository
         return $sshKeys;
     }
 
+    /**
+     * @param int $page
+     * @param int $itemsPerPage
+     * @return SshKey[]
+     */
     public function getSelection(int $page, int $itemsPerPage): array
     {
         $invoices     = [];

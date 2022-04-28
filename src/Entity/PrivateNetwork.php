@@ -49,6 +49,9 @@ class PrivateNetwork extends AbstractEntity
         return $this->isLocked;
     }
 
+    /**
+     * @return string[]
+     */
     public function getVpsNames(): array
     {
         return $this->vpsNames;

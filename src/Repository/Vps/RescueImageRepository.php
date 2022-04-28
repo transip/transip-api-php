@@ -10,6 +10,9 @@ class RescueImageRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'rescue-images';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];
@@ -17,7 +20,7 @@ class RescueImageRepository extends ApiRepository
 
     /**
      * @param string $vpsName
-     * @return array
+     * @return RescueImage[]
      */
     public function getByVpsName(string $vpsName): array
     {

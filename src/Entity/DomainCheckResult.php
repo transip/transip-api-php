@@ -22,7 +22,7 @@ class DomainCheckResult extends AbstractEntity
     protected $status;
 
     /**
-     * @var array $actions
+     * @var string[] $actions
      */
     protected $actions;
 
@@ -36,6 +36,9 @@ class DomainCheckResult extends AbstractEntity
         return $this->status;
     }
 
+    /**
+     * @return string[]
+     */
     public function getActions(): array
     {
         return $this->actions;

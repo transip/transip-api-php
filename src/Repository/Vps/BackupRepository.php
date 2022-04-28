@@ -10,6 +10,9 @@ class BackupRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'backups';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];

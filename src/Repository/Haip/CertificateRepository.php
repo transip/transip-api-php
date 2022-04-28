@@ -10,6 +10,9 @@ class CertificateRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'certificates';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [HaipRepository::RESOURCE_NAME, self::RESOURCE_NAME];

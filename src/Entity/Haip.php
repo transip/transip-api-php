@@ -147,9 +147,15 @@ class Haip extends AbstractEntity
         return $this->httpHealthCheckPort;
     }
 
+    /**
+     * the returnType should have been int.
+     * cannot correct this without introducing a breaking change.
+     *
+     * @return string
+     */
     public function getHttpHealthCheckSsl(): string
     {
-        return $this->httpHealthCheckSsl;
+        return (string)$this->httpHealthCheckSsl;
     }
 
     public function getIpv4Address(): string
@@ -172,6 +178,9 @@ class Haip extends AbstractEntity
         return $this->ptrRecord;
     }
 
+    /**
+     * @return string[]
+     */
     public function getIpAddresses(): array
     {
         return $this->ipAddresses;

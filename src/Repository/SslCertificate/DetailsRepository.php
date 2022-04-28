@@ -10,6 +10,9 @@ class DetailsRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'details';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [SslCertificateRepository::RESOURCE_NAME, self::RESOURCE_NAME];

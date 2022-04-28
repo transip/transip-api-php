@@ -10,6 +10,9 @@ class IpAddressRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'ip-addresses';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [HaipRepository::RESOURCE_NAME, self::RESOURCE_NAME];
@@ -27,6 +30,11 @@ class IpAddressRepository extends ApiRepository
         return $ipAddressesArray;
     }
 
+    /**
+     * @param string $haipName
+     * @param string[] $ipAddresses
+     * @return void
+     */
     public function update(string $haipName, array $ipAddresses): void
     {
         $url = $this->getResourceUrl($haipName);

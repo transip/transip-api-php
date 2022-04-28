@@ -10,6 +10,9 @@ class MailForwardRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'mail-forwards';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [EmailRepository::RESOURCE_NAME, self::RESOURCE_NAME];

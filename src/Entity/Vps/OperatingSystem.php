@@ -40,6 +40,9 @@ class OperatingSystem extends AbstractEntity
      */
     protected $licenses = [];
 
+    /**
+     * @param mixed[] $valueArray
+     */
     public function __construct(array $valueArray = [])
     {
         $licenses = $valueArray['licenses'] ?? [];
@@ -79,6 +82,9 @@ class OperatingSystem extends AbstractEntity
         return $this->price;
     }
 
+    /**
+     * @return string[]
+     */
     public function getInstallFlavours(): array
     {
         return $this->installFlavours;

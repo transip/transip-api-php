@@ -10,6 +10,9 @@ class AccessRequestRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'access-request';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [ColocationRepository::RESOURCE_NAME, self::RESOURCE_NAME];

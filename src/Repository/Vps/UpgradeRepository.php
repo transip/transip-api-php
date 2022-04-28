@@ -10,6 +10,9 @@ class UpgradeRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'upgrades';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];

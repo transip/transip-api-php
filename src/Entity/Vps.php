@@ -90,7 +90,7 @@ class Vps extends AbstractEntity
     protected $availabilityZone;
 
     /**
-     * @var array
+     * @var string[]
      */
     protected $tags;
 
@@ -190,6 +190,9 @@ class Vps extends AbstractEntity
         $this->isCustomerLocked = $isCustomerLocked;
     }
 
+    /**
+     * @return string[]
+     */
     public function getTags(): array
     {
         return $this->tags;

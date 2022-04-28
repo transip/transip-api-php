@@ -17,6 +17,11 @@ class ApiClientException extends RuntimeException
         parent::__construct($message, $code);
     }
 
+    /**
+     * @param mixed[] $response
+     * @param string $parameterName
+     * @return self
+     */
     public static function parameterMissingInResponse(array $response, string $parameterName): self
     {
         $parameters = implode(', ', array_keys($response));

@@ -69,7 +69,7 @@ class BigStorageRepository extends ApiRepository
         $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
 
-    public function upgrade(string $bigStorageName, int $size, ?Bool $offsiteBackups = null)
+    public function upgrade(string $bigStorageName, int $size, ?Bool $offsiteBackups = null): void
     {
         $parameters = [
             'bigStorageName'   => $bigStorageName,

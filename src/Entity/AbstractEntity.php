@@ -4,6 +4,9 @@ namespace Transip\Api\Library\Entity;
 
 class AbstractEntity implements \JsonSerializable
 {
+    /**
+     * @param mixed[] $valueArray
+     */
     public function __construct(array $valueArray = [])
     {
         foreach ($valueArray as $field => $value) {

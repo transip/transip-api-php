@@ -9,28 +9,44 @@ class License extends AbstractEntity
     public const TYPE_ADDON = 'addon';
     public const TYPE_OPERATING_SYSTEM = 'operating-system';
 
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $id;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $name;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $price;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $recurringPrice;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $type;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $quantity;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $maxQuantity;
 
-    /** @var LicenseKey[] */
+    /**
+     * @var LicenseKey[]
+     */
     protected $keys;
 
     public function __construct(array $valueArray = [])
@@ -81,6 +97,9 @@ class License extends AbstractEntity
         return $this->maxQuantity;
     }
 
+    /**
+     * @return LicenseKey[]
+     */
     public function getKeys(): array
     {
         return $this->keys;

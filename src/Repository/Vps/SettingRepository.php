@@ -10,6 +10,9 @@ class SettingRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'settings';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];
@@ -17,7 +20,7 @@ class SettingRepository extends ApiRepository
 
     /**
      * @param string $vpsName
-     * @return array
+     * @return Setting[]
      */
     public function getByVpsName(string $vpsName): array
     {
@@ -35,7 +38,7 @@ class SettingRepository extends ApiRepository
     /**
      * @param string $vpsName
      * @param string $settingName
-     * @return void
+     * @return Setting
      */
     public function getByVpsNameSettingName(string $vpsName, string $settingName): Setting
     {

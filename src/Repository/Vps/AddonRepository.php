@@ -9,6 +9,10 @@ use Transip\Api\Library\Repository\VpsRepository;
 class AddonRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'addons';
+
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];
@@ -34,6 +38,11 @@ class AddonRepository extends ApiRepository
         return $addons;
     }
 
+    /**
+     * @param string $vpsName
+     * @param string[] $addonNames
+     * @return void
+     */
     public function order(string $vpsName, array $addonNames): void
     {
         $parameters['addons'] = $addonNames;

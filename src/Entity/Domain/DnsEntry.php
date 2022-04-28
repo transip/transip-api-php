@@ -80,10 +80,10 @@ class DnsEntry extends AbstractEntity
     public function getRdata(): string
     {
         if (in_array($this->getType(), [self::TYPE_CAA,self::TYPE_TXT])) {
-            return json_encode($this->content);
-        } else {
-            return $this->content;
+            return (string)json_encode($this->content);
         }
+
+        return $this->content;
     }
 
     public function setContent(string $content): DnsEntry

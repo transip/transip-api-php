@@ -12,6 +12,7 @@ class DomainRepository extends ApiRepository
     public const RESOURCE_NAME = 'domains';
 
     /**
+     * @param string[] $includes
      * @return Domain[]
      */
     public function getAll(array $includes = []): array
@@ -31,8 +32,9 @@ class DomainRepository extends ApiRepository
     }
 
     /**
-     * @param int $page
-     * @param int $itemsPerPage
+     * @param int   $page
+     * @param int   $itemsPerPage
+     * @param string[] $includes
      * @return Domain[]
      */
     public function getSelection(int $page, int $itemsPerPage, array $includes = []): array
@@ -50,6 +52,11 @@ class DomainRepository extends ApiRepository
         return $domains;
     }
 
+    /**
+     * @param string $name
+     * @param string[] $includes
+     * @return Domain
+     */
     public function getByName(string $name, array $includes = []): Domain
     {
         $query = $this->addIncludesToQuery([], $includes);
@@ -60,7 +67,12 @@ class DomainRepository extends ApiRepository
         return new Domain($domain);
     }
 
-    private function addIncludesToQuery(array $query = [], array $includes = [])
+    /**
+     * @param mixed[] $query
+     * @param string[] $includes
+     * @return mixed[]
+     */
+    private function addIncludesToQuery(array $query = [], array $includes = []): array
     {
         $includeString = implode(',', $includes);
 
@@ -71,10 +83,14 @@ class DomainRepository extends ApiRepository
         return $query;
     }
 
+    /**
+     * @param string[] $tags
+     * @return Domain[]
+     */
     public function getByTagNames(array $tags): array
     {
-        $tags         = implode(',', $tags);
-        $query        = ['tags' => $tags];
+        $tagString    = implode(',', $tags);
+        $query        = ['tags' => $tagString];
         $response     = $this->httpClient->get($this->getResourceUrl(), $query);
         $domainsArray = $this->getParameterFromResponse($response, 'domains');
 

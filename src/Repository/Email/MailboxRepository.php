@@ -10,6 +10,9 @@ class MailboxRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'mailboxes';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [EmailRepository::RESOURCE_NAME, self::RESOURCE_NAME];

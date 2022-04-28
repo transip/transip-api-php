@@ -10,6 +10,9 @@ class ElementRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'elements';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [ProductRepository::RESOURCE_NAME, self::RESOURCE_NAME];

@@ -10,6 +10,9 @@ class DnsRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'dns';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [DomainRepository::RESOURCE_NAME, self::RESOURCE_NAME];
@@ -32,7 +35,7 @@ class DnsRepository extends ApiRepository
         return $dnsEntries;
     }
 
-    public function addDnsEntryToDomain(string $domainName, DnsEntry $dnsEntry)
+    public function addDnsEntryToDomain(string $domainName, DnsEntry $dnsEntry): void
     {
         $this->httpClient->post($this->getResourceUrl($domainName), ['dnsEntry' => $dnsEntry]);
     }
@@ -42,6 +45,11 @@ class DnsRepository extends ApiRepository
         $this->httpClient->patch($this->getResourceUrl($domainName), ['dnsEntry' => $dnsEntry]);
     }
 
+    /**
+     * @param string $domainName
+     * @param DnsEntry[] $dnsEntries
+     * @return void
+     */
     public function update(string $domainName, array $dnsEntries): void
     {
         $this->httpClient->put($this->getResourceUrl($domainName), ['dnsEntries' => $dnsEntries]);

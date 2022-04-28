@@ -10,6 +10,9 @@ class PdfRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'pdf';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [InvoiceRepository::RESOURCE_NAME, self::RESOURCE_NAME];

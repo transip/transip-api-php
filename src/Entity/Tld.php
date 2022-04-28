@@ -30,7 +30,7 @@ class Tld extends AbstractEntity
     protected $recurringPrice;
 
     /**
-     * @var array $capabilities
+     * @var string[] $capabilities
      */
     protected $capabilities;
 
@@ -69,6 +69,9 @@ class Tld extends AbstractEntity
         return $this->recurringPrice;
     }
 
+    /**
+     * @return string[]
+     */
     public function getCapabilities(): array
     {
         return $this->capabilities;
