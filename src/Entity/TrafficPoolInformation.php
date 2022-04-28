@@ -74,7 +74,19 @@ class TrafficPoolInformation extends AbstractEntity
         return round($this->getUsedInBytes() / 1024, 2);
     }
 
+    /**
+     * the returnType should have been float.
+     * cannot correct this without introducing a breaking change.
+     * @see getUsedOutMegabytesFloat for the float return
+     *
+     * @return int
+     */
     public function getUsedOutMegabytes(): int
+    {
+        return (int) $this->getUsedOutMegabytesFloat();
+    }
+
+    public function getUsedOutMegabytesFloat(): float
     {
         $usedInMegabytes    = $this->getUsedInBytes() / 1024;
         $usedTotalMegabytes = $this->getUsedTotalBytes() / 1024;
@@ -97,7 +109,19 @@ class TrafficPoolInformation extends AbstractEntity
         return round($this->getUsedInBytes() / 1024 / 1024, 2);
     }
 
+    /**
+     * the returnType should have been float.
+     * cannot correct this without introducing a breaking change.
+     * @see getUsedOutGigabytesFloat for the float return
+     *
+     * @return int
+     */
     public function getUsedOutGigabytes(): int
+    {
+        return (int) $this->getUsedOutGigabytesFloat();
+    }
+
+    public function getUsedOutGigabytesFloat(): float
     {
         $usedInGigabytes    = $this->getUsedInBytes() / 1024 / 1024;
         $usedTotalGigabytes = $this->getUsedTotalBytes() / 1024 / 1024;

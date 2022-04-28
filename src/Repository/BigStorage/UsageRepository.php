@@ -10,6 +10,9 @@ class UsageRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'usage';
 
+    /**
+     * @return array|string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [BigStorageRepository::RESOURCE_NAME, self::RESOURCE_NAME];

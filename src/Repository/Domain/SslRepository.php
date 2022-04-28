@@ -10,6 +10,9 @@ class SslRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'ssl';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [DomainRepository::RESOURCE_NAME, self::RESOURCE_NAME];

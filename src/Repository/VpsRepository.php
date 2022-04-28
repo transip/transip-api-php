@@ -51,10 +51,14 @@ class VpsRepository extends ApiRepository
         return new Vps($vps);
     }
 
+    /**
+     * @param string[] $tags
+     * @return Vps[]
+     */
     public function getByTagNames(array $tags): array
     {
-        $tags      = implode(',', $tags);
-        $query     = ['tags' => $tags];
+        $tagString = implode(',', $tags);
+        $query     = ['tags' => $tagString];
         $response  = $this->httpClient->get($this->getResourceUrl(), $query);
         $vpssArray = $this->getParameterFromResponse($response, 'vpss');
 
@@ -69,7 +73,7 @@ class VpsRepository extends ApiRepository
     /**
      * @param string   $productName
      * @param string   $operatingSystemName
-     * @param array    $addons
+     * @param string[] $addons
      * @param string   $hostname
      * @param string   $availabilityZone
      * @param string   $description
@@ -151,7 +155,7 @@ class VpsRepository extends ApiRepository
             ]
         ];
      *
-     * @param array $vpss
+     * @param mixed[] $vpss
      */
     public function orderMultiple(array $vpss): void
     {

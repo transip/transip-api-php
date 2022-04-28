@@ -56,6 +56,9 @@ class InvoiceItem extends AbstractEntity
      */
     protected $discounts;
 
+    /**
+     * @param mixed[] $valueArray
+     */
     public function __construct(array $valueArray = [])
     {
         parent::__construct($valueArray);

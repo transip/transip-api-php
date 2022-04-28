@@ -10,7 +10,7 @@ class Colocation extends AbstractEntity
     protected $name;
 
     /**
-     * @var array $ipRanges
+     * @var string[] $ipRanges
      */
     protected $ipRanges;
 
@@ -19,6 +19,9 @@ class Colocation extends AbstractEntity
         return $this->name;
     }
 
+    /**
+     * @return string[]
+     */
     public function getIpRanges(): array
     {
         return $this->ipRanges;

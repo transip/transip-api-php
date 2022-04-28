@@ -90,4 +90,14 @@ class HttpBadResponseException extends RuntimeException
                 return new HttpBadResponseException($errorMessage, $response->getStatusCode(), $innerException, $response);
         }
     }
+
+    public function getInnerException(): Exception
+    {
+        return $this->innerException;
+    }
+
+    public function getResponse(): ResponseInterface
+    {
+        return $this->response;
+    }
 }

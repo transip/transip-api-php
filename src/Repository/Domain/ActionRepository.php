@@ -13,6 +13,9 @@ class ActionRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'actions';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [DomainRepository::RESOURCE_NAME, self::RESOURCE_NAME];

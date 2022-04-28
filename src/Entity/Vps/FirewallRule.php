@@ -31,7 +31,7 @@ class FirewallRule extends AbstractEntity
     protected $protocol;
 
     /**
-     * @var array $whitelist
+     * @var string[] $whitelist
      */
     protected $whitelist;
 
@@ -79,11 +79,18 @@ class FirewallRule extends AbstractEntity
         return $this;
     }
 
+    /**
+     * @return string[]
+     */
     public function getWhitelist(): array
     {
         return $this->whitelist;
     }
 
+    /**
+     * @param string[] $whitelist
+     * @return self
+     */
     public function setWhitelist(array $whitelist): FirewallRule
     {
         $this->whitelist = $whitelist;
@@ -99,7 +106,7 @@ class FirewallRule extends AbstractEntity
     public function removeRangeToWhitelist(string $ipRange): FirewallRule
     {
         $whitelist = [];
-        foreach ($whitelist as $whitelistEntry) {
+        foreach ($this->whitelist as $whitelistEntry) {
             if ($whitelistEntry !== $ipRange) {
                 $whitelist[] = $whitelistEntry;
             }

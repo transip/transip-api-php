@@ -12,6 +12,9 @@ class UserRepository extends ApiRepository
     public const RESOURCE_PARAMETER_SINGULAR = 'user';
     public const RESOURCE_PARAMETER_PLURAL   = 'users';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [self::RESOURCE_NAME];

@@ -10,7 +10,14 @@ class TokenAuthorization
 {
     public const HANDLER_NAME = 'transip_token_authentication';
 
+    /**
+     * @var string
+     */
     private $token;
+
+    /**
+     * @var string
+     */
     private $userAgent;
 
     public function __construct(

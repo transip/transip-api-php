@@ -10,6 +10,9 @@ class ItemRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'invoice-items';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [InvoiceRepository::RESOURCE_NAME, self::RESOURCE_NAME];

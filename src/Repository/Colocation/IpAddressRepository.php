@@ -10,6 +10,9 @@ class IpAddressRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'ip-addresses';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [ColocationRepository::RESOURCE_NAME, self::RESOURCE_NAME];

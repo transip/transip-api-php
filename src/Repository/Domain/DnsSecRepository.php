@@ -10,6 +10,9 @@ class DnsSecRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'dnssec';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [DomainRepository::RESOURCE_NAME, self::RESOURCE_NAME];

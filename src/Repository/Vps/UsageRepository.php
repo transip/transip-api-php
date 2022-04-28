@@ -3,6 +3,7 @@
 namespace Transip\Api\Library\Repository\Vps;
 
 use Transip\Api\Library\Entity\Vps;
+use Transip\Api\Library\Entity\Vps\UsageData;
 use Transip\Api\Library\Entity\Vps\UsageDataCpu;
 use Transip\Api\Library\Entity\Vps\UsageDataDisk;
 use Transip\Api\Library\Entity\Vps\UsageDataNetwork;
@@ -16,11 +17,21 @@ class UsageRepository extends ApiRepository
     public const TYPE_NETWORK = 'network';
     public const RESOURCE_NAME = 'usage';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
+    /**
+     * @param string   $vpsName
+     * @param string[] $types
+     * @param int      $dateTimeStart
+     * @param int      $dateTimeEnd
+     * @return array<string, array<int, UsageData>>
+     */
     public function getByVpsName(
         string $vpsName,
         array $types = [],
@@ -43,6 +54,7 @@ class UsageRepository extends ApiRepository
         $usageTypesArray = $this->getParameterFromResponse($response, 'usage');
 
         foreach ($usageTypesArray as $usageType => $usageArray) {
+            $usageType = (string)$usageType;
             switch ($usageType) {
                 case self::TYPE_CPU:
                     foreach ($usageArray as $usage) {

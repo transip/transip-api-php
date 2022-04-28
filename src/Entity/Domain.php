@@ -58,7 +58,7 @@ class Domain extends AbstractEntity
     protected $hasAutoDns;
 
     /**
-     * @var array $tags
+     * @var string[] $tags
      */
     protected $tags = [];
 
@@ -77,6 +77,9 @@ class Domain extends AbstractEntity
      */
     protected $contacts = [];
 
+    /**
+     * @param mixed[] $valueArray
+     */
     public function __construct(array $valueArray = [])
     {
         foreach ($valueArray as $field => $value) {
@@ -96,14 +99,22 @@ class Domain extends AbstractEntity
         }
     }
 
-    private function initNameservers(array $nameservers = [])
+    /**
+     * @param mixed[] $nameservers
+     * @return void
+     */
+    private function initNameservers(array $nameservers = []): void
     {
         $this->nameservers = array_map(static function ($nameserver) {
             return new Nameserver(($nameserver));
         }, $nameservers);
     }
 
-    private function initContacts(array $contacts = [])
+    /**
+     * @param mixed[] $contacts
+     * @return void
+     */
+    private function initContacts(array $contacts = []): void
     {
         $this->contacts = array_map(static function ($contact) {
             return new WhoisContact($contact);
@@ -155,6 +166,9 @@ class Domain extends AbstractEntity
         return $this->isDnsOnly;
     }
 
+    /**
+     * @return string[]
+     */
     public function getTags(): array
     {
         return $this->tags;
@@ -172,6 +186,10 @@ class Domain extends AbstractEntity
         return $this;
     }
 
+    /**
+     * @param string[] $tags
+     * @return self
+     */
     public function setTags(array $tags): Domain
     {
         $this->tags = $tags;
@@ -220,7 +238,7 @@ class Domain extends AbstractEntity
     /**
      * @return Nameserver[]
      */
-    public function getNameservers()
+    public function getNameservers(): array
     {
         return $this->nameservers;
     }
@@ -228,23 +246,23 @@ class Domain extends AbstractEntity
     /**
      * @param Nameserver[] $nameservers
      */
-    public function setNameservers($nameservers): void
+    public function setNameservers(array $nameservers): void
     {
         $this->nameservers = $nameservers;
     }
 
     /**
-     * @return Contact[]
+     * @return WhoisContact[]
      */
-    public function getContacts()
+    public function getContacts(): array
     {
         return $this->contacts;
     }
 
     /**
-     * @param Contact[] $contacts
+     * @param WhoisContact[] $contacts
      */
-    public function setContacts($contacts): void
+    public function setContacts(array $contacts): void
     {
         $this->contacts = $contacts;
     }

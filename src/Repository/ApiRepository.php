@@ -12,11 +12,17 @@ abstract class ApiRepository
      */
     protected $httpClient;
 
+    protected const RESOURCE_NAME = '';
+
     public function __construct(HttpClientInterface $httpClient)
     {
         $this->httpClient = $httpClient;
     }
 
+    /**
+     * @param string|int ...$args
+     * @return string
+     */
     protected function getResourceUrl(...$args): string
     {
         $urlSuffix     = '';
@@ -31,13 +37,16 @@ abstract class ApiRepository
         return $urlSuffix;
     }
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [static::RESOURCE_NAME];
     }
 
     /**
-     * @param array  $response
+     * @param mixed[] $response
      * @param string $parameterName
      * @return mixed
      * @throws ApiClientException

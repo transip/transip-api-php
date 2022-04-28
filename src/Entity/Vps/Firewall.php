@@ -16,6 +16,9 @@ class Firewall extends AbstractEntity
      */
     protected $ruleSet;
 
+    /**
+     * @param mixed[] $valueArray
+     */
     public function __construct(array $valueArray = [])
     {
         parent::__construct($valueArray);

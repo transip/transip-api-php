@@ -24,6 +24,11 @@ class SslCertificateRepository extends ApiRepository
         return $sshKeys;
     }
 
+    /**
+     * @param int $page
+     * @param int $itemsPerPage
+     * @return SslCertificate[]
+     */
     public function getSelection(int $page, int $itemsPerPage): array
     {
         $query        = ['pageSize' => $itemsPerPage, 'page' => $page];
@@ -38,9 +43,9 @@ class SslCertificateRepository extends ApiRepository
         return $sslCertificates;
     }
 
-    public function getById(string $sshKeyId): SslCertificate
+    public function getById(string $certificateId): SslCertificate
     {
-        $response    = $this->httpClient->get($this->getResourceUrl($sshKeyId));
+        $response    = $this->httpClient->get($this->getResourceUrl($certificateId));
         $sshKeyArray = $this->getParameterFromResponse($response, 'certificate');
 
         return new SslCertificate($sshKeyArray);

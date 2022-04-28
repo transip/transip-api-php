@@ -12,6 +12,9 @@ class LicenseRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'licenses';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];

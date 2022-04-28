@@ -10,6 +10,9 @@ class OperatingSystemRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'operating-systems';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];

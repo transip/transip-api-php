@@ -17,7 +17,7 @@ class DomainAvailabilityRepository extends ApiRepository
     }
 
     /**
-     * @param array $domainNames
+     * @param string[] $domainNames
      * @return DomainCheckResult[]
      */
     public function checkMultipleDomainNames(array $domainNames): array

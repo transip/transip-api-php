@@ -10,6 +10,9 @@ class TCPMonitorRepository extends ApiRepository
 {
     protected const RESOURCE_NAME = 'tcp-monitors';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];

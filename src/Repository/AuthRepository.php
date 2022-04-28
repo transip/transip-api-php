@@ -14,6 +14,9 @@ class AuthRepository extends ApiRepository
      */
     protected $labelPrefix = 'api.lib-';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [self::RESOURCE_NAME];
@@ -26,7 +29,7 @@ class AuthRepository extends ApiRepository
         bool $readOnly = false,
         string $label = '',
         string $expirationTime = '1 day'
-    ): ?string {
+    ): string {
         if ($label === '') {
             $label = $this->getLabelPrefix() . time();
         }
@@ -42,9 +45,7 @@ class AuthRepository extends ApiRepository
 
         $signature = $this->createSignature($privateKey, $requestBody);
         $response  = $this->httpClient->postAuthentication($this->getResourceUrl(), $signature, $requestBody);
-        $token     = $this->getParameterFromResponse($response, 'token');
-
-        return $token;
+        return (string) $this->getParameterFromResponse($response, 'token');
     }
 
     public function tokenHasExpired(string $token): bool
@@ -80,6 +81,11 @@ class AuthRepository extends ApiRepository
         return intval($expirationTime);
     }
 
+    /**
+     * @param string $privateKey
+     * @param mixed[] $parameters
+     * @return string
+     */
     private function createSignature(string $privateKey, array $parameters): string
     {
         // Fixup our private key, copy-pasting the key might lead to whitespace faults
@@ -98,7 +104,7 @@ class AuthRepository extends ApiRepository
 
         $key = "-----BEGIN PRIVATE KEY-----\n" . $key . "-----END PRIVATE KEY-----";
 
-        if (!@openssl_sign(json_encode($parameters), $signature, $key, OPENSSL_ALGO_SHA512)) {
+        if (!@openssl_sign((string)json_encode($parameters), $signature, $key, OPENSSL_ALGO_SHA512)) {
             throw new RuntimeException(
                 'The provided private key is invalid'
             );

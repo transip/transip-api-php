@@ -10,6 +10,9 @@ class RemoteHandsRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'remote-hands';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [ColocationRepository::RESOURCE_NAME, self::RESOURCE_NAME];

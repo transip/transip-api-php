@@ -10,6 +10,9 @@ class NameserverRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'nameservers';
 
+    /**
+     * @return string[]
+     */
     protected function getRepositoryResourceNames(): array
     {
         return [DomainRepository::RESOURCE_NAME, self::RESOURCE_NAME];

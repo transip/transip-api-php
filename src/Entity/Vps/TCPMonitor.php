@@ -17,7 +17,7 @@ class TCPMonitor extends AbstractEntity
     protected $label;
 
     /**
-     * @var array
+     * @var int[]
      */
     protected $ports;
 
@@ -41,6 +41,9 @@ class TCPMonitor extends AbstractEntity
      */
     protected $ignoreTimes;
 
+    /**
+     * @param mixed[] $valueArray
+     */
     public function __construct(array $valueArray = [])
     {
         parent::__construct($valueArray);
@@ -94,7 +97,7 @@ class TCPMonitor extends AbstractEntity
     }
 
     /**
-     * @return array
+     * @return int[]
      */
     public function getPorts(): array
     {
@@ -102,7 +105,7 @@ class TCPMonitor extends AbstractEntity
     }
 
     /**
-     * @param array $ports
+     * @param int[] $ports
      */
     public function setPorts(array $ports): void
     {
