@@ -118,7 +118,7 @@ final class HttpMethodsClient extends HttpClient
                 ['Signature' => $signature],
                 (string)json_encode($body)
             );
-        } catch (Throwable $exception) {
+        } catch (Exception $exception) {
             $this->handleException($exception);
         }
 
@@ -196,7 +196,7 @@ final class HttpMethodsClient extends HttpClient
         return (string)json_encode($data);
     }
 
-    private function handleException(Throwable $exception): void
+    private function handleException(Exception $exception): void
     {
         if ($exception instanceof BadResponseException) {
             throw HttpBadResponseException::badResponseException($exception, $exception->getResponse());
