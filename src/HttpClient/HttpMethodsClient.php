@@ -177,7 +177,7 @@ final class HttpMethodsClient extends HttpClient
      */
     private function getContent(ResponseInterface $response)
     {
-        $body = $response->getBody()->__toString();
+        $body = (string) $response->getBody();
         if (strpos($response->getHeaderLine('Content-Type'), 'application/json') === 0) {
             $content = json_decode($body, true);
             if (json_last_error() === JSON_ERROR_NONE) {
@@ -193,7 +193,7 @@ final class HttpMethodsClient extends HttpClient
      */
     private function createBody(array $data): string
     {
-        return (string)json_encode($data);
+        return (string) json_encode($data);
     }
 
     private function handleException(Throwable $exception): void
