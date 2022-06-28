@@ -16,9 +16,9 @@ interface HttpClientInterface
     /**
      * @param string $url
      * @param mixed[] $body
-     * @return void
+     * @return mixed[]
      */
-    public function post(string $url, array $body = []): void;
+    public function post(string $url, array $body = []): array;
 
     /**
      * @param string $url

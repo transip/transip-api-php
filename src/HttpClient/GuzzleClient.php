@@ -107,9 +107,9 @@ class GuzzleClient extends HttpClient
     /**
      * @param string $uri
      * @param mixed[] $body
-     * @return void
+     * @return mixed[]
      */
-    public function post(string $uri, array $body = []): void
+    public function post(string $uri, array $body = []): array
     {
         $options['body'] = json_encode($body);
 
@@ -120,6 +120,8 @@ class GuzzleClient extends HttpClient
         }
 
         $this->parseResponseHeaders($response);
+
+        return json_decode($response->getBody(), true);
     }
 
     /**

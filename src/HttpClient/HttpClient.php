@@ -269,9 +269,9 @@ abstract class HttpClient implements HttpClientInterface
     /**
      * @param string $url
      * @param mixed[] $body
-     * @return void
+     * @return mixed[]
      */
-    abstract public function post(string $url, array $body = []): void;
+    abstract public function post(string $url, array $body = []): array;
 
     /**
      * @param string $url
