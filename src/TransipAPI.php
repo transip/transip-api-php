@@ -46,6 +46,7 @@ use Transip\Api\Library\Repository\Product\ElementRepository as ProductElementRe
 use Transip\Api\Library\Repository\DomainTldRepository;
 use Transip\Api\Library\Repository\SshKeyRepository;
 use Transip\Api\Library\Repository\SslCertificate\DetailsRepository;
+use Transip\Api\Library\Repository\SslCertificate\DownloadRepository;
 use Transip\Api\Library\Repository\SslCertificate\InstallRepository;
 use Transip\Api\Library\Repository\SslCertificate\UninstallRepository;
 use Transip\Api\Library\Repository\SslCertificateRepository;
@@ -168,6 +169,11 @@ class TransipAPI
     public function sslCertificateUninstall(): UninstallRepository
     {
         return new UninstallRepository($this->httpClient);
+    }
+
+    public function sslCertificateDownload(): DownloadRepository
+    {
+        return new DownloadRepository($this->httpClient);
     }
 
     public function invoice(): InvoiceRepository
