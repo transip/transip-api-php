@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.24.0
+-----
+* Added an endpoint for operating system filtering on specs
+* Added isDefault option to the SSH keys endpoint.
 
 6.23.0
 -----

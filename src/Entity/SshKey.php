@@ -105,4 +105,12 @@ class SshKey extends AbstractEntity
     {
         return $this->isDefault;
     }
+
+    /**
+     * @param bool $isDefault
+     */
+    public function setIsDefault(bool $isDefault): void
+    {
+        $this->isDefault = $isDefault;
+    }
 }
