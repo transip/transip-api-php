@@ -4,7 +4,6 @@ namespace Transip\Api\Library\Exception;
 
 use Exception;
 use RuntimeException;
-use Throwable;
 
 class HttpClientException extends RuntimeException
 {
