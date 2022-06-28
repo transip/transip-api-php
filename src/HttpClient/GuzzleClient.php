@@ -7,7 +7,6 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\HandlerStack;
-use http\Exception\RuntimeException;
 use Psr\Http\Message\ResponseInterface;
 use Transip\Api\Library\Exception\ApiException;
 use Transip\Api\Library\Exception\HttpClientException;
@@ -16,6 +15,10 @@ use Transip\Api\Library\Exception\HttpRequestException;
 use Transip\Api\Library\Exception\HttpBadResponseException;
 use Transip\Api\Library\HttpClient\Middleware\TokenAuthorization;
 
+/**
+ * @deprecated This client is deprecated in favour of HttpMethodsClient which supports more client libraries
+ * @see HttpMethodsClient
+ */
 class GuzzleClient extends HttpClient
 {
     /**
