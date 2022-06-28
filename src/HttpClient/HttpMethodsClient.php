@@ -17,6 +17,7 @@ use Transip\Api\Library\Exception\HttpClientException;
 use Transip\Api\Library\Exception\HttpRequest\BadResponseException;
 use Transip\Api\Library\Exception\HttpRequestException;
 use Transip\Api\Library\HttpClient\Builder\ClientBuilderInterface;
+use Transip\Api\Library\HttpClient\Plugin\ExceptionThrowerPlugin;
 use Transip\Api\Library\HttpClient\Plugin\TokenAuthenticationPlugin;
 use Transip\Api\Library\TransipAPI;
 
@@ -48,6 +49,7 @@ final class HttpMethodsClient extends HttpClient
 
     private function setupHttpBuilder(): void
     {
+        $this->client->addPlugin(new ExceptionThrowerPlugin());
         $this->setEndpoint($this->endpoint);
     }
 
