@@ -121,7 +121,7 @@ class GuzzleClient extends HttpClient
 
         $this->parseResponseHeaders($response);
 
-        return json_decode($response->getBody(), true);
+        return json_decode($response->getBody(), true) ?? [];
     }
 
     /**
