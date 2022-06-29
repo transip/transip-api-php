@@ -41,8 +41,8 @@ final class ClientBuilder implements ClientBuilderInterface
      */
     private $httpClientModified = true;
 
-    /** 
-     * @var Plugin[] 
+    /**
+     * @var Plugin[]
      */
     private $plugins = [];
 
