@@ -70,6 +70,8 @@ final class HttpMethodsClient extends HttpClient
      */
     public function setToken(string $token): void
     {
+        $this->token = $token;
+
         // Remove any generic authentication plugin
         $this->client->removePlugin(TokenAuthenticationPlugin::class);
 
