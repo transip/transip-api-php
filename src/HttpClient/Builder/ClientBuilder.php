@@ -30,9 +30,9 @@ final class ClientBuilder implements ClientBuilderInterface
 
     /**
      * AN HTTP client with all our plugins.
-     * @var HttpMethodsClient
+     * @var HttpMethodsClient|null
      */
-    private $pluginClient;
+    private $pluginClient = null;
 
     /**
      * @var Plugin[]
@@ -63,7 +63,7 @@ final class ClientBuilder implements ClientBuilderInterface
 
     public function getHttpClient(): HttpMethodsClient
     {
-        if (!isset($this->pluginClient)) { // @phpstan-ignore-line
+        if ($this->pluginClient === null) {
             $this->pluginClient = new HttpMethodsClient(
                 (new PluginClientFactory())->createClient($this->httpClient, $this->plugins),
                 $this->requestFactory,
@@ -80,7 +80,7 @@ final class ClientBuilder implements ClientBuilderInterface
     public function addPlugin(Plugin $plugin): void
     {
         $this->plugins[] = $plugin;
-        unset($this->pluginClient);
+        $this->pluginClient = null;
     }
 
     /**
@@ -94,7 +94,7 @@ final class ClientBuilder implements ClientBuilderInterface
             }
 
             unset($this->plugins[$idx]);
-            unset($this->pluginClient);
+            $this->pluginClient = null;
         }
     }
 
