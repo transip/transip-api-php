@@ -98,7 +98,7 @@ final class ClientBuilder implements ClientBuilderInterface
     public function removePlugin(string $fqcn): void
     {
         foreach ($this->plugins as $idx => $plugin) {
-            if (! ($plugin instanceof $fqcn)) {
+            if (!($plugin instanceof $fqcn)) {
                 continue;
             }
 
