@@ -38,6 +38,10 @@ lint phpstan:
   needs: ['prepare composer']
   script:
     - ./vendor/bin/phpstan --no-progress --memory-limit="2G" --error-format=gitlab > phpstan-report.json || (cat phpstan-report.json && exit 1)
+  artifacts:
+    when: always
+    reports:
+      codequality: phpstan-report.json
 
 lint composer:
   stage: lint
