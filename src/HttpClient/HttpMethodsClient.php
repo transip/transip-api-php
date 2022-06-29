@@ -84,6 +84,8 @@ final class HttpMethodsClient extends HttpClient
      */
     public function get(string $url, array $query = []): array
     {
+        $this->checkAndRenewToken();
+
         if (count($query) > 0) {
             $url .= '?' . http_build_query($query);
         }
@@ -104,6 +106,7 @@ final class HttpMethodsClient extends HttpClient
      */
     public function post(string $url, array $body = []): void
     {
+        $this->checkAndRenewToken();
         $this->client->getHttpClient()->post($url, [], $this->createBody($body));
     }
 
@@ -152,6 +155,7 @@ final class HttpMethodsClient extends HttpClient
      */
     public function put(string $url, array $body): void
     {
+        $this->checkAndRenewToken();
         $this->client->getHttpClient()->put($url, [], $this->createBody($body));
     }
 
@@ -160,6 +164,7 @@ final class HttpMethodsClient extends HttpClient
      */
     public function patch(string $url, array $body): void
     {
+        $this->checkAndRenewToken();
         $this->client->getHttpClient()->patch($url, [], $this->createBody($body));
     }
 
@@ -168,6 +173,7 @@ final class HttpMethodsClient extends HttpClient
      */
     public function delete(string $url, array $body = []): void
     {
+        $this->checkAndRenewToken();
         $this->client->getHttpClient()->delete($url, [], $this->createBody($body));
     }
 

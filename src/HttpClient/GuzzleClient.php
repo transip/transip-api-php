@@ -143,7 +143,7 @@ class GuzzleClient extends HttpClient
             $this->handleException($exception);
         }
 
-        if ($response->getStatusCode() !== 201) {
+        if ($response->getStatusCode() !== 200 || $response->getStatusCode() !== 201) {
             throw ApiException::unexpectedStatusCode($response);
         }
 

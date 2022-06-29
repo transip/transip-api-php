@@ -10,9 +10,11 @@ use Http\Client\Common\PluginClientFactory;
 use Http\Client\HttpClient;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
+use Http\Discovery\StreamFactoryDiscovery;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 
+use Psr\Http\Message\StreamFactoryInterface;
 use function array_merge;
 
 final class ClientBuilder implements ClientBuilderInterface
@@ -49,13 +51,19 @@ final class ClientBuilder implements ClientBuilderInterface
      * @var array<string, string|string[]>
      */
     private $headers = [];
+    /**
+     * @var StreamFactoryInterface
+     */
+    private $streamFactory;
 
     public function __construct(
         ?HttpClient $httpClient = null,
-        ?RequestFactoryInterface $requestFactory = null
+        ?RequestFactoryInterface $requestFactory = null,
+        ?StreamFactoryInterface $streamFactory = null
     ) {
         $this->httpClient     = $httpClient ?? Psr18ClientDiscovery::find();
         $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
+        $this->streamFactory  = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
     }
 
     public function getHttpClient(): HttpMethodsClient
@@ -65,7 +73,8 @@ final class ClientBuilder implements ClientBuilderInterface
 
             $this->pluginClient = new HttpMethodsClient(
                 (new PluginClientFactory())->createClient($this->httpClient, $this->plugins),
-                $this->requestFactory
+                $this->requestFactory,
+                $this->streamFactory
             );
         }
 
