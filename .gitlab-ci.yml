@@ -52,6 +52,25 @@ lint secretsscan:
   script:
     - ci/scan_secrets.sh
 
+test phpunit:
+  image: '$IMAGE_URL_PYTHON'
+  stage: lint
+  needs: ['prepare composer']
+  variables:
+    PHP_XDEBUG: "1"
+    XDEBUG_MODE: coverage
+  script:
+    - ./vendor/bin/phpunit --coverage-text --testdox
+  coverage: '/^\s*Lines:\s*\d+.\d+\%/'
+  artifacts:
+    when: always
+    paths:
+      - build
+    expire_in: 1 day
+    reports:
+      junit: build/logs/junit.xml
+      cobertura: build/cobertura.xml
+
 validate tag-message:
   stage: validate
   needs: []

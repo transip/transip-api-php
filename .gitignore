@@ -3,3 +3,5 @@ composer.lock
 .idea
 .DS_Store
 .php-cs-fixer.cache
+build/
+.phpunit.result.cache
