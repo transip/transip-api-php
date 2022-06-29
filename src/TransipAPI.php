@@ -5,6 +5,7 @@ namespace Transip\Api\Library;
 use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Transip\Api\Library\HttpClient\Builder\ClientBuilder;
+use Transip\Api\Library\HttpClient\GuzzleClient;
 use Transip\Api\Library\HttpClient\HttpClient;
 use Transip\Api\Library\HttpClient\HttpClientInterface;
 use Transip\Api\Library\HttpClient\HttpMethodsClient;
@@ -107,7 +108,7 @@ class TransipAPI
             $endpoint = $endpointUrl;
         }
 
-        $this->httpClient = $httpClient ?? new HttpMethodsClient(new ClientBuilder(), $endpoint);
+        $this->httpClient = $httpClient ?? new GuzzleClient($endpoint);
 
         if ($customerLoginName) {
             $this->httpClient->setLogin($customerLoginName);
