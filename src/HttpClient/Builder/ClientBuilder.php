@@ -13,7 +13,6 @@ use Http\Discovery\Psr18ClientDiscovery;
 use Http\Discovery\StreamFactoryDiscovery;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
-
 use Psr\Http\Message\StreamFactoryInterface;
 use function array_merge;
 
@@ -42,7 +41,9 @@ final class ClientBuilder implements ClientBuilderInterface
      */
     private $httpClientModified = true;
 
-    /** @var Plugin[] */
+    /** 
+     * @var Plugin[] 
+     */
     private $plugins = [];
 
     /**
@@ -51,6 +52,7 @@ final class ClientBuilder implements ClientBuilderInterface
      * @var array<string, string|string[]>
      */
     private $headers = [];
+
     /**
      * @var StreamFactoryInterface
      */
