@@ -4,9 +4,11 @@ namespace Transip\Api\Library;
 
 use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Transip\Api\Library\HttpClient\Builder\ClientBuilder;
 use Transip\Api\Library\HttpClient\GuzzleClient;
 use Transip\Api\Library\HttpClient\HttpClient;
 use Transip\Api\Library\HttpClient\HttpClientInterface;
+use Transip\Api\Library\HttpClient\HttpMethodsClient;
 use Transip\Api\Library\Repository\ApiTestRepository;
 use Transip\Api\Library\Repository\AuthRepository;
 use Transip\Api\Library\Repository\AvailabilityZoneRepository;
