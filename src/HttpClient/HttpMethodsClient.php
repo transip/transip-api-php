@@ -140,7 +140,8 @@ final class HttpMethodsClient extends HttpClient
         }
 
         $responseBody = json_decode(
-            (string)$response->getBody()
+            (string)$response->getBody(),
+            true
         );
 
         if ($responseBody === null) {
