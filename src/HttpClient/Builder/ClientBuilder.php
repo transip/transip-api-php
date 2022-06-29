@@ -10,10 +10,8 @@ use Http\Client\Common\PluginClientFactory;
 use Http\Client\HttpClient;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
-use Http\Discovery\StreamFactoryDiscovery;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
-
 use Psr\Http\Message\StreamFactoryInterface;
 use function array_merge;
 
@@ -31,18 +29,14 @@ final class ClientBuilder implements ClientBuilderInterface
     private $requestFactory;
 
     /**
-     * A HTTP client with all our plugins.
+     * AN HTTP client with all our plugins.
      * @var HttpMethodsClient
      */
     private $pluginClient;
 
     /**
-     * True if we should create a new Plugin client at next request.
-     * @var bool
+     * @var Plugin[]
      */
-    private $httpClientModified = true;
-
-    /** @var Plugin[] */
     private $plugins = [];
 
     /**
@@ -51,6 +45,7 @@ final class ClientBuilder implements ClientBuilderInterface
      * @var array<string, string|string[]>
      */
     private $headers = [];
+
     /**
      * @var StreamFactoryInterface
      */
@@ -68,9 +63,7 @@ final class ClientBuilder implements ClientBuilderInterface
 
     public function getHttpClient(): HttpMethodsClient
     {
-        if ($this->httpClientModified) {
-            $this->httpClientModified = false;
-
+        if (!isset($this->pluginClient)) { // @phpstan-ignore-line
             $this->pluginClient = new HttpMethodsClient(
                 (new PluginClientFactory())->createClient($this->httpClient, $this->plugins),
                 $this->requestFactory,
@@ -86,8 +79,8 @@ final class ClientBuilder implements ClientBuilderInterface
      */
     public function addPlugin(Plugin $plugin): void
     {
-        $this->plugins[]          = $plugin;
-        $this->httpClientModified = true;
+        $this->plugins[] = $plugin;
+        unset($this->pluginClient);
     }
 
     /**
@@ -96,12 +89,12 @@ final class ClientBuilder implements ClientBuilderInterface
     public function removePlugin(string $fqcn): void
     {
         foreach ($this->plugins as $idx => $plugin) {
-            if (! ($plugin instanceof $fqcn)) {
+            if (!($plugin instanceof $fqcn)) {
                 continue;
             }
 
             unset($this->plugins[$idx]);
-            $this->httpClientModified = true;
+            unset($this->pluginClient);
         }
     }
 
@@ -129,7 +122,7 @@ final class ClientBuilder implements ClientBuilderInterface
 
     public function addHeaderValue(string $header, string $headerValue): void
     {
-        if (! isset($this->headers[$header])) {
+        if (!isset($this->headers[$header])) {
             $this->headers[$header] = $headerValue;
         } else {
             $this->headers[$header] = array_merge((array)$this->headers[$header], [$headerValue]);
