@@ -131,7 +131,7 @@ final class ClientBuilder implements ClientBuilderInterface
 
     public function addHeaderValue(string $header, string $headerValue): void
     {
-        if (! isset($this->headers[$header])) {
+        if (!isset($this->headers[$header])) {
             $this->headers[$header] = $headerValue;
         } else {
             $this->headers[$header] = array_merge((array)$this->headers[$header], [$headerValue]);
