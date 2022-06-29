@@ -2,63 +2,52 @@ variables:
   DOCKER_IMAGE: '$IMAGE_URL'
 image: '$DOCKER_IMAGE'
 stages:
-  - prepare
   - lint
   - test
   - validate
   - deploy
   - release
 
-prepare composer:
-  stage: prepare
-  variables:
-    COMPOSER_CACHE_DIR: '.cache/composer'
-  script:
-    - composer install --prefer-dist --no-progress --no-interaction --optimize-autoloader --no-dev
-  cache:
-    key: composer-cache
-    paths:
-      - .composer-cache
-    policy: pull-push
-
 lint php-parallel-lint:
   stage: lint
-  needs: ['prepare composer']
+  before_script:
+    - composer install --prefer-dist --no-progress --no-interaction --optimize-autoloader
   script:
     - ./vendor/bin/parallel-lint --exclude vendor/ .
 
 lint php-cs-fixer:
   stage: lint
-  needs: ['prepare composer']
+  before_script:
+    - composer install --prefer-dist --no-progress --no-interaction --optimize-autoloader
   script:
     - ./vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no
 
 lint phpstan:
   stage: lint
-  needs: ['prepare composer']
+  before_script:
+    - composer install --prefer-dist --no-progress --no-interaction --optimize-autoloader
   script:
     - ./vendor/bin/phpstan --no-progress --memory-limit="2G" --error-format=gitlab > phpstan-report.json || (cat phpstan-report.json && exit 1)
 
 lint composer:
   stage: lint
-  needs: []
   script:
     - composer validate --no-interaction --strict
 
 lint secretsscan:
   image: '$IMAGE_URL_PYTHON'
   stage: lint
-  needs: []
   script:
     - ci/scan_secrets.sh
 
 test phpunit:
-  image: '$IMAGE_URL_PYTHON'
-  stage: lint
-  needs: ['prepare composer']
+  stage: test
+  needs: []
   variables:
     PHP_XDEBUG: "1"
     XDEBUG_MODE: coverage
+  before_script:
+    - composer install --prefer-dist --no-progress --no-interaction --optimize-autoloader
   script:
     - ./vendor/bin/phpunit --coverage-text --testdox
   coverage: '/^\s*Lines:\s*\d+.\d+\%/'
