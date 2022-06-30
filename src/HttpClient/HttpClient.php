@@ -278,7 +278,7 @@ abstract class HttpClient implements HttpClientInterface
      * @param mixed[] $body
      * @return mixed[]
      */
-    abstract public function postWithReturn(string $url, array $body = []): array;
+    abstract public function postWithResponse(string $url, array $body = []): array;
 
     /**
      * @param string $url

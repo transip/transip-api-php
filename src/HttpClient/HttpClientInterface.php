@@ -25,7 +25,7 @@ interface HttpClientInterface
      * @param mixed[] $body
      * @return mixed[]
      */
-    public function postWithReturn(string $url, array $body = []): array;
+    public function postWithResponse(string $url, array $body = []): array;
 
     /**
      * @param string $url

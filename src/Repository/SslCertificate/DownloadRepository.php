@@ -22,7 +22,7 @@ class DownloadRepository extends ApiRepository
 
     public function download(int $sslCertificateId): CertificateData
     {
-        $response = $this->httpClient->postWithReturn($this->getResourceUrl($sslCertificateId));
+        $response = $this->httpClient->postWithResponse($this->getResourceUrl($sslCertificateId));
         $certificateDataArray = $this->getParameterFromResponse($response, 'certificateData');
 
         return new CertificateData($certificateDataArray);

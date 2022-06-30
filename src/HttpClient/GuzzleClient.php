@@ -130,7 +130,7 @@ class GuzzleClient extends HttpClient
      * @param mixed[] $body
      * @return mixed[]
      */
-    public function postWithReturn(string $uri, array $body = []): array
+    public function postWithResponse(string $uri, array $body = []): array
     {
         $options['body'] = json_encode($body);
 
