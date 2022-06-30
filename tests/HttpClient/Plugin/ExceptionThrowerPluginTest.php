@@ -25,7 +25,6 @@ use Transip\Api\Library\Exception\HttpRequest\NotAcceptableException;
 use Transip\Api\Library\Exception\HttpRequest\NotFoundException;
 use Transip\Api\Library\Exception\HttpRequest\NotImplementedException;
 use Transip\Api\Library\Exception\HttpRequest\RateLimitException;
-use Transip\Api\Library\Exception\HttpRequest\TooManyBadResponseException;
 use Transip\Api\Library\Exception\HttpRequest\UnauthorizedException;
 use Transip\Api\Library\Exception\HttpRequest\UnprocessableEntityException;
 use Transip\Api\Library\HttpClient\Plugin\ExceptionThrowerPlugin;

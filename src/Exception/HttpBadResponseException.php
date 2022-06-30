@@ -78,8 +78,6 @@ class HttpBadResponseException extends RuntimeException
                 return new ConflictException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case UnprocessableEntityException::STATUS_CODE:
                 return new UnprocessableEntityException($errorMessage, $response->getStatusCode(), $innerException, $response);
-            case TooManyBadResponseException::STATUS_CODE:
-                return new TooManyBadResponseException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case InternalServerErrorException::STATUS_CODE:
                 return new InternalServerErrorException($errorMessage, $response->getStatusCode(), $innerException, $response);
             case NotImplementedException::STATUS_CODE:
