@@ -15,7 +15,7 @@ use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use function array_merge;
 
-final class ClientBuilder implements ClientBuilderInterface
+class ClientBuilder implements ClientBuilderInterface
 {
     /**
      * The object that sends HTTP messages.
