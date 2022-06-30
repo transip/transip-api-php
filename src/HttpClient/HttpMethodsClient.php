@@ -219,4 +219,9 @@ final class HttpMethodsClient extends HttpClient
 
         throw HttpClientException::genericRequestException($exception);
     }
+
+    public function postWithReturn(string $url, array $body = []): array
+    {
+        return [];
+    }
 }
