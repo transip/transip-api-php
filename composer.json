@@ -40,7 +40,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Transip\\Api\\Library\\Tests": "tests/"
+            "Transip\\Api\\Library\\Tests\\": "tests/"
         }
     }
 }
