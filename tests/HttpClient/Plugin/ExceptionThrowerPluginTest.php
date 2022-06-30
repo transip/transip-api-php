@@ -13,6 +13,8 @@ use Http\Client\Promise\HttpRejectedPromise;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Transip\Api\Library\Exception\ApiException;
+use Transip\Api\Library\Exception\HttpBadResponseException;
+use Transip\Api\Library\Exception\HttpRequest\InternalServerErrorException;
 use Transip\Api\Library\HttpClient\Plugin\ExceptionThrowerPlugin;
 
 final class ExceptionThrowerPluginTest extends TestCase
@@ -22,11 +24,17 @@ final class ExceptionThrowerPluginTest extends TestCase
      */
     public function testExceptionThrowerWithRequest(
         ResponseInterface $response,
-        ApiException $exception = null
+        HttpBadResponseException $exception = null
     ): void {
         $request = new Request('GET', 'https://api.transip.eu/v6');
         $promise = new HttpFulfilledPromise($response);
         $plugin = new ExceptionThrowerPlugin();
+
+        if ($exception) {
+            $this->expectException(get_class($exception));
+            $this->expectExceptionCode($exception->getCode());
+            $this->expectExceptionMessageMatches('/'.preg_quote($exception->getMessage(), '/').'$/');
+        }
 
         $result = $plugin->handleRequest(
             $request,
@@ -44,21 +52,17 @@ final class ExceptionThrowerPluginTest extends TestCase
             $this->assertInstanceOf(HttpFulfilledPromise::class, $result);
         }
 
-        if ($exception) {
-            $this->expectException(get_class($exception));
-            $this->expectExceptionCode($exception->getCode());
-            $this->expectExceptionMessageMatches('/'.preg_quote($exception->getMessage(), '/').'$/');
-        }
-
         $result->wait();
     }
 
     /**
      * @return array
      */
-    public static function responsesDataProvider(): array
+    public static function responsesDataProvider(): \Generator
     {
-        return [
+        $inner = new \Exception('inner');
+
+        $data = [
             '200 Response' => [
                 'response' => new Response(),
                 'exception' => null,
@@ -67,6 +71,29 @@ final class ExceptionThrowerPluginTest extends TestCase
                 'response' => new Response(),
                 'exception' => null,
             ],
+            '500 Response' => [
+                'response' => new Response(500, [], json_encode(['error' => 'Internal Server Error'])),
+                'exception' => InternalServerErrorException::class
+            ],
+            '410 Response' => [
+                'response' => new Response(410, [], json_encode(['error' => 'Some Error Description'])),
+                'exception' => HttpBadResponseException::class,
+                'message' => 'Some Error Description',
+            ],
         ];
+
+        foreach ($data as $name => $item) {
+            yield $name => [
+                'response' => $item['response'],
+                'exception' => $item['exception'] === null ?
+                    $item['exception'] :
+                    new $item['exception'](
+                        $item['message'] ?? '',
+                        $item['response']->getStatusCode(),
+                        $inner,
+                        $item['response']
+                    ),
+            ];
+        }
     }
 }
