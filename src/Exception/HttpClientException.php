@@ -4,22 +4,17 @@ namespace Transip\Api\Library\Exception;
 
 use Exception;
 use RuntimeException;
+use Throwable;
 
 class HttpClientException extends RuntimeException
 {
     /**
-     * @var Exception $innerException
-     */
-    private $innerException;
-
-    /**
      * @param string    $message
-     * @param Exception $innerException
+     * @param Exception $previous
      */
-    public function __construct(string $message, Exception $innerException)
+    public function __construct(string $message, Exception $previous)
     {
-        $this->innerException = $innerException;
-        parent::__construct($message);
+        parent::__construct($message, 0, $previous);
     }
 
     public static function genericRequestException(Exception $innerException): self
@@ -27,8 +22,12 @@ class HttpClientException extends RuntimeException
         return new self("Generic HTTP Client Exception: {$innerException->getMessage()}", $innerException);
     }
 
-    public function innerException(): Exception
+    /**
+     * @deprecated
+     * @see self::getPrevious()
+     */
+    public function innerException(): ?Throwable
     {
-        return $this->innerException;
+        return $this->getPrevious();
     }
 }
