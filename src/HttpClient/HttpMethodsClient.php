@@ -117,6 +117,31 @@ final class HttpMethodsClient extends HttpClient
      *
      * @return array<mixed, mixed>
      */
+    public function postWithResponse(string $url, array $body = []): array
+    {
+        $this->checkAndRenewToken();
+
+        $response = $this->client->getHttpClient()->post($url, [], $this->createBody($body));
+
+        if ($response->getStatusCode() !== 201) {
+            throw ApiException::unexpectedStatusCode($response);
+        }
+
+        $content = $this->getContent($response);
+
+        if (is_string($content)) {
+            throw ApiException::expectedBodyFromPost($response);
+        }
+
+        return $content;
+    }
+
+
+    /**
+     * @param array<mixed, mixed> $body
+     *
+     * @return array<mixed, mixed>
+     */
     public function postAuthentication(string $url, string $signature, array $body): array
     {
         try {
@@ -218,10 +243,5 @@ final class HttpMethodsClient extends HttpClient
         }
 
         throw HttpClientException::genericRequestException($exception);
-    }
-
-    public function postWithReturn(string $url, array $body = []): array
-    {
-        return [];
     }
 }
