@@ -127,6 +127,36 @@ class GuzzleClient extends HttpClient
 
     /**
      * @param string $uri
+     * @param mixed[] $body
+     * @return mixed[]
+     */
+    public function postWithReturn(string $uri, array $body = []): array
+    {
+        $options['body'] = json_encode($body);
+
+        $response = $this->sendRequest('POST', $uri, $options);
+
+        if ($response->getStatusCode() !== 201) {
+            throw ApiException::unexpectedStatusCode($response);
+        }
+
+        if (!(string)$response->getBody()) {
+            throw ApiException::expectedBodyFromPost($response);
+        }
+
+        $responseBody = json_decode($response->getBody(), true);
+
+        if ($responseBody === null) {
+            throw ApiException::malformedJsonResponse($response);
+        }
+
+        $this->parseResponseHeaders($response);
+
+        return $responseBody;
+    }
+
+    /**
+     * @param string $uri
      * @param string $signature
      * @param mixed[] $body
      * @throws \GuzzleHttp\Exception\GuzzleException

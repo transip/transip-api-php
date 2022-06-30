@@ -38,6 +38,15 @@ class ApiException extends RuntimeException
         );
     }
 
+    public static function expectedBodyFromPost(ResponseInterface $response): self
+    {
+        return new self(
+            "POST with response expected a response, but the response was empty",
+            self::CODE_API_EMPTY_RESPONSE,
+            $response
+        );
+    }
+
     public static function malformedJsonResponse(ResponseInterface $response): self
     {
         return new self(
