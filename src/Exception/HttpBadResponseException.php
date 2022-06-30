@@ -5,6 +5,7 @@ namespace Transip\Api\Library\Exception;
 use Exception;
 use RuntimeException;
 use Psr\Http\Message\ResponseInterface;
+use Throwable;
 use Transip\Api\Library\Exception\HttpRequest\AccessTokenException;
 use Transip\Api\Library\Exception\HttpRequest\BadResponseException;
 use Transip\Api\Library\Exception\HttpRequest\ConflictException;
@@ -23,11 +24,6 @@ use Transip\Api\Library\Exception\HttpRequest\UnprocessableEntityException;
 class HttpBadResponseException extends RuntimeException
 {
     /**
-     * @var Exception $innerException
-     */
-    private $innerException;
-
-    /**
      * @var ResponseInterface $response
      */
     private $response;
@@ -40,17 +36,16 @@ class HttpBadResponseException extends RuntimeException
     /**
      * @param string            $message
      * @param int               $code
-     * @param Exception         $innerException
+     * @param Exception         $previous
      * @param ResponseInterface $response
      */
-    public function __construct(string $message, int $code, Exception $innerException, ResponseInterface $response)
+    public function __construct(string $message, int $code, Exception $previous, ResponseInterface $response)
     {
-        $this->innerException = $innerException;
         $this->response       = $response;
-        parent::__construct($message, $code);
+        parent::__construct($message, $code, $previous);
     }
 
-    public static function badResponseException(Exception $innerException, ResponseInterface $response): self
+    public static function badResponseException(Exception $previousException, ResponseInterface $response): self
     {
         $errorMessage    = $response->getBody();
         $decodedResponse = json_decode($errorMessage, true);
@@ -58,42 +53,44 @@ class HttpBadResponseException extends RuntimeException
 
         switch ($response->getStatusCode()) {
             case BadResponseException::STATUS_CODE:
-                return new BadResponseException($errorMessage, $response->getStatusCode(), $innerException, $response);
+                return new BadResponseException($errorMessage, $response->getStatusCode(), $previousException, $response);
             case UnauthorizedException::STATUS_CODE:
                 if (in_array($errorMessage, self::ACCESS_TOKEN_EXCEPTION_MESSAGES, true)) {
-                    return new AccessTokenException($errorMessage, $response->getStatusCode(), $innerException, $response);
+                    return new AccessTokenException($errorMessage, $response->getStatusCode(), $previousException, $response);
                 }
-                return new UnauthorizedException($errorMessage, $response->getStatusCode(), $innerException, $response);
+                return new UnauthorizedException($errorMessage, $response->getStatusCode(), $previousException, $response);
             case ForbiddenException::STATUS_CODE:
-                return new ForbiddenException($errorMessage, $response->getStatusCode(), $innerException, $response);
+                return new ForbiddenException($errorMessage, $response->getStatusCode(), $previousException, $response);
             case NotFoundException::STATUS_CODE:
-                return new NotFoundException($errorMessage, $response->getStatusCode(), $innerException, $response);
+                return new NotFoundException($errorMessage, $response->getStatusCode(), $previousException, $response);
             case MethodNotAllowedException::STATUS_CODE:
-                return new MethodNotAllowedException($errorMessage, $response->getStatusCode(), $innerException, $response);
+                return new MethodNotAllowedException($errorMessage, $response->getStatusCode(), $previousException, $response);
             case NotAcceptableException::STATUS_CODE:
-                return new NotAcceptableException($errorMessage, $response->getStatusCode(), $innerException, $response);
+                return new NotAcceptableException($errorMessage, $response->getStatusCode(), $previousException, $response);
             case BadResponseTimeoutException::STATUS_CODE:
-                return new BadResponseTimeoutException($errorMessage, $response->getStatusCode(), $innerException, $response);
+                return new BadResponseTimeoutException($errorMessage, $response->getStatusCode(), $previousException, $response);
             case ConflictException::STATUS_CODE:
-                return new ConflictException($errorMessage, $response->getStatusCode(), $innerException, $response);
+                return new ConflictException($errorMessage, $response->getStatusCode(), $previousException, $response);
             case UnprocessableEntityException::STATUS_CODE:
-                return new UnprocessableEntityException($errorMessage, $response->getStatusCode(), $innerException, $response);
-            case TooManyBadResponseException::STATUS_CODE:
-                return new TooManyBadResponseException($errorMessage, $response->getStatusCode(), $innerException, $response);
+                return new UnprocessableEntityException($errorMessage, $response->getStatusCode(), $previousException, $response);
             case InternalServerErrorException::STATUS_CODE:
-                return new InternalServerErrorException($errorMessage, $response->getStatusCode(), $innerException, $response);
+                return new InternalServerErrorException($errorMessage, $response->getStatusCode(), $previousException, $response);
             case NotImplementedException::STATUS_CODE:
-                return new NotImplementedException($errorMessage, $response->getStatusCode(), $innerException, $response);
+                return new NotImplementedException($errorMessage, $response->getStatusCode(), $previousException, $response);
             case RateLimitException::STATUS_CODE:
-                return new RateLimitException($errorMessage, $response->getStatusCode(), $innerException, $response);
+                return new RateLimitException($errorMessage, $response->getStatusCode(), $previousException, $response);
             default:
-                return new HttpBadResponseException($errorMessage, $response->getStatusCode(), $innerException, $response);
+                return new HttpBadResponseException($errorMessage, $response->getStatusCode(), $previousException, $response);
         }
     }
 
-    public function getInnerException(): Exception
+    /**
+     * @deprecated
+     * @see self::getPrevious()
+     */
+    public function getInnerException(): ?Throwable
     {
-        return $this->innerException;
+        return $this->getPrevious();
     }
 
     public function getResponse(): ResponseInterface
