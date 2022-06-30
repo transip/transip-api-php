@@ -88,7 +88,7 @@ class HttpBadResponseException extends RuntimeException
      * @deprecated
      * @see self::getPrevious()
      */
-    public function getInnerException(): Throwable
+    public function getInnerException(): ?Throwable
     {
         return $this->getPrevious();
     }
