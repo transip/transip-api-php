@@ -35,8 +35,8 @@ final class ExceptionThrowerPlugin implements Plugin
              * internal Exception at this place. The Exception factory can later be moved here.
              */
             throw HttpBadResponseException::badResponseException(
-                 // Add a stub exception here, this is not used and can be removed in a new major release
-                new Exception('This is a stub exception'),
+                // Add a stub exception here, this is not used and can be removed in a new major release
+                new RuntimeException('An error response was returned'),
                 $response
             );
         });
