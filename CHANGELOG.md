@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+6.26.0
+-----
+* Added Domain.hasDnsSec
+* Added Domain.canEditDns
+
 6.24.0
 -----
 * Added an endpoint for operating system filtering on specs

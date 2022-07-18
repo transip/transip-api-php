@@ -58,14 +58,24 @@ class Domain extends AbstractEntity
     protected $hasAutoDns;
 
     /**
-     * @var string[] $tags
-     */
-    protected $tags = [];
-
-    /**
      * @var string $status
      */
     protected $status = '';
+
+    /**
+     * @var boolean $hasDnsSec
+     */
+    protected $hasDnsSec = true;
+
+    /**
+     * @var boolean $canEditDns
+     */
+    protected $canEditDns = false;
+
+    /**
+     * @var string[] $tags
+     */
+    protected $tags = [];
 
     /**
      * @var Nameserver[] $nameservers
@@ -265,5 +275,21 @@ class Domain extends AbstractEntity
     public function setContacts(array $contacts): void
     {
         $this->contacts = $contacts;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHasDnsSec(): bool
+    {
+        return $this->hasDnsSec;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCanEditDns(): bool
+    {
+        return $this->canEditDns;
     }
 }
