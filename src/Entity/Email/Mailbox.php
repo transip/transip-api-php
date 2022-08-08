@@ -77,6 +77,11 @@ class Mailbox extends AbstractEntity
     public $pop3Port;
 
     /**
+     * @var string $webmailUrl
+     */
+    public $webmailUrl;
+
+    /**
      * @return string
      */
     public function getIdentifier(): string
@@ -298,5 +303,21 @@ class Mailbox extends AbstractEntity
     public function setPop3Port(int $pop3Port): void
     {
         $this->pop3Port = $pop3Port;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWebmailUrl(): string
+    {
+        return $this->webmailUrl;
+    }
+
+    /**
+     * @param string $webmailUrl
+     */
+    public function setWebmailUrl(string $webmailUrl): void
+    {
+        $this->webmailUrl = $webmailUrl;
     }
 }
