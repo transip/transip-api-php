@@ -1,5 +1,10 @@
 CHANGELOG
 =========
+6.27.0
+-----
+* Added domain auth-code endpoint
+* Updated Mailbox entity to inclue webmail url
+* Fixed missing (re)issue functionality for SSL certificates
 
 6.26.0
 -----

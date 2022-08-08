@@ -2,7 +2,9 @@
 
 namespace Transip\Api\Library\Repository;
 
+use Exception;
 use Transip\Api\Library\Entity\SslCertificate;
+use Transip\Api\Library\Entity\SslCertificate\CertificateRequestData;
 
 class SslCertificateRepository extends ApiRepository
 {
@@ -49,5 +51,27 @@ class SslCertificateRepository extends ApiRepository
         $sshKeyArray = $this->getParameterFromResponse($response, 'certificate');
 
         return new SslCertificate($sshKeyArray);
+    }
+
+    public function order(string $productName, string $commonName, CertificateRequestData $data): void
+    {
+        if (!$data->isValid()) {
+            throw new Exception('Submitted CertificateRequestData is invalid');
+        }
+
+        $body = $data->toArray();
+
+        $this->httpClient->post($this->getResourceUrl(), $body);
+    }
+
+    public function reissue(string $certificateId, CertificateRequestData $data): void
+    {
+        if (!$data->isValid()) {
+            throw new Exception('Submitted CertificateRequestData is invalid');
+        }
+
+        $body = $data->toArray();
+
+        $this->httpClient->patch($this->getResourceUrl($certificateId), $body);
     }
 }
