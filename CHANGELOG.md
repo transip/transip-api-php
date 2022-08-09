@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.27.1
+-----
+* Fixed action on ssl reissue
+
 6.27.0
 -----
 * Added domain auth-code endpoint
