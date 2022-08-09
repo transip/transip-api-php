@@ -71,6 +71,7 @@ class SslCertificateRepository extends ApiRepository
         }
 
         $body = $data->toArray();
+        $body['action'] = 'reissue';
 
         $this->httpClient->patch($this->getResourceUrl($certificateId), $body);
     }
