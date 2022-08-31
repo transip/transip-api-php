@@ -21,6 +21,7 @@ use Transip\Api\Library\Repository\Colocation\RemoteHandsRepository as ColoRemot
 use Transip\Api\Library\Repository\Colocation\AccessRequestRepository as ColoAccessRequestRepository;
 use Transip\Api\Library\Repository\Domain\AuthCodeRepository;
 use Transip\Api\Library\Repository\DomainDefaults\ContactRepository as DefaultContactRepository;
+use Transip\Api\Library\Repository\Domain\AdditionalContactFieldDataRepository;
 use Transip\Api\Library\Repository\DomainRepository;
 use Transip\Api\Library\Repository\DomainAvailabilityRepository;
 use Transip\Api\Library\Repository\Domain\ActionRepository as DomainActionRepository;
@@ -455,6 +456,11 @@ class TransipAPI
     public function operatingSystemFilter(): OperatingSystemFilterRepository
     {
         return new OperatingSystemFilterRepository($this->httpClient);
+    }
+
+    public function additionalContactFieldData(): AdditionalContactFieldDataRepository
+    {
+        return new AdditionalContactFieldDataRepository($this->httpClient);
     }
 
     public function test(): ApiTestRepository
