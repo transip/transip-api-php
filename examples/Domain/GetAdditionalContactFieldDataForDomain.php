@@ -10,4 +10,3 @@ $domainName = 'example.com';
 
 $filledInAdditionalContactFieldData = $api->additionalContactFieldData()->getByDomainName($domainName);
 var_dump($filledInAdditionalContactFieldData);
-
