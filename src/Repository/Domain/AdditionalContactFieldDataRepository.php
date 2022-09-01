@@ -15,6 +15,9 @@ class AdditionalContactFieldDataRepository extends ApiRepository
         return [DomainRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
+    /**
+     * @return AdditionalContactFieldData[]
+     */
     public function getByDomainName(string $domainName): array
     {
         $response = $this->httpClient->get($this->getResourceUrl($domainName));
