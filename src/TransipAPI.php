@@ -20,6 +20,7 @@ use Transip\Api\Library\Repository\Colocation\IpAddressRepository as ColoIpAddre
 use Transip\Api\Library\Repository\Colocation\RemoteHandsRepository as ColoRemoteHandsRepository;
 use Transip\Api\Library\Repository\Colocation\AccessRequestRepository as ColoAccessRequestRepository;
 use Transip\Api\Library\Repository\Domain\AuthCodeRepository;
+use Transip\Api\Library\Repository\Domain\Tld\AdditionalContactFieldRepository;
 use Transip\Api\Library\Repository\DomainDefaults\ContactRepository as DefaultContactRepository;
 use Transip\Api\Library\Repository\DomainRepository;
 use Transip\Api\Library\Repository\DomainAvailabilityRepository;
@@ -455,6 +456,11 @@ class TransipAPI
     public function operatingSystemFilter(): OperatingSystemFilterRepository
     {
         return new OperatingSystemFilterRepository($this->httpClient);
+    }
+
+    public function additionalContactFields(): AdditionalContactFieldRepository
+    {
+        return new AdditionalContactFieldRepository($this->httpClient);
     }
 
     public function test(): ApiTestRepository
