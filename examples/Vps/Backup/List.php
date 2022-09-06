@@ -15,7 +15,6 @@ $backups = $api->vpsBackups()->getByVpsName($vpsName);
 
 $backupId = 0;
 foreach ($backups as $backup) {
-
     // An example search
     if ($backup->getOperatingSystem() === 'OpenBSD 6.4') {
         $backupId = $backup->getId();

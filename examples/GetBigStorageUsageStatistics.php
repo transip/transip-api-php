@@ -35,7 +35,6 @@ $usageStatistics = $api->bigStorageUsage()->getUsageStatistics(
 );
 
 foreach ($usageStatistics as $statistic) {
-
     // Convert unix timestamp to human readable date
     $date = new DateTime("@{$statistic->getDate()}");
 

@@ -1,5 +1,10 @@
 CHANGELOG
 =========
+6.28.0
+-----
+* Implemented Object Store functionality
+* Added token endpoint to Openstack
+
 6.27.1
 -----
 * Fixed action on ssl reissue
