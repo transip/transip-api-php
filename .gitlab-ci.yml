@@ -62,6 +62,9 @@ test phpunit:
     expire_in: 1 day
     reports:
       junit: build/logs/junit.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: build/cobertura.xml
 
 validate tag-message:
   stage: validate
