@@ -11,5 +11,3 @@ $domainName = 'example.nu';
 $result = ($api->additionalContactFields()->getByDomainName($domainName));
 
 var_dump($result);
-
-

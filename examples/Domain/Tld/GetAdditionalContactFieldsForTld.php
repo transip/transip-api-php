@@ -9,5 +9,3 @@ require_once(__DIR__.'/../../Authenticate.php');
 $result = ($api->additionalContactFields()->getForTld('.nu'));
 
 var_dump($result);
-
-
