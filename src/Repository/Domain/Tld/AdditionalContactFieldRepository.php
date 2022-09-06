@@ -15,7 +15,10 @@ class AdditionalContactFieldRepository extends ApiRepository
         return [DomainTldRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
-    public function getForTld(string $tld)
+    /**
+     * @return AdditionalContactField[]
+     */
+    public function getForTld(string $tld): array
     {
         $response = $this->httpClient->get($this->getResourceUrl($tld));
         $fields   = $this->getParameterFromResponse($response, 'additional-contact-fields');
@@ -24,7 +27,7 @@ class AdditionalContactFieldRepository extends ApiRepository
     }
 
     /**
-     * @return void
+     * @return AdditionalContactField[]
      */
     public function getByDomainName(string $domainName): array
     {

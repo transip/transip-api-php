@@ -15,10 +15,10 @@ class AdditionalContactField extends AbstractEntity
     /** @var bool $isRequired */
     public $isRequired = true;
 
-    /** @var AdditionalContactField[] */
+    /** @var array<string, array<AdditionalContactField>> */
     public $requiredFields = [];
 
-    /** @var array $values  */
+    /** @var array<int|string> $values  */
     public $values = [];
 
     /**
@@ -70,7 +70,7 @@ class AdditionalContactField extends AbstractEntity
     }
 
     /**
-     * @return AdditionalContactField[]
+     * @return array<string, array<AdditionalContactField>>
      */
     public function getRequiredFields(): array
     {
@@ -78,7 +78,7 @@ class AdditionalContactField extends AbstractEntity
     }
 
     /**
-     * @param AdditionalContactField[] $requiredFields
+     * @param array<string, array<AdditionalContactField>>$requiredFields
      */
     public function setRequiredFields(array $requiredFields): void
     {
@@ -86,7 +86,7 @@ class AdditionalContactField extends AbstractEntity
     }
 
     /**
-     * @return array
+     * @return array<int|string>
      */
     public function getValues(): array
     {
@@ -94,13 +94,16 @@ class AdditionalContactField extends AbstractEntity
     }
 
     /**
-     * @param array $values
+     * @param array<int|string> $values
      */
     public function setValues(array $values): void
     {
         $this->values = $values;
     }
 
+    /**
+     * @param array<string, mixed> $callbackData
+     */
     public function fromArray(array $callbackData): self
     {
         $additionalField = new AdditionalContactField();
@@ -110,6 +113,7 @@ class AdditionalContactField extends AbstractEntity
 
         $requiredFieldKeys = array_keys($callbackData['requiredFields'] ?? []);
         $requiredFields = [];
+        /** @var string $key */
         foreach ($requiredFieldKeys as $key) {
             $requiredFields[$key] = array_map([$this, 'fromArray'], $callbackData['requiredFields'][$key] ?? []);
         }
