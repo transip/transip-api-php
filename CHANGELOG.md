@@ -1,5 +1,10 @@
 CHANGELOG
 =========
+6.29.0
+-----
+* Changed used resource parameter name in MailListRepository
+* Changed behaviour of MailListRepository::update, now expects MailList entity
+
 6.28.0
 -----
 * Implemented Object Store functionality
@@ -12,7 +17,7 @@ CHANGELOG
 6.27.0
 -----
 * Added domain auth-code endpoint
-* Updated Mailbox entity to inclue webmail url
+* Updated Mailbox entity to include webmail url
 * Fixed missing (re)issue functionality for SSL certificates
 
 6.26.0

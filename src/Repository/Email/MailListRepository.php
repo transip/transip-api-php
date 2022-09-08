@@ -25,8 +25,8 @@ class MailListRepository extends ApiRepository
     public function getByDomainName(string $domainName): array
     {
         $mailLists      = [];
-        $response         = $this->httpClient->get($this->getResourceUrl($domainName));
-        $mailListsArray = $this->getParameterFromResponse($response, 'lists');
+        $response       = $this->httpClient->get($this->getResourceUrl($domainName));
+        $mailListsArray = $this->getParameterFromResponse($response, 'mailLists');
 
         foreach ($mailListsArray as $mailListArray) {
             $mailLists[] = new MailList($mailListArray);
@@ -35,7 +35,6 @@ class MailListRepository extends ApiRepository
         return $mailLists;
     }
 
-
     /**
      * @param string $domainName
      * @param int $mailListId
@@ -43,8 +42,8 @@ class MailListRepository extends ApiRepository
      */
     public function getByDomainNameAndId(string $domainName, int $mailListId): MailList
     {
-        $response         = $this->httpClient->get($this->getResourceUrl($domainName, $mailListId));
-        $mailListArray = $this->getParameterFromResponse($response, 'list');
+        $response      = $this->httpClient->get($this->getResourceUrl($domainName, $mailListId));
+        $mailListArray = $this->getParameterFromResponse($response, 'mailList');
 
         return new MailList($mailListArray);
     }
@@ -74,17 +73,15 @@ class MailListRepository extends ApiRepository
     /**
      * @param int $mailListId
      * @param string $domainName
-     * @param string[] $entries
+     * @param MailList $mailList
      * @return void
      */
     public function update(
         int $mailListId,
         string $domainName,
-        array $entries
+        MailList $mailList
     ): void {
-        $parameters = [
-            'entries'      => $entries
-        ];
+        $parameters = ['mailList' => $mailList];
 
         $this->httpClient->put($this->getResourceUrl($domainName, $mailListId), $parameters);
     }
