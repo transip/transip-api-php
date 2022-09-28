@@ -36,11 +36,12 @@ class ProjectRepository extends ApiRepository
         return $projects;
     }
 
-    public function create(string $name, string $description): void
+    public function create(string $name, string $description, string $type = 'openstack'): void
     {
         $parameters = [
             'name'        => $name,
             'description' => $description,
+            'type'        => $type,
         ];
 
         $this->httpClient->post(
