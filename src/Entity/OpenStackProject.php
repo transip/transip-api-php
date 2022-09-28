@@ -39,6 +39,13 @@ class OpenStackProject extends AbstractEntity
      */
     protected $isBlocked;
 
+    /**
+     * Indicates whether the project is of type `objectstore` or `openstack`
+     *
+     * @var string
+     */
+    protected $type;
+
     public function getId(): string
     {
         return $this->id;
@@ -62,6 +69,11 @@ class OpenStackProject extends AbstractEntity
     public function isBlocked(): bool
     {
         return $this->isBlocked;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
     }
 
     public function setName(string $name): void
