@@ -22,9 +22,9 @@ class MailList extends AbstractEntity
     public $emailAddress;
 
     /**
-     * @var string[]
+     * @var string[]|null
      */
-    public $entries;
+    public $entries = null;
 
     /**
      * @return int
@@ -75,9 +75,9 @@ class MailList extends AbstractEntity
     }
 
     /**
-     * @return string[]
+     * @return string[]|null
      */
-    public function getEntries(): array
+    public function getEntries(): ?array
     {
         return $this->entries;
     }
