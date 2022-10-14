@@ -36,6 +36,11 @@ use Transip\Api\Library\Repository\Email\MailListRepository;
 use Transip\Api\Library\Repository\InvoiceRepository;
 use Transip\Api\Library\Repository\Invoice\ItemRepository as InvoiceItemRepository;
 use Transip\Api\Library\Repository\Invoice\PdfRepository as InvoicePdfRepository;
+use Transip\Api\Library\Repository\Kubernetes\BlockStorageRepository as KubernetesBlockStorageRepository;
+use Transip\Api\Library\Repository\Kubernetes\ClusterRepository as KubernetesClusterRepository;
+use Transip\Api\Library\Repository\Kubernetes\Cluster\KubeConfigRepository as KubernetesClusterKubeConfigRepository;
+use Transip\Api\Library\Repository\Kubernetes\NodeRepository as KubernetesNodeRepository;
+use Transip\Api\Library\Repository\Kubernetes\NodePoolRepository as KubernetesNodePoolRepository;
 use Transip\Api\Library\Repository\MailServiceRepository;
 use Transip\Api\Library\Repository\OpenStack\ProjectRepository as OpenStackProjectRepository;
 use Transip\Api\Library\Repository\OpenStack\TokenRepository as OpenStackTokenRepository;
@@ -419,6 +424,31 @@ class TransipAPI
     public function colocationAccessRequest(): ColoAccessRequestRepository
     {
         return new ColoAccessRequestRepository($this->httpClient);
+    }
+
+    public function kubernetesBlockStorages(): KubernetesBlockStorageRepository
+    {
+        return new KubernetesBlockStorageRepository($this->httpClient);
+    }
+
+    public function kubernetesClusters(): KubernetesClusterRepository
+    {
+        return new KubernetesClusterRepository($this->httpClient);
+    }
+
+    public function kubernetesKubeConfig(): KubernetesClusterKubeConfigRepository
+    {
+        return new KubernetesClusterKubeConfigRepository($this->httpClient);
+    }
+
+    public function kubernetesNodes(): KubernetesNodeRepository
+    {
+        return new KubernetesNodeRepository($this->httpClient);
+    }
+
+    public function kubernetesNodePools(): KubernetesNodePoolRepository
+    {
+        return new KubernetesNodePoolRepository($this->httpClient);
     }
 
     public function openStackProjects(): OpenStackProjectRepository
