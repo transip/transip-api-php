@@ -1,5 +1,11 @@
 CHANGELOG
 =========
+
+6.30.0
+----
+
+* Added Assignable Openstack Users Repository
+
 6.29.2
 ----
 * Fixed getEntries in certain conditions on mailLists.
