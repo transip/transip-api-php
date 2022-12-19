@@ -100,6 +100,11 @@ class AuthRepository extends ApiRepository
 
         $key = $matches[2];
         $key = preg_replace('/\s*/s', '', $key);
+        if ($key === null) {
+            throw new RuntimeException(
+                'The provided private key is invalid'
+            );
+        }
         $key = chunk_split($key, 64, "\n");
 
         $key = "-----BEGIN PRIVATE KEY-----\n" . $key . "-----END PRIVATE KEY-----";
