@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+6.30.1
+----
+
+* Fixed naming convention assignable users
+
 6.30.0
 ----
 
