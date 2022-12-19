@@ -10,7 +10,7 @@ class AssignableUsersRepository extends ApiRepository
 {
     public const RESOURCE_NAME = 'assignable-users';
 
-    public const RESOURCE_PARAMETER_PLURAL   = 'assignable-users';
+    public const RESOURCE_PARAMETER_PLURAL   = 'assignableUsers';
 
     /**
      * @return string[]
