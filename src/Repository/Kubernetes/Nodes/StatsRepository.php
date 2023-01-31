@@ -1,38 +1,39 @@
 <?php
 
-namespace Transip\Api\Library\Repository\Vps;
+namespace Transip\Api\Library\Repository\Kubernetes\Nodes;
 
 use Transip\Api\Library\Entity\Vps\UsageData;
 use Transip\Api\Library\Entity\Vps\UsageDataCpu;
 use Transip\Api\Library\Entity\Vps\UsageDataDisk;
 use Transip\Api\Library\Entity\Vps\UsageDataNetwork;
 use Transip\Api\Library\Repository\ApiRepository;
-use Transip\Api\Library\Repository\VpsRepository;
+use Transip\Api\Library\Repository\Kubernetes\NodeRepository;
 
-class UsageRepository extends ApiRepository
+class StatsRepository extends ApiRepository
 {
     public const TYPE_CPU = 'cpu';
     public const TYPE_DISK = 'disk';
     public const TYPE_NETWORK = 'network';
-    public const RESOURCE_NAME = 'usage';
+    public const RESOURCE_NAME = 'stats';
 
     /**
      * @return string[]
      */
     protected function getRepositoryResourceNames(): array
     {
-        return [VpsRepository::RESOURCE_NAME, self::RESOURCE_NAME];
+        return [NodeRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**
-     * @param string   $vpsName
+     * @param string   $nodeUuid
      * @param string[] $types
      * @param int      $dateTimeStart
      * @param int      $dateTimeEnd
+     *
      * @return array<string, array<int, UsageData>>
      */
-    public function getByVpsName(
-        string $vpsName,
+    public function getByNodeUuid(
+        string $nodeUuid,
         array $types = [],
         int $dateTimeStart = 0,
         int $dateTimeEnd = 0
@@ -49,8 +50,8 @@ class UsageRepository extends ApiRepository
         }
 
         $usages          = [];
-        $response        = $this->httpClient->get($this->getResourceUrl($vpsName), $parameters);
-        $usageTypesArray = $this->getParameterFromResponse($response, 'usage');
+        $response        = $this->httpClient->get($this->getResourceUrl($nodeUuid), $parameters);
+        $usageTypesArray = $this->getParameterFromResponse($response, 'stats');
 
         foreach ($usageTypesArray as $usageType => $usageArray) {
             $usageType = (string)$usageType;
