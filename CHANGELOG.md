@@ -1,15 +1,21 @@
 CHANGELOG
 =========
 
+6.31.0
+----
+* Implement Kubernetes alpha node statistics resource (experimental)
+
 6.30.1
 ----
-
 * Fixed naming convention assignable users
 
 6.30.0
 ----
-
 * Added Assignable Openstack Users Repository
+
+6.29.3
+----
+* Add Kubernetes alpha resources (experimental)
 
 6.29.2
 ----
