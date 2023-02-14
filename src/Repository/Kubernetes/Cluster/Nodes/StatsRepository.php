@@ -1,13 +1,14 @@
 <?php
 
-namespace Transip\Api\Library\Repository\Kubernetes\Nodes;
+namespace Transip\Api\Library\Repository\Kubernetes\Cluster\Nodes;
 
 use Transip\Api\Library\Entity\Vps\UsageData;
 use Transip\Api\Library\Entity\Vps\UsageDataCpu;
 use Transip\Api\Library\Entity\Vps\UsageDataDisk;
 use Transip\Api\Library\Entity\Vps\UsageDataNetwork;
 use Transip\Api\Library\Repository\ApiRepository;
-use Transip\Api\Library\Repository\Kubernetes\NodeRepository;
+use Transip\Api\Library\Repository\Kubernetes\Cluster\NodeRepository;
+use Transip\Api\Library\Repository\Kubernetes\ClusterRepository;
 
 class StatsRepository extends ApiRepository
 {
@@ -21,18 +22,15 @@ class StatsRepository extends ApiRepository
      */
     protected function getRepositoryResourceNames(): array
     {
-        return [NodeRepository::RESOURCE_NAME, self::RESOURCE_NAME];
+        return [ClusterRepository::RESOURCE_NAME, NodeRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**
-     * @param string   $nodeUuid
      * @param string[] $types
-     * @param int      $dateTimeStart
-     * @param int      $dateTimeEnd
-     *
      * @return array<string, array<int, UsageData>>
      */
     public function getByNodeUuid(
+        string $clusterName,
         string $nodeUuid,
         array $types = [],
         int $dateTimeStart = 0,
@@ -50,7 +48,7 @@ class StatsRepository extends ApiRepository
         }
 
         $usages          = [];
-        $response        = $this->httpClient->get($this->getResourceUrl($nodeUuid), $parameters);
+        $response        = $this->httpClient->get($this->getResourceUrl($clusterName, $nodeUuid), $parameters);
         $usageTypesArray = $this->getParameterFromResponse($response, 'stats');
 
         foreach ($usageTypesArray as $usageType => $usageArray) {

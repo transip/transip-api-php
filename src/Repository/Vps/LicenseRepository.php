@@ -23,6 +23,8 @@ class LicenseRepository extends ApiRepository
     public function getByVpsName(string $vpsName): Licenses
     {
         $response      = $this->httpClient->get($this->getResourceUrl($vpsName));
+
+        /** @var array<string, array<string, mixed>> $licencesArray */
         $licencesArray = $this->getParameterFromResponse($response, 'licenses');
 
         $struct = [];
