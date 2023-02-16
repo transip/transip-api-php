@@ -110,9 +110,9 @@ class GuzzleClient extends HttpClient
     /**
      * @param string $uri
      * @param mixed[] $body
-     * @return void
+     * @return ResponseInterface
      */
-    public function post(string $uri, array $body = []): void
+    public function post(string $uri, array $body = []): ResponseInterface
     {
         $options['body'] = json_encode($body);
 
@@ -123,6 +123,8 @@ class GuzzleClient extends HttpClient
         }
 
         $this->parseResponseHeaders($response);
+
+        return $response;
     }
 
     /**
@@ -193,9 +195,9 @@ class GuzzleClient extends HttpClient
     /**
      * @param string $uri
      * @param mixed[] $body
-     * @return void
+     * @return ResponseInterface
      */
-    public function put(string $uri, array $body): void
+    public function put(string $uri, array $body): ResponseInterface
     {
         $options['body'] = json_encode($body);
 
@@ -206,14 +208,16 @@ class GuzzleClient extends HttpClient
         }
 
         $this->parseResponseHeaders($response);
+
+        return $response;
     }
 
     /**
      * @param string $uri
      * @param mixed[] $body
-     * @return void
+     * @return ResponseInterface
      */
-    public function patch(string $uri, array $body): void
+    public function patch(string $uri, array $body): ResponseInterface
     {
         $options['body'] = json_encode($body);
 
@@ -224,6 +228,8 @@ class GuzzleClient extends HttpClient
         }
 
         $this->parseResponseHeaders($response);
+
+        return $response;
     }
 
     /**

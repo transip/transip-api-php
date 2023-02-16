@@ -2,6 +2,8 @@
 
 namespace Transip\Api\Library\HttpClient;
 
+use Psr\Http\Message\ResponseInterface;
+
 interface HttpClientInterface
 {
     public function setToken(string $token): void;
@@ -16,9 +18,9 @@ interface HttpClientInterface
     /**
      * @param string $url
      * @param mixed[] $body
-     * @return void
+     * @return ResponseInterface
      */
-    public function post(string $url, array $body = []): void;
+    public function post(string $url, array $body = []): ResponseInterface;
 
     /**
      * @param string $url
@@ -38,16 +40,16 @@ interface HttpClientInterface
     /**
      * @param string $url
      * @param mixed[] $body
-     * @return void
+     * @return ResponseInterface
      */
-    public function put(string $url, array $body): void;
+    public function put(string $url, array $body): ResponseInterface;
 
     /**
      * @param string $url
      * @param mixed[] $body
-     * @return void
+     * @return ResponseInterface
      */
-    public function patch(string $url, array $body): void;
+    public function patch(string $url, array $body): ResponseInterface;
 
     /**
      * @param string $url

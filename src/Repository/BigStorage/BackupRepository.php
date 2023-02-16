@@ -2,6 +2,7 @@
 
 namespace Transip\Api\Library\Repository\BigStorage;
 
+use Psr\Http\Message\ResponseInterface;
 use Transip\Api\Library\Entity\BigStorage\Backup;
 use Transip\Api\Library\Repository\ApiRepository;
 use Transip\Api\Library\Repository\BigStorageRepository;
@@ -35,9 +36,9 @@ class BackupRepository extends ApiRepository
         return $backups;
     }
 
-    public function revertBackup(string $bigStorageName, int $backupId, string $destinationBigStorageName = ''): void
+    public function revertBackup(string $bigStorageName, int $backupId, string $destinationBigStorageName = ''): ResponseInterface
     {
-        $this->httpClient->patch(
+        return $this->httpClient->patch(
             $this->getResourceUrl($bigStorageName, $backupId),
             [
                 'action' => 'revert',

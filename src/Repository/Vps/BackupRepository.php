@@ -2,6 +2,7 @@
 
 namespace Transip\Api\Library\Repository\Vps;
 
+use Psr\Http\Message\ResponseInterface;
 use Transip\Api\Library\Entity\Vps\Backup;
 use Transip\Api\Library\Repository\ApiRepository;
 use Transip\Api\Library\Repository\VpsRepository;
@@ -35,15 +36,15 @@ class BackupRepository extends ApiRepository
         return $backups;
     }
 
-    public function revertBackup(string $vpsName, int $backupId): void
+    public function revertBackup(string $vpsName, int $backupId): ResponseInterface
     {
-        $this->httpClient->patch($this->getResourceUrl($vpsName, $backupId), ['action' => 'revert']);
+        return $this->httpClient->patch($this->getResourceUrl($vpsName, $backupId), ['action' => 'revert']);
     }
 
-    public function convertBackupToSnapshot(string $vpsName, int $backupId, string $snapshotDescription = ''): void
+    public function convertBackupToSnapshot(string $vpsName, int $backupId, string $snapshotDescription = ''): ResponseInterface
     {
         $parameters['description'] = $snapshotDescription;
         $parameters['action']      = 'convert';
-        $this->httpClient->patch($this->getResourceUrl($vpsName, $backupId), $parameters);
+        return $this->httpClient->patch($this->getResourceUrl($vpsName, $backupId), $parameters);
     }
 }

@@ -106,10 +106,10 @@ final class HttpMethodsClient extends HttpClient
     /**
      * @param array<mixed, mixed> $body
      */
-    public function post(string $url, array $body = []): void
+    public function post(string $url, array $body = []): ResponseInterface
     {
         $this->checkAndRenewToken();
-        $this->client->getHttpClient()->post($url, [], $this->createBody($body));
+        return $this->client->getHttpClient()->post($url, [], $this->createBody($body));
     }
 
     /**
@@ -181,19 +181,19 @@ final class HttpMethodsClient extends HttpClient
     /**
      * @param array<mixed, mixed> $body
      */
-    public function put(string $url, array $body): void
+    public function put(string $url, array $body): ResponseInterface
     {
         $this->checkAndRenewToken();
-        $this->client->getHttpClient()->put($url, [], $this->createBody($body));
+        return $this->client->getHttpClient()->put($url, [], $this->createBody($body));
     }
 
     /**
      * @param array<mixed, mixed> $body
      */
-    public function patch(string $url, array $body): void
+    public function patch(string $url, array $body): ResponseInterface
     {
         $this->checkAndRenewToken();
-        $this->client->getHttpClient()->patch($url, [], $this->createBody($body));
+        return $this->client->getHttpClient()->patch($url, [], $this->createBody($body));
     }
 
     /**
