@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+6.33.0
+----
+* Added the Action resource
+* Added example of how to use the Action resource
+* Added util function that allows to fetch the action from responses
+* Changed the return type of currently available actions to Response
+
 6.32.0
 ----
 * Relocated a number of resources related to the Kubernetes alpha (experimental)

@@ -2,6 +2,7 @@
 
 namespace Transip\Api\Library\Repository;
 
+use Psr\Http\Message\ResponseInterface;
 use Transip\Api\Library\Entity\Vps;
 
 class VpsRepository extends ApiRepository
@@ -95,7 +96,7 @@ class VpsRepository extends ApiRepository
         string $username = '',
         array $sshKeys = [],
         array $licenses = []
-    ): void {
+    ): ResponseInterface {
         $parameters['productName']     = $productName;
         $parameters['operatingSystem'] = $operatingSystemName;
 
@@ -127,7 +128,7 @@ class VpsRepository extends ApiRepository
             $parameters['licenses'] = $licenses;
         }
 
-        $this->httpClient->post($this->getResourceUrl(), $parameters);
+        return $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
 
     /**
@@ -157,19 +158,19 @@ class VpsRepository extends ApiRepository
      *
      * @param mixed[] $vpss
      */
-    public function orderMultiple(array $vpss): void
+    public function orderMultiple(array $vpss): ResponseInterface
     {
-        $this->httpClient->post($this->getResourceUrl(), ['vpss' => $vpss]);
+        return $this->httpClient->post($this->getResourceUrl(), ['vpss' => $vpss]);
     }
 
-    public function cloneVps(string $vpsName, string $availabilityZone = ''): void
+    public function cloneVps(string $vpsName, string $availabilityZone = ''): ResponseInterface
     {
         $parameters['vpsName'] = $vpsName;
         if ($availabilityZone !== '') {
             $parameters['availabilityZone'] = $availabilityZone;
         }
 
-        $this->httpClient->post($this->getResourceUrl(), $parameters);
+        return $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
 
     public function update(Vps $vps): void
@@ -177,9 +178,9 @@ class VpsRepository extends ApiRepository
         $this->httpClient->put($this->getResourceUrl($vps->getName()), ['vps' => $vps]);
     }
 
-    public function start(string $vpsName): void
+    public function start(string $vpsName): ResponseInterface
     {
-        $this->httpClient->patch($this->getResourceUrl($vpsName), ['action' => 'start']);
+        return $this->httpClient->patch($this->getResourceUrl($vpsName), ['action' => 'start']);
     }
 
     public function stop(string $vpsName): void

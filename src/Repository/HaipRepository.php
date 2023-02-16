@@ -2,6 +2,7 @@
 
 namespace Transip\Api\Library\Repository;
 
+use Psr\Http\Message\ResponseInterface;
 use Transip\Api\Library\Entity\Haip;
 
 class HaipRepository extends ApiRepository
@@ -70,14 +71,14 @@ class HaipRepository extends ApiRepository
     public function order(
         string $productName,
         ?string $description
-    ): void {
+    ): ResponseInterface {
         $parameters = ['productName' => $productName];
 
         if ($description) {
             $parameters['description'] = $description;
         }
 
-        $this->httpClient->post($this->getResourceUrl(), $parameters);
+        return $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
 
     public function update(Haip $haip): void

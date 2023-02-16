@@ -2,6 +2,7 @@
 
 namespace Transip\Api\Library\Repository;
 
+use Psr\Http\Message\ResponseInterface;
 use Transip\Api\Library\Entity\PrivateNetwork;
 
 class PrivateNetworkRepository extends ApiRepository
@@ -67,14 +68,14 @@ class PrivateNetworkRepository extends ApiRepository
         return new PrivateNetwork($privateNetwork);
     }
 
-    public function order(string $description = ''): void
+    public function order(string $description = ''): ResponseInterface
     {
         $parameters = [];
         if ($description) {
             $parameters['description'] = $description;
         }
 
-        $this->httpClient->post($this->getResourceUrl(), $parameters);
+        return $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
 
     public function update(PrivateNetwork $privateNetwork): void
@@ -85,18 +86,18 @@ class PrivateNetworkRepository extends ApiRepository
         );
     }
 
-    public function attachVps(string $privateNetworkName, string $vpsName): void
+    public function attachVps(string $privateNetworkName, string $vpsName): ResponseInterface
     {
         $parameters['action']  = 'attachvps';
         $parameters['vpsName'] = $vpsName;
-        $this->httpClient->patch($this->getResourceUrl($privateNetworkName), $parameters);
+        return $this->httpClient->patch($this->getResourceUrl($privateNetworkName), $parameters);
     }
 
-    public function detachVps(string $privateNetworkName, string $vpsName): void
+    public function detachVps(string $privateNetworkName, string $vpsName): ResponseInterface
     {
         $parameters['action']  = 'detachvps';
         $parameters['vpsName'] = $vpsName;
-        $this->httpClient->patch($this->getResourceUrl($privateNetworkName), $parameters);
+        return $this->httpClient->patch($this->getResourceUrl($privateNetworkName), $parameters);
     }
 
     public function cancel(string $vpsName, string $endTime): void

@@ -2,6 +2,7 @@
 
 namespace Transip\Api\Library\Repository\Vps;
 
+use Psr\Http\Message\ResponseInterface;
 use Transip\Api\Library\Entity\Vps\Snapshot;
 use Transip\Api\Library\Repository\ApiRepository;
 use Transip\Api\Library\Repository\VpsRepository;
@@ -43,20 +44,20 @@ class SnapshotRepository extends ApiRepository
         return new Snapshot($snapshot);
     }
 
-    public function createSnapshot(string $vpsName, string $description, bool $shouldStartVps = true): void
+    public function createSnapshot(string $vpsName, string $description, bool $shouldStartVps = true): ResponseInterface
     {
         $url        = $this->getResourceUrl($vpsName);
         $parameters = [
             'description'    => $description,
             'shouldStartVps' => $shouldStartVps,
         ];
-        $this->httpClient->post($url, $parameters);
+        return $this->httpClient->post($url, $parameters);
     }
 
-    public function revertSnapshot(string $vpsName, string $snapshotName, string $destinationVpsName = ''): void
+    public function revertSnapshot(string $vpsName, string $snapshotName, string $destinationVpsName = ''): ResponseInterface
     {
         $url = $this->getResourceUrl($vpsName, $snapshotName);
-        $this->httpClient->patch($url, ['destinationVpsName' => $destinationVpsName]);
+        return $this->httpClient->patch($url, ['destinationVpsName' => $destinationVpsName]);
     }
 
     public function deleteSnapshot(string $vpsName, string $snapshotName): void

@@ -269,9 +269,9 @@ abstract class HttpClient implements HttpClientInterface
     /**
      * @param string $url
      * @param mixed[] $body
-     * @return void
+     * @return ResponseInterface
      */
-    abstract public function post(string $url, array $body = []): void;
+    abstract public function post(string $url, array $body = []): ResponseInterface;
 
     /**
      * @param string $url
@@ -291,16 +291,16 @@ abstract class HttpClient implements HttpClientInterface
     /**
      * @param string $url
      * @param mixed[] $body
-     * @return void
+     * @return ResponseInterface
      */
-    abstract public function put(string $url, array $body): void;
+    abstract public function put(string $url, array $body): ResponseInterface;
 
     /**
      * @param string $url
      * @param mixed[] $body
-     * @return void
+     * @return ResponseInterface
      */
-    abstract public function patch(string $url, array $body): void;
+    abstract public function patch(string $url, array $body): ResponseInterface;
 
     /**
      * @param string $url

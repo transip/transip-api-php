@@ -40,5 +40,10 @@
         "psr-4": {
             "Transip\\Api\\Library\\Tests\\": "tests/"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     }
 }
