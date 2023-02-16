@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.32.0
+----
+* Relocated a number of resources related to the Kubernetes alpha (experimental)
+
 6.31.0
 ----
 * Implement Kubernetes alpha node statistics resource (experimental)

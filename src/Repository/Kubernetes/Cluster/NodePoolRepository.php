@@ -1,13 +1,14 @@
 <?php
 
-namespace Transip\Api\Library\Repository\Kubernetes;
+namespace Transip\Api\Library\Repository\Kubernetes\Cluster;
 
 use Transip\Api\Library\Entity\Kubernetes\NodePool;
 use Transip\Api\Library\Repository\ApiRepository;
+use Transip\Api\Library\Repository\Kubernetes\ClusterRepository;
 
 class NodePoolRepository extends ApiRepository
 {
-    public const RESOURCE_NAME = 'kubernetes/node-pools';
+    public const RESOURCE_NAME = 'node-pools';
     public const RESOURCE_PARAMETER_SINGULAR = 'nodePool';
     public const RESOURCE_PARAMETER_PLURAL = 'nodePools';
 
@@ -16,47 +17,36 @@ class NodePoolRepository extends ApiRepository
      */
     protected function getRepositoryResourceNames(): array
     {
-        return [self::RESOURCE_NAME];
+        return [ClusterRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**
      * @return NodePool[]
      */
-    public function getAll(): array
+    public function getAll(string $clusterName): array
     {
-        return $this->getNodePools();
+        return $this->getNodePools($clusterName);
     }
 
     /**
-     * @param int $page
-     * @param int $itemsPerPage
      * @return NodePool[]
      */
-    public function getSelection(int $page, int $itemsPerPage): array
+    public function getSelection(string $clusterName, int $page, int $itemsPerPage): array
     {
-        return $this->getNodePools([], $page, $itemsPerPage);
+        return $this->getNodePools($clusterName, [], $page, $itemsPerPage);
     }
 
     /**
-     * @param string $clusterName
+     * @param array<string, mixed> $query
      * @return NodePool[]
      */
-    public function getByClusterName(string $clusterName, int $page = 0, int $itemsPerPage = 0): array
-    {
-        return $this->getNodePools(['clusterName' => $clusterName], $page, $itemsPerPage);
-    }
-
-    /**
-     * @param mixed[] $query
-     * @return NodePool[]
-     */
-    private function getNodePools(array $query = [], int $page = 0, int $itemsPerPage = 0): array
+    private function getNodePools(string $clusterName, array $query = [], int $page = 0, int $itemsPerPage = 0): array
     {
         $nodePools         = [];
         $query['page']     = $page;
         $query['pageSize'] = $itemsPerPage;
 
-        $response = $this->httpClient->get($this->getResourceUrl(), $query);
+        $response = $this->httpClient->get($this->getResourceUrl($clusterName), $query);
 
         $nodePoolsArray = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_PLURAL);
 
@@ -67,9 +57,9 @@ class NodePoolRepository extends ApiRepository
         return $nodePools;
     }
 
-    public function getByUuid(string $nodePoolUuid): NodePool
+    public function getByUuid(string $clusterName, string $nodePoolUuid): NodePool
     {
-        $response = $this->httpClient->get($this->getResourceUrl($nodePoolUuid));
+        $response = $this->httpClient->get($this->getResourceUrl($clusterName, $nodePoolUuid));
         $nodePool = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_SINGULAR);
 
         return new NodePool($nodePool);
@@ -94,16 +84,16 @@ class NodePoolRepository extends ApiRepository
         $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
 
-    public function update(NodePool $nodePool): void
+    public function update(string $clusterName, NodePool $nodePool): void
     {
         $this->httpClient->put(
-            $this->getResourceUrl($nodePool->getUuid()),
+            $this->getResourceUrl($clusterName, $nodePool->getUuid()),
             [self::RESOURCE_PARAMETER_SINGULAR => $nodePool]
         );
     }
 
-    public function remove(string $nodePoolUuid): void
+    public function remove(string $clusterName, string $nodePoolUuid): void
     {
-        $this->httpClient->delete($this->getResourceUrl($nodePoolUuid));
+        $this->httpClient->delete($this->getResourceUrl($clusterName, $nodePoolUuid));
     }
 }

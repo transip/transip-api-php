@@ -2,10 +2,12 @@
 
 namespace Transip\Api\Library\Entity;
 
-class AbstractEntity implements \JsonSerializable
+use JsonSerializable;
+
+class AbstractEntity implements JsonSerializable
 {
     /**
-     * @param mixed[] $valueArray
+     * @param array<string, mixed> $valueArray
      */
     public function __construct(array $valueArray = [])
     {
