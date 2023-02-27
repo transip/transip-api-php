@@ -81,7 +81,7 @@ class NodePoolRepository extends ApiRepository
             $parameters['description'] = $description;
         }
 
-        $this->httpClient->post($this->getResourceUrl(), $parameters);
+        $this->httpClient->post($this->getResourceUrl($clusterName), $parameters);
     }
 
     public function update(string $clusterName, NodePool $nodePool): void
