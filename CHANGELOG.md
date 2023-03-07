@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.34.0
+----
+* Implemented Kubernetes Alpha product endpoint
+
 6.33.0
 ----
 * Added the Action resource
@@ -170,7 +174,7 @@ CHANGELOG
 6.7.0
 -----
 * Fixed minor bug in getAll for vpsOperatingSystems
-* Added a reset function for the VpsFirewall 
+* Added a reset function for the VpsFirewall
 
 6.6.3
 -----
@@ -178,11 +182,11 @@ CHANGELOG
 
 6.6.2
 -----
-* Added isDefault property to SshKey 
+* Added isDefault property to SshKey
 
 6.6.1
 -----
-* Enabled PHP 8.0 support 
+* Enabled PHP 8.0 support
 
 6.6.0
 -----
@@ -255,8 +259,8 @@ CHANGELOG
 
 - discontinued:
     - webhosting
-    
-    
+
+
 5.x and older
 -----
 
