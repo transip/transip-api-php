@@ -1,9 +1,13 @@
 CHANGELOG
 =========
 
+6.35.0
+----
+* Added Kubernetes alpha load balancers endpoint (experimental)
+
 6.34.0
 ----
-* Implemented Kubernetes Alpha product endpoint
+* Implemented Kubernetes alpha product endpoint (experimental)
 
 6.33.0
 ----
