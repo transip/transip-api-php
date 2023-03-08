@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.35.1
+----
+* Removed broken/missing methods from experimental Kubernetes load balancers repository
+
 6.35.0
 ----
 * Added Kubernetes alpha load balancers endpoint (experimental)
