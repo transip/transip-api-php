@@ -37,14 +37,6 @@ class LoadBalancerRepository extends ApiRepository
     }
 
     /**
-     * @return LoadBalancer[]
-     */
-    public function getByNodeUuid(string $clusterName, string $nodeUuid, int $page = 0, int $itemsPerPage = 0): array
-    {
-        return $this->getLoadBalancers($clusterName, ['nodeUuid' => $nodeUuid], $page, $itemsPerPage);
-    }
-
-    /**
      * @param array<string, mixed> $query
      * @return LoadBalancer[]
      */
@@ -80,14 +72,6 @@ class LoadBalancerRepository extends ApiRepository
         ];
 
         $this->httpClient->post($this->getResourceUrl(), $parameters);
-    }
-
-    public function update(string $clusterName, LoadBalancer $loadBalancer): void
-    {
-        $this->httpClient->put(
-            $this->getResourceUrl($clusterName, $loadBalancer->getName()),
-            [self::RESOURCE_PARAMETER_SINGULAR => $loadBalancer]
-        );
     }
 
     public function remove(string $clusterName, string $loadBalancerName): void
