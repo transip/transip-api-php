@@ -79,10 +79,12 @@ class BlockStorageRepository extends ApiRepository
         string $type,
         string $availabilityZone
     ): void {
-        $parameters['name']             = $name;
-        $parameters['sizeInGib']        = $sizeInGib;
-        $parameters['type']             = $type;
-        $parameters['availabilityZone'] = $availabilityZone;
+        $parameters = [
+            'name'             => $name,
+            'sizeInGib'        => $sizeInGib,
+            'type'             => $type,
+            'availabilityZone' => $availabilityZone,
+        ];
 
         $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
