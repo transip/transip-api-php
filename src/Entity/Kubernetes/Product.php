@@ -60,7 +60,7 @@ class Product extends AbstractEntity
         return $this->name;
     }
 
-    public function getDesciption(): string
+    public function getDescription(): string
     {
         return $this->description;
     }
