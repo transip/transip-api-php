@@ -41,7 +41,7 @@ class ProductSpec extends AbstractEntity
         return $this->amount;
     }
 
-    public function getDesciption(): string
+    public function getDescription(): string
     {
         return $this->description;
     }

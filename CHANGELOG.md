@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.35.2
+----
+* Fixed typos in the Kubernetes product entities
+
 6.35.1
 ----
 * Removed broken/missing methods from experimental Kubernetes load balancers repository
