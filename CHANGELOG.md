@@ -1,13 +1,17 @@
 CHANGELOG
 =========
 
+6.36.0
+----
+* Added stats for kubernetes blockstorages (expiremental)
+
 6.35.2
 ----
-* Fixed typos in the Kubernetes product entities
+* Fixed typos in the Kubernetes product entities (expiremental)
 
 6.35.1
 ----
-* Removed broken/missing methods from experimental Kubernetes load balancers repository
+* Removed broken/missing methods from experimental Kubernetes load balancers repository (expiremental)
 
 6.35.0
 ----
