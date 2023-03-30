@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.37.0
+----
+* Added more info for the kubernetes loadbalancer (expiremental)
+
 6.36.0
 ----
 * Added stats for kubernetes blockstorages (expiremental)
