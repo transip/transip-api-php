@@ -72,4 +72,14 @@ class NodeRepository extends ApiRepository
 
         return new Node($node);
     }
+
+    /**
+     * @param string $clusterName
+     * @param string[] $uuids
+     * @return Node[]
+     */
+    public function getByUuids(string $clusterName, array $uuids): array
+    {
+        return array_map(fn (string $uuid) => $this->getByUuid($clusterName, $uuid), $uuids);
+    }
 }

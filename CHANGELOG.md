@@ -1,5 +1,8 @@
 CHANGELOG
 =========
+6.37.2
+----
+* Get multiple nods by uuid (experimental)
 
 6.37.1
 ----
