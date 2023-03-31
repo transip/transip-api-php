@@ -65,6 +65,14 @@ class LoadBalancerRepository extends ApiRepository
         return new LoadBalancer($loadBalancerArray);
     }
 
+    public function getByUuid(string $clusterName, string $loadBalancerUuid): LoadBalancer
+    {
+        $response         = $this->httpClient->get($this->getResourceUrl($clusterName, $loadBalancerUuid));
+        $loadBalancerArray = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_SINGULAR);
+
+        return new LoadBalancer($loadBalancerArray);
+    }
+
     public function add(string $name): void
     {
         $parameters = [
