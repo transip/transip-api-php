@@ -1,21 +1,25 @@
 CHANGELOG
 =========
 
+6.37.1
+----
+* Get kubernetes loadbalancers by UUID (experimental)
+
 6.37.0
 ----
-* Added more info for the kubernetes loadbalancer (expiremental)
+* Added more info for the kubernetes loadbalancer (experimental)
 
 6.36.0
 ----
-* Added stats for kubernetes blockstorages (expiremental)
+* Added stats for kubernetes blockstorages (experimental)
 
 6.35.2
 ----
-* Fixed typos in the Kubernetes product entities (expiremental)
+* Fixed typos in the Kubernetes product entities (experimental)
 
 6.35.1
 ----
-* Removed broken/missing methods from experimental Kubernetes load balancers repository (expiremental)
+* Removed broken/missing methods from experimental Kubernetes load balancers repository (experimental)
 
 6.35.0
 ----
