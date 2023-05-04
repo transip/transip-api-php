@@ -1,20 +1,25 @@
 CHANGELOG
 =========
+
+6.38.0
+----
+* Add status-reports subresource for Kubernetes load balancers (experimental)
+
 6.37.2
 ----
-* Get multiple nods by uuid (experimental)
+* Get multiple nodes by UUID (experimental)
 
 6.37.1
 ----
-* Get kubernetes loadbalancers by UUID (experimental)
+* Get Kubernetes load balancers by UUID (experimental)
 
 6.37.0
 ----
-* Added more info for the kubernetes loadbalancer (experimental)
+* Added more info for the Kubernetes loadbalancer (experimental)
 
 6.36.0
 ----
-* Added stats for kubernetes blockstorages (experimental)
+* Added stats for Kubernetes block storages (experimental)
 
 6.35.2
 ----
