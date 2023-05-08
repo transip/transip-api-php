@@ -1,5 +1,8 @@
 CHANGELOG
 =========
+6.39.0
+----
+* Added Kubernetes Labels and Taints (experimental)
 
 6.38.0
 ----
