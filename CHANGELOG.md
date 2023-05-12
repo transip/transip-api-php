@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.40.0
+----
+* Added Kubernetes events (experimental)
+
 6.39.0
 ----
 * Added Kubernetes Labels and Taints (experimental)
