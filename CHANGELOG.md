@@ -1,5 +1,10 @@
 CHANGELOG
 =========
+
+6.41.0
+----
+* Added Kubernetes cluster reset (experimental)
+
 6.40.0
 ----
 * Added Kubernetes events (experimental)
