@@ -106,6 +106,19 @@ class ClusterRepository extends ApiRepository
         );
     }
 
+    public function reset(string $clusterName, string $confirmation): void
+    {
+        $parameters = [
+            'action'       => 'reset',
+            'confirmation' => $confirmation
+        ];
+
+        $this->httpClient->patch(
+            $this->getResourceUrl($clusterName),
+            $parameters
+        );
+    }
+
     public function remove(string $clusterName): void
     {
         $this->httpClient->delete(
