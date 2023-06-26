@@ -46,6 +46,13 @@ class OpenStackProject extends AbstractEntity
      */
     protected $type;
 
+    /**
+     * The domain in which a project is stored
+     *
+     * @var string
+     */
+    protected $domain;
+
     public function getId(): string
     {
         return $this->id;
@@ -74,6 +81,11 @@ class OpenStackProject extends AbstractEntity
     public function getType(): string
     {
         return $this->type;
+    }
+
+    public function getDomain(): string
+    {
+        return $this->domain;
     }
 
     public function setName(string $name): void
