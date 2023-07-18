@@ -4,9 +4,9 @@ namespace Transip\Api\Library\Entity\Kubernetes;
 
 use GuzzleHttp\Promise\AggregateException;
 use Transip\Api\Library\Entity\AbstractEntity;
+use Transip\Api\Library\Entity\Kubernetes\LoadBalancer\AggregatedStatus;
 use Transip\Api\Library\Entity\Kubernetes\LoadBalancer\Balancing;
 use Transip\Api\Library\Entity\Kubernetes\LoadBalancer\Port;
-use Transip\Api\Library\Entity\Kubernetes\LoadBalancer\AggregatedStatus;
 
 class LoadBalancer extends AbstractEntity
 {
@@ -54,6 +54,16 @@ class LoadBalancer extends AbstractEntity
      * @var AggregatedStatus
      */
     protected $aggregatedStatus;
+
+    /**
+     * @var string
+     */
+    protected $serviceName;
+    
+    /**
+     * @var string
+     */
+    protected $serviceNamespace;
 
     public function __construct(array $valueArray = [])
     {
@@ -119,5 +129,21 @@ class LoadBalancer extends AbstractEntity
     public function getAggregatedStatus(): AggregatedStatus
     {
         return $this->aggregatedStatus;
+    }
+
+    /**
+     * @return string
+     */
+    public function getServiceName(): string
+    {
+        return $this->serviceName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getServiceNamespace(): string
+    {
+        return $this->serviceNamespace;
     }
 }
