@@ -1,5 +1,7 @@
 CHANGELOG
 =========
+6.41.1
+* Added pvc and service naming to Blockstorage and LoadBalancer (experimental)
 
 6.41.0
 ----

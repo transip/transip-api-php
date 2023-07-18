@@ -46,6 +46,16 @@ class BlockStorage extends AbstractEntity
      */
     protected $serial;
 
+    /**
+     * @var string
+     */
+    protected $pvcName;
+
+    /**
+     * @var string
+     */
+    protected $pvcNamespace;
+
     public function getUuid(): string
     {
         return $this->uuid;
@@ -89,5 +99,15 @@ class BlockStorage extends AbstractEntity
     public function getSerial(): string
     {
         return $this->serial;
+    }
+
+    public function getPvcName(): string
+    {
+        return $this->pvcName;
+    }
+
+    public function getPvcNamespace(): string
+    {
+        return $this->pvcNamespace;
     }
 }
