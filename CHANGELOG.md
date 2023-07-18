@@ -1,7 +1,12 @@
 CHANGELOG
 =========
-6.41.1
+6.43.0
+----
 * Added pvc and service naming to Blockstorage and LoadBalancer (experimental)
+
+6.42.0
+----
+* Added domain property to openstack
 
 6.41.0
 ----
