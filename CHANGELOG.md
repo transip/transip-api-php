@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.44.0
+----
+* Added Kubernetes releases endpoint (experimental)
+
 6.43.0
 ----
 * Added pvc and service naming to Blockstorage and LoadBalancer (experimental)
