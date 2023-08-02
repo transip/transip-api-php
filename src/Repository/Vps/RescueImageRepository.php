@@ -36,13 +36,14 @@ class RescueImageRepository extends ApiRepository
     }
 
     /**
-     * @param string $vpsName
-     * @param string $rescueImageName
+     * @param string   $vpsName
+     * @param string   $rescueImageName
+     * @param string[] $sshKeys
      * @return void
      */
-    public function bootRescueImage(string $vpsName, string $rescueImageName): void
+    public function bootRescueImage(string $vpsName, string $rescueImageName, ?array $sshKeys = []): void
     {
         $url = $this->getResourceUrl($vpsName);
-        $this->httpClient->patch($url, ['name' => $rescueImageName]);
+        $this->httpClient->patch($url, ['name' => $rescueImageName, 'sshKeys' => $sshKeys]);
     }
 }

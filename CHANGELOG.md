@@ -1,5 +1,10 @@
 CHANGELOG
 =========
+
+6.45.0
+----
+* Added ssh key support to rescue images
+  
 6.44.0
 ----
 * Added Kubernetes releases endpoint (experimental)
