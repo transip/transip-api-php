@@ -13,6 +13,12 @@ class RescueImage extends AbstractEntity
     public $name;
 
     /**
+     * True when the rescue image supports booting with provided ssh-keys
+     * @var bool
+     */
+    public $supportsSshKeys;
+
+    /**
      * @return string
      */
     public function getName(): string
@@ -26,5 +32,10 @@ class RescueImage extends AbstractEntity
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getSupportsSshKeys(): bool
+    {
+        return $this->supportsSshKeys;
     }
 }
