@@ -1,10 +1,13 @@
 CHANGELOG
 =========
+6.46.0
+----
+* Fixed price information in Kubernetes products endpoint (experimental)
 
 6.45.0
 ----
 * Added ssh key support to rescue images
-  
+
 6.44.0
 ----
 * Added Kubernetes releases endpoint (experimental)
