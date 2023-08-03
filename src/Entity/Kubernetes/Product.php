@@ -22,14 +22,9 @@ class Product extends AbstractEntity
     protected $description;
 
     /**
-     * @var int
+     * @var ProductPeriodPrice[]
      */
-    protected $price;
-
-    /**
-     * @var string
-     */
-    protected $paymentPeriod;
+    protected $periodPrices;
 
     /**
      * @var ProductSpec[]
@@ -41,12 +36,20 @@ class Product extends AbstractEntity
      */
     public function __construct(array $valueArray)
     {
+        $periodPrices = $valueArray['periodPrices'] ?? [];
         $specs = $valueArray['specs'] ?? [];
+
+        foreach ($periodPrices as $periodPrice) {
+            $this->periodPrices[] = new ProductPeriodPrice($periodPrice);
+        }
+
         foreach ($specs as $spec) {
             $this->specs[] = new ProductSpec($spec);
         }
 
+        unset($valueArray['periodPrices']);
         unset($valueArray['specs']);
+
         parent::__construct($valueArray);
     }
 
@@ -65,14 +68,12 @@ class Product extends AbstractEntity
         return $this->description;
     }
 
-    public function getPrice(): int
+    /**
+     * @return ProductPeriodPrice[]
+     */
+    public function getPeriodPrices(): array
     {
-        return $this->price;
-    }
-
-    public function getPaymentPeriod(): string
-    {
-        return $this->paymentPeriod;
+        return $this->periodPrices;
     }
 
     /**
