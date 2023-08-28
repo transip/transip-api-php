@@ -119,6 +119,19 @@ class ClusterRepository extends ApiRepository
         );
     }
 
+    public function upgrade(string $clusterName, string $version): void
+    {
+        $parameters = [
+            'action'  => 'upgrade',
+            'version' => $version
+        ];
+
+        $this->httpClient->patch(
+            $this->getResourceUrl($clusterName),
+            $parameters
+        );
+    }
+
     public function remove(string $clusterName): void
     {
         $this->httpClient->delete(

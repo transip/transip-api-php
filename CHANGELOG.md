@@ -1,5 +1,10 @@
 CHANGELOG
 =========
+6.47.0
+----
+* Add resource to list available releases for upgrade of a Kubernetes cluster (experimental)
+* Add resource action to upgrade a Kubernetes cluster (experimental)
+
 6.46.0
 ----
 * Fixed price information in Kubernetes products endpoint (experimental)
