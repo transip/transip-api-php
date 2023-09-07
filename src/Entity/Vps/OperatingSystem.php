@@ -21,6 +21,11 @@ class OperatingSystem extends AbstractEntity
     protected $description;
 
     /**
+     * @var string $baseName
+     */
+    protected $baseName;
+
+    /**
      * @var string $version
      */
     protected $version;
@@ -70,6 +75,11 @@ class OperatingSystem extends AbstractEntity
     public function isPreinstallableImage(): bool
     {
         return in_array(self::INSTALL_FLAVOUR_PREINSTALLABLE, $this->getInstallFlavours(), true);
+    }
+
+    public function getBaseName(): string
+    {
+        return $this->baseName;
     }
 
     public function getVersion(): string
