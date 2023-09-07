@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.47.1
+---
+* Alterered Operating System resource to also show the basename
+
 6.47.0
 ----
 * Add resource to list available releases for upgrade of a Kubernetes cluster (experimental)
