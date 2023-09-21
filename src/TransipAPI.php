@@ -64,6 +64,7 @@ use Transip\Api\Library\Repository\OpenStack\Project\AssignableUsersRepository a
 use Transip\Api\Library\Repository\OpenStack\Project\UserRepository as OpenStackProjectUserRepository;
 use Transip\Api\Library\Repository\OpenStack\ProjectRepository as OpenStackProjectRepository;
 use Transip\Api\Library\Repository\OpenStack\TokenRepository as OpenStackTokenRepository;
+use Transip\Api\Library\Repository\OpenStack\TotpRepository as OpenStackTotpRepository;
 use Transip\Api\Library\Repository\OpenStack\UserRepository as OpenStackUserRepository;
 use Transip\Api\Library\Repository\OperatingSystemFilterRepository;
 use Transip\Api\Library\Repository\PrivateNetworkRepository;
@@ -537,6 +538,11 @@ class TransipAPI
     public function openStackTokens(): OpenStackTokenRepository
     {
         return new OpenStackTokenRepository($this->httpClient);
+    }
+
+    public function openStackTotp(): OpenStackTotpRepository
+    {
+        return new OpenStackTotpRepository($this->httpClient);
     }
 
     public function mailForwards(): MailForwardRepository
