@@ -34,6 +34,13 @@ class OpenStackUser extends AbstractEntity
      */
     protected $email;
 
+    /**
+     * totpEnabled
+     *
+     * @var bool
+     */
+    protected bool $totpEnabled;
+
     public function getId(): string
     {
         return $this->id;
@@ -59,8 +66,8 @@ class OpenStackUser extends AbstractEntity
         $this->description = $description;
     }
 
-    public function setEmail(string $email): void
+    public function getTotpEnabled(): bool
     {
-        $this->email = $email;
+        return $this->totpEnabled;
     }
 }
