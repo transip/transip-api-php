@@ -1,5 +1,13 @@
 CHANGELOG
 =========
+6.48.1
+---
+* Totp identification status key added for the user.
+
+6.48.0
+---
+* Totp Enabled/Disabled Funcctionality added.
+
 6.47.1
 ---
 * Alterered Operating System resource to also show the basename
