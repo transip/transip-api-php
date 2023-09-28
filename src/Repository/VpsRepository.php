@@ -86,7 +86,7 @@ class VpsRepository extends ApiRepository
      */
     public function order(
         string $productName,
-        string $operatingSystemName,
+        string $operatingSystemName = '',
         array $addons = [],
         string $hostname = '',
         string $availabilityZone = '',
@@ -98,7 +98,10 @@ class VpsRepository extends ApiRepository
         array $licenses = []
     ): ResponseInterface {
         $parameters['productName']     = $productName;
-        $parameters['operatingSystem'] = $operatingSystemName;
+
+        if ($operatingSystemName !== '') {
+            $parameters['operatingSystem'] = $operatingSystemName;
+        }
 
         if (!empty($addons)) {
             $parameters['addons'] = $addons;
