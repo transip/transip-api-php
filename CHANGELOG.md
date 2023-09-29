@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.48.2
+---
+* Allowed the possibiltiy to order a VPS without an Operating System.
+
 6.48.1
 ---
 * Totp identification status key added for the user.
