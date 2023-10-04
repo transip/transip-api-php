@@ -4,7 +4,6 @@ namespace Transip\Api\Library\Entity;
 
 class OpenStackTotp extends AbstractEntity
 {
-    
     /**
      * Secret key
      *

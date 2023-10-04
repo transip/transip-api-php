@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.48.3
+---
+* Fixed naming convention totp tokens.
+
 6.48.2
 ---
 * Allowed the possibiltiy to order a VPS without an Operating System.
