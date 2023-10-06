@@ -15,6 +15,9 @@ use Transip\Api\Library\Repository\AvailabilityZoneRepository;
 use Transip\Api\Library\Repository\BigStorage\BackupRepository as BigStorageBackupRepository;
 use Transip\Api\Library\Repository\BigStorage\UsageRepository as BigStorageUsageRepository;
 use Transip\Api\Library\Repository\BigStorageRepository;
+use Transip\Api\Library\Repository\BlockStorage\BackupRepository as BlockStorageBackupRepository;
+use Transip\Api\Library\Repository\BlockStorage\UsageRepository as BlockStorageUsageRepository;
+use Transip\Api\Library\Repository\BlockStorageRepository;
 use Transip\Api\Library\Repository\Colocation\AccessRequestRepository as ColoAccessRequestRepository;
 use Transip\Api\Library\Repository\Colocation\IpAddressRepository as ColoIpAddressRepository;
 use Transip\Api\Library\Repository\Colocation\RemoteHandsRepository as ColoRemoteHandsRepository;
@@ -97,7 +100,7 @@ use Transip\Api\Library\Repository\VpsRepository;
 class TransipAPI
 {
     public const TRANSIP_API_ENDPOINT = "https://api.transip.nl/v6";
-    public const TRANSIP_API_LIBRARY_VERSION = "6.48.3";
+    public const TRANSIP_API_LIBRARY_VERSION = "6.48.4";
     public const TRANSIP_API_DEMO_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImN3MiFSbDU2eDNoUnkjelM4YmdOIn0.eyJpc3MiOiJhcGkudHJhbnNpcC5ubCIsImF1ZCI6ImFwaS50cmFuc2lwLm5sIiwianRpIjoiY3cyIVJsNTZ4M2hSeSN6UzhiZ04iLCJpYXQiOjE1ODIyMDE1NTAsIm5iZiI6MTU4MjIwMTU1MCwiZXhwIjoyMTE4NzQ1NTUwLCJjaWQiOiI2MDQ0OSIsInJvIjpmYWxzZSwiZ2siOmZhbHNlLCJrdiI6dHJ1ZX0.fYBWV4O5WPXxGuWG-vcrFWqmRHBm9yp0PHiYh_oAWxWxCaZX2Rf6WJfc13AxEeZ67-lY0TA2kSaOCp0PggBb_MGj73t4cH8gdwDJzANVxkiPL1Saqiw2NgZ3IHASJnisUWNnZp8HnrhLLe5ficvb1D9WOUOItmFC2ZgfGObNhlL2y-AMNLT4X7oNgrNTGm-mespo0jD_qH9dK5_evSzS3K8o03gu6p19jxfsnIh8TIVRvNdluYC2wo4qDl5EW5BEZ8OSuJ121ncOT1oRpzXB0cVZ9e5_UVAEr9X3f26_Eomg52-PjrgcRJ_jPIUYbrlo06KjjX2h0fzMr21ZE023Gw";
 
     /**
@@ -375,19 +378,43 @@ class TransipAPI
         return new PrivateNetworkRepository($this->httpClient);
     }
 
+    /**
+     * @deprecated Use block storage resource instead
+     */
     public function bigStorages(): BigStorageRepository
     {
         return new BigStorageRepository($this->httpClient);
     }
 
+    /**
+     * @deprecated Use block storage resource instead
+     */
     public function bigStorageBackups(): BigStorageBackupRepository
     {
         return new BigStorageBackupRepository($this->httpClient);
     }
 
+    /**
+     * @deprecated Use block storage resource instead
+     */
     public function bigStorageUsage(): BigStorageUsageRepository
     {
         return new BigStorageUsageRepository($this->httpClient);
+    }
+
+    public function blockStorages(): BlockStorageRepository
+    {
+        return new BlockStorageRepository($this->httpClient);
+    }
+
+    public function blockStorageBackups(): BlockStorageBackupRepository
+    {
+        return new BlockStorageBackupRepository($this->httpClient);
+    }
+
+    public function blockStorageUsage(): BlockStorageUsageRepository
+    {
+        return new BlockStorageUsageRepository($this->httpClient);
     }
 
     public function mailService(): MailServiceRepository

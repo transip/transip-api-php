@@ -13,6 +13,7 @@ class BackupRepository extends ApiRepository
 
     /**
      * @return string[]
+     * @deprecated Use block storage resource instead
      */
     protected function getRepositoryResourceNames(): array
     {
@@ -22,6 +23,7 @@ class BackupRepository extends ApiRepository
     /**
      * @param string $bigStorageName
      * @return Backup[]
+     * @deprecated Use block storage resource instead
      */
     public function getByBigStorageName(string $bigStorageName): array
     {
@@ -36,6 +38,9 @@ class BackupRepository extends ApiRepository
         return $backups;
     }
 
+    /**
+     * @deprecated Use block storage resource instead
+     */
     public function revertBackup(string $bigStorageName, int $backupId, string $destinationBigStorageName = ''): ResponseInterface
     {
         return $this->httpClient->patch(

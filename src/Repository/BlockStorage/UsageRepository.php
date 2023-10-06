@@ -1,10 +1,10 @@
 <?php
 
-namespace Transip\Api\Library\Repository\BigStorage;
+namespace Transip\Api\Library\Repository\BlockStorage;
 
 use Transip\Api\Library\Entity\Vps\UsageDataDisk;
 use Transip\Api\Library\Repository\ApiRepository;
-use Transip\Api\Library\Repository\BigStorageRepository;
+use Transip\Api\Library\Repository\BlockStorageRepository;
 
 class UsageRepository extends ApiRepository
 {
@@ -12,24 +12,19 @@ class UsageRepository extends ApiRepository
 
     /**
      * @return array|string[]
-     * @deprecated
      */
     protected function getRepositoryResourceNames(): array
     {
-        return [BigStorageRepository::RESOURCE_NAME, self::RESOURCE_NAME];
+        return [BlockStorageRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
     /**
-     * @param string $bigStorageName
-     * @param int    $dateTimeStart
-     * @param int    $dateTimeEnd
      * @return UsageDataDisk[]
-     * @deprecated Use block storage resource instead
      */
     public function getUsageStatistics(
-        string $bigStorageName,
-        int $dateTimeStart = 0,
-        int $dateTimeEnd = 0
+        string $blockStorageName,
+        int    $dateTimeStart = 0,
+        int    $dateTimeEnd = 0
     ): array {
         $usages     = [];
         $parameters = [];
@@ -41,7 +36,7 @@ class UsageRepository extends ApiRepository
             $parameters['dateTimeEnd'] = $dateTimeEnd;
         }
 
-        $response = $this->httpClient->get($this->getResourceUrl($bigStorageName), $parameters);
+        $response = $this->httpClient->get($this->getResourceUrl($blockStorageName), $parameters);
         $usageStatistics = $this->getParameterFromResponse($response, 'usage');
 
         foreach ($usageStatistics as $usage) {

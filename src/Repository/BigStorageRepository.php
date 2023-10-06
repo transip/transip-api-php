@@ -11,6 +11,7 @@ class BigStorageRepository extends ApiRepository
 
     /**
      * @return BigStorage[]
+     * @deprecated Use block storage resource instead
      */
     public function getAll(): array
     {
@@ -29,6 +30,7 @@ class BigStorageRepository extends ApiRepository
      * @param int $page
      * @param int $itemsPerPage
      * @return BigStorage[]
+     * @deprecated Use block storage resource instead
      */
     public function getSelection(int $page, int $itemsPerPage): array
     {
@@ -45,6 +47,9 @@ class BigStorageRepository extends ApiRepository
         return $bigStorages;
     }
 
+    /**
+     * @deprecated Use block storage resource instead
+     */
     public function getByName(string $privateNetworkName): BigStorage
     {
         $response        = $this->httpClient->get($this->getResourceUrl($privateNetworkName));
@@ -53,6 +58,9 @@ class BigStorageRepository extends ApiRepository
         return new BigStorage($bigStorageArray);
     }
 
+    /**
+     * @deprecated Use block storage resource instead
+     */
     public function order(
         string $size,
         bool $offsiteBackup = true,
@@ -70,6 +78,9 @@ class BigStorageRepository extends ApiRepository
         return $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
 
+    /**
+     * @deprecated Use block storage resource instead
+     */
     public function upgrade(string $bigStorageName, int $size, ?Bool $offsiteBackups = null): void
     {
         $parameters = [
@@ -84,6 +95,9 @@ class BigStorageRepository extends ApiRepository
         $this->httpClient->post($this->getResourceUrl(), $parameters);
     }
 
+    /**
+     * @deprecated Use block storage resource instead
+     */
     public function update(BigStorage $bigStorage): ResponseInterface
     {
         return $this->httpClient->put(
@@ -92,6 +106,9 @@ class BigStorageRepository extends ApiRepository
         );
     }
 
+    /**
+     * @deprecated Use block storage resource instead
+     */
     public function cancel(string $vpsName, string $endTime): void
     {
         $this->httpClient->delete($this->getResourceUrl($vpsName), ['endTime' => $endTime]);

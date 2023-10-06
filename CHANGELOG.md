@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.48.4
+---
+* Added new block storage resource. Deprecated big storage methods.
+
 6.48.3
 ---
 * Fixed naming convention totp tokens.
