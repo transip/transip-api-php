@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.48.5
+---
+* Added block storage product type getter
+
 6.48.4
 ---
 * Added new block storage resource. Deprecated big storage methods.
