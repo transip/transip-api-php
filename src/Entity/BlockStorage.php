@@ -84,6 +84,11 @@ class BlockStorage extends AbstractEntity
         return $this->availabilityZone;
     }
 
+    public function getProductType(): string
+    {
+        return $this->productType;
+    }
+
     public function setDescription(string $description): BlockStorage
     {
         $this->description = $description;
