@@ -49,6 +49,11 @@ class BlockStorage extends AbstractEntity
      */
     protected $serial;
 
+    /**
+     * @var bool $offsiteBackups
+     */
+    protected $offsiteBackups;
+
     public function getName(): string
     {
         return $this->name;
@@ -105,4 +110,10 @@ class BlockStorage extends AbstractEntity
     {
         return $this->serial;
     }
+
+    public function getOffsiteBackups(): bool
+    {
+        return $this->offsiteBackups;
+    }
+
 }
