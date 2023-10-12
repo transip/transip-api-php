@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.48.6
+---
+* Added block storage offsite backups property and getter
+
 6.48.5
 ---
 * Added block storage product type getter
