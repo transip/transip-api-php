@@ -101,6 +101,32 @@ class MailboxRepository extends ApiRepository
     /**
      * @param string $identifier
      * @param string $domainName
+     * @param int $maxDiskUsage
+     * @param string $password
+     * @param string $forwardTo
+     * @return void
+     */
+    public function updateField(
+        string $identifier,
+        string $domainName,
+        ?int $maxDiskUsage,
+        ?string $password,
+        ?string $forwardTo
+    ): void {
+        $parameters = array_filter([
+            'maxDiskUsage'   => $maxDiskUsage,
+            'password'       => $password,
+            'forwardTo'      => $forwardTo,
+        ], function ($input) {
+            return (bool)$input;
+        });
+
+        $this->httpClient->patch($this->getResourceUrl($domainName, $identifier), $parameters);
+    }
+
+    /**
+     * @param string $identifier
+     * @param string $domainName
      * @return void
      */
     public function delete(

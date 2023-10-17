@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.48.7
+---
+* Added `updateField` method for mailboxes endpoint
+
 6.48.6
 ---
 * Added block storage offsite backups property and getter
