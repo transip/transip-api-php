@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.48.8
+---
+* Fix Kubernetes Cluster release endpoint
+
 6.48.7
 ---
 * Added `updateField` method for mailboxes endpoint
@@ -22,7 +26,7 @@ CHANGELOG
 
 6.48.2
 ---
-* Allowed the possibiltiy to order a VPS without an Operating System.
+* Allowed the possibility to order a VPS without an Operating System.
 
 6.48.1
 ---
@@ -30,11 +34,11 @@ CHANGELOG
 
 6.48.0
 ---
-* Totp Enabled/Disabled Funcctionality added.
+* Totp Enabled/Disabled functionality added.
 
 6.47.1
 ---
-* Alterered Operating System resource to also show the basename
+* Altered Operating System resource to also show the basename
 
 6.47.0
 ----
@@ -55,7 +59,7 @@ CHANGELOG
 
 6.43.0
 ----
-* Added pvc and service naming to Blockstorage and LoadBalancer (experimental)
+* Added pvc and service naming to BlockStorage and LoadBalancer (experimental)
 
 6.42.0
 ----
