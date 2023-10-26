@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.48.9
+---
+* Added `retentionType` backups property and getter
+
 6.48.8
 ---
 * Fix Kubernetes Cluster release endpoint
