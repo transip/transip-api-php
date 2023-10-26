@@ -36,6 +36,11 @@ class Backup extends AbstractEntity
      */
     protected $availabilityZone;
 
+    /**
+     * @var string $retentionType
+     */
+    protected string $retentionType;
+
     public function getId(): int
     {
         return $this->id;
@@ -64,5 +69,10 @@ class Backup extends AbstractEntity
     public function getStatus(): string
     {
         return $this->status;
+    }
+
+    public function getRetentionType(): string
+    {
+        return $this->retentionType;
     }
 }
