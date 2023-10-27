@@ -1,5 +1,10 @@
 CHANGELOG
 =========
+
+6.49.0
+---
+* Added ability to fetch Action from Operating Install
+
 6.48.9
 ---
 * Added `retentionType` backups property and getter

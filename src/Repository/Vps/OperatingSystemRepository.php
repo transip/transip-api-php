@@ -2,6 +2,7 @@
 
 namespace Transip\Api\Library\Repository\Vps;
 
+use Psr\Http\Message\ResponseInterface;
 use Transip\Api\Library\Entity\Vps\OperatingSystem;
 use Transip\Api\Library\Repository\ApiRepository;
 use Transip\Api\Library\Repository\VpsRepository;
@@ -70,7 +71,7 @@ class OperatingSystemRepository extends ApiRepository
         string $username = '',
         array $sshKeys = [],
         array $licenses = []
-    ): void {
+    ): ResponseInterface {
         $parameters['operatingSystemName'] = $operatingSystemName;
         $parameters['hostname']            = $hostname;
         $parameters['base64InstallText']   = $base64InstallText;
@@ -78,6 +79,6 @@ class OperatingSystemRepository extends ApiRepository
         $parameters['username']            = $username;
         $parameters['sshKeys']             = $sshKeys;
         $parameters['licenses']            = $licenses;
-        $this->httpClient->post($this->getResourceUrl($vpsName), $parameters);
+        return $this->httpClient->post($this->getResourceUrl($vpsName), $parameters);
     }
 }
