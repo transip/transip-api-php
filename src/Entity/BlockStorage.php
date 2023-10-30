@@ -15,9 +15,9 @@ class BlockStorage extends AbstractEntity
     protected $description;
 
     /**
-     * @var int $diskSize
+     * @var int $size
      */
-    protected $diskSize;
+    protected $size;
 
     /**
      * @var string $vpsName
@@ -64,9 +64,9 @@ class BlockStorage extends AbstractEntity
         return $this->description;
     }
 
-    public function getDiskSize(): int
+    public function getSize(): int
     {
-        return $this->diskSize;
+        return $this->size;
     }
 
     public function getVpsName(): string
