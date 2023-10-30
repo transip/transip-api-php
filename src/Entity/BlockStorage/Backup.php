@@ -17,9 +17,9 @@ class Backup extends AbstractEntity
     protected $status;
 
     /**
-     * @var int $diskSize
+     * @var int $size
      */
-    protected $diskSize;
+    protected $size;
 
     /**
      * @var string $dateTimeCreate
@@ -42,9 +42,9 @@ class Backup extends AbstractEntity
         return $this->status;
     }
 
-    public function getDiskSize(): int
+    public function getSize(): int
     {
-        return $this->diskSize;
+        return $this->size;
     }
 
     public function getDateTimeCreate(): string

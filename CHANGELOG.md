@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.49.1
+---
+* Renamed block storage diskSize parameters to size
+
 6.49.0
 ---
 * Added ability to fetch Action from Operating Install
