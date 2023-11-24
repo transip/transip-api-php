@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.49.2
+---
+* Added the `region` property and getter to the OpenStackProject entity
+
 6.49.1
 ---
 * Renamed block storage diskSize parameters to size

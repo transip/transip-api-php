@@ -53,6 +53,13 @@ class OpenStackProject extends AbstractEntity
      */
     protected $domain;
 
+    /**
+     * The region in which a project is stored
+     *
+     * @var string
+     */
+    protected $region;
+
     public function getId(): string
     {
         return $this->id;
@@ -96,5 +103,10 @@ class OpenStackProject extends AbstractEntity
     public function setDescription(string $description): void
     {
         $this->description = $description;
+    }
+
+    public function getRegion(): string
+    {
+        return $this->region;
     }
 }
