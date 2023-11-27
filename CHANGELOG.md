@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.49.3
+---
+* Added optional param `region` to the create method within the Openstack project repository
+
 6.49.2
 ---
 * Added the `region` property and getter to the OpenStackProject entity
