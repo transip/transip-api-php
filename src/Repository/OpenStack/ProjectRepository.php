@@ -36,8 +36,12 @@ class ProjectRepository extends ApiRepository
         return $projects;
     }
 
-    public function create(string $name, string $description, string $type = 'openstack', string $region='AMS'): void
-    {
+    public function create(
+        string $name,
+        string $description,
+        string $type = 'openstack',
+        string $region = OpenStackProject::AVAILABLE_REGIONS[0]
+    ): void {
         $parameters = [
             'name'        => $name,
             'description' => $description,
