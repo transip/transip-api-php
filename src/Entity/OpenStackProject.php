@@ -5,7 +5,7 @@ namespace Transip\Api\Library\Entity;
 class OpenStackProject extends AbstractEntity
 {
     /**
-     * @var array[string]
+     * @var array<string>
      */
     public const AVAILABLE_REGIONS = [
         'AMS',
