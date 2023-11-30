@@ -10,7 +10,7 @@ class OpenStackProject extends AbstractEntity
     public const AVAILABLE_REGIONS = [
         'AMS',
         'AMS2',
-        ];
+    ];
 
     /**
      * Identifier
