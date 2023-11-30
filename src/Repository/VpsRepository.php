@@ -83,6 +83,7 @@ class VpsRepository extends ApiRepository
      * @param string   $username
      * @param string[] $sshKeys
      * @param string[] $licenses
+     * @param string   $hashedPassword
      */
     public function order(
         string $productName,
@@ -95,7 +96,8 @@ class VpsRepository extends ApiRepository
         string $installFlavour = '',
         string $username = '',
         array $sshKeys = [],
-        array $licenses = []
+        array $licenses = [],
+        string $hashedPassword = ''
     ): ResponseInterface {
         $parameters['productName']     = $productName;
 
@@ -123,6 +125,9 @@ class VpsRepository extends ApiRepository
         }
         if ($username !== '') {
             $parameters['username'] = $username;
+        }
+        if ($hashedPassword !== '') {
+            $parameters['hashedPassword'] = $hashedPassword;
         }
         if ($sshKeys !== []) {
             $parameters['sshKeys'] = $sshKeys;

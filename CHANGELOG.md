@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.49.3
+---
+* Added the `hashedPassword` property to installs and new VPS orders
+
 6.49.2
 ---
 * Added the `region` property and getter to the OpenStackProject entity

@@ -61,6 +61,7 @@ class OperatingSystemRepository extends ApiRepository
      * @param string   $username
      * @param string[] $sshKeys
      * @param string[] $licenses
+     * @param string   $hashedPassword
      */
     public function install(
         string $vpsName,
@@ -70,13 +71,15 @@ class OperatingSystemRepository extends ApiRepository
         string $installFlavour = '',
         string $username = '',
         array $sshKeys = [],
-        array $licenses = []
+        array $licenses = [],
+        string $hashedPassword = ''
     ): ResponseInterface {
         $parameters['operatingSystemName'] = $operatingSystemName;
         $parameters['hostname']            = $hostname;
         $parameters['base64InstallText']   = $base64InstallText;
         $parameters['installFlavour']      = $installFlavour;
         $parameters['username']            = $username;
+        $parameters['hashedPassword']      = $hashedPassword;
         $parameters['sshKeys']             = $sshKeys;
         $parameters['licenses']            = $licenses;
         return $this->httpClient->post($this->getResourceUrl($vpsName), $parameters);
