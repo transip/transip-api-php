@@ -46,6 +46,11 @@ class OperatingSystem extends AbstractEntity
     protected $licenses = [];
 
     /**
+     * @var string[]
+     */
+    protected $installFields = [];
+
+    /**
      * @param mixed[] $valueArray
      */
     public function __construct(array $valueArray = [])

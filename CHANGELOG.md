@@ -1,5 +1,12 @@
 CHANGELOG
 =========
+6.49.5
+---
+* Added `installFields` field in operating systems endpoint
+
+6.49.4
+---
+* Add compatibility for Symfony 7.x (https://github.com/transip/transip-api-php/pull/30)
 
 6.49.3
 ---
