@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.49.6
+---
+* Add contact key endpoint
+
 6.49.5
 ---
 * Added `installFields` field in operating systems endpoint
