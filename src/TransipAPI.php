@@ -22,6 +22,7 @@ use Transip\Api\Library\Repository\Colocation\AccessRequestRepository as ColoAcc
 use Transip\Api\Library\Repository\Colocation\IpAddressRepository as ColoIpAddressRepository;
 use Transip\Api\Library\Repository\Colocation\RemoteHandsRepository as ColoRemoteHandsRepository;
 use Transip\Api\Library\Repository\ColocationRepository;
+use Transip\Api\Library\Repository\ContactKeyRepository;
 use Transip\Api\Library\Repository\Domain\ActionRepository as DomainActionRepository;
 use Transip\Api\Library\Repository\Domain\AuthCodeRepository;
 use Transip\Api\Library\Repository\Domain\BrandingRepository as DomainBrandingRepository;
@@ -153,6 +154,11 @@ class TransipAPI
         } else {
             $this->httpClient->getTokenFromCache();
         }
+    }
+
+    public function contactKey(): ContactKeyRepository
+    {
+        return new ContactKeyRepository($this->httpClient);
     }
 
     public function availabilityZone(): AvailabilityZoneRepository
