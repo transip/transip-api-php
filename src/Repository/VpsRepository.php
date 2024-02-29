@@ -46,7 +46,16 @@ class VpsRepository extends ApiRepository
 
     public function getByName(string $name): Vps
     {
-        $response = $this->httpClient->get($this->getResourceUrl($name));
+        return $this->getByIdentifier($name);
+    }
+
+    /**
+     * @param string $identifier (vps name or vps uuid)
+     * @return Vps
+     */
+    public function getByIdentifier(string $identifier): Vps
+    {
+        $response = $this->httpClient->get($this->getResourceUrl($identifier));
         $vps      = $this->getParameterFromResponse($response, 'vps');
 
         return new Vps($vps);
