@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.49.7
+---
+* Added the `getByIdentifier` function in the VPS repository 
+
 6.49.6
 ---
 * Add contact key endpoint
