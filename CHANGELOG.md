@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.49.8
+---
+* Added the `createdAt` field to the VPS model 
+
 6.49.7
 ---
 * Added the `getByIdentifier` function in the VPS repository 
