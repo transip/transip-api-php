@@ -94,6 +94,11 @@ class Vps extends AbstractEntity
      */
     protected $tags;
 
+    /**
+     * @var string
+     */
+    protected $createdAt;
+
     public function getName(): string
     {
         return $this->name;
@@ -209,5 +214,15 @@ class Vps extends AbstractEntity
     {
         $this->tags = array_diff($this->getTags(), [$tag]);
         return $this;
+    }
+
+    public function getCreatedAt(): string
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(string $createdAt): void
+    {
+        $this->createdAt = $createdAt;
     }
 }
