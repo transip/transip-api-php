@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.49.9
+---
+* Decode the JWT payload with URL-safe Base64
+
 6.49.8
 ---
 * Added the `createdAt` field to the VPS model 
