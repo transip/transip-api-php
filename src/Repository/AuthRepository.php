@@ -72,13 +72,29 @@ class AuthRepository extends ApiRepository
 
         try {
             $data           = explode('.', $token);
-            $body           = json_decode(base64_decode($data[1]), true);
+            $payloadRaw     = $this->urlsafeB64Decode($data[1]);
+            $body           = json_decode($payloadRaw, true, 512, JSON_THROW_ON_ERROR);
             $expirationTime = $body['exp'] ?? 0;
         } catch (Exception $exception) {
             $expirationTime = 0;
         }
 
         return intval($expirationTime);
+    }
+
+    private function urlsafeB64Decode(string $input): string
+    {
+        return \base64_decode(self::convertBase64UrlToBase64($input));
+    }
+
+    private function convertBase64UrlToBase64(string $input): string
+    {
+        $remainder = \strlen($input) % 4;
+        if ($remainder) {
+            $padlen = 4 - $remainder;
+            $input .= \str_repeat('=', $padlen);
+        }
+        return \strtr($input, '-_', '+/');
     }
 
     /**
@@ -93,8 +109,7 @@ class AuthRepository extends ApiRepository
             '/-----BEGIN (RSA )?PRIVATE KEY-----(.*)-----END (RSA )?PRIVATE KEY-----/si',
             $privateKey,
             $matches
-        )
-        ) {
+        )) {
             throw new RuntimeException('Could not find a valid private key');
         }
 
