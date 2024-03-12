@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.49.10
+---
+* Add connectedVpses field to PrivateNetwork information
+
 6.49.9
 ---
 * Decode the JWT payload with URL-safe Base64
