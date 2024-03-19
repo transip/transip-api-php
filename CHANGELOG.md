@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.50.0
+---
+* Add Acronis API Resources
+
 6.49.10
 ---
 * Add connectedVpses field to PrivateNetwork information
