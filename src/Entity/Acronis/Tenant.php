@@ -17,6 +17,11 @@ class Tenant extends AbstractEntity
     protected $name;
 
     /**
+     * @var string $description
+     */
+    protected $description;
+
+    /**
      * Get $uuid
      *
      * @return  string
@@ -34,5 +39,21 @@ class Tenant extends AbstractEntity
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Get $description
+     *
+     * @return  string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): Tenant
+    {
+        $this->description = $description;
+        return $this;
     }
 }

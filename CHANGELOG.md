@@ -1,5 +1,10 @@
 CHANGELOG
 =========
+=======
+6.50.1
+---
+* Add Description field to Acronis Tenant
+
 6.50.0
 ---
 * Add Acronis API Resources
