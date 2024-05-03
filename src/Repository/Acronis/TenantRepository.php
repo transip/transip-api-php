@@ -45,4 +45,16 @@ class TenantRepository extends ApiRepository
 
         return $tenants;
     }
+
+    public function updateTenant(Tenant $tenant): void
+    {
+        $parameters = [
+            'tenant' => $tenant,
+        ];
+
+        $this->httpClient->put(
+            $this->getResourceUrl($tenant->getUuid()),
+            $parameters
+        );
+    }
 }
