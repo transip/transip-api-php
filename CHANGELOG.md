@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 =======
+6.51.0
+---
+* Added the `reboot` function in the KubernetesNodeRepository
+
 6.50.1
 ---
 * Add Description field to Acronis Tenant

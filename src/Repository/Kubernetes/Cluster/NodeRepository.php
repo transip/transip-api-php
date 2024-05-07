@@ -82,4 +82,9 @@ class NodeRepository extends ApiRepository
     {
         return array_map(fn (string $uuid) => $this->getByUuid($clusterName, $uuid), $uuids);
     }
+
+    public function reboot(string $clusterName, string $nodeUuid): void
+    {
+        $this->httpClient->patch($this->getResourceUrl($clusterName, $nodeUuid), ['action' => 'reboot']);
+    }
 }
