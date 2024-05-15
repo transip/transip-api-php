@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 =======
+
+6.51.1
+---
+* Add IsSelfManaged field to Acronis Tenant
+
 6.51.0
 ---
 * Added the `reboot` function in the KubernetesNodeRepository
