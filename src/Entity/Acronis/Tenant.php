@@ -22,6 +22,11 @@ class Tenant extends AbstractEntity
     protected $description;
 
     /**
+     * @var bool $isSelfManaged
+     */
+    protected $isSelfManaged;
+
+    /**
      * Get $uuid
      *
      * @return  string
@@ -55,5 +60,15 @@ class Tenant extends AbstractEntity
     {
         $this->description = $description;
         return $this;
+    }
+
+    /**
+     * Get $isSelfManaged
+     *
+     * @return  bool
+     */
+    public function isSelfManaged()
+    {
+        return $this->isSelfManaged;
     }
 }
