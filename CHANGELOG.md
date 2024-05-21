@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 =======
+6.51.2
+---
+* Add acronisTenantId field to operating system install
 
 6.51.1
 ---
