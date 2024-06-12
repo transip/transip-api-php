@@ -2,6 +2,7 @@
 
 namespace Transip\Api\Library\Repository\Acronis;
 
+use Psr\Http\Message\ResponseInterface;
 use Transip\Api\Library\Entity\Acronis\Tenant;
 use Transip\Api\Library\Repository\ApiRepository;
 
@@ -17,6 +18,11 @@ class TenantRepository extends ApiRepository
     protected function getRepositoryResourceNames(): array
     {
         return [self::RESOURCE_NAME];
+    }
+
+    public function order(string $productName): ResponseInterface
+    {
+        return $this->httpClient->post($this->getResourceUrl(), ['productName' => $productName]);
     }
 
     /**
@@ -56,5 +62,10 @@ class TenantRepository extends ApiRepository
             $this->getResourceUrl($tenant->getUuid()),
             $parameters
         );
+    }
+
+    public function cancel(string $tenantUuid, string $endTime): void
+    {
+        $this->httpClient->delete($this->getResourceUrl($tenantUuid), ['endTime' => $endTime]);
     }
 }
