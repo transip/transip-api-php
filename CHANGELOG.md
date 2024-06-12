@@ -5,6 +5,14 @@ CHANGELOG
 ---
 * Add acronisTenantId field to operating system install
 
+6.51.3
+---
+* Order and cancel acronis products
+
+6.51.2
+---
+* Add acronisTenantId field to operating system install
+
 6.51.1
 ---
 * Add IsSelfManaged field to Acronis Tenant
