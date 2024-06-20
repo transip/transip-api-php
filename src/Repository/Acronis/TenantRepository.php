@@ -20,9 +20,9 @@ class TenantRepository extends ApiRepository
         return [self::RESOURCE_NAME];
     }
 
-    public function order(string $productName): ResponseInterface
+    public function order(string $productName, array $addons): ResponseInterface
     {
-        return $this->httpClient->post($this->getResourceUrl(), ['productName' => $productName]);
+        return $this->httpClient->post($this->getResourceUrl(), ['productName' => $productName, 'addons' => $addons]);
     }
 
     /**

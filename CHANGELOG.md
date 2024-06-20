@@ -1,9 +1,9 @@
 CHANGELOG
 =========
-=======
-6.51.2
+
+6.51.4
 ---
-* Add acronisTenantId field to operating system install
+* Upgrade/Downgrade acronis products
 
 6.51.3
 ---
