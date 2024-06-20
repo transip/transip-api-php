@@ -18,13 +18,18 @@ class AddonsRepository extends ApiRepository
         return [TenantRepository::RESOURCE_NAME, self::RESOURCE_NAME];
     }
 
+    /**
+     * @param string $tenantUuid
+     * @param array<string> $addons
+     * @return ResponseInterface
+     */
     public function order(string $tenantUuid, array $addons): ResponseInterface
     {
         return $this->httpClient->post($this->getResourceUrl($tenantUuid), ['addons' => $addons]);
     }
 
-    public function cancel(string $tenantUuid, string $addon): void
+    public function cancel(string $tenantUuid, string $addonName): void
     {
-        $this->httpClient->delete($this->getResourceUrl($tenantUuid), ['addon' => $addon]);
+        $this->httpClient->delete($this->getResourceUrl($tenantUuid, $addonName), []);
     }
 }
