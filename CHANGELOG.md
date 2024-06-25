@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.51.5
+---
+* Add new acronis repositories
+
 6.51.4
 ---
 * Upgrade/Downgrade acronis products
