@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.52.0
+---
+* Add MailAddon API resources
+
 6.51.5
 ---
 * Add new acronis repositories
