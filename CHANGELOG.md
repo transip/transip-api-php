@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.52.1
+---
+* Add `isDefault` field to Operating System
+
 6.52.0
 ---
 * Add MailAddon API resources
