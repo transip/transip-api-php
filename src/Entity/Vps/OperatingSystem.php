@@ -51,6 +51,11 @@ class OperatingSystem extends AbstractEntity
     protected $installFields = [];
 
     /**
+     * @var boolean
+     */
+    protected $isDefault = false;
+
+    /**
      * @param mixed[] $valueArray
      */
     public function __construct(array $valueArray = [])
@@ -111,5 +116,10 @@ class OperatingSystem extends AbstractEntity
     public function getLicenses(): array
     {
         return $this->licenses;
+    }
+
+    public function getIsDefault(): bool
+    {
+        return $this->isDefault;
     }
 }
