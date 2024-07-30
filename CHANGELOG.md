@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.52.3
+---
+* Add `status` field to NodePool
+
 6.52.2
 ---
 * Add `resourceType` field to Actions

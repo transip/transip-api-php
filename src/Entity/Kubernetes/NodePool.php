@@ -37,6 +37,11 @@ class NodePool extends AbstractEntity
     protected $availabilityZone;
 
     /**
+     * @var string
+     */
+    protected $status;
+
+    /**
      * @var Node[]
      */
     protected $nodes = [];
@@ -92,6 +97,11 @@ class NodePool extends AbstractEntity
     public function getAvailabilityZone(): string
     {
         return $this->availabilityZone;
+    }
+
+    public function getStatus(): string
+    {
+        return $this->status;
     }
 
     /**
