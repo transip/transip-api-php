@@ -28,6 +28,16 @@ class Action extends AbstractEntity
     protected $status;
 
     /**
+     * @var string $resourceType
+     */
+    protected $resourceType;
+
+    /**
+     * @var string $resourceIdentifier
+     */
+    protected $resourceIdentifier;
+
+    /**
      * @var array<mixed> $metadata
      */
     protected $metadata;
@@ -70,6 +80,26 @@ class Action extends AbstractEntity
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Get $resourceType
+     *
+     * @return  string
+     */
+    public function getResourceType()
+    {
+        return $this->resourceType;
+    }
+
+    /**
+     * Get $resourceIdentifier
+     *
+     * @return  string
+     */
+    public function getResourceIdentifier()
+    {
+        return $this->resourceIdentifier;
     }
 
     /**

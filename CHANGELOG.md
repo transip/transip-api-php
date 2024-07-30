@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+6.52.2
+---
+* Add `resourceType` field to Actions
+* Add `resourceIdentifier` field to Actions
+* Add querying on `resourceIdentifier` for Actions
+
 6.52.1
 ---
 * Add `isDefault` field to Operating System
