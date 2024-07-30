@@ -58,4 +58,22 @@ class ActionRepository extends ApiRepository
 
         return $actions;
     }
+
+    /**
+     * @return Action[]
+     */
+    public function getByResourceIdentifier(string $resourceIdentifier, string $resourceType): array
+    {
+        $actions       = [];
+
+        $query         = ['resourceIdentifier' => $resourceIdentifier, 'resourceType' => $resourceType];
+        $response      = $this->httpClient->get($this->getResourceUrl(), $query);
+        $actions       = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_PLURAL);
+
+        foreach ($actions as $action) {
+            $actions[] = new Action($action);
+        }
+
+        return $actions;
+    }
 }
