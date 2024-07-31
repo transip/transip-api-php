@@ -68,7 +68,7 @@ class ActionRepository extends ApiRepository
 
         $query         = ['resourceIdentifier' => $resourceIdentifier, 'resourceType' => $resourceType];
         $response      = $this->httpClient->get($this->getResourceUrl(), $query);
-        $queryResults = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_PLURAL);
+        $queryResults  = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_PLURAL);
 
         foreach ($$queryResults as $action) {
             $actions[] = new Action($action);
