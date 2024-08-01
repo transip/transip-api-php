@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.52.4
+---
+* Return correct results for querying on `resourceIdentifier` for Actions
+
 6.52.3
 ---
 * Add `status` field to NodePool
