@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.53.0
+---
+* Add MailPackage API resources
+
 6.52.4
 ---
 * Return correct results for querying on `resourceIdentifier` for Actions
