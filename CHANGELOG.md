@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.53.1
+---
+* Add issuerType to `HaipCertificate`
+
 6.53.0
 ---
 * Add MailPackage API resources

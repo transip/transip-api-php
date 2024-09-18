@@ -21,6 +21,11 @@ class Certificate extends AbstractEntity
      */
     protected $expirationDate;
 
+    /**
+     * @var string
+     */
+    protected $issuerType;
+
     public function getId(): string
     {
         return $this->id;
@@ -34,5 +39,10 @@ class Certificate extends AbstractEntity
     public function getExpirationDate(): string
     {
         return $this->expirationDate;
+    }
+
+    public function getIssuerType(): string
+    {
+        return $this->issuerType;
     }
 }
