@@ -50,6 +50,11 @@ class Vps extends AbstractEntity
     protected $status;
 
     /**
+     * @var string $flavor
+     */
+    protected $flavor;
+
+    /**
      * @var string $ipAddress
      */
     protected $ipAddress;
@@ -142,6 +147,11 @@ class Vps extends AbstractEntity
     public function getStatus(): string
     {
         return $this->status;
+    }
+
+    public function getFlavor(): string
+    {
+        return $this->flavor;
     }
 
     public function getIpAddress(): string
