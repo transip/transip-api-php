@@ -116,10 +116,11 @@ class MailboxRepository extends ApiRepository
         $parameters = array_filter([
             'maxDiskUsage'   => $maxDiskUsage,
             'password'       => $password,
-            'forwardTo'      => $forwardTo,
         ], function ($input) {
             return (bool)$input;
         });
+
+        $parameters['forwardTo'] = $forwardTo;
 
         $this->httpClient->patch($this->getResourceUrl($domainName, $identifier), $parameters);
     }
