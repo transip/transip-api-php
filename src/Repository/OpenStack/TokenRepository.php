@@ -47,7 +47,7 @@ class TokenRepository extends ApiRepository
     public function getAllByUserIdAndProjectId(string $userId, string $projectId): array
     {
         $tokens      = [];
-        $response   = $this->httpClient->get($this->getResourceUrl($userId, $projectId));
+        $response   = $this->httpClient->get(sprintf('%s?projectId=%s', $this->getResourceUrl($userId), $projectId));
         $tokenArray = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_PLURAL);
 
         foreach ($tokenArray as $token) {
