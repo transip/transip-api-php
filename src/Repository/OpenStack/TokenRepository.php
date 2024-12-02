@@ -39,6 +39,24 @@ class TokenRepository extends ApiRepository
         return $tokens;
     }
 
+    /**
+     * @param string $userId
+     * @param string $projectId
+     * @return OpenStackToken[]
+     */
+    public function getAllByUserIdAndProjectId(string $userId, string $projectId): array
+    {
+        $tokens      = [];
+        $response   = $this->httpClient->get($this->getResourceUrl($userId, $projectId));
+        $tokenArray = $this->getParameterFromResponse($response, self::RESOURCE_PARAMETER_PLURAL);
+
+        foreach ($tokenArray as $token) {
+            $tokens[] = new OpenStackToken($token);
+        }
+
+        return $tokens;
+    }
+
     public function getByTokenId(string $userId, string $tokenId): OpenStackToken
     {
         $response  = $this->httpClient->get($this->getResourceUrl($userId, $tokenId));
