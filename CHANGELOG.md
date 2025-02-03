@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.53.6
+---
+* Add `diskPerformanceTier`, `bandwidthInboundInGb` and `bandwidthOutboundInGb` fields to `Vps` model
+
 6.53.2
 ---
 * Add `flavor` field to `Vps` model
