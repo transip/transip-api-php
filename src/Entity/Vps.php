@@ -55,6 +55,21 @@ class Vps extends AbstractEntity
     protected $flavor;
 
     /**
+     * @var string $diskPerformanceTier
+     */
+    protected $diskPerformanceTier;
+
+    /**
+     * @var float $bandwidthInboundInGb
+     */
+    protected $bandwidthInboundInGb;
+
+    /**
+     * @var float $bandwidthOutboundInGb
+     */
+    protected $bandwidthOutboundInGb;
+
+    /**
      * @var string $ipAddress
      */
     protected $ipAddress;
@@ -152,6 +167,21 @@ class Vps extends AbstractEntity
     public function getFlavor(): string
     {
         return $this->flavor;
+    }
+
+    public function getDiskPerformanceTier(): string
+    {
+        return $this->diskPerformanceTier;
+    }
+
+    public function getBandwidthInboundInGb(): float
+    {
+        return $this->bandwidthInboundInGb;
+    }
+
+    public function getBandwidthOutboundInGb(): float
+    {
+        return $this->bandwidthOutboundInGb;
     }
 
     public function getIpAddress(): string
