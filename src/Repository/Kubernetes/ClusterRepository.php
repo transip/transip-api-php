@@ -132,6 +132,30 @@ class ClusterRepository extends ApiRepository
         );
     }
 
+    public function unblockMailPorts(string $clusterName): void
+    {
+        $parameters = [
+            'action'  => 'unblock_mailports',
+        ];
+
+        $this->httpClient->patch(
+            $this->getResourceUrl($clusterName),
+            $parameters
+        );
+    }
+
+    public function blockMailPorts(string $clusterName): void
+    {
+        $parameters = [
+            'action'  => 'block_mailports',
+        ];
+
+        $this->httpClient->patch(
+            $this->getResourceUrl($clusterName),
+            $parameters
+        );
+    }
+
     public function remove(string $clusterName): void
     {
         $this->httpClient->delete(
