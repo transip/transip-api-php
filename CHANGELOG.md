@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+6.53.8
+---
+* Add `ObjectStore Project Quota` getting and setting routes
+
+
 6.53.7
 ---
 * Add `unblockMailPorts()` and `blockMailPorts()` to `ClusterRepository` resource
