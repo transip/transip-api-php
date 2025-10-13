@@ -1,5 +1,12 @@
 CHANGELOG
 =========
+6.53.10
+-----
+* Remove colocation remote hands and access request endpoints
+
+6.53.9
+-----
+* Update GuzzleClient.php for deprecation warning php8.4 (@danielwallen - #32)
 
 6.53.8
 ---
