@@ -1,19 +1,11 @@
 #!/bin/bash
 
-# give the full repository url when running in the CI pipeline
-if [ ! -z "$CI_REPOSITORY_URL" ]
-then
-  REPOSITORY_PATH="$CI_REPOSITORY_URL"
-else
-  # when run local point to local git repository
-  REPOSITORY_PATH="file://$(pwd)"
-fi
-
 if ! which trufflehog; then
   echo "# Installing trufflehog before scanning"
-  pip -q install trufflehog
+  apt update -y
+  apt-get install curl -y
+  curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main/scripts/install.sh | sh -s -- -b /usr/local/bin
 fi
 
 echo "# Scanning for stored secrets in repository"
-
-trufflehog --regex --entropy=True -x .secretsignore $REPOSITORY_PATH && echo "All good"
+trufflehog filesystem $PWD --exclude-paths .secretsignore --fail && echo "All good"

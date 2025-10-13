@@ -57,8 +57,13 @@ class ClusterRepository extends ApiRepository
         return $clusters;
     }
 
-    public function create(string $kubernetesVersion = null, ?string $description = '', ?string $nodeSpec = null, ?int $desiredNodeCount = null, string $availabilityZone = null): void
-    {
+    public function create(
+        ?string $kubernetesVersion = null,
+        ?string $description = '',
+        ?string $nodeSpec = null,
+        ?int $desiredNodeCount = null,
+        ?string $availabilityZone = null
+    ): void {
         $parameters = [
             'kubernetesVersion' => $kubernetesVersion,
             'description'       => $description ?? '',

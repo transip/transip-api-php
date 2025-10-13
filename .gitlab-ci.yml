@@ -1,6 +1,6 @@
 variables:
   DOCKER_IMAGE: '$IMAGE_URL'
-image: '$DOCKER_IMAGE'
+image: docker.nl.team.blue/transip/php:latest-cli-xdebug
 stages:
   - lint
   - test
