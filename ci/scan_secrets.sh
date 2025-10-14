@@ -2,10 +2,8 @@
 
 if ! which trufflehog; then
   echo "# Installing trufflehog before scanning"
-  apt update -y
-  apt-get install curl -y
-  curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main/scripts/install.sh | sh -s -- -b /usr/local/bin
+  pip -q install trufflehog
 fi
 
 echo "# Scanning for stored secrets in repository"
-trufflehog filesystem $PWD --exclude-paths .secretsignore --fail && echo "All good"
+trufflehog --regex --entropy=True -x .secretsignore $CI_REPOSITORY_URL && echo "All good"
