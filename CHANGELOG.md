@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.53.11
+-----
+* Add more conditions to firewall rules comparison
+
 6.53.10
 -----
 * Remove colocation remote hands and access request endpoints
