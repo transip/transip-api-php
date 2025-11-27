@@ -61,17 +61,23 @@ class Firewall extends AbstractEntity
         return $this;
     }
 
-    public function addRule(FirewallRule $firewallRule): Firewall
+    public function hasRule(FirewallRule $firewallRule): bool
     {
-        $ruleSet = [];
         foreach ($this->getRuleSet() as $rule) {
             if ($rule->equalsRule($firewallRule)) {
-                $ruleSet[] = $firewallRule;
-            } else {
-                $ruleSet[] = $rule;
+                return true;
             }
         }
-        $this->ruleSet[] = $firewallRule;
+
+        return false;
+    }
+
+    public function addRule(FirewallRule $firewallRule): Firewall
+    {
+        if (!$this->hasRule($firewallRule)) {
+            $this->ruleSet[] = $firewallRule;
+        }
+
         return $this;
     }
 

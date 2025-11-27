@@ -117,8 +117,16 @@ class FirewallRule extends AbstractEntity
 
     public function equalsRule(FirewallRule $rule): bool
     {
-        return $rule->protocol == $this->protocol &&
+        $thisWhitelist = $this->getWhitelist();
+        $ruleWhitelist = $rule->getWhitelist();
+
+        sort($thisWhitelist);
+        sort($ruleWhitelist);
+
+        return $rule->description == $this->description &&
+            $rule->protocol == $this->protocol &&
             $rule->startPort == $this->startPort &&
-            $rule->endPort == $this->endPort;
+            $rule->endPort == $this->endPort &&
+            $ruleWhitelist == $thisWhitelist;
     }
 }
