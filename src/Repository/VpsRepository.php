@@ -223,4 +223,19 @@ class VpsRepository extends ApiRepository
     {
         $this->httpClient->delete($this->getResourceUrl($vpsName), ['endTime' => $endTime]);
     }
+
+    /**
+     * $parameters example array
+     *
+        $parameters = [
+            'action'              => "handover",
+            'targetCustomerName'  => "example2",
+        ];
+     *
+     * @param mixed[] $parameters
+     */
+    public function sendPatchRequest(string $vpsName, array $parameters): ResponseInterface
+    {
+        return $this->httpClient->patch($this->getResourceUrl($vpsName), $parameters);
+    }
 }
