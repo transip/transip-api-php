@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.53.12
+-----
+* Add `sendPatchRequest` to `VpsRepository` resource
+
 6.53.11
 -----
 * Add more conditions to firewall rules comparison
