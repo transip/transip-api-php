@@ -7,6 +7,11 @@ use Transip\Api\Library\Entity\AbstractEntity;
 class Usage extends AbstractEntity
 {
     /**
+     * @var string $name
+     */
+    protected $name;
+
+    /**
      * @var string $currentUsage
      */
     protected $currentUsage;
@@ -15,6 +20,16 @@ class Usage extends AbstractEntity
      * @var string $limit
      */
     protected $limit;
+
+    /**
+     * Get $name
+     *
+     * @return  string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
     /**
      * Get $uuid

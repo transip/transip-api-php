@@ -6,13 +6,10 @@ use Transip\Api\Library\Entity\Acronis\Usage;
 use Transip\Api\Library\Repository\ApiRepository;
 use Transip\Api\Library\Repository\Acronis\TenantRepository;
 
-/**
- * @deprecated use `UsagesRepository` instead
- */
-class UsageRepository extends ApiRepository
+class UsagesRepository extends ApiRepository
 {
-    public const RESOURCE_NAME = 'usage';
-
+    public const RESOURCE_NAME = 'usages';
+    
     /**
      * @return string[]
      */
@@ -22,13 +19,18 @@ class UsageRepository extends ApiRepository
     }
 
     /**
-     * @deprecated
+     * @return Usage[]
      */
-    public function getByTenantUuid(string $tenantUuid): Usage
+    public function getByTenantUuid(string $tenantUuid): array
     {
         $response      = $this->httpClient->get($this->getResourceUrl($tenantUuid));
-        $acronisUsage  = $this->getParameterFromResponse($response, self::RESOURCE_NAME);
+        $acronisUsages = $this->getParameterFromResponse($response, self::RESOURCE_NAME);
 
-        return new Usage($acronisUsage);
+        $usages =[];
+        foreach ($acronisUsages as $acronisUsage) {
+            $usages[] = new Usage($acronisUsage);
+        }
+
+        return $usages;
     }
 }
