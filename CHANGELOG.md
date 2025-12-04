@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.53.13
+-----
+* Add `UsagesReposiory` resource
+
 6.53.12
 -----
 * Add `sendPatchRequest` to `VpsRepository` resource
