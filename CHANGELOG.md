@@ -1,5 +1,10 @@
 CHANGELOG
 =========
+6.54.0
+-----
+* ⚠️ Remove `symfony/cache` as a direct dependency of this library. If you are not supplying your own PSR-6 cache pool, please install `symfony/cache` in your project to avoid errors.
+* Add support for Symfony 8.x cache
+
 6.53.13
 -----
 * Add `UsagesReposiory` resource

@@ -2,6 +2,7 @@
 
 namespace Transip\Api\Library;
 
+use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Transip\Api\Library\HttpClient\GuzzleClient;
@@ -109,7 +110,7 @@ use Transip\Api\Library\Repository\VpsRepository;
 class TransipAPI
 {
     public const TRANSIP_API_ENDPOINT = "https://api.transip.nl/v6";
-    public const TRANSIP_API_LIBRARY_VERSION = "6.53.13";
+    public const TRANSIP_API_LIBRARY_VERSION = "6.54.0";
     public const TRANSIP_API_DEMO_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImN3MiFSbDU2eDNoUnkjelM4YmdOIn0.eyJpc3MiOiJhcGkudHJhbnNpcC5ubCIsImF1ZCI6ImFwaS50cmFuc2lwLm5sIiwianRpIjoiY3cyIVJsNTZ4M2hSeSN6UzhiZ04iLCJpYXQiOjE1ODIyMDE1NTAsIm5iZiI6MTU4MjIwMTU1MCwiZXhwIjoyMTE4NzQ1NTUwLCJjaWQiOiI2MDQ0OSIsInJvIjpmYWxzZSwiZ2siOmZhbHNlLCJrdiI6dHJ1ZX0.fYBWV4O5WPXxGuWG-vcrFWqmRHBm9yp0PHiYh_oAWxWxCaZX2Rf6WJfc13AxEeZ67-lY0TA2kSaOCp0PggBb_MGj73t4cH8gdwDJzANVxkiPL1Saqiw2NgZ3IHASJnisUWNnZp8HnrhLLe5ficvb1D9WOUOItmFC2ZgfGObNhlL2y-AMNLT4X7oNgrNTGm-mespo0jD_qH9dK5_evSzS3K8o03gu6p19jxfsnIh8TIVRvNdluYC2wo4qDl5EW5BEZ8OSuJ121ncOT1oRpzXB0cVZ9e5_UVAEr9X3f26_Eomg52-PjrgcRJ_jPIUYbrlo06KjjX2h0fzMr21ZE023Gw";
 
     /**
@@ -150,8 +151,18 @@ class TransipAPI
             $this->httpClient->setPrivateKey($privateKey);
         }
 
-        if ($cache === null) {
+        if ($cache === null && class_exists(FilesystemAdapter::class)) {
+            if (function_exists('trigger_deprecation')) {
+                trigger_deprecation('transip/api-library', '6.54.0', 'Not providing a cache adapter is deprecated and will throw an exception in future releases. Please provide a cache adapter implementing %s (PSR-6).', CacheItemPoolInterface::class);
+            }
+
             $cache = new FilesystemAdapter();
+        } elseif ($cache === null) {
+            throw new InvalidArgumentException(sprintf(
+                'No cache adapter provided and the %s class is not available. Please provide a cache adapter implementing %s (PSR-6).',
+                FilesystemAdapter::class,
+                CacheItemPoolInterface::class
+            ));
         }
 
         $this->httpClient->setCache($cache);
