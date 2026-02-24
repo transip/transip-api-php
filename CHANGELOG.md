@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.54.1
+-----
+* Add support for restoring backups to a VPS other than the source
+
 6.54.0
 -----
 * ⚠️ Remove `symfony/cache` as a direct dependency of this library. If you are not supplying your own PSR-6 cache pool, please install `symfony/cache` in your project to avoid errors.

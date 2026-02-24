@@ -36,9 +36,13 @@ class BackupRepository extends ApiRepository
         return $backups;
     }
 
-    public function revertBackup(string $vpsName, int $backupId): ResponseInterface
+    public function revertBackup(string $vpsName, int $backupId, ?string $destinationVpsIdentifier = null): ResponseInterface
     {
-        return $this->httpClient->patch($this->getResourceUrl($vpsName, $backupId), ['action' => 'revert']);
+        $parameters = ['action' => 'revert'];
+        if ($destinationVpsIdentifier) {
+            $parameters['destinationVpsIdentifier'] = $destinationVpsIdentifier;
+        }
+        return $this->httpClient->patch($this->getResourceUrl($vpsName, $backupId), $parameters);
     }
 
     public function convertBackupToSnapshot(string $vpsName, int $backupId, string $snapshotDescription = ''): ResponseInterface
