@@ -1,0 +1,92 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/**
+ * TransIP MCP Server
+ *
+ * Model Context Protocol server for the TransIP REST API.
+ * Communicates via JSON-RPC 2.0 over stdio (stdin/stdout).
+ *
+ * Configuration via environment variables:
+ *   TRANSIP_LOGIN       - TransIP customer login name
+ *   TRANSIP_PRIVATE_KEY - TransIP API private key (PEM format, can be base64-encoded)
+ *   TRANSIP_TOKEN       - Pre-existing API token (optional, alternative to private key)
+ *   TRANSIP_ENDPOINT    - Custom API endpoint URL (optional)
+ *   TRANSIP_WHITELIST_ONLY - Generate whitelist-only tokens: "true"/"false" (default: "true")
+ *   TRANSIP_READ_ONLY   - Read-only mode: "true"/"false" (default: "false")
+ *   TRANSIP_TEST_MODE   - Test mode: "true"/"false" (default: "false")
+ *   TRANSIP_DEMO        - Use the demo token: "true"/"false" (default: "false")
+ */
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Transip\Api\Library\TransipAPI;
+use Transip\Api\MCP\Handler\ToolHandler;
+use Transip\Api\MCP\Server;
+
+// Ensure stderr is available for logging (MCP servers must not write to stdout except JSON-RPC)
+function mcpLog(string $message): void
+{
+    fwrite(STDERR, "[transip-mcp] {$message}\n");
+}
+
+// Load configuration from environment
+$login = getenv('TRANSIP_LOGIN') ?: '';
+$privateKey = getenv('TRANSIP_PRIVATE_KEY') ?: '';
+$token = getenv('TRANSIP_TOKEN') ?: '';
+$endpoint = getenv('TRANSIP_ENDPOINT') ?: '';
+$whitelistOnly = strtolower(getenv('TRANSIP_WHITELIST_ONLY') ?: 'true') === 'true';
+$readOnly = strtolower(getenv('TRANSIP_READ_ONLY') ?: 'false') === 'true';
+$testMode = strtolower(getenv('TRANSIP_TEST_MODE') ?: 'false') === 'true';
+$demoMode = strtolower(getenv('TRANSIP_DEMO') ?: 'false') === 'true';
+
+// The private key may be base64-encoded (single line) for easier env var usage
+if ($privateKey !== '' && strpos($privateKey, '-----BEGIN') === false) {
+    $decoded = base64_decode($privateKey, true);
+    if ($decoded !== false) {
+        $privateKey = $decoded;
+    }
+}
+
+// Validate configuration
+if (!$demoMode && $login === '' && $token === '') {
+    mcpLog('Warning: No TRANSIP_LOGIN, TRANSIP_TOKEN, or TRANSIP_DEMO=true configured. API calls will fail.');
+    mcpLog('Set TRANSIP_LOGIN + TRANSIP_PRIVATE_KEY, or TRANSIP_TOKEN, or TRANSIP_DEMO=true');
+}
+
+try {
+    $cache = new FilesystemAdapter('transip-mcp', 0, sys_get_temp_dir() . '/transip-mcp-cache');
+
+    $api = new TransipAPI(
+        $login,
+        $privateKey,
+        $whitelistOnly,
+        $token,
+        $endpoint,
+        $cache
+    );
+
+    if ($demoMode) {
+        $api->useDemoToken();
+    }
+
+    if ($readOnly) {
+        $api->setReadOnlyMode(true);
+    }
+
+    if ($testMode) {
+        $api->setTestMode(true);
+    }
+
+    $toolHandler = new ToolHandler($api);
+    $server = new Server($toolHandler);
+
+    mcpLog('TransIP MCP Server started');
+    $server->run();
+} catch (\Throwable $e) {
+    mcpLog('Fatal error: ' . $e->getMessage());
+    exit(1);
+}
