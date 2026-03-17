@@ -128,7 +128,7 @@ class ToolRegistry
     private function serializeResult(mixed $result): mixed
     {
         if (is_array($result)) {
-            return array_map(fn($item) => $this->serializeResult($item), $result);
+            return array_map(fn ($item) => $this->serializeResult($item), $result);
         }
         if (is_object($result) && method_exists($result, 'jsonSerialize')) {
             return $result->jsonSerialize();
@@ -1032,7 +1032,7 @@ class ToolRegistry
                 'required' => ['domainName', 'dnsEntries'],
             ],
             function (TransipAPI $api, array $args): mixed {
-                $entries = array_map(fn($e) => new DnsEntry($e), $args['dnsEntries']);
+                $entries = array_map(fn ($e) => new DnsEntry($e), $args['dnsEntries']);
                 $api->domainDns()->update($args['domainName'], $entries);
                 return ['success' => true, 'message' => 'DNS entries replaced'];
             }
@@ -1091,7 +1091,7 @@ class ToolRegistry
                 'required' => ['domainName', 'dnsSecEntries'],
             ],
             function (TransipAPI $api, array $args): mixed {
-                $entries = array_map(fn($e) => new DnsSecEntry($e), $args['dnsSecEntries']);
+                $entries = array_map(fn ($e) => new DnsSecEntry($e), $args['dnsSecEntries']);
                 $api->domainDnsSec()->update($args['domainName'], $entries);
                 return ['success' => true, 'message' => 'DNSSEC entries updated'];
             }
@@ -1125,7 +1125,7 @@ class ToolRegistry
                 'required' => ['domainName', 'nameservers'],
             ],
             function (TransipAPI $api, array $args): mixed {
-                $nameservers = array_map(fn($ns) => new Nameserver($ns), $args['nameservers']);
+                $nameservers = array_map(fn ($ns) => new Nameserver($ns), $args['nameservers']);
                 $api->domainNameserver()->update($args['domainName'], $nameservers);
                 return ['success' => true, 'message' => 'Nameservers updated'];
             }
