@@ -20,6 +20,11 @@ class SslCertificate extends AbstractEntity
     protected $expirationDate;
 
     /**
+     * @var string $orderDate
+     */
+    protected $orderDate;
+
+    /**
      * @var string $status
      */
     protected $status;
@@ -37,6 +42,11 @@ class SslCertificate extends AbstractEntity
     public function getExpirationDate(): string
     {
         return $this->expirationDate;
+    }
+
+    public function getOrderDate(): string
+    {
+        return $this->orderDate;
     }
 
     public function getStatus(): string

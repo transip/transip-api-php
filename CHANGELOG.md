@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.54.2
+-----
+* Add orderDate to `SslCertificate`
+
 6.54.1
 -----
 * Add support for restoring backups to a VPS other than the source
