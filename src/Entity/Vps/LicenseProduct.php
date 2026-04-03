@@ -24,6 +24,9 @@ class LicenseProduct extends AbstractEntity
     /** @var int */
     protected $maxQuantity;
 
+    /** @var bool */
+    protected $isDefault;
+
     public function getName(): string
     {
         return $this->name;
@@ -52,5 +55,10 @@ class LicenseProduct extends AbstractEntity
     public function getMaxQuantity(): int
     {
         return $this->maxQuantity;
+    }
+
+    public function getIsDefault(): bool
+    {
+        return $this->isDefault;
     }
 }
