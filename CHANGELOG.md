@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.54.4
+-----
+* Fixed PHP 7 compatibility
+
 6.54.3
 -----
 * Add `isDefault` flag to `LicenceProduct`
