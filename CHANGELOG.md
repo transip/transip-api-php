@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.54.3
+-----
+* Add `isDefault` flag to `LicenceProduct`
+
 6.54.2
 -----
 * Add orderDate to `SslCertificate`
