@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.54.5
+-----
+* Add `targetProductName` and `addons` parameter to clone vps method
+
 6.54.4
 -----
 * Fixed PHP 7 compatibility

@@ -180,11 +180,31 @@ class VpsRepository extends ApiRepository
         return $this->httpClient->post($this->getResourceUrl(), ['vpss' => $vpss]);
     }
 
-    public function cloneVps(string $vpsName, string $availabilityZone = ''): ResponseInterface
-    {
+    /**
+     * @param string $vpsName
+     * @param string $availabilityZone
+     * @param string $targetProductName
+     * @param string[] $addons
+     * @return ResponseInterface
+     */
+    public function cloneVps(
+        string $vpsName,
+        string $availabilityZone = '',
+        string $targetProductName = '',
+        array $addons = [],
+    ): ResponseInterface {
         $parameters['vpsName'] = $vpsName;
+
         if ($availabilityZone !== '') {
             $parameters['availabilityZone'] = $availabilityZone;
+        }
+
+        if ($targetProductName !== '') {
+            $parameters['targetProductName'] = $targetProductName;
+        }
+
+        if ($addons !== []) {
+            $parameters['addons'] = $addons;
         }
 
         return $this->httpClient->post($this->getResourceUrl(), $parameters);
