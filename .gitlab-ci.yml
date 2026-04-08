@@ -51,9 +51,13 @@ lint secretsscan:
 test phpunit:
   stage: test
   needs: []
+  image: ${PHP_IMAGE_PATH}:${PHP_VERSION_TAG}
   variables:
     PHP_XDEBUG: "1"
     XDEBUG_MODE: coverage
+  parallel:
+    matrix:
+      - PHP_VERSION_TAG: ['7.4-composer', '8.0-composer', '8.1-composer', '8.2-composer', '8.3', '8.4', '8.5']
   before_script:
     - composer config --no-plugins allow-plugins.php-http/discovery true
     - composer install --prefer-dist --no-progress --no-interaction --optimize-autoloader
