@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.54.6
+-----
+* Remove method parameter trailing comma
+
 6.54.5
 -----
 * Add `targetProductName` and `addons` parameter to clone vps method

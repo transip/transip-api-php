@@ -191,7 +191,7 @@ class VpsRepository extends ApiRepository
         string $vpsName,
         string $availabilityZone = '',
         string $targetProductName = '',
-        array $addons = [],
+        array $addons = []
     ): ResponseInterface {
         $parameters['vpsName'] = $vpsName;
 
