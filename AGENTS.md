@@ -57,7 +57,7 @@ High-entropy strings fail it; files that legitimately contain them are listed in
 | `src/Repository/` | One `ApiRepository` subclass per API resource; sub-resources in subdirectories, e.g. `Repository/Kubernetes/Cluster/NodePoolRepository.php` |
 | `src/Entity/` | Response/request models extending `AbstractEntity` |
 | `src/HttpClient/` | `HttpClientInterface`, abstract `HttpClient`, `GuzzleClient`, `HttpMethodsClient`, `Builder/ClientBuilder`, `Plugin/` (`ExceptionThrowerPlugin`, `TokenAuthenticationPlugin`), `Middleware/TokenAuthorization` |
-| `src/Exception/` | `ApiException`, `ApiClientException`, `HttpBadResponseException`; one class per HTTP error in `Exception/HttpRequest/` |
+| `src/Exception/` | `ApiException`, `ApiClientException`, `HttpClientException`, `HttpRequestException`, `HttpBadResponseException`; one class per HTTP error in `Exception/HttpRequest/` |
 | `examples/` | Runnable usage samples; they `require_once` `examples/Authenticate.php` |
 | `tests/` | PHPUnit tests, namespace `Transip\Api\Library\Tests\` |
 | `ci/` | CI scripts: secrets scan, tag checks, GitHub mirror/release |
