@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.55.0
+-----
+* Add `descriptionChangedAt` to `Vps`
+
 6.54.10
 -----
 * Add autoscaling support to nodepool create
