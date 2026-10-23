@@ -119,6 +119,11 @@ class Vps extends AbstractEntity
      */
     protected $createdAt;
 
+    /**
+     * @var string|null
+     */
+    protected $descriptionChangedAt;
+
     public function getName(): string
     {
         return $this->name;
@@ -264,5 +269,15 @@ class Vps extends AbstractEntity
     public function setCreatedAt(string $createdAt): void
     {
         $this->createdAt = $createdAt;
+    }
+
+    public function getDescriptionChangedAt(): ?string
+    {
+        return $this->descriptionChangedAt;
+    }
+
+    public function setDescriptionChangedAt(?string $descriptionChangedAt): void
+    {
+        $this->descriptionChangedAt = $descriptionChangedAt;
     }
 }
