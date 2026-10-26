@@ -18,6 +18,8 @@ composer install --prefer-dist --no-progress --no-interaction --optimize-autoloa
 
 `composer.lock` is in `.gitignore`, so every install (and every CI job) resolves the newest versions allowed for that PHP version.
 
+- Team rules and procedures (commits, MRs, tests, generated code, workflows, releases) are agent skills in https://gitlab.group.team.blue/nl-transip/transip/ai-skills. If no `vps-*` skills are available to you, tell the developer to install them (see that repository's README) before you start; don't install them yourself.
+
 ## Commands
 
 All of these run in CI (`.gitlab-ci.yml`, job name in brackets) and pass on `master`:
@@ -70,9 +72,9 @@ High-entropy strings fail it; files that legitimately contain them are listed in
 - Read response keys with `getParameterFromResponse()`, which throws `ApiClientException::parameterMissingInResponse()` instead of returning null.
 - Optional parameters default to `null` and are only added to the request body when set (see `NodePoolRepository::add()`). Actions are `patch()` calls with an `action` key, e.g. `['action' => 'remove_nodes', 'nodes' => $nodeUuids]` in `NodePoolRepository::removeNodes()`.
 - Entities extend `AbstractEntity`: `protected` properties with `@var` docblocks and getters/setters. The constructor copies array keys onto matching properties (`property_exists`); nested objects are hydrated in an overridden constructor (`NodePool` builds `Node` objects from `nodes`). `jsonSerialize()` returns all properties, which is what `put()` sends when an entity is passed as body.
-- Keep PHP 7.4 syntax: no trailing comma after the last method parameter (fixed in `VpsRepository::cloneVps()`), no PHP 8-only features. Check with the `php:7.4-cli` command above.
+- PHP 7.4 compatibility: a trailing comma after the last method parameter was fixed in `VpsRepository::cloneVps()`; check with the `php:7.4-cli` command above.
 - `HttpClient` has two implementations: `GuzzleClient` (default in `TransipAPI`) and `HttpMethodsClient` (HTTPlug, built from `ClientBuilderInterface`). A new method on `HttpClientInterface` must work in both; see the `setTimeZone()` override in `HttpMethodsClient`.
-- Every release bumps `TransipAPI::TRANSIP_API_LIBRARY_VERSION` (also sent in the User-Agent by `HttpClient::getUserAgent()`) and adds a `CHANGELOG.md` entry; recent feature commits do both in the same commit.
+- Version and `CHANGELOG.md`: `TransipAPI::TRANSIP_API_LIBRARY_VERSION` is also sent in the User-Agent by `HttpClient::getUserAgent()`; recent feature commits bump it and add the `CHANGELOG.md` entry in the same commit.
 
 ## Tests
 
@@ -83,6 +85,5 @@ High-entropy strings fail it; files that legitimately contain them are listed in
 ## Git / MRs
 
 - Default branch: `master`. Work on a feature branch and merge via MR; no staging branches.
-- Commit subjects are short and imperative, with a Jira key when there is one: `[NL8VPS4-800] Fixed PHP 7 compatibility`, `Add description to licences`.
-- Releases are tags named after the version (e.g. `6.54.10`). Tag pipelines run `validate tag-message` (`ci/validate_tag_message.sh`: the tag message must not be the default merge text), `validate tag-version-consistency` (`ci/ValidateTagVersionConsistency.php`: tag, with any leading `v` stripped, must equal `TRANSIP_API_LIBRARY_VERSION`), then `deploy deploy-to-github` and `release release-to-github`.
+- Tag pipelines run `validate tag-message` (`ci/validate_tag_message.sh`: the tag message must not be the default merge text), `validate tag-version-consistency` (`ci/ValidateTagVersionConsistency.php`: tag, with any leading `v` stripped, must equal `TRANSIP_API_LIBRARY_VERSION`), then `deploy deploy-to-github` and `release release-to-github`.
 - `ci/deploy_to_github.sh` pushes all GitLab branches and tags to the public `github.com/transip/transip-api-php` mirror, so anything pushed to a branch here becomes public on the next release.
