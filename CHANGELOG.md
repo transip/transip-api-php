@@ -1,5 +1,12 @@
 CHANGELOG
 =========
+6.55.0
+-----
+* Add `ForwardingService` entity
+* Add `forwardingServices()` repository with `getAll`, `getSelection`, `getByDomainName` and `update` methods
+* Add `forwardingServiceSsl()` repository with `getStatus`, `enable` and `disable` methods
+* Add `forwardingServiceEmail()` repository with `getForwardTo`, `setForwardTo` and `removeForwardTo` methods
+
 6.54.10
 -----
 * Add autoscaling support to nodepool create
