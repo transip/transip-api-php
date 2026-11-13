@@ -1,5 +1,10 @@
 CHANGELOG
 =========
+6.56.0
+-----
+* Add `Domain\Verification`, `Domain\VerificationContact` and `Domain\VerificationDomain` entities
+* Add `domainVerifications()` repository with `getAll`, `getSelection` and `getById` methods
+
 6.55.0
 -----
 * Add `ForwardingService` entity

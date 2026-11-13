@@ -43,6 +43,7 @@ use Transip\Api\Library\Repository\DomainAvailabilityRepository;
 use Transip\Api\Library\Repository\DomainDefaults\ContactRepository as DefaultContactRepository;
 use Transip\Api\Library\Repository\DomainRepository;
 use Transip\Api\Library\Repository\DomainTldRepository;
+use Transip\Api\Library\Repository\DomainVerificationRepository;
 use Transip\Api\Library\Repository\DomainWhitelabelRepository;
 use Transip\Api\Library\Repository\Email\MailAddonRepository;
 use Transip\Api\Library\Repository\Email\MailboxRepository;
@@ -114,7 +115,7 @@ use Transip\Api\Library\Repository\VpsRepository;
 class TransipAPI
 {
     public const TRANSIP_API_ENDPOINT = "https://api.transip.nl/v6";
-    public const TRANSIP_API_LIBRARY_VERSION = "6.55.0";
+    public const TRANSIP_API_LIBRARY_VERSION = "6.56.0";
     public const TRANSIP_API_DEMO_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImN3MiFSbDU2eDNoUnkjelM4YmdOIn0.eyJpc3MiOiJhcGkudHJhbnNpcC5ubCIsImF1ZCI6ImFwaS50cmFuc2lwLm5sIiwianRpIjoiY3cyIVJsNTZ4M2hSeSN6UzhiZ04iLCJpYXQiOjE1ODIyMDE1NTAsIm5iZiI6MTU4MjIwMTU1MCwiZXhwIjoyMTE4NzQ1NTUwLCJjaWQiOiI2MDQ0OSIsInJvIjpmYWxzZSwiZ2siOmZhbHNlLCJrdiI6dHJ1ZX0.fYBWV4O5WPXxGuWG-vcrFWqmRHBm9yp0PHiYh_oAWxWxCaZX2Rf6WJfc13AxEeZ67-lY0TA2kSaOCp0PggBb_MGj73t4cH8gdwDJzANVxkiPL1Saqiw2NgZ3IHASJnisUWNnZp8HnrhLLe5ficvb1D9WOUOItmFC2ZgfGObNhlL2y-AMNLT4X7oNgrNTGm-mespo0jD_qH9dK5_evSzS3K8o03gu6p19jxfsnIh8TIVRvNdluYC2wo4qDl5EW5BEZ8OSuJ121ncOT1oRpzXB0cVZ9e5_UVAEr9X3f26_Eomg52-PjrgcRJ_jPIUYbrlo06KjjX2h0fzMr21ZE023Gw";
 
     /**
@@ -307,6 +308,11 @@ class TransipAPI
     public function domainWhitelabel(): DomainWhitelabelRepository
     {
         return new DomainWhitelabelRepository($this->httpClient);
+    }
+
+    public function domainVerifications(): DomainVerificationRepository
+    {
+        return new DomainVerificationRepository($this->httpClient);
     }
 
     public function defaultDomainContacts(): DefaultContactRepository
