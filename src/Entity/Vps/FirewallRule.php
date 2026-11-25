@@ -33,7 +33,7 @@ class FirewallRule extends AbstractEntity
     /**
      * @var string[] $whitelist
      */
-    protected $whitelist;
+    protected $whitelist = [];
 
     public function getDescription(): string
     {

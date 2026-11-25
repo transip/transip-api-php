@@ -112,7 +112,7 @@ class Vps extends AbstractEntity
     /**
      * @var string[]
      */
-    protected $tags;
+    protected $tags = [];
 
     /**
      * @var string

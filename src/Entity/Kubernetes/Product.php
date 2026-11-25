@@ -24,12 +24,12 @@ class Product extends AbstractEntity
     /**
      * @var ProductPeriodPrice[]
      */
-    protected $periodPrices;
+    protected $periodPrices = [];
 
     /**
      * @var ProductSpec[]
      */
-    protected $specs;
+    protected $specs = [];
 
     /**
      * @param mixed[] $valueArray

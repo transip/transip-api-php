@@ -34,7 +34,7 @@ class PrivateNetwork extends AbstractEntity
     /**
      * @var Vps[] $connectedVpses
      */
-    protected $connectedVpses;
+    protected $connectedVpses = [];
 
     public function __construct(array $valueArray = [])
     {
