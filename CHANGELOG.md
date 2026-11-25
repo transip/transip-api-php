@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+6.56.1
+-----
+* Fix missing array initialisations
+
 6.56.0
 -----
 * Add `Domain\Verification`, `Domain\VerificationContact` and `Domain\VerificationDomain` entities
